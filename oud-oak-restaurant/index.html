@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oud & Oak — Fine Dining Amman</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0704;
+            --dark: #120e09;
+            --gold: #c9a84c;
+            --gold-light: #e8c97a;
+            --cream: #f5efe6;
+            --text-muted: rgba(245, 239, 230, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--cream);
+            font-family: 'Jost', sans-serif;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+
+        /* Grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10, 7, 4, 0.9), transparent);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--cream);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            transition: opacity 0.3s, color 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--gold);
+        }
+
+        .nav-reserve {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 24px;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .nav-reserve:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, #2a1a08 0%, #0a0704 70%);
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 60%);
+        }
+
+        .hero-ornament {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            border: 1px solid rgba(201, 168, 76, 0.1);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .hero-ornament::before {
+            content: '';
+            position: absolute;
+            inset: 30px;
+            border: 1px solid rgba(201, 168, 76, 0.07);
+            border-radius: 50%;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.03);
+                opacity: 0.7;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeUp 1.2s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tag {
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 7rem;
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .hero-divider span {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            opacity: 0.4;
+        }
+
+        .hero-divider i {
+            color: var(--gold);
+            font-size: 0.6rem;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 16px 48px;
+            background: var(--gold);
+            color: var(--black);
+            font-family: 'Jost', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.4s;
+        }
+
+        .hero-cta:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(201, 168, 76, 0.3);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollDown 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollDown {
+            0% {
+                transform: scaleY(0);
+                transform-origin: top;
+            }
+
+            50% {
+                transform: scaleY(1);
+                transform-origin: top;
+            }
+
+            51% {
+                transform: scaleY(1);
+                transform-origin: bottom;
+            }
+
+            100% {
+                transform: scaleY(0);
+                transform-origin: bottom;
+            }
+        }
+
+        /* Section base */
+        section {
+            padding: 120px 60px;
+        }
+
+        .section-tag {
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        /* About */
+        .about {
+            background: var(--dark);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+            padding: 120px 100px;
+        }
+
+        .about-text h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+
+        .about-text h2 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            line-height: 1.9;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .stat-box {
+            border-top: 1px solid rgba(201, 168, 76, 0.2);
+            padding-top: 30px;
+        }
+
+        .stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            color: var(--gold);
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* Menu */
+        .menu {
+            background: var(--black);
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .menu-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 300;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: rgba(201, 168, 76, 0.03);
+            border: 1px solid rgba(201, 168, 76, 0.1);
+            padding: 50px 40px;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background: rgba(201, 168, 76, 0.08);
+            border-color: rgba(201, 168, 76, 0.3);
+        }
+
+        .menu-item-tag {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .menu-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .menu-item p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .menu-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+        }
+
+        /* Reservation */
+        .reservation {
+            background: var(--dark);
+            text-align: center;
+            padding: 120px 60px;
+        }
+
+        .reservation h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        .reservation p {
+            color: var(--text-muted);
+            margin-bottom: 60px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .res-form {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .res-input {
+            background: transparent;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            color: var(--cream);
+            padding: 16px 20px;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .res-input:focus {
+            border-color: var(--gold);
+        }
+
+        .res-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .res-btn {
+            grid-column: 1 / -1;
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 18px;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .res-btn:hover {
+            background: var(--gold-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
+            padding: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .footer-center {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-contact {
+            text-align: right;
+        }
+
+        .footer-contact p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+
+        .footer-contact a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        /* Fade in on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 30px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                padding: 80px 30px;
+                gap: 60px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .res-form {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-contact {
+                text-align: center;
+            }
+
+            section {
+                padding: 80px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">Oud &amp; Oak</div>
+        <ul class="nav-links">
+            <li><a href="#about">Story</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#reserve">Reserve</a></li>
+        </ul>
+        <a href="#reserve" class="nav-reserve">Reserve a Table</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-ornament"></div>
+        <div class="hero-content">
+            <span class="hero-tag">Fine Dining · Amman, Jordan</span>
+            <h1>Where <em>Flavour</em><br>Becomes Art</h1>
+            <div class="hero-divider">
+                <span></span>
+                <i>✦</i>
+                <span></span>
+            </div>
+            <p>An intimate culinary journey through the finest ingredients of the Levant</p>
+            <a href="#menu" class="hero-cta">Explore the Menu</a>
+        </div>
+        <div class="scroll-hint">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-text reveal">
+            <span class="section-tag">Our Story</span>
+            <h2>Born from <em>Passion</em>,<br>Refined by Craft</h2>
+            <p>Oud & Oak was born from a simple belief — that dining should be a ceremony. Each dish is a conversation
+                between ancient Levantine tradition and modern culinary artistry.</p>
+            <p>Our chefs source only from small local farms, creating menus that change with the seasons and honour the
+                land that feeds us.</p>
+        </div>
+        <div class="about-stats reveal">
+            <div class="stat-box">
+                <div class="stat-num">12</div>
+                <div class="stat-label">Years of Excellence</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">3</div>
+                <div class="stat-label">Regional Awards</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">40+</div>
+                <div class="stat-label">Curated Dishes</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">100%</div>
+                <div class="stat-label">Local Ingredients</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu" id="menu">
+        <div class="menu-header reveal">
+            <span class="section-tag">Culinary Experience</span>
+            <h2>The Menu</h2>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item reveal">
+                <span class="menu-item-tag">Starter</span>
+                <h3>Truffle Hummus</h3>
+                <p>Silky chickpea cream, black truffle oil, toasted pine nuts, dukkah crumb, warm markook bread.</p>
+                <div class="menu-price">8 JOD</div>
+            </div>
+            <div class="menu-item reveal">
+                <span class="menu-item-tag">Main</span>
+                <h3>Lamb Ouzi</h3>
+                <p>Slow-roasted whole lamb shoulder, saffron rice, caramelised onion, pomegranate reduction.</p>
+                <div class="menu-price">28 JOD</div>
+            </div>
+            <div class="menu-item reveal">
+                <span class="menu-item-tag">Dessert</span>
+                <h3>Rose Knafeh</h3>
+                <p>Warm shredded pastry, fresh Nabulsi cheese, rose water syrup, crushed pistachios.</p>
+                <div class="menu-price">6 JOD</div>
+            </div>
+            <div class="menu-item reveal">
+                <span class="menu-item-tag">Signature</span>
+                <h3>Oak-Smoked Salmon</h3>
+                <p>Wild Atlantic salmon, smoked over oak chips, labneh quenelle, sumac cucumber, micro herbs.</p>
+                <div class="menu-price">22 JOD</div>
+            </div>
+            <div class="menu-item reveal">
+                <span class="menu-item-tag">Vegetarian</span>
+                <h3>Freekeh Risotto</h3>
+                <p>Roasted green wheat, wild mushrooms, aged Baladi cheese, truffle cream, fresh thyme.</p>
+                <div class="menu-price">16 JOD</div>
+            </div>
+            <div class="menu-item reveal">
+                <span class="menu-item-tag">Drinks</span>
+                <h3>Oud Mocktail</h3>
+                <p>House-made date syrup, rose water, fresh lemon, oud bitters, smoked ice sphere.</p>
+                <div class="menu-price">5 JOD</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reservation" id="reserve">
+        <span class="section-tag">Join Us</span>
+        <h2>Reserve Your Table</h2>
+        <p>An experience worth anticipating — book your evening at Oud & Oak</p>
+        <div class="res-form">
+            <input type="text" class="res-input" placeholder="Full Name">
+            <input type="date" class="res-input">
+            <input type="number" class="res-input" placeholder="Guests" min="1" max="20">
+            <button class="res-btn">Confirm Reservation</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Oud &amp; Oak</div>
+        <div class="footer-center">
+            <p>Abdoun, Amman, Jordan</p>
+            <p style="margin-top:8px;">Open Daily · 12:00 — 23:30</p>
+            <p style="margin-top:8px; font-size:0.65rem; color:rgba(245,239,230,0.3);">© 2025 Oud & Oak. All rights
+                reserved.</p>
+        </div>
+        <div class="footer-contact">
+            <p>Reservations & Enquiries</p>
+            <a href="tel:+96265001234">+962 6 500 1234</a>
+        </div>
+    </footer>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

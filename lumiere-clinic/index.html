@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière Clinic — Advanced Aesthetic Medicine</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --white: #fafcfb;
+            --mint: #d4ede6;
+            --teal: #2a7d6a;
+            --teal-dark: #1d5a4c;
+            --charcoal: #1a2420;
+            --muted: #7a9490;
+            --light-gray: #f0f5f3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--charcoal);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(250, 252, 251, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(42, 125, 106, 0.1);
+            padding: 0 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            color: var(--teal-dark);
+        }
+
+        .logo span {
+            color: var(--teal);
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            color: var(--muted);
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+
+        .nav-book {
+            background: var(--teal);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .nav-book:hover {
+            background: var(--teal-dark);
+            transform: translateY(-1px);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding-top: 80px;
+        }
+
+        .hero-left {
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            padding: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-left::before {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(42, 125, 106, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(42, 125, 106, 0.1);
+            color: var(--teal);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--teal);
+            border-radius: 50%;
+        }
+
+        .hero-left h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 4rem;
+            line-height: 1.15;
+            color: var(--charcoal);
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .hero-left h1 em {
+            font-style: italic;
+            color: var(--teal);
+        }
+
+        .hero-left p {
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 40px;
+            max-width: 420px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--teal);
+            color: #fff;
+            padding: 15px 36px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--teal-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(42, 125, 106, 0.3);
+        }
+
+        .btn-outline-teal {
+            border: 1.5px solid var(--teal);
+            color: var(--teal);
+            padding: 15px 36px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-teal:hover {
+            background: var(--teal);
+            color: #fff;
+        }
+
+        .hero-right {
+            background: var(--mint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px;
+        }
+
+        .hero-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 30px 80px rgba(42, 125, 106, 0.12);
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .hero-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--charcoal);
+        }
+
+        .card-stat {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .card-stat:last-child {
+            border-bottom: none;
+        }
+
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--teal);
+            font-size: 1.1rem;
+        }
+
+        .stat-text strong {
+            display: block;
+            font-size: 1rem;
+            color: var(--charcoal);
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .stat-text span {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .services {
+            padding: 120px 60px;
+            background: var(--white);
+        }
+
+        .section-tag {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--teal);
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 60px;
+            max-width: 500px;
+            line-height: 1.2;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--light-gray);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.4s;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            background: #fff;
+            border-color: rgba(42, 125, 106, 0.15);
+            box-shadow: 0 20px 60px rgba(42, 125, 106, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .service-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            color: rgba(42, 125, 106, 0.15);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: var(--charcoal);
+        }
+
+        .service-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--teal);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: gap 0.3s;
+        }
+
+        .service-card:hover .service-link {
+            gap: 12px;
+        }
+
+        .team {
+            background: var(--light-gray);
+            padding: 120px 60px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .team-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(42, 125, 106, 0.12);
+        }
+
+        .team-photo {
+            height: 220px;
+            background: var(--mint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .team-info {
+            padding: 25px;
+        }
+
+        .team-info h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .team-info span {
+            font-size: 0.8rem;
+            color: var(--teal);
+        }
+
+        .book-section {
+            background: var(--teal-dark);
+            padding: 100px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-section::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .book-section h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.5rem;
+            color: #fff;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .book-section h2 em {
+            color: var(--mint);
+        }
+
+        .book-section p {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 50px;
+            font-size: 1rem;
+        }
+
+        .book-form {
+            display: flex;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .book-input {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 16px 20px;
+            border-radius: 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .book-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .book-input:focus {
+            border-color: var(--mint);
+        }
+
+        .book-btn {
+            background: var(--mint);
+            color: var(--teal-dark);
+            border: none;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .book-btn:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: var(--charcoal);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 50px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: #fff;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: var(--mint);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-right {
+                display: none;
+            }
+
+            .services-grid,
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-left {
+                padding: 40px 20px;
+            }
+
+            .hero-left h1 {
+                font-size: 2.8rem;
+            }
+
+            .services,
+            .team {
+                padding: 80px 20px;
+            }
+
+            .services-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .book-section {
+                padding: 80px 20px;
+            }
+
+            footer {
+                padding: 40px 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">Lumière <span>Clinic</span></div>
+        <ul class="nav-links">
+            <li><a href="#services">Treatments</a></li>
+            <li><a href="#team">Our Team</a></li>
+            <li><a href="#book">Book</a></li>
+        </ul>
+        <a href="#book" class="nav-book">Book Consultation</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-left">
+            <div>
+                <div class="hero-badge">Advanced Aesthetic Medicine · Amman</div>
+                <h1>Reveal Your <em>Natural</em><br>Radiance</h1>
+                <p>Science-driven aesthetic treatments tailored to you. Our specialists combine the latest techniques
+                    with a gentle, personalised touch.</p>
+                <div class="hero-btns">
+                    <a href="#book" class="btn-primary">Book Free Consultation</a>
+                    <a href="#services" class="btn-outline-teal">View Treatments</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-card">
+                <h3>Why Lumière?</h3>
+                <div class="card-stat">
+                    <div class="stat-icon">✦</div>
+                    <div class="stat-text"><strong>15+ Years Experience</strong><span>Board-certified specialists</span>
+                    </div>
+                </div>
+                <div class="card-stat">
+                    <div class="stat-icon">◎</div>
+                    <div class="stat-text"><strong>5,000+ Patients</strong><span>Treated with care</span></div>
+                </div>
+                <div class="card-stat">
+                    <div class="stat-icon">◈</div>
+                    <div class="stat-text"><strong>Latest Technology</strong><span>European-certified equipment</span>
+                    </div>
+                </div>
+                <div class="card-stat">
+                    <div class="stat-icon">◇</div>
+                    <div class="stat-text"><strong>Personalised Plans</strong><span>Tailored to your goals</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="reveal">
+            <span class="section-tag">Our Treatments</span>
+            <h2 class="section-title">Science Meets Beauty</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-num">01</div>
+                <h3>Facial Rejuvenation</h3>
+                <p>Advanced filler and Botox treatments performed by certified doctors for natural, refreshed results.
+                </p><span class="service-link">Learn more →</span>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-num">02</div>
+                <h3>Laser Skin Therapy</h3>
+                <p>FDA-cleared laser technology targeting pigmentation, acne scars, and skin texture with precision.</p>
+                <span class="service-link">Learn more →</span>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-num">03</div>
+                <h3>Body Contouring</h3>
+                <p>Non-surgical fat reduction and skin tightening treatments with clinically proven results.</p><span
+                    class="service-link">Learn more →</span>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-num">04</div>
+                <h3>PRP Hair Therapy</h3>
+                <p>Platelet-rich plasma treatments to stimulate natural hair growth and strengthen follicles.</p><span
+                    class="service-link">Learn more →</span>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-num">05</div>
+                <h3>Chemical Peels</h3>
+                <p>Medical-grade resurfacing peels for brighter, smoother skin with minimal downtime.</p><span
+                    class="service-link">Learn more →</span>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-num">06</div>
+                <h3>IV Drip Therapy</h3>
+                <p>Customised vitamin infusions for skin glow, energy, and immune system support.</p><span
+                    class="service-link">Learn more →</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="team" id="team">
+        <div class="reveal">
+            <span class="section-tag">Our Specialists</span>
+            <h2 class="section-title">Meet the Team</h2>
+        </div>
+        <div class="team-grid">
+            <div class="team-card reveal">
+                <div class="team-photo">👩‍⚕️</div>
+                <div class="team-info">
+                    <h4>Dr. Nour Al-Rashid</h4><span>Medical Director · Dermatology</span>
+                </div>
+            </div>
+            <div class="team-card reveal">
+                <div class="team-photo">👨‍⚕️</div>
+                <div class="team-info">
+                    <h4>Dr. Khalid Mansour</h4><span>Aesthetic Physician</span>
+                </div>
+            </div>
+            <div class="team-card reveal">
+                <div class="team-photo">👩‍⚕️</div>
+                <div class="team-info">
+                    <h4>Dr. Rana Haddad</h4><span>Laser Specialist</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="book-section" id="book">
+        <h2>Book Your <em>Consultation</em></h2>
+        <p>Take the first step — your complimentary consultation is waiting</p>
+        <div class="book-form">
+            <input type="text" class="book-input" placeholder="Your Name">
+            <input type="tel" class="book-input" placeholder="Phone Number">
+            <button class="book-btn">Book Now</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Lumière Clinic</div>
+        <p>Sweifieh, Amman, Jordan &nbsp;|&nbsp; <a href="tel:+96265009999">+962 6 500 9999</a></p>
+        <p>© 2025 Lumière Clinic. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
