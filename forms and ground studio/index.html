@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form & Ground Studio — Architecture</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;700;800&family=Syne+Mono&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --black: #0f0f0f;
+            --white: #f2f0eb;
+            --concrete: #d8d4cc;
+            --rust: #c4502a;
+            --mid: #6b6760;
+            --border: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Syne', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Custom cursor */
+        .cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--rust);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background 0.2s;
+        }
+
+        .cursor-ring {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(196, 80, 42, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: all 0.15s ease;
+        }
+
+        body:hover .cursor {
+            opacity: 1;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--concrete);
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--rust);
+        }
+
+        .nav-contact {
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: var(--rust);
+            border: 1px solid var(--rust);
+            padding: 8px 20px;
+            transition: all 0.3s;
+        }
+
+        .nav-contact:hover {
+            background: var(--rust);
+            color: var(--black);
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-left {
+            background: var(--black);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 80px 60px;
+            border-right: 1px solid var(--border);
+            position: relative;
+        }
+
+        .hero-left::before {
+            content: 'F&G';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20rem;
+            color: rgba(242, 240, 235, 0.03);
+            letter-spacing: -10px;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .hero-index {
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: var(--mid);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hero-index::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--rust);
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 9rem;
+            line-height: 0.9;
+            letter-spacing: -2px;
+            margin-bottom: 40px;
+            animation: slideUp 1s ease forwards;
+        }
+
+        .hero h1 span {
+            color: var(--rust);
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-desc {
+            color: var(--mid);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            max-width: 380px;
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--white);
+            transition: gap 0.3s;
+        }
+
+        .hero-cta::after {
+            content: '→';
+            color: var(--rust);
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .hero-cta:hover {
+            gap: 30px;
+        }
+
+        .hero-cta:hover::after {
+            transform: translateX(5px);
+        }
+
+        .hero-right {
+            background: #1a1a18;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-img-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a18 0%, #2a2520 50%, #1a1a18 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            position: relative;
+        }
+
+        .hero-img-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(242, 240, 235, 0.02) 40px, rgba(242, 240, 235, 0.02) 41px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 60px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: var(--mid);
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 40px;
+            height: 1px;
+            background: var(--mid);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--rust);
+            animation: scrollAnim 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollAnim {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Marquee */
+        .marquee-bar {
+            background: var(--rust);
+            padding: 14px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-flex;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-item {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            color: var(--black);
+            padding: 0 40px;
+        }
+
+        .marquee-dot {
+            color: rgba(0, 0, 0, 0.4);
+            margin-right: 40px;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Projects */
+        .projects {
+            padding: 120px 60px;
+        }
+
+        .projects-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 80px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 40px;
+        }
+
+        .projects-header h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .projects-count {
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--mid);
+            letter-spacing: 2px;
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-item {
+            display: grid;
+            grid-template-columns: 80px 1fr 200px 150px;
+            align-items: center;
+            gap: 40px;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-item:hover {
+            padding-left: 20px;
+        }
+
+        .project-item:hover .project-num {
+            color: var(--rust);
+        }
+
+        .project-num {
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--mid);
+            letter-spacing: 2px;
+        }
+
+        .project-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .project-item:hover .project-name {
+            color: var(--rust);
+        }
+
+        .project-type {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--mid);
+        }
+
+        .project-year {
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--mid);
+            text-align: right;
+        }
+
+        /* About */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--border);
+        }
+
+        .about-left {
+            padding: 100px 60px;
+            border-right: 1px solid var(--border);
+        }
+
+        .about-tag {
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rust);
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .about-left h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            line-height: 0.95;
+            margin-bottom: 40px;
+            letter-spacing: -1px;
+        }
+
+        .about-left p {
+            color: var(--mid);
+            line-height: 1.9;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .about-right {
+            padding: 100px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stat-row {
+            display: flex;
+            flex-direction: column;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stat-row:first-child {
+            padding-top: 0;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            color: var(--rust);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-top: 10px;
+        }
+
+        /* Services */
+        .services {
+            padding: 120px 60px;
+            background: #0a0a0a;
+            border-top: 1px solid var(--border);
+        }
+
+        .services-header {
+            margin-bottom: 80px;
+        }
+
+        .services-header h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            letter-spacing: -1px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .service-box {
+            background: var(--border);
+            padding: 60px 40px;
+            transition: background 0.3s;
+        }
+
+        .service-box:hover {
+            background: #2a2a28;
+        }
+
+        .service-box-num {
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--rust);
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .service-box h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .service-box p {
+            color: var(--mid);
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 120px 60px;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .contact-left h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 6rem;
+            line-height: 0.9;
+            margin-bottom: 40px;
+            letter-spacing: -2px;
+        }
+
+        .contact-left h2 span {
+            color: var(--rust);
+        }
+
+        .contact-left p {
+            color: var(--mid);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .contact-details {
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--concrete);
+            letter-spacing: 1px;
+        }
+
+        .contact-detail-label {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--mid);
+            min-width: 60px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-field {
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            transition: border-color 0.3s;
+        }
+
+        .form-field:focus-within {
+            border-color: var(--rust);
+        }
+
+        .form-field input,
+        .form-field textarea,
+        .form-field select {
+            background: none;
+            border: none;
+            outline: none;
+            width: 100%;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.95rem;
+            color: var(--white);
+        }
+
+        .form-field input::placeholder,
+        .form-field textarea::placeholder {
+            color: var(--mid);
+        }
+
+        .form-field textarea {
+            min-height: 100px;
+            resize: none;
+        }
+
+        .form-field select {
+            cursor: pointer;
+        }
+
+        .form-field select option {
+            background: var(--black);
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: var(--white);
+            background: none;
+            border: none;
+            cursor: none;
+            transition: gap 0.3s;
+        }
+
+        .submit-btn::after {
+            content: '→';
+            color: var(--rust);
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            gap: 30px;
+        }
+
+        .submit-btn:hover::after {
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--rust);
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            color: var(--black);
+        }
+
+        footer p {
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-right {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 5rem;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .about-left {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact {
+                grid-template-columns: 1fr;
+            }
+
+            .project-item {
+                grid-template-columns: 50px 1fr;
+            }
+
+            .project-type,
+            .project-year {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-left {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .projects,
+            .services,
+            .contact {
+                padding: 80px 20px;
+            }
+
+            .about-left,
+            .about-right {
+                padding: 80px 20px;
+            }
+
+            footer {
+                padding: 30px 20px;
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav>
+        <div class="logo">Form & Ground</div>
+        <ul class="nav-links">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">Studio</a></li>
+            <li><a href="#services">Services</a></li>
+        </ul>
+        <a href="#contact" class="nav-contact">Get in Touch</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-left">
+            <div class="hero-index">EST. 2011 · AMMAN, JORDAN</div>
+            <h1>Form<span>& Ground</span></h1>
+            <p class="hero-desc">We design buildings that speak to the land they stand on — raw, considered, and built
+                to endure. Architecture as honest as the materials we use.</p>
+            <a href="#projects" class="hero-cta">View Our Work</a>
+            <div class="hero-scroll">
+                <div class="scroll-line"></div>Scroll
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-img-placeholder">🏛️</div>
+        </div>
+    </section>
+
+    <div class="marquee-bar">
+        <div class="marquee-track">
+            <span class="marquee-item">Architecture</span><span class="marquee-dot">·</span>
+            <span class="marquee-item">Interior Design</span><span class="marquee-dot">·</span>
+            <span class="marquee-item">Urban Planning</span><span class="marquee-dot">·</span>
+            <span class="marquee-item">Landscape</span><span class="marquee-dot">·</span>
+            <span class="marquee-item">Restoration</span><span class="marquee-dot">·</span>
+            <span class="marquee-item">Architecture</span><span class="marquee-dot">·</span>
+            <span class="marquee-item">Interior Design</span><span class="marquee-dot">·</span>
+            <span class="marquee-item">Urban Planning</span><span class="marquee-dot">·</span>
+            <span class="marquee-item">Landscape</span><span class="marquee-dot">·</span>
+            <span class="marquee-item">Restoration</span><span class="marquee-dot">·</span>
+        </div>
+    </div>
+
+    <section class="projects" id="projects">
+        <div class="projects-header reveal">
+            <h2>Selected<br>Projects</h2>
+            <div class="projects-count">06 Works</div>
+        </div>
+        <div class="project-list">
+            <div class="project-item reveal">
+                <div class="project-num">01</div>
+                <div class="project-name">Al Balad Cultural Centre</div>
+                <div class="project-type">Cultural · Public</div>
+                <div class="project-year">2023</div>
+            </div>
+            <div class="project-item reveal">
+                <div class="project-num">02</div>
+                <div class="project-name">Wadi Rum Desert Lodge</div>
+                <div class="project-type">Hospitality</div>
+                <div class="project-year">2022</div>
+            </div>
+            <div class="project-item reveal">
+                <div class="project-num">03</div>
+                <div class="project-name">Jabal Amman Residence</div>
+                <div class="project-type">Residential</div>
+                <div class="project-year">2022</div>
+            </div>
+            <div class="project-item reveal">
+                <div class="project-num">04</div>
+                <div class="project-name">Petra Visitor Gateway</div>
+                <div class="project-type">Cultural · Public</div>
+                <div class="project-year">2021</div>
+            </div>
+            <div class="project-item reveal">
+                <div class="project-num">05</div>
+                <div class="project-name">Abdali Office Tower</div>
+                <div class="project-type">Commercial</div>
+                <div class="project-year">2020</div>
+            </div>
+            <div class="project-item reveal">
+                <div class="project-num">06</div>
+                <div class="project-name">Dead Sea Pavilion</div>
+                <div class="project-type">Landscape · Public</div>
+                <div class="project-year">2019</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-left reveal">
+            <span class="about-tag">The Studio</span>
+            <h2>Built on Honesty of Material</h2>
+            <p>Form & Ground was founded in Amman in 2011 with a single conviction — that great architecture does not
+                impose itself on a place, but emerges from it. We work with concrete, stone, and timber as they are,
+                without apology.</p>
+            <p>Our projects range from private residences to civic infrastructure, always with the same rigorous
+                attention to how light moves through a space, how a threshold is crossed, how a building meets the
+                ground.</p>
+        </div>
+        <div class="about-right reveal">
+            <div class="stat-row">
+                <div class="stat-num">14</div>
+                <div class="stat-label">Years Practice</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-num">60+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-num">08</div>
+                <div class="stat-label">Regional Awards</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="services-header reveal">
+            <h2>What We Do</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-box reveal"><span class="service-box-num">01</span>
+                <h3>Architecture</h3>
+                <p>New builds from concept to completion — residential, commercial, and civic. Every project is
+                    site-specific and material-honest.</p>
+            </div>
+            <div class="service-box reveal"><span class="service-box-num">02</span>
+                <h3>Interior Design</h3>
+                <p>Spaces that flow from the architecture — curated materials, considered light, and an atmosphere that
+                    is both functional and memorable.</p>
+            </div>
+            <div class="service-box reveal"><span class="service-box-num">03</span>
+                <h3>Urban Planning</h3>
+                <p>Master planning and public realm design for communities and institutions across Jordan and the wider
+                    region.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-left reveal">
+            <h2>Let's Build <span>Together</span></h2>
+            <p>Whether you have a site, a brief, or just an idea — we'd like to hear it. Every conversation is the start
+                of something.</p>
+            <div class="contact-details">
+                <div class="contact-detail"><span class="contact-detail-label">Studio</span>Jabal Amman, 3rd Circle,
+                    Jordan</div>
+                <div class="contact-detail"><span class="contact-detail-label">Phone</span>+962 6 555 0088</div>
+                <div class="contact-detail"><span class="contact-detail-label">Email</span>studio@formandground.jo</div>
+            </div>
+        </div>
+        <div class="contact-form reveal">
+            <div class="form-field"><input type="text" placeholder="Your Name"></div>
+            <div class="form-field"><input type="email" placeholder="Email Address"></div>
+            <div class="form-field"><input type="text" placeholder="Project Type (Residential, Commercial...)"></div>
+            <div class="form-field"><textarea placeholder="Tell us about your project"></textarea></div>
+            <button class="submit-btn" onclick="event.preventDefault()">Send Brief</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Form & Ground Studio</div>
+        <p>Amman, Jordan · Est. 2011</p>
+        <p>© 2025 Form & Ground. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Custom cursor
+        const cursor = document.getElementById('cursor');
+        const ring = document.getElementById('cursorRing');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            setTimeout(() => { ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; }, 80);
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
