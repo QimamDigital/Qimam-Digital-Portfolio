@@ -329,14 +329,12 @@
             border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        /* Portfolio */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
 
-        /* Clickable card (anchor tag) */
         .portfolio-card-link {
             display: block;
             position: relative;
@@ -345,15 +343,6 @@
             aspect-ratio: 4/3;
             cursor: pointer;
             text-decoration: none;
-        }
-
-        /* Non-clickable card (div) */
-        .portfolio-card-static {
-            display: block;
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
         }
 
         .portfolio-img {
@@ -383,10 +372,6 @@
             opacity: 1;
         }
 
-        .portfolio-card-static:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
         .portfolio-title {
             color: #fff;
             font-size: 1.25rem;
@@ -407,13 +392,10 @@
         }
 
         .portfolio-card-link:hover .portfolio-title,
-        .portfolio-card-link:hover .portfolio-tag,
-        .portfolio-card-static:hover .portfolio-title,
-        .portfolio-card-static:hover .portfolio-tag {
+        .portfolio-card-link:hover .portfolio-tag {
             transform: translateY(0);
         }
 
-        /* Live badge shown on hover */
         .live-badge {
             position: absolute;
             top: 15px;
@@ -795,7 +777,7 @@
 
             <div class="portfolio-grid">
 
-                <!-- CLICKABLE: Pinnacle Properties -->
+                <!-- Pinnacle Properties -->
                 <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/pinnacle-properties" target="_blank"
                     rel="noopener noreferrer" class="portfolio-card-link fade-up">
                     <img src="https://picsum.photos/600/450?random=1" alt="Pinnacle Properties" class="portfolio-img">
@@ -806,7 +788,7 @@
                     </div>
                 </a>
 
-                <!-- CLICKABLE: Lumière Clinic -->
+                <!-- Lumière Clinic -->
                 <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/lumiere-clinic" target="_blank"
                     rel="noopener noreferrer" class="portfolio-card-link fade-up">
                     <img src="https://picsum.photos/600/450?random=2" alt="Lumière Clinic" class="portfolio-img">
@@ -817,16 +799,18 @@
                     </div>
                 </a>
 
-                <!-- Static: Form & Ground -->
-                <div class="portfolio-card-static fade-up">
+                <!-- Form & Ground Studio -->
+                <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/form-ground-studio" target="_blank"
+                    rel="noopener noreferrer" class="portfolio-card-link fade-up">
                     <img src="https://picsum.photos/600/450?random=3" alt="Form & Ground Studio" class="portfolio-img">
+                    <div class="live-badge">Live Site</div>
                     <div class="portfolio-overlay">
                         <div class="portfolio-title" data-i18n="port_3_title">Form & Ground Studio</div>
                         <div class="portfolio-tag" data-i18n="port_3_tag">Architecture</div>
                     </div>
-                </div>
+                </a>
 
-                <!-- CLICKABLE: Oud & Oak -->
+                <!-- Oud & Oak Restaurant -->
                 <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/oud-oak-restaurant" target="_blank"
                     rel="noopener noreferrer" class="portfolio-card-link fade-up">
                     <img src="https://picsum.photos/600/450?random=4" alt="Oud & Oak Restaurant" class="portfolio-img">
@@ -837,23 +821,27 @@
                     </div>
                 </a>
 
-                <!-- Static: Al Haddad -->
-                <div class="portfolio-card-static fade-up">
+                <!-- Al Haddad & Partners -->
+                <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/al-haddad-partners" target="_blank"
+                    rel="noopener noreferrer" class="portfolio-card-link fade-up">
                     <img src="https://picsum.photos/600/450?random=5" alt="Al Haddad & Partners" class="portfolio-img">
+                    <div class="live-badge">Live Site</div>
                     <div class="portfolio-overlay">
                         <div class="portfolio-title" data-i18n="port_5_title">Al Haddad & Partners</div>
                         <div class="portfolio-tag" data-i18n="port_5_tag">Legal</div>
                     </div>
-                </div>
+                </a>
 
-                <!-- Static: Nexus Tech -->
-                <div class="portfolio-card-static fade-up">
+                <!-- Nexus Tech -->
+                <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/nexus-tech" target="_blank"
+                    rel="noopener noreferrer" class="portfolio-card-link fade-up">
                     <img src="https://picsum.photos/600/450?random=6" alt="Nexus Tech" class="portfolio-img">
+                    <div class="live-badge">Live Site</div>
                     <div class="portfolio-overlay">
                         <div class="portfolio-title" data-i18n="port_6_title">Nexus Tech</div>
                         <div class="portfolio-tag" data-i18n="port_6_tag">Technology</div>
                     </div>
-                </div>
+                </a>
 
             </div>
 
@@ -936,7 +924,7 @@
                             stroke-width="2" viewBox="0 0 24 24">
                             <path
                                 d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                        </svg><span data-i18n="contact_phone">+962 6 123 4567</span></div>
+                        </svg><span data-i18n="contact_phone">+962 79 044 1000</span></div>
                     <div class="info-item"><svg width="20" height="20" fill="none" stroke="currentColor"
                             stroke-width="2" viewBox="0 0 24 24">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -1013,7 +1001,7 @@
                 test_2_quote: '"Professional, fast, and highly skilled team. They understood our medical brand perfectly."', test_2_author: "- Director, Lumière Clinic",
                 test_3_quote: '"The best web development agency in Amman. Their attention to detail is truly Awwwards-level."', test_3_author: "- Founder, Form & Ground",
                 contact_title: "Let's Build Something Great", contact_desc: "Ready to elevate your digital presence? Get in touch with our team today.",
-                contact_phone: "+962 6 123 4567", contact_location: "Amman, Jordan", contact_wa: "Chat on WhatsApp",
+                contact_phone: "+962 79 044 1000", contact_location: "Amman, Jordan", contact_wa: "Chat on WhatsApp",
                 form_name: "Name", form_company: "Company", form_phone: "Phone", form_type: "Project Type", form_msg: "Message", form_submit: "Send Message",
                 footer_tagline: "Building the Future of Web.", footer_copy: "2025 Qimam Digital. All rights reserved."
             },
@@ -1042,7 +1030,7 @@
                 test_2_quote: '"فريق محترف وسريع وعالي الكفاءة. فهموا هويتنا الطبية بشكل مثالي."', test_2_author: "- مديرة عيادة لوميير",
                 test_3_quote: '"أفضل وكالة لتطوير الويب في عمّان. اهتمامهم بالتفاصيل يفوق التوقعات."', test_3_author: "- مؤسس، فورم آند جراوند",
                 contact_title: "دعنا نبني شيئاً عظيماً", contact_desc: "هل أنت مستعد للارتقاء بحضورك الرقمي؟ تواصل مع فريقنا اليوم.",
-                contact_phone: "+962 6 123 4567", contact_location: "عمّان، الأردن", contact_wa: "تحدث معنا عبر واتساب",
+                contact_phone: "+962 79 044 1000", contact_location: "عمّان، الأردن", contact_wa: "تحدث معنا عبر واتساب",
                 form_name: "الاسم", form_company: "الشركة", form_phone: "رقم الهاتف", form_type: "نوع المشروع", form_msg: "الرسالة", form_submit: "إرسال الرسالة",
                 footer_tagline: "نبني مستقبل الويب.", footer_copy: "2025 قمم ديجيتال. جميع الحقوق محفوظة."
             }
