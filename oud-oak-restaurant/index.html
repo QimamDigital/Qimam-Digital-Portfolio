@@ -4,751 +4,648 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oud & Oak — Fine Dining Amman</title>
+    <title>Oud & Oak · Fine Dining Amman</title>
+    <!-- Fonts & Icons -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        :root {
-            --black: #0a0704;
-            --dark: #120e09;
-            --gold: #c9a84c;
-            --gold-light: #e8c97a;
-            --cream: #f5efe6;
-            --text-muted: rgba(245, 239, 230, 0.5);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1410;
+            color: #e5d9ce;
+            line-height: 1.6;
             scroll-behavior: smooth;
         }
 
-        body {
-            background: var(--black);
-            color: var(--cream);
-            font-family: 'Jost', sans-serif;
-            font-weight: 300;
-            overflow-x: hidden;
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
-        /* Grain overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.4;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        /* Nav */
-        nav {
-            position: fixed;
+        /* Header */
+        header {
+            background: #0f0b09;
+            padding: 20px 0;
+            border-bottom: 1px solid #3e2e24;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
             z-index: 100;
-            padding: 30px 60px;
+        }
+
+        .header-flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(10, 7, 4, 0.9), transparent);
         }
 
         .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
+            font-size: 32px;
+            color: #d4af37;
+        }
+
+        .logo span {
+            color: #e5d9ce;
             font-weight: 300;
-            letter-spacing: 3px;
-            color: var(--gold);
-            text-transform: uppercase;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
+        nav a {
+            color: #e5d9ce;
             text-decoration: none;
-            color: var(--cream);
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.8;
-            transition: opacity 0.3s, color 0.3s;
+            margin-left: 30px;
+            font-size: 16px;
+            transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            opacity: 1;
-            color: var(--gold);
+        nav a:hover {
+            color: #d4af37;
         }
 
-        .nav-reserve {
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 56px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #d4af37;
+        }
+
+        .btn {
+            display: inline-block;
             background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 10px 24px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            padding: 15px 40px;
             text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            cursor: pointer;
         }
 
-        .nav-reserve:hover {
-            background: var(--gold);
-            color: var(--black);
+        .btn:hover {
+            background: #d4af37;
+            color: #0f0b09;
         }
 
         /* Hero */
         .hero {
             height: 100vh;
-            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover fixed;
             display: flex;
             align-items: center;
-            justify-content: center;
             text-align: center;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center, #2a1a08 0%, #0a0704 70%);
-        }
-
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 60%);
-        }
-
-        .hero-ornament {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            border: 1px solid rgba(201, 168, 76, 0.1);
-            border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        .hero-ornament::before {
-            content: '';
-            position: absolute;
-            inset: 30px;
-            border: 1px solid rgba(201, 168, 76, 0.07);
-            border-radius: 50%;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-
-            50% {
-                transform: translate(-50%, -50%) scale(1.03);
-                opacity: 0.7;
-            }
         }
 
         .hero-content {
-            position: relative;
-            z-index: 1;
-            animation: fadeUp 1.2s ease forwards;
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-tag {
-            font-size: 0.7rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 30px;
-            display: block;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 7rem;
-            font-weight: 300;
-            line-height: 1;
+            font-size: 96px;
             margin-bottom: 20px;
-            letter-spacing: -2px;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--gold-light);
-        }
-
-        .hero-divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .hero-divider span {
-            width: 60px;
-            height: 1px;
-            background: var(--gold);
-            opacity: 0.4;
-        }
-
-        .hero-divider i {
-            color: var(--gold);
-            font-size: 0.6rem;
+            line-height: 1;
         }
 
         .hero p {
-            font-size: 1rem;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            margin-bottom: 50px;
-            font-weight: 300;
-        }
-
-        .hero-cta {
-            display: inline-block;
-            padding: 16px 48px;
-            background: var(--gold);
-            color: var(--black);
-            font-family: 'Jost', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.4s;
-        }
-
-        .hero-cta:hover {
-            background: var(--gold-light);
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(201, 168, 76, 0.3);
-        }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-muted);
-            font-size: 0.65rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 50px;
-            background: linear-gradient(to bottom, var(--gold), transparent);
-            animation: scrollDown 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollDown {
-            0% {
-                transform: scaleY(0);
-                transform-origin: top;
-            }
-
-            50% {
-                transform: scaleY(1);
-                transform-origin: top;
-            }
-
-            51% {
-                transform: scaleY(1);
-                transform-origin: bottom;
-            }
-
-            100% {
-                transform: scaleY(0);
-                transform-origin: bottom;
-            }
-        }
-
-        /* Section base */
-        section {
-            padding: 120px 60px;
-        }
-
-        .section-tag {
-            font-size: 0.65rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--gold);
-            display: block;
-            margin-bottom: 20px;
-        }
-
-        /* About */
-        .about {
-            background: var(--dark);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            align-items: center;
-            padding: 120px 100px;
-        }
-
-        .about-text h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
-            font-weight: 300;
-            line-height: 1.2;
-            margin-bottom: 30px;
-        }
-
-        .about-text h2 em {
-            color: var(--gold);
+            font-size: 22px;
+            margin-bottom: 40px;
             font-style: italic;
         }
 
-        .about-text p {
-            color: var(--text-muted);
-            line-height: 1.9;
-            font-size: 0.95rem;
+        /* Story */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .story-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Menu Highlights */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item {
+            background: #2a201b;
+            padding: 30px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-item img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #d4af37;
+        }
+
+        .menu-item h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #d4af37;
+        }
+
+        .menu-item p {
+            color: #b5a9a0;
+        }
+
+        .price {
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #d4af37;
+        }
+
+        /* Chef */
+        .chef-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .chef-img img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .chef-text h2 {
+            text-align: left;
+        }
+
+        .chef-text p {
             margin-bottom: 20px;
         }
 
-        .about-stats {
+        .signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            color: #d4af37;
+            margin-top: 20px;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .gallery-grid img:hover {
+            opacity: 0.8;
+            transform: scale(1.02);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: #0f0b09;
+        }
+
+        .testimonial-slider {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: #2a201b;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid #d4af37;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .testimonial-card h4 {
+            color: #d4af37;
+        }
+
+        /* Reservation */
+        .reservation-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .reservation-form input,
+        .reservation-form select,
+        .reservation-form textarea {
+            width: 100%;
+            padding: 15px;
+            background: #2a201b;
+            border: 1px solid #3e2e24;
+            color: #e5d9ce;
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .reservation-form button {
+            width: 100%;
+            padding: 15px;
+            background: #d4af37;
+            border: none;
+            color: #0f0b09;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .reservation-form button:hover {
+            background: #b38f2c;
+        }
+
+        /* Contact */
+        .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
         }
 
-        .stat-box {
-            border-top: 1px solid rgba(201, 168, 76, 0.2);
-            padding-top: 30px;
-        }
-
-        .stat-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
-            color: var(--gold);
-            font-weight: 300;
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        /* Menu */
-        .menu {
-            background: var(--black);
-        }
-
-        .menu-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .menu-header h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
-            font-weight: 300;
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .menu-item {
-            background: rgba(201, 168, 76, 0.03);
-            border: 1px solid rgba(201, 168, 76, 0.1);
-            padding: 50px 40px;
-            transition: all 0.4s;
-            cursor: pointer;
-        }
-
-        .menu-item:hover {
-            background: rgba(201, 168, 76, 0.08);
-            border-color: rgba(201, 168, 76, 0.3);
-        }
-
-        .menu-item-tag {
-            font-size: 0.6rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold);
+        .contact-info p {
             margin-bottom: 15px;
-            display: block;
+            font-size: 18px;
         }
 
-        .menu-item h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 400;
-            margin-bottom: 15px;
+        .contact-info i {
+            color: #d4af37;
+            width: 30px;
         }
 
-        .menu-item p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            line-height: 1.8;
-            margin-bottom: 25px;
-        }
-
-        .menu-price {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            color: var(--gold);
-        }
-
-        /* Reservation */
-        .reservation {
-            background: var(--dark);
-            text-align: center;
-            padding: 120px 60px;
-        }
-
-        .reservation h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
-            font-weight: 300;
-            margin-bottom: 15px;
-        }
-
-        .reservation p {
-            color: var(--text-muted);
-            margin-bottom: 60px;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .res-form {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            max-width: 800px;
-            margin: 0 auto 30px;
-        }
-
-        .res-input {
-            background: transparent;
-            border: 1px solid rgba(201, 168, 76, 0.2);
-            color: var(--cream);
-            padding: 16px 20px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            transition: border-color 0.3s;
-            outline: none;
-        }
-
-        .res-input:focus {
-            border-color: var(--gold);
-        }
-
-        .res-input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .res-btn {
-            grid-column: 1 / -1;
-            background: var(--gold);
-            color: var(--black);
-            border: none;
-            padding: 18px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .res-btn:hover {
-            background: var(--gold-light);
+        .map {
+            width: 100%;
+            height: 300px;
+            background: #2a201b;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b5a9a0;
         }
 
         /* Footer */
         footer {
-            background: var(--black);
-            border-top: 1px solid rgba(201, 168, 76, 0.1);
-            padding: 60px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .footer-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            color: var(--gold);
-            font-weight: 300;
-            letter-spacing: 3px;
-        }
-
-        .footer-center {
+            background: #0f0b09;
             text-align: center;
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            letter-spacing: 1px;
+            padding: 60px 0;
+            border-top: 1px solid #3e2e24;
         }
 
-        .footer-contact {
-            text-align: right;
+        .social a {
+            color: #e5d9ce;
+            margin: 0 15px;
+            font-size: 24px;
+            transition: 0.3s;
         }
 
-        .footer-contact p {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            margin-bottom: 5px;
+        .social a:hover {
+            color: #d4af37;
         }
 
-        .footer-contact a {
-            color: var(--gold);
+        .footer-links {
+            margin: 30px 0 20px;
+        }
+
+        .footer-links a {
+            color: #e5d9ce;
             text-decoration: none;
-            font-size: 0.85rem;
+            margin: 0 15px;
+            font-size: 14px;
         }
 
-        /* Fade in on scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+        .footer-links a:hover {
+            color: #d4af37;
         }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            nav {
-                padding: 20px 30px;
+            .header-flex {
+                flex-direction: column;
+                gap: 15px;
             }
 
-            .nav-links {
-                display: none;
+            nav a {
+                margin: 0 10px;
             }
 
             .hero h1 {
-                font-size: 4rem;
+                font-size: 60px;
             }
 
-            .about {
-                grid-template-columns: 1fr;
-                padding: 80px 30px;
-                gap: 60px;
-            }
-
-            .menu-grid {
+            .story-grid,
+            .chef-grid,
+            .contact-grid,
+            .testimonial-slider,
+            .form-row {
                 grid-template-columns: 1fr;
             }
 
-            .res-form {
-                grid-template-columns: 1fr;
-            }
-
-            footer {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-contact {
-                text-align: center;
-            }
-
-            section {
-                padding: 80px 30px;
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
 
 <body>
-
-    <nav>
-        <div class="logo">Oud &amp; Oak</div>
-        <ul class="nav-links">
-            <li><a href="#about">Story</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#reserve">Reserve</a></li>
-        </ul>
-        <a href="#reserve" class="nav-reserve">Reserve a Table</a>
-    </nav>
-
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-ornament"></div>
-        <div class="hero-content">
-            <span class="hero-tag">Fine Dining · Amman, Jordan</span>
-            <h1>Where <em>Flavour</em><br>Becomes Art</h1>
-            <div class="hero-divider">
-                <span></span>
-                <i>✦</i>
-                <span></span>
-            </div>
-            <p>An intimate culinary journey through the finest ingredients of the Levant</p>
-            <a href="#menu" class="hero-cta">Explore the Menu</a>
+    <header>
+        <div class="container header-flex">
+            <div class="logo">OUD<span>&OAK</span></div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#story">Our Story</a>
+                <a href="#menu">Menu</a>
+                <a href="#chef">Chef</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#reservations">Reservations</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
-        <div class="scroll-hint">
-            <div class="scroll-line"></div>
-            <span>Scroll</span>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Oud & Oak</h1>
+            <p>Contemporary Levantine cuisine with a modern twist</p>
+            <a href="#reservations" class="btn">Reserve a Table</a>
         </div>
     </section>
 
-    <section class="about" id="about">
-        <div class="about-text reveal">
-            <span class="section-tag">Our Story</span>
-            <h2>Born from <em>Passion</em>,<br>Refined by Craft</h2>
-            <p>Oud & Oak was born from a simple belief — that dining should be a ceremony. Each dish is a conversation
-                between ancient Levantine tradition and modern culinary artistry.</p>
-            <p>Our chefs source only from small local farms, creating menus that change with the seasons and honour the
-                land that feeds us.</p>
-        </div>
-        <div class="about-stats reveal">
-            <div class="stat-box">
-                <div class="stat-num">12</div>
-                <div class="stat-label">Years of Excellence</div>
+    <section id="story">
+        <div class="container story-grid">
+            <div class="story-text">
+                <h2 class="section-title" style="text-align: left;">Our Story</h2>
+                <p>Nestled in the heart of Amman, Oud & Oak brings together the rich culinary heritage of the Levant and
+                    contemporary techniques. Every dish is crafted with locally sourced ingredients and a passion for
+                    storytelling through flavor.</p>
+                <p>Our chefs, trained in Paris and Beirut, create a menu that changes with the seasons — always fresh,
+                    always surprising. The name reflects the warmth of oud (wood) and the strength of oak, symbolizing
+                    our commitment to tradition and innovation.</p>
+                <p>Since opening in 2018, we have become a destination for those seeking an unforgettable dining
+                    experience. Whether it's a romantic dinner or a family celebration, Oud & Oak offers an ambiance
+                    that is both elegant and welcoming.</p>
             </div>
-            <div class="stat-box">
-                <div class="stat-num">3</div>
-                <div class="stat-label">Regional Awards</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-num">40+</div>
-                <div class="stat-label">Curated Dishes</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-num">100%</div>
-                <div class="stat-label">Local Ingredients</div>
+            <div class="story-img">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Restaurant interior">
             </div>
         </div>
     </section>
 
-    <section class="menu" id="menu">
-        <div class="menu-header reveal">
-            <span class="section-tag">Culinary Experience</span>
-            <h2>The Menu</h2>
-        </div>
-        <div class="menu-grid">
-            <div class="menu-item reveal">
-                <span class="menu-item-tag">Starter</span>
-                <h3>Truffle Hummus</h3>
-                <p>Silky chickpea cream, black truffle oil, toasted pine nuts, dukkah crumb, warm markook bread.</p>
-                <div class="menu-price">8 JOD</div>
-            </div>
-            <div class="menu-item reveal">
-                <span class="menu-item-tag">Main</span>
-                <h3>Lamb Ouzi</h3>
-                <p>Slow-roasted whole lamb shoulder, saffron rice, caramelised onion, pomegranate reduction.</p>
-                <div class="menu-price">28 JOD</div>
-            </div>
-            <div class="menu-item reveal">
-                <span class="menu-item-tag">Dessert</span>
-                <h3>Rose Knafeh</h3>
-                <p>Warm shredded pastry, fresh Nabulsi cheese, rose water syrup, crushed pistachios.</p>
-                <div class="menu-price">6 JOD</div>
-            </div>
-            <div class="menu-item reveal">
-                <span class="menu-item-tag">Signature</span>
-                <h3>Oak-Smoked Salmon</h3>
-                <p>Wild Atlantic salmon, smoked over oak chips, labneh quenelle, sumac cucumber, micro herbs.</p>
-                <div class="menu-price">22 JOD</div>
-            </div>
-            <div class="menu-item reveal">
-                <span class="menu-item-tag">Vegetarian</span>
-                <h3>Freekeh Risotto</h3>
-                <p>Roasted green wheat, wild mushrooms, aged Baladi cheese, truffle cream, fresh thyme.</p>
-                <div class="menu-price">16 JOD</div>
-            </div>
-            <div class="menu-item reveal">
-                <span class="menu-item-tag">Drinks</span>
-                <h3>Oud Mocktail</h3>
-                <p>House-made date syrup, rose water, fresh lemon, oud bitters, smoked ice sphere.</p>
-                <div class="menu-price">5 JOD</div>
+    <section id="menu">
+        <div class="container">
+            <h2 class="section-title">Signature Dishes</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                        alt="Oak-Smoked Lamb">
+                    <h3>Oak-Smoked Lamb</h3>
+                    <p>Slow-cooked for 12 hours over oak wood, served with freekeh and roasted vegetables.</p>
+                    <span class="price">18 JOD</span>
+                </div>
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                        alt="Burrata & Za'atar">
+                    <h3>Burrata & Za'atar</h3>
+                    <p>Creamy burrata with wild za'atar, heirloom tomatoes, and extra virgin olive oil.</p>
+                    <span class="price">12 JOD</span>
+                </div>
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1580014317999-e9f1936787a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                        alt="Saffron Kunafa">
+                    <h3>Saffron Kunafa</h3>
+                    <p>Deconstructed kunafa with pistachio and saffron ice cream.</p>
+                    <span class="price">9 JOD</span>
+                </div>
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1603360946369-d2f6385f8b3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                        alt="Seafood Sayadieh">
+                    <h3>Seafood Sayadieh</h3>
+                    <p>Caramelized onions, spiced rice, grilled prawns, and saffron broth.</p>
+                    <span class="price">22 JOD</span>
+                </div>
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                        alt="Moutabal">
+                    <h3>Moutabal with Pomegranate</h3>
+                    <p>Smoked eggplant dip topped with pomegranate seeds and mint.</p>
+                    <span class="price">8 JOD</span>
+                </div>
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                        alt="Halawa">
+                    <h3>Halawa Cheese Roll</h3>
+                    <p>Fried halloumi with sesame and a drizzle of orange blossom honey.</p>
+                    <span class="price">10 JOD</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="reservation" id="reserve">
-        <span class="section-tag">Join Us</span>
-        <h2>Reserve Your Table</h2>
-        <p>An experience worth anticipating — book your evening at Oud & Oak</p>
-        <div class="res-form">
-            <input type="text" class="res-input" placeholder="Full Name">
-            <input type="date" class="res-input">
-            <input type="number" class="res-input" placeholder="Guests" min="1" max="20">
-            <button class="res-btn">Confirm Reservation</button>
+    <section id="chef">
+        <div class="container chef-grid">
+            <div class="chef-img">
+                <img src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Chef Karim Nasser">
+            </div>
+            <div class="chef-text">
+                <h2 class="section-title" style="text-align: left;">Meet Chef Karim Nasser</h2>
+                <p>Chef Karim Nasser trained at Le Cordon Bleu Paris and worked in Michelin-starred kitchens before
+                    returning to his homeland. His philosophy: respect tradition, but never stop innovating.</p>
+                <p>"I want people to taste Jordan in every bite. Whether it's the smoky freekeh or the wild za'atar from
+                    the hills, our land tells a story."</p>
+                <div class="signature">— Karim Nasser</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                    alt="Interior">
+                <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                    alt="Dish">
+                <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                    alt="Chef">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                    alt="Dining">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                    alt="Plating">
+                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                    alt="Wine">
+                <img src="https://images.unsplash.com/photo-1515664069236-68a74a6a9e1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                    alt="Cocktail">
+                <img src="https://images.unsplash.com/photo-1579684947550-22e945225d9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                    alt="Dessert">
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Guests Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <p>"The best dining experience in Amman. The lamb melts in your mouth, and the service is
+                        impeccable."</p>
+                    <h4>— Leila M., Food Critic</h4>
+                </div>
+                <div class="testimonial-card">
+                    <p>"An absolute gem! The ambiance, the flavors, the attention to detail — everything is perfect."
+                    </p>
+                    <h4>— Rami K., Regular Guest</h4>
+                </div>
+                <div class="testimonial-card">
+                    <p>"I've been to many fine dining restaurants around the world, and Oud & Oak stands out."</p>
+                    <h4>— Samia H., Travel Blogger</h4>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Their kunafa is out of this world. A must-try in Amman."</p>
+                    <h4>— Omar A., Local Guide</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservations">
+        <div class="container">
+            <h2 class="section-title">Reserve Your Table</h2>
+            <form class="reservation-form">
+                <div class="form-row">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="tel" placeholder="Phone Number" required>
+                </div>
+                <div class="form-row">
+                    <select required>
+                        <option value="" disabled selected>Number of Guests</option>
+                        <option>2 Guests</option>
+                        <option>4 Guests</option>
+                        <option>6 Guests</option>
+                        <option>8+ Guests</option>
+                    </select>
+                    <input type="date" required>
+                </div>
+                <div class="form-row">
+                    <input type="time" required>
+                    <select>
+                        <option>Indoor</option>
+                        <option>Outdoor Terrace</option>
+                        <option>Private Room</option>
+                    </select>
+                </div>
+                <textarea rows="4" placeholder="Special requests (allergies, celebrations, etc.)"></textarea>
+                <button type="submit">Request Reservation</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container contact-grid">
+            <div class="contact-info">
+                <h2 class="section-title" style="text-align: left;">Visit Us</h2>
+                <p><i class="fas fa-map-marker-alt"></i> 36 Rainbow St, Amman, Jordan</p>
+                <p><i class="fas fa-phone"></i> +962 6 464 1000</p>
+                <p><i class="fas fa-envelope"></i> reservations@oudandoak.jo</p>
+                <p><i class="fas fa-clock"></i> Sun–Thu: 12pm–12am, Fri–Sat: 1pm–1am</p>
+                <div class="map">
+                    <i class="fas fa-map" style="font-size: 48px;"></i>
+                    <p>Map will be embedded here</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Send us a message</h3>
+                <form>
+                    <input type="text" placeholder="Name">
+                    <input type="email" placeholder="Email">
+                    <textarea rows="4" placeholder="Your message"></textarea>
+                    <button type="submit" class="btn" style="width: 100%;">Send</button>
+                </form>
+            </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-logo">Oud &amp; Oak</div>
-        <div class="footer-center">
-            <p>Abdoun, Amman, Jordan</p>
-            <p style="margin-top:8px;">Open Daily · 12:00 — 23:30</p>
-            <p style="margin-top:8px; font-size:0.65rem; color:rgba(245,239,230,0.3);">© 2025 Oud & Oak. All rights
-                reserved.</p>
-        </div>
-        <div class="footer-contact">
-            <p>Reservations & Enquiries</p>
-            <a href="tel:+96265001234">+962 6 500 1234</a>
+        <div class="container">
+            <div class="social">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-tripadvisor"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="#story">About</a>
+                <a href="#menu">Menu</a>
+                <a href="#reservations">Reservations</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <p>&copy; 2025 Oud & Oak. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => entry.target.classList.add('visible'), i * 100);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        reveals.forEach(el => observer.observe(el));
-    </script>
 </body>
 
 </html>
