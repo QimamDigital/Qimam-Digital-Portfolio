@@ -5,504 +5,1282 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pinnacle Properties — Luxury Real Estate Amman</title>
-    <!-- Fonts & Icons -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box
         }
 
+        html,
         body {
-            font-family: 'Inter', sans-serif;
-            background: #faf9f8;
-            color: #1c1c1c;
-            line-height: 1.6;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif
         }
 
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
+        :root {
+            --navy: #0a1628;
+            --gold: #c9a84c;
+            --gold2: #e8c97a;
+            --cream: #f8f3ec;
+            --muted: #8a8070;
+            --white: #fff
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        a {
+            text-decoration: none;
+            color: inherit
         }
 
-        /* Header */
-        header {
-            background: #0b1e33;
-            color: white;
-            padding: 20px 0;
-            position: sticky;
+        /* NAV */
+        nav {
+            position: fixed;
             top: 0;
-            z-index: 10;
-        }
-
-        .header-flex {
+            left: 0;
+            right: 0;
+            z-index: 200;
+            height: 80px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 60px;
+            transition: background 0.4s
+        }
+
+        nav.dark {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(20px)
+        }
+
+        nav.light {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08)
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 1px;
+            font-family: 'Cormorant', serif;
+            font-size: 1.4rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300
+        }
+
+        nav.dark .logo {
+            color: var(--cream)
+        }
+
+        nav.light .logo {
+            color: var(--navy)
         }
 
         .logo span {
-            color: #c9a24b;
+            color: var(--gold)
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 30px;
-            font-size: 16px;
-            font-weight: 400;
-            transition: 0.3s;
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none
         }
 
-        nav a:hover {
-            color: #c9a24b;
+        nav.dark .nav-links a {
+            color: rgba(248, 243, 236, 0.7);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            font-weight: 400
         }
 
-        /* Hero */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover;
-            height: 90vh;
+        nav.light .nav-links a {
+            color: #666;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            font-weight: 400
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold) !important
+        }
+
+        .nav-btn {
+            padding: 10px 28px;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s
+        }
+
+        nav.dark .nav-btn {
+            background: var(--gold);
+            color: var(--navy)
+        }
+
+        nav.light .nav-btn {
+            background: var(--navy);
+            color: #fff
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2)
+        }
+
+        /* PAGES */
+        .page {
+            position: fixed;
+            inset: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease
+        }
+
+        .page.active {
+            opacity: 1;
+            pointer-events: all
+        }
+
+        /* PAGE 1 — HOME */
+        .hero-home {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 60px 100px
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1600&q=90');
+            background-size: cover;
+            background-position: center
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 22, 40, 0.95) 0%, rgba(10, 22, 40, 0.4) 60%, rgba(10, 22, 40, 0.2) 100%)
+        }
+
+        .hero-home-content {
+            position: relative;
+            z-index: 1;
+            max-width: 750px
+        }
+
+        .hero-tag {
+            font-size: 0.65rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
             display: flex;
             align-items: center;
-            color: white;
+            gap: 15px;
+            margin-bottom: 25px
         }
 
-        .hero-content {
-            max-width: 700px;
+        .hero-tag::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold)
         }
 
-        .hero h1 {
-            font-size: 58px;
-            line-height: 1.2;
-            margin-bottom: 20px;
+        .hero-home h1 {
+            font-family: 'Cormorant', serif;
+            font-size: 5.5rem;
+            font-weight: 300;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 25px;
+            letter-spacing: -1px
         }
 
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.9;
+        .hero-home h1 em {
+            font-style: italic;
+            color: var(--gold2)
         }
 
-        .search-box {
-            background: white;
-            padding: 5px;
-            border-radius: 40px;
-            display: flex;
+        .hero-home p {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.95rem;
+            line-height: 1.8;
             max-width: 500px;
+            margin-bottom: 45px
         }
 
-        .search-box input {
-            flex: 1;
-            border: none;
-            padding: 15px 20px;
-            border-radius: 40px;
-            outline: none;
-            font-size: 16px;
+        .hero-btns {
+            display: flex;
+            gap: 20px
         }
 
-        .search-box button {
-            background: #c9a24b;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 40px;
-            color: white;
+        .btn-gold {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 16px 40px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .search-box button:hover {
-            background: #b58b3a;
-        }
-
-        /* Featured properties */
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 42px;
-            margin-bottom: 50px;
-            color: #0b1e33;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .property-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: 0.3s;
-        }
-
-        .property-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .property-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .property-info {
-            padding: 20px;
-        }
-
-        .property-price {
-            font-size: 24px;
-            color: #c9a24b;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .property-address {
-            color: #777;
-            margin-bottom: 15px;
-        }
-
-        .property-details {
-            display: flex;
-            gap: 15px;
-            color: #555;
-            font-size: 14px;
-        }
-
-        .property-details i {
-            margin-right: 5px;
-            color: #c9a24b;
-        }
-
-        /* About */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-stats {
-            display: flex;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .stat h3 {
-            font-size: 36px;
-            color: #c9a24b;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            background: #f0f0f0;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .testimonial-card p {
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-
-        .client {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .client img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .client h4 {
-            font-size: 18px;
-        }
-
-        /* Contact */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .contact-info i {
-            color: #c9a24b;
-            margin-right: 10px;
-        }
-
-        .contact-info p {
-            margin-bottom: 15px;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .contact-form button {
-            background: #0b1e33;
-            color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 5px;
+            transition: all 0.3s
+        }
+
+        .btn-gold:hover {
+            background: var(--gold2);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(201, 168, 76, 0.4)
+        }
+
+        .btn-ghost {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 16px 40px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             cursor: pointer;
-            transition: 0.3s;
+            background: none;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif
         }
 
-        .contact-form button:hover {
-            background: #c9a24b;
+        .btn-ghost:hover {
+            border-color: var(--gold);
+            color: var(--gold)
         }
 
-        /* Footer */
-        footer {
-            background: #0b1e33;
-            color: white;
-            text-align: center;
-            padding: 40px 0;
-            margin-top: 60px;
+        .hero-stats {
+            position: absolute;
+            right: 60px;
+            bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            z-index: 1;
+            text-align: right
         }
 
-        footer .social {
+        .hstat-num {
+            font-family: 'Cormorant', serif;
+            font-size: 2.8rem;
+            color: var(--gold);
+            display: block;
+            line-height: 1
+        }
+
+        .hstat-label {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5)
+        }
+
+        /* FEATURED LISTINGS strip */
+        .featured-strip {
+            background: var(--cream);
+            padding: 80px 60px
+        }
+
+        .strip-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 50px
+        }
+
+        .strip-header h2 {
+            font-family: 'Cormorant', serif;
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: var(--navy)
+        }
+
+        .strip-header h2 em {
+            font-style: italic;
+            color: var(--gold)
+        }
+
+        .see-all {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 2px;
+            cursor: pointer
+        }
+
+        .props-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px
+        }
+
+        .prop-mini {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer
+        }
+
+        .prop-mini img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            display: block
+        }
+
+        .prop-mini:hover img {
+            transform: scale(1.06)
+        }
+
+        .prop-mini-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 22, 40, 0.9) 0%, transparent 60%);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end
+        }
+
+        .prop-mini-type {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 6px
+        }
+
+        .prop-mini-name {
+            font-family: 'Cormorant', serif;
+            font-size: 1.4rem;
+            color: #fff;
+            font-weight: 400;
+            margin-bottom: 4px
+        }
+
+        .prop-mini-price {
+            font-family: 'Cormorant', serif;
+            font-size: 1.1rem;
+            color: var(--gold2)
+        }
+
+        /* PAGE 2 — LISTINGS */
+        .listings-page {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: var(--cream)
+        }
+
+        .listings-hero {
+            height: 50vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 60px 60px
+        }
+
+        .listings-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1600&q=90');
+            background-size: cover;
+            background-position: center
+        }
+
+        .listings-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 22, 40, 0.9) 0%, rgba(10, 22, 40, 0.3) 100%)
+        }
+
+        .listings-hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .listings-hero h2 {
+            font-family: 'Cormorant', serif;
+            font-size: 4rem;
+            font-weight: 300;
+            color: #fff;
+            line-height: 1
+        }
+
+        .listings-hero h2 em {
+            font-style: italic;
+            color: var(--gold2)
+        }
+
+        .listings-hero p {
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 12px;
+            font-size: 0.9rem
+        }
+
+        .listings-grid-section {
+            padding: 60px
+        }
+
+        .listings-full-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px
+        }
+
+        .listing-card {
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s, box-shadow 0.3s
+        }
+
+        .listing-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12)
+        }
+
+        .listing-card-img {
+            height: 280px;
+            overflow: hidden;
+            position: relative
+        }
+
+        .listing-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s
+        }
+
+        .listing-card:hover .listing-card-img img {
+            transform: scale(1.05)
+        }
+
+        .listing-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            font-weight: 600
+        }
+
+        .listing-card-body {
+            padding: 30px
+        }
+
+        .listing-type {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px
+        }
+
+        .listing-name {
+            font-family: 'Cormorant', serif;
+            font-size: 1.8rem;
+            color: var(--navy);
+            font-weight: 400;
+            margin-bottom: 12px
+        }
+
+        .listing-details {
+            display: flex;
+            gap: 20px;
+            font-size: 0.8rem;
+            color: var(--muted);
             margin-bottom: 20px;
+            flex-wrap: wrap
         }
 
-        footer .social a {
-            color: white;
-            margin: 0 10px;
-            font-size: 20px;
-            transition: 0.3s;
+        .listing-detail {
+            display: flex;
+            align-items: center;
+            gap: 6px
         }
 
-        footer .social a:hover {
-            color: #c9a24b;
+        .listing-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06)
         }
 
-        @media (max-width: 768px) {
-            .header-flex {
-                flex-direction: column;
-                gap: 15px;
+        .listing-price {
+            font-family: 'Cormorant', serif;
+            font-size: 1.6rem;
+            color: var(--navy)
+        }
+
+        .listing-btn {
+            background: var(--navy);
+            color: #fff;
+            padding: 10px 24px;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif
+        }
+
+        .listing-btn:hover {
+            background: var(--gold);
+            color: var(--navy)
+        }
+
+        /* PAGE 3 — ABOUT */
+        .about-page {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: #fff
+        }
+
+        .about-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: calc(100vh - 80px)
+        }
+
+        .about-left {
+            position: relative;
+            overflow: hidden
+        }
+
+        .about-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .about-left::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.3) 0%, transparent 100%)
+        }
+
+        .about-right {
+            background: var(--navy);
+            padding: 80px 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center
+        }
+
+        .about-tag {
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px
+        }
+
+        .about-tag::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--gold)
+        }
+
+        .about-right h2 {
+            font-family: 'Cormorant', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 30px
+        }
+
+        .about-right h2 em {
+            font-style: italic;
+            color: var(--gold2)
+        }
+
+        .about-right p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.9;
+            font-size: 0.9rem;
+            margin-bottom: 20px
+        }
+
+        .about-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 50px;
+            padding-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1)
+        }
+
+        .about-stat-num {
+            font-family: 'Cormorant', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            display: block;
+            line-height: 1;
+            margin-bottom: 8px
+        }
+
+        .about-stat-label {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4)
+        }
+
+        .team-section {
+            padding: 80px 60px;
+            background: var(--cream)
+        }
+
+        .team-section h3 {
+            font-family: 'Cormorant', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--navy);
+            margin-bottom: 50px
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px
+        }
+
+        .team-card {
+            background: #fff;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06)
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s
+        }
+
+        .team-card:hover img {
+            transform: scale(1.04)
+        }
+
+        .team-info {
+            padding: 25px
+        }
+
+        .team-name {
+            font-family: 'Cormorant', serif;
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 4px
+        }
+
+        .team-role {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold)
+        }
+
+        /* PAGE 4 — CONTACT */
+        .contact-page {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: var(--navy)
+        }
+
+        .contact-hero {
+            height: 40vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 60px 50px
+        }
+
+        .contact-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=1600&q=90');
+            background-size: cover;
+            background-position: center
+        }
+
+        .contact-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 22, 40, 0.8)
+        }
+
+        .contact-hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .contact-hero h2 {
+            font-family: 'Cormorant', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: #fff
+        }
+
+        .contact-hero h2 em {
+            font-style: italic;
+            color: var(--gold2)
+        }
+
+        .contact-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 60vh
+        }
+
+        .contact-info-panel {
+            background: var(--navy);
+            padding: 70px 60px;
+            border-right: 1px solid rgba(201, 168, 76, 0.1)
+        }
+
+        .contact-info-panel h3 {
+            font-family: 'Cormorant', serif;
+            font-size: 2rem;
+            color: #fff;
+            font-weight: 300;
+            margin-bottom: 40px
+        }
+
+        .cinfo-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06)
+        }
+
+        .cinfo-item:last-of-type {
+            border-bottom: none
+        }
+
+        .cinfo-icon {
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--gold);
+            font-size: 1rem
+        }
+
+        .cinfo-label {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 5px
+        }
+
+        .cinfo-value {
+            color: var(--cream);
+            font-size: 0.9rem
+        }
+
+        .contact-form-panel {
+            background: #0e1d35;
+            padding: 70px 60px
+        }
+
+        .contact-form-panel h3 {
+            font-family: 'Cormorant', serif;
+            font-size: 2rem;
+            color: #fff;
+            font-weight: 300;
+            margin-bottom: 40px
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px
+        }
+
+        .form-group label {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold)
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            color: var(--cream);
+            padding: 14px 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.3s
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: rgba(201, 168, 76, 0.5)
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--muted)
+        }
+
+        .form-group select option {
+            background: #0e1d35
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px
+        }
+
+        .submit-btn:hover {
+            background: var(--gold2)
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:768px) {
+            nav {
+                padding: 0 20px
             }
 
-            nav a {
-                margin: 0 10px;
+            .nav-links {
+                display: none
             }
 
-            .hero h1 {
-                font-size: 42px;
+            .hero-home {
+                padding: 0 20px 80px
             }
 
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
+            .hero-home h1 {
+                font-size: 3rem
+            }
+
+            .hero-stats {
+                display: none
+            }
+
+            .featured-strip,
+            .listings-grid-section,
+            .team-section {
+                padding: 50px 20px
+            }
+
+            .props-row,
+            .listings-full-grid,
+            .about-split,
+            .team-grid,
+            .contact-body {
+                grid-template-columns: 1fr
+            }
+
+            .about-right {
+                padding: 50px 25px
+            }
+
+            .contact-info-panel,
+            .contact-form-panel {
+                padding: 50px 20px
+            }
+
+            .form-row {
+                grid-template-columns: 1fr
+            }
+
+            .listings-hero,
+            .contact-hero {
+                padding: 0 20px 40px
+            }
+
+            .listings-hero h2,
+            .contact-hero h2 {
+                font-size: 2.5rem
             }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <div class="container header-flex">
-            <div class="logo">PINNACLE<span>PROPERTIES</span></div>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">Properties</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
-            </nav>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Find Your Dream Home in Amman</h1>
-                <p>Luxury villas, modern apartments, and prime real estate — exclusively listed.</p>
-                <div class="search-box">
-                    <input type="text" placeholder="Search by location, property type...">
-                    <button>Search</button>
+    <nav id="navbar" class="dark">
+        <div class="logo">Pinnacle <span>Properties</span></div>
+        <ul class="nav-links">
+            <li><a href="#" class="active" onclick="showPage('home',this)">Home</a></li>
+            <li><a href="#" onclick="showPage('listings',this)">Listings</a></li>
+            <li><a href="#" onclick="showPage('about',this)">About</a></li>
+            <li><a href="#" onclick="showPage('contact',this)">Contact</a></li>
+        </ul>
+        <button class="nav-btn" onclick="showPage('contact',null)">Book a Viewing</button>
+    </nav>
+
+    <!-- PAGE: HOME -->
+    <div id="page-home" class="page active">
+        <section class="hero-home">
+            <div class="hero-bg"></div>
+            <div class="hero-home-content">
+                <div class="hero-tag">Amman's Premier Real Estate Agency · Est. 2007</div>
+                <h1>Find Your <em>Perfect</em><br>Address</h1>
+                <p>We connect discerning buyers with extraordinary properties across Amman's most prestigious
+                    neighbourhoods. Luxury is not a price point — it is a standard.</p>
+                <div class="hero-btns">
+                    <button class="btn-gold" onclick="showPage('listings',null)">View Listings</button>
+                    <button class="btn-ghost" onclick="showPage('contact',null)">Book a Viewing</button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Featured Properties</h2>
-            <div class="grid">
-                <div class="property-card">
-                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Villa">
-                    <div class="property-info">
-                        <div class="property-price">$850,000</div>
-                        <div class="property-address">Abdoun, Amman</div>
-                        <div class="property-details">
-                            <span><i class="fas fa-bed"></i> 5 Beds</span>
-                            <span><i class="fas fa-bath"></i> 4 Baths</span>
-                            <span><i class="fas fa-ruler-combined"></i> 450 m²</span>
-                        </div>
+            <div class="hero-stats">
+                <div><span class="hstat-num">850+</span><span class="hstat-label">Properties Sold</span></div>
+                <div><span class="hstat-num">18</span><span class="hstat-label">Years Active</span></div>
+                <div><span class="hstat-num">98%</span><span class="hstat-label">Client Satisfaction</span></div>
+            </div>
+        </section>
+        <section class="featured-strip">
+            <div class="strip-header">
+                <h2>Featured <em>Listings</em></h2>
+                <span class="see-all" onclick="showPage('listings',null)">View All Properties →</span>
+            </div>
+            <div class="props-row">
+                <div class="prop-mini">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=80"
+                        alt="Villa Abdoun">
+                    <div class="prop-mini-overlay">
+                        <div class="prop-mini-type">Villa · Abdoun</div>
+                        <div class="prop-mini-name">The Grand Abdoun Villa</div>
+                        <div class="prop-mini-price">JOD 1,850,000</div>
                     </div>
                 </div>
-                <div class="property-card">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Modern Apartment">
-                    <div class="property-info">
-                        <div class="property-price">$320,000</div>
-                        <div class="property-address">Swifieh, Amman</div>
-                        <div class="property-details">
-                            <span><i class="fas fa-bed"></i> 3 Beds</span>
-                            <span><i class="fas fa-bath"></i> 2 Baths</span>
-                            <span><i class="fas fa-ruler-combined"></i> 150 m²</span>
-                        </div>
+                <div class="prop-mini">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=700&q=80" alt="Penthouse">
+                    <div class="prop-mini-overlay">
+                        <div class="prop-mini-type">Penthouse · 4th Circle</div>
+                        <div class="prop-mini-name">Sky Penthouse</div>
+                        <div class="prop-mini-price">JOD 750,000</div>
                     </div>
                 </div>
-                <div class="property-card">
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Penthouse">
-                    <div class="property-info">
-                        <div class="property-price">$1,200,000</div>
-                        <div class="property-address">Al-Rabieh, Amman</div>
-                        <div class="property-details">
-                            <span><i class="fas fa-bed"></i> 4 Beds</span>
-                            <span><i class="fas fa-bath"></i> 5 Baths</span>
-                            <span><i class="fas fa-ruler-combined"></i> 320 m²</span>
-                        </div>
+                <div class="prop-mini">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80" alt="Townhouse">
+                    <div class="prop-mini-overlay">
+                        <div class="prop-mini-type">Townhouse · Dabouq</div>
+                        <div class="prop-mini-name">Dabouq Garden Home</div>
+                        <div class="prop-mini-price">JOD 520,000</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <section class="section about-grid container">
-        <div class="about-image">
-            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Luxury home">
-        </div>
-        <div>
-            <h2 class="section-title" style="text-align: left;">Why Choose Us</h2>
-            <p style="margin-bottom: 20px;">With over 20 years of experience in the Jordanian real estate market,
-                Pinnacle Properties offers unparalleled expertise and a portfolio of the finest properties in Amman. Our
-                dedicated team ensures a seamless buying or renting experience.</p>
-            <div class="about-stats">
-                <div class="stat">
-                    <h3>500+</h3>
-                    <p>Properties Sold</p>
-                </div>
-                <div class="stat">
-                    <h3>15</h3>
-                    <p>Industry Awards</p>
-                </div>
-                <div class="stat">
-                    <h3>1000+</h3>
-                    <p>Happy Clients</p>
+    <!-- PAGE: LISTINGS -->
+    <div id="page-listings" class="page">
+        <div class="listings-page">
+            <div class="listings-hero">
+                <div class="listings-hero-bg"></div>
+                <div class="listings-hero-content">
+                    <h2>Our <em>Properties</em></h2>
+                    <p>Handpicked luxury homes across Amman's most sought-after neighbourhoods</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="section testimonials">
-        <div class="container">
-            <h2 class="section-title">What Our Clients Say</h2>
-            <div class="grid">
-                <div class="testimonial-card">
-                    <p>"Pinnacle Properties helped me find the perfect villa in Abdoun. Their professionalism and market
-                        knowledge are unmatched."</p>
-                    <div class="client">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
-                            alt="Client">
-                        <div>
-                            <h4>Omar Al-Hassan</h4>
-                            <p>Homeowner</p>
+            <div class="listings-grid-section">
+                <div class="listings-full-grid">
+                    <div class="listing-card">
+                        <div class="listing-card-img">
+                            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=85"
+                                alt="Abdoun Villa">
+                            <div class="listing-badge">Exclusive</div>
+                        </div>
+                        <div class="listing-card-body">
+                            <div class="listing-type">Villa · Abdoun</div>
+                            <div class="listing-name">The Grand Abdoun Villa</div>
+                            <div class="listing-details">
+                                <span class="listing-detail">🛏 6 Bedrooms</span>
+                                <span class="listing-detail">🚿 5 Bathrooms</span>
+                                <span class="listing-detail">📐 900 m²</span>
+                                <span class="listing-detail">🏊 Private Pool</span>
+                            </div>
+                            <div class="listing-footer">
+                                <div class="listing-price">JOD 1,850,000</div>
+                                <button class="listing-btn" onclick="showPage('contact',null)">Enquire</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="listing-card">
+                        <div class="listing-card-img">
+                            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=85"
+                                alt="Sky Penthouse">
+                            <div class="listing-badge">New</div>
+                        </div>
+                        <div class="listing-card-body">
+                            <div class="listing-type">Penthouse · 4th Circle</div>
+                            <div class="listing-name">Sky Penthouse</div>
+                            <div class="listing-details">
+                                <span class="listing-detail">🛏 4 Bedrooms</span>
+                                <span class="listing-detail">🚿 3 Bathrooms</span>
+                                <span class="listing-detail">📐 380 m²</span>
+                                <span class="listing-detail">🌆 City Views</span>
+                            </div>
+                            <div class="listing-footer">
+                                <div class="listing-price">JOD 750,000</div>
+                                <button class="listing-btn" onclick="showPage('contact',null)">Enquire</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="listing-card">
+                        <div class="listing-card-img">
+                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=85"
+                                alt="Garden Home">
+                        </div>
+                        <div class="listing-card-body">
+                            <div class="listing-type">Townhouse · Dabouq</div>
+                            <div class="listing-name">Dabouq Garden Home</div>
+                            <div class="listing-details">
+                                <span class="listing-detail">🛏 4 Bedrooms</span>
+                                <span class="listing-detail">🚿 3 Bathrooms</span>
+                                <span class="listing-detail">📐 450 m²</span>
+                                <span class="listing-detail">🌳 Private Garden</span>
+                            </div>
+                            <div class="listing-footer">
+                                <div class="listing-price">JOD 520,000</div>
+                                <button class="listing-btn" onclick="showPage('contact',null)">Enquire</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="listing-card">
+                        <div class="listing-card-img">
+                            <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=85"
+                                alt="Modern Villa">
+                            <div class="listing-badge">Hot</div>
+                        </div>
+                        <div class="listing-card-body">
+                            <div class="listing-type">Villa · Khalda</div>
+                            <div class="listing-name">Khalda Modern Villa</div>
+                            <div class="listing-details">
+                                <span class="listing-detail">🛏 5 Bedrooms</span>
+                                <span class="listing-detail">🚿 4 Bathrooms</span>
+                                <span class="listing-detail">📐 650 m²</span>
+                                <span class="listing-detail">🏊 Pool</span>
+                            </div>
+                            <div class="listing-footer">
+                                <div class="listing-price">JOD 980,000</div>
+                                <button class="listing-btn" onclick="showPage('contact',null)">Enquire</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <p>"I entrusted them with selling my apartment, and they exceeded all expectations. Highly
-                        recommended."</p>
-                    <div class="client">
-                        <img src="https://images.unsplash.com/photo-1494790108777-466d6e6e0b8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
-                            alt="Client">
-                        <div>
-                            <h4>Lina Khalidi</h4>
-                            <p>Seller</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE: ABOUT -->
+    <div id="page-about" class="page">
+        <div class="about-page">
+            <div class="about-split">
+                <div class="about-left">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&q=85"
+                        alt="About Pinnacle">
+                </div>
+                <div class="about-right">
+                    <div class="about-tag">Who We Are</div>
+                    <h2>A Legacy Built<br>on <em>Trust</em></h2>
+                    <p>For over 18 years, Pinnacle Properties has been the name Amman's most discerning buyers and
+                        sellers turn to. We don't just sell property — we match people with places that define their
+                        lives.</p>
+                    <p>Our team of seasoned professionals brings unparalleled knowledge of Amman's luxury property
+                        market, from Abdoun to Dabouq, from pre-launch exclusives to heritage homes.</p>
+                    <div class="about-stats-grid">
+                        <div><span class="about-stat-num">850+</span><span class="about-stat-label">Properties
+                                Sold</span></div>
+                        <div><span class="about-stat-num">18</span><span class="about-stat-label">Years Active</span>
+                        </div>
+                        <div><span class="about-stat-num">JOD 2B+</span><span class="about-stat-label">Total Value
+                                Transacted</span></div>
+                        <div><span class="about-stat-num">98%</span><span class="about-stat-label">Client
+                                Satisfaction</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="team-section">
+                <h3>Meet the Team</h3>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&q=80" alt="CEO">
+                        <div class="team-info">
+                            <div class="team-name">Ahmad Al-Rashid</div>
+                            <div class="team-role">CEO & Founder</div>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80"
+                            alt="Sales Director">
+                        <div class="team-info">
+                            <div class="team-name">Lina Mansour</div>
+                            <div class="team-role">Sales Director</div>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&q=80"
+                            alt="Head of Listings">
+                        <div class="team-info">
+                            <div class="team-name">Rami Haddad</div>
+                            <div class="team-role">Head of Listings</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="section">
-        <div class="container contact-grid">
-            <div class="contact-info">
-                <h2 class="section-title" style="text-align: left;">Get in Touch</h2>
-                <p><i class="fas fa-map-marker-alt"></i> 5th Circle, Amman, Jordan</p>
-                <p><i class="fas fa-phone"></i> +962 6 555 1234</p>
-                <p><i class="fas fa-envelope"></i> info@pinnacleproperties.jo</p>
+    <!-- PAGE: CONTACT -->
+    <div id="page-contact" class="page">
+        <div class="contact-page">
+            <div class="contact-hero">
+                <div class="contact-hero-bg"></div>
+                <div class="contact-hero-content">
+                    <h2>Let's Find Your <em>Dream Home</em></h2>
+                </div>
             </div>
-            <div class="contact-form">
-                <form>
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Email" required>
-                    <textarea rows="4" placeholder="Message"></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
+            <div class="contact-body">
+                <div class="contact-info-panel">
+                    <h3>Get in Touch</h3>
+                    <div class="cinfo-item">
+                        <div class="cinfo-icon">📍</div>
+                        <div><span class="cinfo-label">Office</span><span class="cinfo-value">Abdoun, 5th
+                                Circle<br>Amman, Jordan</span></div>
+                    </div>
+                    <div class="cinfo-item">
+                        <div class="cinfo-icon">📞</div>
+                        <div><span class="cinfo-label">Phone & WhatsApp</span><span class="cinfo-value">+962 6 555
+                                0001</span></div>
+                    </div>
+                    <div class="cinfo-item">
+                        <div class="cinfo-icon">✉</div>
+                        <div><span class="cinfo-label">Email</span><span
+                                class="cinfo-value">hello@pinnacleproperties.jo</span></div>
+                    </div>
+                    <div class="cinfo-item">
+                        <div class="cinfo-icon">🕐</div>
+                        <div><span class="cinfo-label">Hours</span><span class="cinfo-value">Sun – Thu: 9AM –
+                                6PM<br>Sat: 10AM – 3PM</span></div>
+                    </div>
+                </div>
+                <div class="contact-form-panel">
+                    <h3>Book a Viewing</h3>
+                    <div class="form-row">
+                        <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name">
+                        </div>
+                        <div class="form-group"><label>Phone</label><input type="tel" placeholder="+962..."></div>
+                    </div>
+                    <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+                    <div class="form-group">
+                        <label>I Am Interested In</label>
+                        <select>
+                            <option disabled selected>Select...</option>
+                            <option>Buying a Property</option>
+                            <option>Selling a Property</option>
+                            <option>Investment Advice</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Budget Range</label>
+                        <select>
+                            <option disabled selected>Select...</option>
+                            <option>Under 300,000 JOD</option>
+                            <option>300K – 600K JOD</option>
+                            <option>600K – 1M JOD</option>
+                            <option>Above 1M JOD</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Message</label><textarea
+                            placeholder="Tell us about your ideal property..."></textarea></div>
+                    <button class="submit-btn" onclick="event.preventDefault()">Send Enquiry</button>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <footer>
-        <div class="container">
-            <div class="social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <p>&copy; 2025 Pinnacle Properties. All rights reserved.</p>
-        </div>
-    </footer>
+    <script>
+        function showPage(id, linkEl) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + id).classList.add('active');
+            document.getElementById('page-' + id).scrollTop = 0;
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            if (linkEl) linkEl.classList.add('active');
+            const nav = document.getElementById('navbar');
+            const lightPages = ['listings', 'about', 'contact'];
+            nav.className = lightPages.includes(id) ? 'light' : 'dark';
+        }
+    </script>
 </body>
 
 </html>

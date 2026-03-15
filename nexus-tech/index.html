@@ -4,412 +4,1148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Tech — Future of Digital</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    <title>Nexus Tech — Technology Solutions Jordan</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden
+        }
+
+        :root {
+            --void: #050508;
+            --dark: #0a0a10;
+            --panel: #0e0e18;
+            --neon: #00f0ff;
+            --neon-dim: rgba(0, 240, 255, 0.12);
+            --purple: #7b5ea7;
+            --white: #e8eaf0;
+            --muted: #5a5c70;
+            --border: rgba(0, 240, 255, 0.1)
         }
 
         body {
             font-family: 'Space Grotesk', sans-serif;
-            background: #0c0f14;
-            color: #e1e7f0;
+            background: var(--void);
+            color: var(--white);
+            overflow-x: hidden
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 240, 255, 0.007) 2px, rgba(0, 240, 255, 0.007) 4px);
+            pointer-events: none;
+            z-index: 9000
         }
 
-        /* Glow effects */
-        .glow {
-            color: #00f2fe;
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+        a {
+            text-decoration: none;
+            color: inherit
         }
 
-        /* Header */
-        header {
-            background: #0a0c10;
-            border-bottom: 1px solid #1f2a36;
-            padding: 20px 0;
-        }
-
-        .header-flex {
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            height: 80px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 60px;
+            background: rgba(5, 5, 8, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border)
         }
 
         .logo {
-            font-size: 32px;
-            font-weight: 700;
-            color: #00f2fe;
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            color: var(--neon);
+            text-shadow: 0 0 18px rgba(0, 240, 255, 0.45)
         }
 
         .logo span {
-            color: #e1e7f0;
+            color: var(--white)
         }
 
-        nav a {
-            color: #e1e7f0;
-            text-decoration: none;
-            margin-left: 30px;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: #00f2fe;
-        }
-
-        /* Hero */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            padding: 100px 0;
-        }
-
-        .hero h1 {
-            font-size: 56px;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: #a0b3c9;
-        }
-
-        .btn {
-            background: #00f2fe;
-            color: #0c0f14;
-            padding: 15px 40px;
-            text-decoration: none;
-            font-weight: 600;
-            border: none;
-            border-radius: 40px;
-            transition: 0.3s;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            background: #00c4d4;
-        }
-
-        .hero-img img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        /* Stats */
-        .stats {
+        .nav-links {
             display: flex;
             gap: 40px;
-            margin-top: 40px;
+            list-style: none
         }
 
-        .stat h3 {
-            font-size: 36px;
-            color: #00f2fe;
+        .nav-links a {
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            color: var(--muted);
+            transition: color 0.3s
         }
 
-        /* Services */
-        .section {
-            padding: 80px 0;
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--neon)
         }
 
-        .section-title {
-            font-size: 48px;
-            text-align: center;
-            margin-bottom: 60px;
-            color: #00f2fe;
+        .nav-cta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: var(--neon);
+            border: 1px solid var(--neon);
+            padding: 10px 24px;
+            cursor: pointer;
+            background: none;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden
         }
 
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--neon);
+            transform: translateX(-100%);
+            transition: transform 0.3s;
+            z-index: -1
         }
 
-        .service-card {
-            background: #151a22;
-            padding: 30px;
-            border-radius: 10px;
-            border-left: 3px solid #00f2fe;
-            transition: 0.3s;
+        .nav-cta:hover {
+            color: var(--void)
         }
 
-        .service-card:hover {
-            transform: translateY(-5px);
+        .nav-cta:hover::before {
+            transform: translateX(0)
         }
 
-        .service-card i {
-            font-size: 40px;
-            color: #00f2fe;
-            margin-bottom: 20px;
+        .page {
+            position: fixed;
+            inset: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease
         }
 
-        .service-card h3 {
-            margin-bottom: 10px;
+        .page.active {
+            opacity: 1;
+            pointer-events: all
         }
 
-        /* Case studies */
-        .case-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-
-        .case-card {
-            background: #151a22;
-            border-radius: 10px;
+        /* HOME */
+        .home-hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
             overflow: hidden;
+            padding-top: 80px
         }
 
-        .case-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
+        .home-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=90');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15
         }
 
-        .case-content {
-            padding: 20px;
+        .grid-lines {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px
         }
 
-        .case-content h3 {
-            margin-bottom: 10px;
+        .glow1 {
+            position: absolute;
+            top: 20%;
+            left: 25%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: glow 7s ease-in-out infinite
         }
 
-        .case-tag {
-            color: #00f2fe;
-            font-size: 14px;
+        .glow2 {
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(123, 94, 167, 0.07) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: glow 9s ease-in-out infinite reverse
         }
 
-        /* Team */
-        .team-grid {
+        @keyframes glow {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.6
+            }
+        }
+
+        .home-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 60px;
+            max-width: 950px
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--neon-dim);
+            border: 1px solid var(--border);
+            color: var(--neon);
+            padding: 8px 20px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 35px
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--neon);
+            border-radius: 50%;
+            animation: blink 1.5s infinite
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.2
+            }
+        }
+
+        .home-content h1 {
+            font-size: 5.5rem;
+            font-weight: 700;
+            line-height: 1.02;
+            letter-spacing: -2.5px;
+            margin-bottom: 28px
+        }
+
+        .home-content h1 .nx {
+            color: var(--neon);
+            text-shadow: 0 0 25px rgba(0, 240, 255, 0.35)
+        }
+
+        .home-content p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 580px;
+            margin-bottom: 45px;
+            font-weight: 300
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap
+        }
+
+        .btn-neon {
+            background: var(--neon);
+            color: var(--void);
+            padding: 16px 42px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s
+        }
+
+        .btn-neon:hover {
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.4), 0 0 60px rgba(0, 240, 255, 0.15);
+            transform: translateY(-2px)
+        }
+
+        .btn-ghost-n {
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 16px 42px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            background: none;
+            transition: all 0.3s;
+            font-family: 'Space Grotesk', sans-serif
+        }
+
+        .btn-ghost-n:hover {
+            border-color: var(--neon);
+            color: var(--neon)
+        }
+
+        .hero-side-stats {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 35px
+        }
+
+        .hss {
+            text-align: right
+        }
+
+        .hss-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 2.3rem;
+            color: var(--neon);
+            display: block;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            line-height: 1
+        }
+
+        .hss-lab {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: block;
+            margin-top: 4px
+        }
+
+        /* SERVICES PAGE */
+        .services-page {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: var(--void)
+        }
+
+        .sp-hero {
+            height: 48vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 60px 55px;
+            overflow: hidden
+        }
+
+        .sp-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=90');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.25
+        }
+
+        .sp-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5, 5, 8, 0.97) 0%, rgba(5, 5, 8, 0.3) 100%)
+        }
+
+        .sp-hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .mono-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 4px;
+            color: var(--neon);
+            display: block;
+            margin-bottom: 12px
+        }
+
+        .sp-hero h2 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            color: #fff;
+            line-height: 1
+        }
+
+        .sp-hero h2 span {
+            color: var(--neon)
+        }
+
+        .services-body {
+            padding: 65px 60px
+        }
+
+        .srv-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 2px;
+            margin-bottom: 50px
         }
 
-        .team-member {
-            text-align: center;
+        .srv-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            padding: 45px 32px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer
         }
 
-        .team-member img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
+        .srv-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon), var(--purple));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+            transform-origin: left
         }
 
-        .team-member h4 {
-            font-size: 20px;
+        .srv-card:hover::after {
+            transform: scaleX(1)
         }
 
-        .team-member p {
-            color: #a0b3c9;
+        .srv-card:hover {
+            background: #10101c;
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.04)
         }
 
-        /* Contact */
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            background: #151a22;
-            border: 1px solid #2d3846;
-            color: white;
-            border-radius: 5px;
+        .srv-icon {
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 22px;
+            color: var(--neon)
         }
 
-        .contact-form button {
-            background: #00f2fe;
-            color: #0c0f14;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 40px;
+        .srv-card h3 {
+            font-size: 1.1rem;
             font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px
+        }
+
+        .srv-card p {
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.75;
+            margin-bottom: 22px;
+            font-weight: 300
+        }
+
+        .srv-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            color: var(--neon);
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: gap 0.3s
+        }
+
+        .srv-card:hover .srv-link {
+            gap: 12px
+        }
+
+        /* SOLUTIONS PAGE */
+        .solutions-page {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: var(--dark)
+        }
+
+        .sol-hero {
+            height: 45vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 60px 55px;
+            overflow: hidden
+        }
+
+        .sol-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1600&q=90');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2
+        }
+
+        .sol-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 10, 16, 0.97) 0%, rgba(10, 10, 16, 0.3) 100%)
+        }
+
+        .sol-hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .sol-hero h2 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            color: #fff
+        }
+
+        .sol-hero h2 span {
+            color: var(--neon)
+        }
+
+        .sol-body {
+            padding: 65px 60px
+        }
+
+        .sol-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px
+        }
+
+        .sol-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            padding: 55px 48px;
+            transition: all 0.4s
+        }
+
+        .sol-card:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            background: #10101c
+        }
+
+        .sol-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.58rem;
+            letter-spacing: 3px;
+            color: var(--neon);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 16px
+        }
+
+        .sol-card h3 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 18px
+        }
+
+        .sol-card p {
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 0.88rem;
+            font-weight: 300;
+            margin-bottom: 28px
+        }
+
+        .sol-feats {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .sol-feat {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.83rem
+        }
+
+        .sol-feat::before {
+            content: '▸';
+            color: var(--neon);
+            font-size: 0.65rem
+        }
+
+        /* CONTACT PAGE */
+        .contact-page {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: var(--void)
+        }
+
+        .ct-hero {
+            height: 40vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 60px 55px;
+            overflow: hidden
+        }
+
+        .ct-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=90');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2
+        }
+
+        .ct-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5, 5, 8, 0.97) 0%, rgba(5, 5, 8, 0.3) 100%)
+        }
+
+        .ct-hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .ct-hero h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            color: #fff
+        }
+
+        .ct-hero h2 span {
+            color: var(--neon)
+        }
+
+        .ct-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 60vh
+        }
+
+        .ct-left {
+            background: var(--panel);
+            padding: 65px 55px;
+            border-right: 1px solid var(--border)
+        }
+
+        .ct-left h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 35px
+        }
+
+        .ct-item {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            margin-bottom: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .ct-item:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0
+        }
+
+        .ct-icon {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--neon);
+            font-size: 0.9rem
+        }
+
+        .ct-lab {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.58rem;
+            letter-spacing: 3px;
+            color: var(--neon);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px
+        }
+
+        .ct-val {
+            font-size: 0.88rem;
+            color: var(--white);
+            line-height: 1.5
+        }
+
+        .ct-right {
+            background: #08080f;
+            padding: 65px 55px
+        }
+
+        .ct-right h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 35px
+        }
+
+        .ctf-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 18px
+        }
+
+        .ctf-group label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.58rem;
+            letter-spacing: 3px;
+            color: var(--neon);
+            text-transform: uppercase
+        }
+
+        .ctf-group input,
+        .ctf-group select,
+        .ctf-group textarea {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 13px 16px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.3s
+        }
+
+        .ctf-group input::placeholder,
+        .ctf-group textarea::placeholder {
+            color: var(--muted)
+        }
+
+        .ctf-group input:focus,
+        .ctf-group select:focus,
+        .ctf-group textarea:focus {
+            border-color: rgba(0, 240, 255, 0.4)
+        }
+
+        .ctf-group select option {
+            background: var(--void)
+        }
+
+        .ctf-group textarea {
+            min-height: 110px;
+            resize: vertical
+        }
+
+        .ctf-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px
+        }
+
+        .ct-submit {
+            width: 100%;
+            background: var(--neon);
+            color: var(--void);
+            border: none;
+            padding: 17px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            font-weight: 700;
             cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 5px
+        }
+
+        .ct-submit:hover {
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.35)
         }
 
         footer {
-            background: #0a0c10;
+            background: var(--dark);
+            border-top: 1px solid var(--border);
+            padding: 45px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            gap: 30px
+        }
+
+        .ft-logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            color: var(--neon);
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.3)
+        }
+
+        .ft-mid {
             text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid #1f2a36;
+            color: var(--muted);
+            font-size: 0.72rem;
+            letter-spacing: 1px
         }
 
-        .social a {
-            color: #e1e7f0;
-            margin: 0 10px;
-            font-size: 20px;
-            transition: 0.3s;
+        .ft-right {
+            text-align: right;
+            color: var(--muted);
+            font-size: 0.72rem
         }
 
-        .social a:hover {
-            color: #00f2fe;
+        .ft-right a {
+            color: var(--neon)
         }
 
-        @media (max-width: 768px) {
+        @media(max-width:768px) {
+            nav {
+                padding: 0 20px
+            }
 
-            .hero,
-            .case-grid,
-            .team-grid {
+            .nav-links {
+                display: none
+            }
+
+            .home-content {
+                padding: 0 20px
+            }
+
+            .home-content h1 {
+                font-size: 3rem
+            }
+
+            .hero-side-stats {
+                display: none
+            }
+
+            .sp-hero,
+            .sol-hero,
+            .ct-hero {
+                padding: 0 20px 40px
+            }
+
+            .services-body,
+            .sol-body {
+                padding: 50px 20px
+            }
+
+            .srv-grid,
+            .sol-grid,
+            .ct-body {
+                grid-template-columns: 1fr
+            }
+
+            .ct-left,
+            .ct-right {
+                padding: 50px 20px
+            }
+
+            .ctf-row {
+                grid-template-columns: 1fr
+            }
+
+            footer {
                 grid-template-columns: 1fr;
+                text-align: center;
+                padding: 40px 20px
+            }
+
+            .ft-right {
+                text-align: center
             }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <div class="container header-flex">
-            <div class="logo">NEXUS<span>TECH</span></div>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">Services</a>
-                <a href="#">Work</a>
-                <a href="#">Contact</a>
-            </nav>
-        </div>
-    </header>
 
-    <div class="container hero">
-        <div>
-            <h1>We build the <span class="glow">future</span> of digital</h1>
-            <p>Custom software, AI integration, and cloud solutions for enterprises and startups in Jordan and the
-                Middle East.</p>
-            <a href="#" class="btn">Let's talk</a>
-            <div class="stats">
-                <div class="stat">
-                    <h3>80+</h3>
-                    <p>Projects delivered</p>
-                </div>
-                <div class="stat">
-                    <h3>25</h3>
-                    <p>Expert engineers</p>
+    <nav>
+        <div class="logo">NEXUS<span>.TECH</span></div>
+        <ul class="nav-links">
+            <li><a href="#" class="active" onclick="showPage('home',this)">Home</a></li>
+            <li><a href="#" onclick="showPage('services',this)">Services</a></li>
+            <li><a href="#" onclick="showPage('solutions',this)">Solutions</a></li>
+            <li><a href="#" onclick="showPage('contact',this)">Contact</a></li>
+        </ul>
+        <button class="nav-cta" onclick="showPage('contact',null)">Get Started</button>
+    </nav>
+
+    <!-- HOME -->
+    <div id="page-home" class="page active">
+        <div class="home-hero">
+            <div class="home-hero-bg"></div>
+            <div class="grid-lines"></div>
+            <div class="glow1"></div>
+            <div class="glow2"></div>
+            <div class="home-content">
+                <div class="hero-badge">Amman, Jordan · Est. 2016 · ISO Certified</div>
+                <h1>Technology<br>That <span class="nx">Scales</span><br>With You</h1>
+                <p>Nexus Tech builds enterprise-grade software, cloud infrastructure, and AI-powered solutions for
+                    businesses across Jordan and the Middle East. From startup to scale-up — we are your technical
+                    backbone.</p>
+                <div class="hero-btns">
+                    <button class="btn-neon" onclick="showPage('services',null)">View Our Services</button>
+                    <button class="btn-ghost-n" onclick="showPage('contact',null)">Start a Project</button>
                 </div>
             </div>
+            <div class="hero-side-stats">
+                <div class="hss"><span class="hss-num">150+</span><span class="hss-lab">Projects Delivered</span></div>
+                <div class="hss"><span class="hss-num">98%</span><span class="hss-lab">Client Retention</span></div>
+                <div class="hss"><span class="hss-num">8yr</span><span class="hss-lab">In Business</span></div>
+            </div>
         </div>
-        <div class="hero-img">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Tech">
+        <footer>
+            <div class="ft-logo">NEXUS.TECH</div>
+            <div class="ft-mid">
+                <p>Amman, Jordan · Est. 2016</p>
+                <p style="margin-top:6px">© 2025 Nexus Tech. All rights reserved.</p>
+            </div>
+            <div class="ft-right">
+                <p>hello@nexus.tech.jo</p><a href="tel:+96265009900">+962 6 500 9900</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- SERVICES -->
+    <div id="page-services" class="page">
+        <div class="services-page">
+            <div class="sp-hero">
+                <div class="sp-hero-bg"></div>
+                <div class="sp-hero-content">
+                    <span class="mono-tag">// WHAT WE BUILD</span>
+                    <h2>Our <span>Services</span></h2>
+                </div>
+            </div>
+            <div class="services-body">
+                <div class="srv-grid">
+                    <div class="srv-card">
+                        <div class="srv-icon">◈</div>
+                        <h3>Custom Software Development</h3>
+                        <p>Bespoke web and mobile applications built with modern frameworks — React, Node.js, Python.
+                            Scalable architecture from day one.</p><span class="srv-link">Learn more →</span>
+                    </div>
+                    <div class="srv-card">
+                        <div class="srv-icon">☁</div>
+                        <h3>Cloud Infrastructure</h3>
+                        <p>AWS, Azure, and GCP architecture, CI/CD pipelines, and DevOps automation. Your
+                            infrastructure, engineered for zero downtime.</p><span class="srv-link">Learn more →</span>
+                    </div>
+                    <div class="srv-card">
+                        <div class="srv-icon">◎</div>
+                        <h3>AI & Machine Learning</h3>
+                        <p>Custom AI models, Arabic NLP solutions, and intelligent automation systems tailored to your
+                            industry and your data.</p><span class="srv-link">Learn more →</span>
+                    </div>
+                    <div class="srv-card">
+                        <div class="srv-icon">⬡</div>
+                        <h3>Cybersecurity</h3>
+                        <p>Penetration testing, security audits, compliance frameworks, and 24/7 threat monitoring for
+                            all your digital assets.</p><span class="srv-link">Learn more →</span>
+                    </div>
+                    <div class="srv-card">
+                        <div class="srv-icon">▣</div>
+                        <h3>Data Engineering</h3>
+                        <p>Data pipelines, warehousing, BI dashboards, and analytics that convert raw numbers into
+                            strategic business decisions.</p><span class="srv-link">Learn more →</span>
+                    </div>
+                    <div class="srv-card">
+                        <div class="srv-icon">⟳</div>
+                        <h3>IT Consulting</h3>
+                        <p>Technology audits, digital transformation roadmaps, and CTO-as-a-service for organisations
+                            ready to evolve.</p><span class="srv-link">Learn more →</span>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <div class="ft-logo">NEXUS.TECH</div>
+                <div class="ft-mid">
+                    <p>Amman, Jordan · Est. 2016</p>
+                    <p style="margin-top:6px">© 2025 Nexus Tech.</p>
+                </div>
+                <div class="ft-right"><a href="tel:+96265009900">+962 6 500 9900</a></div>
+            </footer>
         </div>
     </div>
 
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Our expertise</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <i class="fas fa-code"></i>
-                    <h3>Web Development</h3>
-                    <p>React, Node, Python — modern stacks for scalable apps.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Mobile Apps</h3>
-                    <p>iOS & Android native or cross-platform (Flutter).</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-cloud"></i>
-                    <h3>Cloud & DevOps</h3>
-                    <p>AWS, Azure, CI/CD pipelines, infrastructure as code.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-brain"></i>
-                    <h3>AI & Machine Learning</h3>
-                    <p>Custom models, data analytics, computer vision.</p>
+    <!-- SOLUTIONS -->
+    <div id="page-solutions" class="page">
+        <div class="solutions-page">
+            <div class="sol-hero">
+                <div class="sol-hero-bg"></div>
+                <div class="sol-hero-content">
+                    <span class="mono-tag">// PRODUCT SUITE</span>
+                    <h2>Ready-Made <span>Solutions</span></h2>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Recent work</h2>
-            <div class="case-grid">
-                <div class="case-card">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Case">
-                    <div class="case-content">
-                        <span class="case-tag">Fintech</span>
-                        <h3>Banking App for Jordan Islamic Bank</h3>
-                        <p>Mobile and web platform serving 500k+ users.</p>
+            <div class="sol-body">
+                <div class="sol-grid">
+                    <div class="sol-card"><span class="sol-tag">Enterprise</span>
+                        <h3>NexusCore ERP</h3>
+                        <p>A fully customisable ERP system built for Jordanian and regional businesses — inventory,
+                            finance, HR, and CRM in one platform.</p>
+                        <div class="sol-feats">
+                            <div class="sol-feat">Arabic & English UI</div>
+                            <div class="sol-feat">IFRS-compliant accounting</div>
+                            <div class="sol-feat">Mobile app included</div>
+                            <div class="sol-feat">Cloud or on-premise</div>
+                        </div>
+                    </div>
+                    <div class="sol-card"><span class="sol-tag">E-Commerce</span>
+                        <h3>NexusShop</h3>
+                        <p>A complete e-commerce platform for the Jordanian market — Arabic-first, with local payment
+                            gateways and delivery services built in.</p>
+                        <div class="sol-feats">
+                            <div class="sol-feat">CliQ & Stripe integration</div>
+                            <div class="sol-feat">Aramex shipping sync</div>
+                            <div class="sol-feat">WhatsApp notifications</div>
+                            <div class="sol-feat">Built-in SEO & analytics</div>
+                        </div>
+                    </div>
+                    <div class="sol-card"><span class="sol-tag">AI Tools</span>
+                        <h3>NexusAI Assistant</h3>
+                        <p>A custom AI chatbot trained on your data, integrated with your tools, and fluent in Arabic
+                            and English for your customers.</p>
+                        <div class="sol-feats">
+                            <div class="sol-feat">Arabic NLP support</div>
+                            <div class="sol-feat">WhatsApp & web integration</div>
+                            <div class="sol-feat">CRM lead capture</div>
+                            <div class="sol-feat">Custom training pipeline</div>
+                        </div>
+                    </div>
+                    <div class="sol-card"><span class="sol-tag">Security</span>
+                        <h3>NexusGuard</h3>
+                        <p>Managed cybersecurity for SMEs — real-time monitoring, automated response, and monthly
+                            reports from a dedicated engineer.</p>
+                        <div class="sol-feats">
+                            <div class="sol-feat">24/7 threat monitoring</div>
+                            <div class="sol-feat">GDPR & PDPL compliance</div>
+                            <div class="sol-feat">Phishing training simulations</div>
+                            <div class="sol-feat">Dedicated security engineer</div>
+                        </div>
                     </div>
                 </div>
-                <div class="case-card">
-                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Case">
-                    <div class="case-content">
-                        <span class="case-tag">E-commerce</span>
-                        <h3>Online marketplace for local artisans</h3>
-                        <p>Full-stack solution with payment integration.</p>
+            </div>
+            <footer>
+                <div class="ft-logo">NEXUS.TECH</div>
+                <div class="ft-mid">
+                    <p>Amman, Jordan · Est. 2016</p>
+                    <p style="margin-top:6px">© 2025 Nexus Tech.</p>
+                </div>
+                <div class="ft-right"><a href="tel:+96265009900">+962 6 500 9900</a></div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="page-contact" class="page">
+        <div class="contact-page">
+            <div class="ct-hero">
+                <div class="ct-hero-bg"></div>
+                <div class="ct-hero-content">
+                    <span class="mono-tag">// GET IN TOUCH</span>
+                    <h2>Ready to <span>Build?</span></h2>
+                </div>
+            </div>
+            <div class="ct-body">
+                <div class="ct-left">
+                    <h3>Contact Information</h3>
+                    <div class="ct-item">
+                        <div class="ct-icon">📍</div>
+                        <div><span class="ct-lab">Office</span><span class="ct-val">Abdali Business District<br>Amman,
+                                Jordan 11196</span></div>
+                    </div>
+                    <div class="ct-item">
+                        <div class="ct-icon">📞</div>
+                        <div><span class="ct-lab">Phone & WhatsApp</span><span class="ct-val">+962 6 500 9900</span>
+                        </div>
+                    </div>
+                    <div class="ct-item">
+                        <div class="ct-icon">✉</div>
+                        <div><span class="ct-lab">Email</span><span class="ct-val">hello@nexus.tech.jo</span></div>
+                    </div>
+                    <div class="ct-item">
+                        <div class="ct-icon">🕐</div>
+                        <div><span class="ct-lab">Hours</span><span class="ct-val">Sun – Thu: 9AM – 6PM<br>Response
+                                within 24 hours</span></div>
                     </div>
                 </div>
+                <div class="ct-right">
+                    <h3>Start a Project</h3>
+                    <div class="ctf-row">
+                        <div class="ctf-group"><label>Full Name</label><input type="text" placeholder="Your name"></div>
+                        <div class="ctf-group"><label>Phone</label><input type="tel" placeholder="+962..."></div>
+                    </div>
+                    <div class="ctf-group"><label>Email</label><input type="email" placeholder="your@company.com"></div>
+                    <div class="ctf-group"><label>Service Needed</label><select>
+                            <option disabled selected>Select...</option>
+                            <option>Custom Software</option>
+                            <option>Cloud Infrastructure</option>
+                            <option>AI & Machine Learning</option>
+                            <option>Cybersecurity</option>
+                            <option>Data Engineering</option>
+                            <option>IT Consulting</option>
+                        </select></div>
+                    <div class="ctf-group"><label>Project Budget</label><select>
+                            <option disabled selected>Select...</option>
+                            <option>Under 5,000 JOD</option>
+                            <option>5,000 – 15,000 JOD</option>
+                            <option>15,000 – 50,000 JOD</option>
+                            <option>Above 50,000 JOD</option>
+                        </select></div>
+                    <div class="ctf-group"><label>Tell Us About Your Project</label><textarea
+                            placeholder="Describe what you're building..."></textarea></div>
+                    <button class="ct-submit" onclick="event.preventDefault()">Send Proposal Request →</button>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">The team</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                        alt="Rami">
-                    <h4>Rami Khoury</h4>
-                    <p>CTO</p>
-                </div>
-                <div class="team-member">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                        alt="Sara">
-                    <h4>Sara Malkawi</h4>
-                    <p>Lead Developer</p>
-                </div>
-                <div class="team-member">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                        alt="Omar">
-                    <h4>Omar Nassar</h4>
-                    <p>AI Specialist</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Let's build something great</h2>
-            <form class="contact-form">
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <textarea rows="4" placeholder="Tell us about your project"></textarea>
-                <button type="submit">Send message</button>
-            </form>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="social">
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-            </div>
-            <p>Amman Digital Park, Jordan | +962 6 520 1111 | hello@nexustech.jo</p>
-            <p>&copy; 2025 Nexus Tech. All rights reserved.</p>
-        </div>
-    </footer>
+    <script>
+        function showPage(id, linkEl) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + id).classList.add('active');
+            document.getElementById('page-' + id).scrollTop = 0;
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            if (linkEl) linkEl.classList.add('active');
+        }
+    </script>
 </body>
 
 </html>

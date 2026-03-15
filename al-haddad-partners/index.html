@@ -6,378 +6,1043 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Al Haddad & Partners — Law Firm Amman</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&family=Lato:wght@300;400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden
+        }
+
+        :root {
+            --deep: #0c0c0e;
+            --dark: #121216;
+            --panel: #18181e;
+            --gold: #b8962e;
+            --gold2: #d4af4e;
+            --cream: #f0ece2;
+            --muted: #7a7870;
+            --border: rgba(184, 150, 46, 0.12)
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #fefcf5;
-            color: #2c2a24;
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            background: var(--deep);
+            color: var(--cream);
+            overflow-x: hidden
         }
 
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-family: 'EB Garamond', serif;
-            font-weight: 600;
+        a {
+            text-decoration: none;
+            color: inherit
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: #26231c;
-            color: #f0e9dd;
-            padding: 20px 0;
-        }
-
-        .header-flex {
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            height: 90px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 80px;
+            background: rgba(12, 12, 14, 0.97);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border)
         }
 
-        .logo {
-            font-size: 32px;
+        .logo-wrap {
+            display: flex;
+            flex-direction: column
+        }
+
+        .logo-main {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            letter-spacing: 4px;
+            color: var(--cream);
+            font-weight: 500;
+            text-transform: uppercase
+        }
+
+        .logo-sub {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            font-style: italic;
+            margin-top: 2px
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 45px;
+            list-style: none
+        }
+
+        .nav-links a {
+            font-family: 'Cinzel', serif;
+            font-size: 0.68rem;
+            letter-spacing: 2.5px;
+            color: var(--muted);
+            transition: color 0.3s;
+            text-transform: uppercase
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold)
+        }
+
+        .nav-consult {
+            font-family: 'Cinzel', serif;
+            font-size: 0.62rem;
             letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 12px 28px;
+            cursor: pointer;
+            background: none;
+            transition: all 0.4s
         }
 
-        .logo span {
-            color: #b69e74;
+        .nav-consult:hover {
+            background: var(--gold);
+            color: var(--deep)
         }
 
-        nav a {
-            color: #f0e9dd;
-            text-decoration: none;
-            margin-left: 30px;
-            transition: 0.3s;
+        .page {
+            position: fixed;
+            inset: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease
         }
 
-        nav a:hover {
-            color: #b69e74;
+        .page.active {
+            opacity: 1;
+            pointer-events: all
         }
 
-        /* Hero */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover;
-            height: 80vh;
+        /* HOME */
+        .home-hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 80px 90px;
+            overflow: hidden
+        }
+
+        .home-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=90');
+            background-size: cover;
+            background-position: center
+        }
+
+        .home-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(12, 12, 14, 0.97) 0%, rgba(12, 12, 14, 0.55) 60%, rgba(12, 12, 14, 0.3) 100%)
+        }
+
+        .home-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 750px
+        }
+
+        .hero-ornament {
             display: flex;
             align-items: center;
-            color: white;
+            gap: 18px;
+            margin-bottom: 40px
         }
 
-        .hero h1 {
-            font-size: 64px;
-            margin-bottom: 20px;
+        .orn-line {
+            height: 1px;
+            width: 45px;
+            background: var(--gold)
         }
 
-        .hero p {
-            font-size: 18px;
-            max-width: 600px;
-            margin-bottom: 30px;
+        .orn-text {
+            font-family: 'Cinzel', serif;
+            font-size: 0.62rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase
         }
 
-        .btn {
-            background: #b69e74;
-            color: #26231c;
-            padding: 15px 40px;
-            text-decoration: none;
-            font-weight: 600;
+        .home-hero h1 {
+            font-family: 'EB Garamond', serif;
+            font-size: 5rem;
+            font-weight: 500;
+            line-height: 1.12;
+            margin-bottom: 28px
+        }
+
+        .home-hero h1 em {
+            font-style: italic;
+            color: var(--gold2)
+        }
+
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin: 30px 0
+        }
+
+        .hero-divider span {
+            height: 1px;
+            width: 70px;
+            background: var(--border)
+        }
+
+        .hero-divider i {
+            color: var(--gold);
+            font-style: normal;
+            font-size: 0.75rem
+        }
+
+        .home-hero>div>p {
+            color: rgba(240, 236, 226, 0.6);
+            line-height: 2;
+            font-size: 0.95rem;
+            max-width: 520px;
+            margin-bottom: 45px
+        }
+
+        .hero-btns-home {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap
+        }
+
+        .btn-gold-f {
+            background: var(--gold);
+            color: var(--deep);
+            padding: 16px 42px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            cursor: pointer;
             border: none;
-            transition: 0.3s;
-            display: inline-block;
+            transition: all 0.3s
         }
 
-        .btn:hover {
-            background: #9f8a63;
+        .btn-gold-f:hover {
+            background: var(--gold2);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(184, 150, 46, 0.25)
         }
 
-        /* Practice areas */
-        .section {
-            padding: 80px 0;
+        .btn-ghost-g {
+            border: 1px solid var(--border);
+            color: var(--cream);
+            padding: 16px 42px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            background: none;
+            transition: all 0.3s
         }
 
-        .section-title {
-            font-size: 48px;
-            margin-bottom: 50px;
-            text-align: center;
-            color: #26231c;
+        .btn-ghost-g:hover {
+            border-color: var(--gold);
+            color: var(--gold)
         }
 
-        .practice-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .practice-card {
-            background: white;
-            padding: 30px;
-            text-align: center;
-            border: 1px solid #e3d9cc;
-            transition: 0.3s;
-        }
-
-        .practice-card:hover {
-            border-color: #b69e74;
-        }
-
-        .practice-card i {
-            font-size: 40px;
-            color: #b69e74;
-            margin-bottom: 20px;
-        }
-
-        .practice-card h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        /* About */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-img img {
-            width: 100%;
-            border-radius: 5px;
-        }
-
-        .stats {
+        .home-stats {
+            position: absolute;
+            right: 80px;
+            bottom: 90px;
+            z-index: 1;
             display: flex;
-            gap: 40px;
-            margin-top: 30px;
+            flex-direction: column;
+            gap: 28px;
+            text-align: right
         }
 
-        .stat h3 {
-            font-size: 36px;
-            color: #b69e74;
+        .hstat {
+            display: flex;
+            flex-direction: column
         }
 
-        /* Team */
+        .hstat-num {
+            font-family: 'EB Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            line-height: 1
+        }
+
+        .hstat-lab {
+            font-size: 0.6rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(240, 236, 226, 0.4)
+        }
+
+        /* PRACTICE AREAS */
+        .practice-page {
+            padding-top: 90px;
+            min-height: 100vh;
+            background: var(--deep)
+        }
+
+        .prac-hero {
+            height: 48vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 80px 55px;
+            overflow: hidden
+        }
+
+        .prac-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1600&q=90');
+            background-size: cover;
+            background-position: center
+        }
+
+        .prac-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(12, 12, 14, 0.95) 0%, rgba(12, 12, 14, 0.4) 100%)
+        }
+
+        .prac-hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .sec-tag-g {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 14px
+        }
+
+        .prac-hero h2 {
+            font-family: 'EB Garamond', serif;
+            font-size: 3.8rem;
+            font-weight: 500;
+            color: #fff;
+            line-height: 1.1
+        }
+
+        .prac-hero h2 em {
+            font-style: italic;
+            color: var(--gold2)
+        }
+
+        .prac-body {
+            padding: 65px 80px
+        }
+
+        .prac-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px
+        }
+
+        .prac-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            padding: 50px 38px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer
+        }
+
+        .prac-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+            transform-origin: left
+        }
+
+        .prac-card:hover::before {
+            transform: scaleX(1)
+        }
+
+        .prac-card:hover {
+            background: #1c1c22
+        }
+
+        .prac-roman {
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 22px
+        }
+
+        .prac-card h3 {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.55rem;
+            font-weight: 500;
+            margin-bottom: 15px
+        }
+
+        .prac-card p {
+            color: var(--muted);
+            font-size: 0.87rem;
+            line-height: 1.8
+        }
+
+        /* TEAM PAGE */
+        .team-page {
+            padding-top: 90px;
+            min-height: 100vh;
+            background: var(--panel)
+        }
+
+        .team-hero {
+            height: 45vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 80px 55px;
+            overflow: hidden
+        }
+
+        .team-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600&q=90');
+            background-size: cover;
+            background-position: center
+        }
+
+        .team-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(12, 12, 14, 0.95) 0%, rgba(12, 12, 14, 0.4) 100%)
+        }
+
+        .team-hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .team-hero h2 {
+            font-family: 'EB Garamond', serif;
+            font-size: 3.8rem;
+            font-weight: 500;
+            color: #fff;
+            line-height: 1
+        }
+
+        .team-hero h2 em {
+            font-style: italic;
+            color: var(--gold2)
+        }
+
+        .team-body {
+            padding: 65px 80px;
+            background: var(--deep)
+        }
+
         .team-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 2px
         }
 
-        .team-member {
-            text-align: center;
+        .t-card {
+            background: var(--panel);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.4s
         }
 
-        .team-member img {
+        .t-card:hover {
+            border-color: rgba(184, 150, 46, 0.3)
+        }
+
+        .t-card img {
             width: 100%;
-            height: 350px;
+            height: 320px;
             object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 15px;
+            object-position: top;
+            display: block;
+            filter: grayscale(20%);
+            transition: filter 0.4s, transform 0.5s
         }
 
-        .team-member h4 {
-            font-size: 24px;
+        .t-card:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.03)
         }
 
-        .team-member p {
-            color: #777;
+        .t-info {
+            padding: 30px
         }
 
-        /* Testimonials */
-        .testimonials {
-            background: #f0e9dd;
+        .t-info h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.88rem;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            font-weight: 500
         }
 
-        .testimonial-card {
-            background: white;
-            padding: 30px;
-            border-radius: 5px;
+        .t-role {
+            font-family: 'EB Garamond', serif;
+            font-style: italic;
+            color: var(--gold);
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 12px
         }
 
-        /* Contact */
-        .contact-info i {
-            color: #b69e74;
-            margin-right: 10px;
+        .t-info p {
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.7
         }
 
-        .contact-form input,
-        .contact-form textarea {
+        /* CONTACT PAGE */
+        .contact-page-law {
+            padding-top: 90px;
+            min-height: 100vh;
+            background: var(--deep)
+        }
+
+        .cl-hero {
+            height: 40vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 80px 55px;
+            overflow: hidden
+        }
+
+        .cl-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1479142506502-19b3a3b7ff33?w=1600&q=90');
+            background-size: cover;
+            background-position: center
+        }
+
+        .cl-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(12, 12, 14, 0.96) 0%, rgba(12, 12, 14, 0.4) 100%)
+        }
+
+        .cl-hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .cl-hero h2 {
+            font-family: 'EB Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 500;
+            color: #fff;
+            line-height: 1.1
+        }
+
+        .cl-hero h2 em {
+            font-style: italic;
+            color: var(--gold2)
+        }
+
+        .cl-body {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr
+        }
+
+        .cl-left {
+            background: var(--panel);
+            padding: 65px 60px;
+            border-right: 1px solid var(--border)
+        }
+
+        .cl-left h3 {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 12px
+        }
+
+        .cl-left>p {
+            color: var(--muted);
+            margin-bottom: 40px;
+            font-size: 0.88rem;
+            line-height: 1.8
+        }
+
+        .cl-item {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05)
+        }
+
+        .cl-item:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0
+        }
+
+        .cl-icon {
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--gold)
+        }
+
+        .cl-lab {
+            font-family: 'Cinzel', serif;
+            font-size: 0.58rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px
+        }
+
+        .cl-val {
+            color: var(--cream);
+            font-size: 0.88rem;
+            line-height: 1.6
+        }
+
+        .cl-right {
+            background: #0e0e14;
+            padding: 65px 60px
+        }
+
+        .cl-right h3 {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 40px
+        }
+
+        .cf-g {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 18px
+        }
+
+        .cf-g label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.58rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase
+        }
+
+        .cf-g input,
+        .cf-g select,
+        .cf-g textarea {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            color: var(--cream);
+            padding: 14px 18px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.3s
+        }
+
+        .cf-g input::placeholder,
+        .cf-g textarea::placeholder {
+            color: var(--muted)
+        }
+
+        .cf-g input:focus,
+        .cf-g select:focus,
+        .cf-g textarea:focus {
+            border-color: rgba(184, 150, 46, 0.4)
+        }
+
+        .cf-g select option {
+            background: var(--deep)
+        }
+
+        .cf-g textarea {
+            min-height: 120px;
+            resize: vertical
+        }
+
+        .cf-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px
+        }
+
+        .cf-submit {
             width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
+            background: var(--gold);
+            color: var(--deep);
+            border: none;
+            padding: 18px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 5px
         }
 
-        .contact-form button {
-            background: #26231c;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            cursor: pointer;
+        .cf-submit:hover {
+            background: var(--gold2)
         }
 
         footer {
-            background: #26231c;
-            color: #f0e9dd;
-            text-align: center;
-            padding: 40px 0;
+            background: var(--deep);
+            border-top: 1px solid var(--border);
+            padding: 45px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px
         }
 
-        @media (max-width: 768px) {
+        .ft-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            letter-spacing: 3px;
+            color: var(--cream)
+        }
 
-            .about-grid,
-            .team-grid {
-                grid-template-columns: 1fr;
+        footer p {
+            font-size: 0.75rem;
+            color: var(--muted);
+            letter-spacing: 0.5px
+        }
+
+        footer a {
+            color: var(--gold)
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 0 20px
+            }
+
+            .nav-links {
+                display: none
+            }
+
+            .home-hero,
+            .prac-hero,
+            .team-hero,
+            .cl-hero {
+                padding: 0 20px 50px
+            }
+
+            .home-hero h1 {
+                font-size: 3rem
+            }
+
+            .home-stats {
+                display: none
+            }
+
+            .prac-body,
+            .team-body {
+                padding: 50px 20px
+            }
+
+            .prac-grid,
+            .team-grid,
+            .cl-body {
+                grid-template-columns: 1fr
+            }
+
+            .cl-left,
+            .cl-right {
+                padding: 50px 20px
+            }
+
+            .cf-row {
+                grid-template-columns: 1fr
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px
             }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <div class="container header-flex">
-            <div class="logo">AL HADDAD<span>& PARTNERS</span></div>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">Areas</a>
-                <a href="#">Team</a>
-                <a href="#">Contact</a>
-            </nav>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Decades of experience, <br>a tradition of trust</h1>
-            <p>Leading corporate and civil law firm in Amman, serving clients since 1985.</p>
-            <a href="#" class="btn">Free Consultation</a>
+    <nav>
+        <div class="logo-wrap">
+            <div class="logo-main">Al Haddad &amp; Partners</div>
+            <div class="logo-sub">Advocates & Legal Consultants · Est. 1998</div>
         </div>
-    </section>
+        <ul class="nav-links">
+            <li><a href="#" class="active" onclick="showPage('home',this)">Home</a></li>
+            <li><a href="#" onclick="showPage('practice',this)">Practice Areas</a></li>
+            <li><a href="#" onclick="showPage('team',this)">Our Team</a></li>
+            <li><a href="#" onclick="showPage('contact',this)">Contact</a></li>
+        </ul>
+        <button class="nav-consult" onclick="showPage('contact',null)">Free Consultation</button>
+    </nav>
 
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Practice Areas</h2>
-            <div class="practice-grid">
-                <div class="practice-card">
-                    <i class="fas fa-building"></i>
-                    <h3>Corporate Law</h3>
-                    <p>M&A, joint ventures, company formation.</p>
+    <!-- HOME -->
+    <div id="page-home" class="page active">
+        <div class="home-hero">
+            <div class="home-hero-bg"></div>
+            <div class="home-hero-content">
+                <div class="hero-ornament">
+                    <div class="orn-line"></div>
+                    <div class="orn-text">Established 1998 · Amman, Jordan</div>
                 </div>
-                <div class="practice-card">
-                    <i class="fas fa-gavel"></i>
-                    <h3>Litigation</h3>
-                    <p>Civil and commercial dispute resolution.</p>
+                <h1>Where <em>Justice</em><br>Meets Expertise</h1>
+                <div class="hero-divider"><span></span><i>✦</i><span></span></div>
+                <p>For over 25 years, Al Haddad & Partners has stood as one of Jordan's most trusted legal institutions
+                    — combining deep local knowledge with international standards of practice.</p>
+                <div class="hero-btns-home">
+                    <button class="btn-gold-f" onclick="showPage('contact',null)">Book Consultation</button>
+                    <button class="btn-ghost-g" onclick="showPage('practice',null)">Our Practice Areas</button>
                 </div>
-                <div class="practice-card">
-                    <i class="fas fa-home"></i>
-                    <h3>Real Estate</h3>
-                    <p>Property transactions, due diligence.</p>
-                </div>
-                <div class="practice-card">
-                    <i class="fas fa-balance-scale"></i>
-                    <h3>Intellectual Property</h3>
-                    <p>Trademarks, copyrights, IP protection.</p>
+            </div>
+            <div class="home-stats">
+                <div class="hstat"><span class="hstat-num">25+</span><span class="hstat-lab">Years Practice</span></div>
+                <div class="hstat"><span class="hstat-num">1,200+</span><span class="hstat-lab">Cases Won</span></div>
+                <div class="hstat"><span class="hstat-num">98%</span><span class="hstat-lab">Client Satisfaction</span>
                 </div>
             </div>
         </div>
-    </section>
+        <footer>
+            <div class="ft-logo">Al Haddad &amp; Partners</div>
+            <p>Licensed by the Jordanian Bar Association</p>
+            <p>© 2025 Al Haddad & Partners. All rights reserved.</p>
+        </footer>
+    </div>
 
-    <section class="section">
-        <div class="container about-grid">
-            <div class="about-img">
-                <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                    alt="Office">
+    <!-- PRACTICE AREAS -->
+    <div id="page-practice" class="page">
+        <div class="practice-page">
+            <div class="prac-hero">
+                <div class="prac-hero-bg"></div>
+                <div class="prac-hero-content">
+                    <span class="sec-tag-g">Areas of Practice</span>
+                    <h2>Legal Expertise Across <em>Every Domain</em></h2>
+                </div>
             </div>
-            <div>
-                <h2 class="section-title" style="text-align: left;">Legacy of Excellence</h2>
-                <p>Founded by the late Mahmoud Al Haddad, our firm has grown into one of Jordan's most respected legal
-                    practices. We combine deep local knowledge with international standards.</p>
-                <div class="stats">
-                    <div class="stat">
-                        <h3>1000+</h3>
-                        <p>Cases won</p>
+            <div class="prac-body">
+                <div class="prac-grid">
+                    <div class="prac-card"><span class="prac-roman">I.</span>
+                        <h3>Corporate & Commercial Law</h3>
+                        <p>Company formation, mergers & acquisitions, joint ventures, and commercial contracts for
+                            businesses across Jordan and the region.</p>
                     </div>
-                    <div class="stat">
-                        <h3>25+</h3>
-                        <p>Lawyers</p>
+                    <div class="prac-card"><span class="prac-roman">II.</span>
+                        <h3>Real Estate & Property</h3>
+                        <p>Conveyancing, title disputes, lease agreements, and development law across all Jordan's
+                            governorates and free zones.</p>
+                    </div>
+                    <div class="prac-card"><span class="prac-roman">III.</span>
+                        <h3>Litigation & Arbitration</h3>
+                        <p>Representing clients before all levels of Jordanian courts and international arbitration
+                            panels with precision and tenacity.</p>
+                    </div>
+                    <div class="prac-card"><span class="prac-roman">IV.</span>
+                        <h3>Banking & Finance</h3>
+                        <p>Regulatory compliance, Islamic finance structures, loan documentation, and debt restructuring
+                            for financial institutions.</p>
+                    </div>
+                    <div class="prac-card"><span class="prac-roman">V.</span>
+                        <h3>Employment Law</h3>
+                        <p>Labour disputes, employment contracts, termination proceedings, and workplace policy for
+                            employers and individuals alike.</p>
+                    </div>
+                    <div class="prac-card"><span class="prac-roman">VI.</span>
+                        <h3>Intellectual Property</h3>
+                        <p>Trademark registration, copyright protection, licensing agreements, and IP enforcement across
+                            the Arab world.</p>
                     </div>
                 </div>
             </div>
+            <footer>
+                <div class="ft-logo">Al Haddad &amp; Partners</div>
+                <p>4th Circle, Jabal Amman · <a href="tel:+96264650001">+962 6 465 0001</a></p>
+                <p>© 2025 Al Haddad & Partners.</p>
+            </footer>
         </div>
-    </section>
+    </div>
 
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Our Partners</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                        alt="Tariq">
-                    <h4>Tariq Al Haddad</h4>
-                    <p>Managing Partner</p>
-                </div>
-                <div class="team-member">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                        alt="Dina">
-                    <h4>Dina Masri</h4>
-                    <p>Partner, Litigation</p>
-                </div>
-                <div class="team-member">
-                    <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                        alt="Omar">
-                    <h4>Omar Sabbah</h4>
-                    <p>Partner, Corporate</p>
+    <!-- TEAM -->
+    <div id="page-team" class="page">
+        <div class="team-page">
+            <div class="team-hero">
+                <div class="team-hero-bg"></div>
+                <div class="team-hero-content">
+                    <span class="sec-tag-g">The Partnership</span>
+                    <h2>Our <em>Legal Team</em></h2>
                 </div>
             </div>
+            <div class="team-body">
+                <div class="team-grid">
+                    <div class="t-card">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=85"
+                            alt="Faris Al Haddad">
+                        <div class="t-info">
+                            <h4>Faris Al Haddad</h4><span class="t-role">Senior Partner & Founder</span>
+                            <p>Called to the Jordanian Bar in 1998. Specialist in corporate law and complex litigation.
+                                Former legal adviser to the Ministry of Industry.</p>
+                        </div>
+                    </div>
+                    <div class="t-card">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=85"
+                            alt="Rania Qasim">
+                        <div class="t-info">
+                            <h4>Rania Qasim</h4><span class="t-role">Partner — Real Estate & Property</span>
+                            <p>Over 18 years of experience in property law, land registration, and construction
+                                disputes. LLM from University of London.</p>
+                        </div>
+                    </div>
+                    <div class="t-card">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&q=85"
+                            alt="Tariq Saleh">
+                        <div class="t-info">
+                            <h4>Tariq Saleh</h4><span class="t-role">Associate — Commercial Litigation</span>
+                            <p>Specialist in international arbitration and commercial dispute resolution. Fluent in
+                                Arabic, English, and French.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <div class="ft-logo">Al Haddad &amp; Partners</div>
+                <p>4th Circle, Jabal Amman · <a href="tel:+96264650001">+962 6 465 0001</a></p>
+                <p>© 2025 Al Haddad & Partners.</p>
+            </footer>
         </div>
-    </section>
+    </div>
 
-    <section class="section testimonials">
-        <div class="container">
-            <h2 class="section-title">What clients say</h2>
-            <div class="testimonial-card">
-                <p>"Al Haddad & Partners handled our company's acquisition with exceptional skill and attention to
-                    detail. Highly professional."</p>
-                <p style="margin-top: 20px;"><strong>— Khaled Zoubi, CEO of Zara Investment</strong></p>
+    <!-- CONTACT -->
+    <div id="page-contact" class="page">
+        <div class="contact-page-law">
+            <div class="cl-hero">
+                <div class="cl-hero-bg"></div>
+                <div class="cl-hero-content">
+                    <span class="sec-tag-g">Get in Touch</span>
+                    <h2>Request a <em>Consultation</em></h2>
+                </div>
+            </div>
+            <div class="cl-body">
+                <div class="cl-left">
+                    <h3>Contact Information</h3>
+                    <p>The first step is a conversation. Tell us about your legal matter and a partner will respond
+                        within 24 hours.</p>
+                    <div class="cl-item">
+                        <div class="cl-icon">📍</div>
+                        <div><span class="cl-lab">Office</span><span class="cl-val">4th Circle, Jabal Amman<br>Amman
+                                11181, Jordan</span></div>
+                    </div>
+                    <div class="cl-item">
+                        <div class="cl-icon">📞</div>
+                        <div><span class="cl-lab">Phone</span><span class="cl-val">+962 6 465 0001</span></div>
+                    </div>
+                    <div class="cl-item">
+                        <div class="cl-icon">✉</div>
+                        <div><span class="cl-lab">Email</span><span class="cl-val">consult@alhaddadlaw.jo</span></div>
+                    </div>
+                    <div class="cl-item">
+                        <div class="cl-icon">🕐</div>
+                        <div><span class="cl-lab">Office Hours</span><span class="cl-val">Sun – Thu: 9:00 AM – 6:00
+                                PM</span></div>
+                    </div>
+                </div>
+                <div class="cl-right">
+                    <h3>Request a Consultation</h3>
+                    <div class="cf-row">
+                        <div class="cf-g"><label>Full Name</label><input type="text" placeholder="Your full name"></div>
+                        <div class="cf-g"><label>Phone</label><input type="tel" placeholder="+962..."></div>
+                    </div>
+                    <div class="cf-g"><label>Email Address</label><input type="email" placeholder="your@email.com">
+                    </div>
+                    <div class="cf-g"><label>Practice Area</label><select>
+                            <option disabled selected>Select your legal matter</option>
+                            <option>Corporate & Commercial Law</option>
+                            <option>Real Estate & Property</option>
+                            <option>Litigation & Arbitration</option>
+                            <option>Banking & Finance</option>
+                            <option>Employment Law</option>
+                            <option>Intellectual Property</option>
+                            <option>Other</option>
+                        </select></div>
+                    <div class="cf-g"><label>Company / Organisation</label><input type="text" placeholder="Optional">
+                    </div>
+                    <div class="cf-g"><label>Brief Description</label><textarea
+                            placeholder="Briefly describe your legal matter..."></textarea></div>
+                    <button class="cf-submit" onclick="event.preventDefault()">Request Consultation</button>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="section">
-        <div class="container contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
-            <div class="contact-info">
-                <h2 class="section-title" style="text-align: left;">Contact us</h2>
-                <p><i class="fas fa-map-marker-alt"></i> 15 King Hussein St, Amman</p>
-                <p><i class="fas fa-phone"></i> +962 6 464 7000</p>
-                <p><i class="fas fa-envelope"></i> info@alhaddadlaw.jo</p>
-            </div>
-            <div class="contact-form">
-                <form>
-                    <input type="text" placeholder="Name">
-                    <input type="email" placeholder="Email">
-                    <textarea rows="4" placeholder="How can we help?"></textarea>
-                    <button type="submit">Send</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Al Haddad & Partners. All rights reserved.</p>
-    </footer>
+    <script>
+        function showPage(id, linkEl) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + id).classList.add('active');
+            document.getElementById('page-' + id).scrollTop = 0;
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            if (linkEl) linkEl.classList.add('active');
+        }
+    </script>
 </body>
 
 </html>

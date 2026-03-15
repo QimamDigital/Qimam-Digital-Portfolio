@@ -6,412 +6,1019 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumière Clinic — Advanced Aesthetic Medicine</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden
+        }
+
+        :root {
+            --white: #fafcfb;
+            --mint: #c8e6dc;
+            --teal: #2a7d6a;
+            --teal-dark: #1d5a4c;
+            --teal-pale: #e8f4f0;
+            --charcoal: #1a2420;
+            --muted: #7a9490;
+            --light: #f0f5f3
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #fcfcfc;
-            color: #2d3e3f;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            background: var(--white);
+            color: var(--charcoal)
         }
 
-        h1,
-        h2,
-        h3 {
-            font-family: 'DM Serif Display', serif;
-            font-weight: 400;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background: white;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-            padding: 20px 0;
-            position: sticky;
+        nav {
+            position: fixed;
             top: 0;
-            z-index: 10;
-        }
-
-        .header-flex {
+            left: 0;
+            right: 0;
+            z-index: 200;
+            height: 80px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 60px;
+            background: rgba(250, 252, 251, 0.96);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(42, 125, 106, 0.1)
         }
 
         .logo {
-            font-size: 28px;
-            color: #2d3e3f;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: var(--teal-dark)
         }
 
-        .logo span {
-            color: #96bdb8;
-        }
-
-        nav a {
-            color: #2d3e3f;
-            text-decoration: none;
-            margin-left: 30px;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: #96bdb8;
-        }
-
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            padding: 80px 0;
-        }
-
-        .hero h1 {
-            font-size: 56px;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: #5a6e6f;
-        }
-
-        .btn {
-            background: #96bdb8;
-            color: white;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: 0.3s;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            background: #7fa39e;
-        }
-
-        .hero-img img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .stats {
-            display: flex;
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .stat-item h3 {
-            font-size: 36px;
-            color: #96bdb8;
-        }
-
-        .services {
-            background: #f3f8f7;
-            padding: 80px 0;
-        }
-
-        .section-title {
-            font-size: 42px;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-            transition: 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .service-card i {
-            font-size: 40px;
-            color: #96bdb8;
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            margin-bottom: 15px;
-        }
-
-        .service-card p {
-            color: #5a6e6f;
-        }
-
-        .about {
-            padding: 80px 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-img img {
-            width: 100%;
-            border-radius: 20px;
-        }
-
-        .testimonials {
-            background: white;
-            padding: 80px 0;
-        }
-
-        .testimonial-slider {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-
-        .testimonial {
-            background: #f3f8f7;
-            padding: 30px;
-            border-radius: 20px;
-        }
-
-        .testimonial p {
+        .logo em {
             font-style: italic;
-            margin-bottom: 20px;
+            color: var(--teal)
         }
 
-        .testimonial .client {
+        .nav-links {
             display: flex;
-            align-items: center;
-            gap: 15px;
+            gap: 40px;
+            list-style: none
         }
 
-        .client img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
+        .nav-links a {
+            font-size: 0.8rem;
+            color: var(--muted);
+            transition: color 0.3s;
+            letter-spacing: 0.5px
         }
 
-        .contact {
-            padding: 80px 0;
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--teal)
+        }
+
+        .nav-book {
+            background: var(--teal);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            font-family: 'DM Sans', sans-serif
+        }
+
+        .nav-book:hover {
+            background: var(--teal-dark);
+            transform: translateY(-1px)
+        }
+
+        .page {
+            position: fixed;
+            inset: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease
+        }
+
+        .page.active {
+            opacity: 1;
+            pointer-events: all
+        }
+
+        /* HOME */
+        .home-hero {
+            min-height: 100vh;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            padding-top: 80px
         }
 
-        .contact-info i {
-            color: #96bdb8;
-            margin-right: 10px;
+        .home-left {
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            padding: 80px;
+            position: relative;
+            overflow: hidden
         }
 
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
+        .home-left::before {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -80px;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(42, 125, 106, 0.1) 0%, transparent 70%);
+            border-radius: 50%
         }
 
-        .contact-form button {
-            background: #96bdb8;
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 10px;
-            width: 100%;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(42, 125, 106, 0.1);
+            color: var(--teal);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 28px
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--teal);
+            border-radius: 50%;
+            animation: blink 1.5s infinite
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.3
+            }
+        }
+
+        .home-left h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.8rem;
+            line-height: 1.12;
+            color: var(--charcoal);
+            margin-bottom: 22px;
+            font-weight: 400
+        }
+
+        .home-left h1 em {
+            font-style: italic;
+            color: var(--teal)
+        }
+
+        .home-left>div>p {
+            color: var(--muted);
+            line-height: 1.85;
+            font-size: 0.95rem;
+            margin-bottom: 38px;
+            max-width: 400px
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap
+        }
+
+        .btn-teal {
+            background: var(--teal);
+            color: #fff;
+            padding: 15px 36px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
             cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            font-family: 'DM Sans', sans-serif
+        }
+
+        .btn-teal:hover {
+            background: var(--teal-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(42, 125, 106, 0.25)
+        }
+
+        .btn-outline-t {
+            border: 1.5px solid var(--teal);
+            color: var(--teal);
+            padding: 15px 36px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            background: none;
+            transition: all 0.3s;
+            font-family: 'DM Sans', sans-serif
+        }
+
+        .btn-outline-t:hover {
+            background: var(--teal);
+            color: #fff
+        }
+
+        .home-right {
+            background: var(--mint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .home-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            inset: 0;
+            opacity: 0.5
+        }
+
+        .why-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 45px 38px;
+            box-shadow: 0 25px 70px rgba(42, 125, 106, 0.14);
+            width: 100%;
+            max-width: 370px;
+            position: relative;
+            z-index: 1
+        }
+
+        .why-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--charcoal)
+        }
+
+        .wstat {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--light)
+        }
+
+        .wstat:last-child {
+            border-bottom: none
+        }
+
+        .wstat-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--teal);
+            font-size: 1rem
+        }
+
+        .wstat strong {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            font-weight: 500;
+            margin-bottom: 2px
+        }
+
+        .wstat span {
+            font-size: 0.77rem;
+            color: var(--muted)
+        }
+
+        /* TREATMENTS */
+        .treatments-page {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: var(--white)
+        }
+
+        .tr-hero {
+            height: 50vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 60px 60px
+        }
+
+        .tr-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1600&q=90');
+            background-size: cover;
+            background-position: center
+        }
+
+        .tr-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(29, 90, 76, 0.88) 0%, rgba(29, 90, 76, 0.3) 100%)
+        }
+
+        .tr-hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .tr-hero h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.8rem;
+            color: #fff;
+            font-weight: 400;
+            line-height: 1.1
+        }
+
+        .tr-hero h2 em {
+            font-style: italic;
+            color: var(--mint)
+        }
+
+        .tr-hero p {
+            color: rgba(255, 255, 255, 0.65);
+            margin-top: 10px;
+            font-size: 0.9rem
+        }
+
+        .treatments-grid-section {
+            padding: 70px 60px;
+            background: var(--white)
+        }
+
+        .treats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px
+        }
+
+        .treat-card {
+            background: var(--light);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s;
+            border: 1px solid transparent;
+            cursor: pointer
+        }
+
+        .treat-card:hover {
+            background: #fff;
+            border-color: rgba(42, 125, 106, 0.15);
+            box-shadow: 0 20px 50px rgba(42, 125, 106, 0.1);
+            transform: translateY(-5px)
+        }
+
+        .treat-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s
+        }
+
+        .treat-card:hover img {
+            transform: scale(1.04)
+        }
+
+        .treat-body {
+            padding: 30px
+        }
+
+        .treat-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            color: rgba(42, 125, 106, 0.15);
+            line-height: 1;
+            margin-bottom: 12px
+        }
+
+        .treat-body h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--charcoal)
+        }
+
+        .treat-body p {
+            color: var(--muted);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 18px
+        }
+
+        .treat-link {
+            font-size: 0.8rem;
+            color: var(--teal);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.3s
+        }
+
+        .treat-card:hover .treat-link {
+            gap: 10px
+        }
+
+        /* TEAM PAGE */
+        .team-page {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: var(--light)
+        }
+
+        .team-hero {
+            height: 45vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 60px 50px
+        }
+
+        .team-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1600&q=90');
+            background-size: cover;
+            background-position: top
+        }
+
+        .team-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(29, 90, 76, 0.9) 0%, rgba(29, 90, 76, 0.4) 100%)
+        }
+
+        .team-hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .team-hero h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.5rem;
+            color: #fff;
+            font-weight: 400
+        }
+
+        .team-hero h2 em {
+            font-style: italic;
+            color: var(--mint)
+        }
+
+        .team-grid-section {
+            padding: 70px 60px
+        }
+
+        .t-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px
+        }
+
+        .t-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s
+        }
+
+        .t-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(42, 125, 106, 0.14)
+        }
+
+        .t-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            transition: transform 0.5s
+        }
+
+        .t-card:hover img {
+            transform: scale(1.03)
+        }
+
+        .t-info {
+            padding: 25px
+        }
+
+        .t-info h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 4px
+        }
+
+        .t-role {
+            font-size: 0.75rem;
+            color: var(--teal);
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 10px
+        }
+
+        .t-info p {
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.7
+        }
+
+        /* BOOK PAGE */
+        .book-page {
+            padding-top: 80px;
+            min-height: 100vh
+        }
+
+        .book-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: calc(100vh - 80px)
+        }
+
+        .book-left {
+            position: relative;
+            overflow: hidden
+        }
+
+        .book-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .book-right {
+            background: var(--teal-dark);
+            padding: 80px 65px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center
+        }
+
+        .book-right .sec-tag-w {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--mint);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px
+        }
+
+        .book-right .sec-tag-w::before {
+            content: '';
+            width: 25px;
+            height: 1px;
+            background: var(--mint)
+        }
+
+        .book-right h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.8rem;
+            color: #fff;
+            font-weight: 400;
+            margin-bottom: 12px;
+            line-height: 1.2
+        }
+
+        .book-right h2 em {
+            font-style: italic;
+            color: var(--mint)
+        }
+
+        .book-right>p {
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 45px;
+            font-size: 0.9rem
+        }
+
+        .book-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px
+        }
+
+        .book-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px
+        }
+
+        .book-input {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 15px 18px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.3s;
+            border-radius: 6px;
+            width: 100%
+        }
+
+        .book-input::placeholder {
+            color: rgba(255, 255, 255, 0.35)
+        }
+
+        .book-input:focus {
+            border-color: rgba(200, 230, 220, 0.5)
+        }
+
+        .book-submit {
+            background: var(--mint);
+            color: var(--teal-dark);
+            border: none;
+            padding: 17px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 6px;
+            margin-top: 5px
+        }
+
+        .book-submit:hover {
+            background: #fff;
+            transform: translateY(-1px)
+        }
+
+        .book-info {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .binfo {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.5)
+        }
+
+        .binfo span:first-child {
+            color: var(--mint)
         }
 
         footer {
-            background: #2d3e3f;
-            color: white;
-            text-align: center;
-            padding: 40px 0;
+            background: var(--charcoal);
+            padding: 45px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px
         }
 
-        footer .social a {
-            color: white;
-            margin: 0 10px;
-            font-size: 20px;
+        .ft-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            color: #fff
         }
 
-        @media (max-width: 768px) {
+        footer p {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.4)
+        }
 
-            .hero,
-            .about,
-            .contact {
-                grid-template-columns: 1fr;
+        footer a {
+            color: var(--mint)
+        }
+
+        @media(max-width:768px) {
+            nav {
+                padding: 0 20px
             }
 
-            .testimonial-slider {
-                grid-template-columns: 1fr;
+            .nav-links {
+                display: none
+            }
+
+            .home-hero,
+            .book-split {
+                grid-template-columns: 1fr
+            }
+
+            .home-right {
+                height: 350px
+            }
+
+            .home-left,
+            .book-right {
+                padding: 50px 20px
+            }
+
+            .home-left h1 {
+                font-size: 2.8rem
+            }
+
+            .tr-hero,
+            .team-hero {
+                padding: 0 20px 40px
+            }
+
+            .treatments-grid-section,
+            .team-grid-section {
+                padding: 50px 20px
+            }
+
+            .treats-grid,
+            .t-grid {
+                grid-template-columns: 1fr
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px
             }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <div class="container header-flex">
-            <div class="logo">LUMIÈRE<span>CLINIC</span></div>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">Treatments</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
-            </nav>
-        </div>
-    </header>
 
-    <div class="container hero">
-        <div>
-            <h1>Where Science Meets <br>Natural Beauty</h1>
-            <p>Advanced aesthetic treatments in a serene, medical environment. Your journey to renewed confidence starts
-                here.</p>
-            <a href="#" class="btn">Book Consultation</a>
-            <div class="stats">
-                <div class="stat-item">
-                    <h3>15+</h3>
-                    <p>Years Experience</p>
+    <nav>
+        <div class="logo"><em>Lumière</em> Clinic</div>
+        <ul class="nav-links">
+            <li><a href="#" class="active" onclick="showPage('home',this)">Home</a></li>
+            <li><a href="#" onclick="showPage('treatments',this)">Treatments</a></li>
+            <li><a href="#" onclick="showPage('team',this)">Our Team</a></li>
+            <li><a href="#" onclick="showPage('book',this)">Book</a></li>
+        </ul>
+        <button class="nav-book" onclick="showPage('book',null)">Book Consultation</button>
+    </nav>
+
+    <!-- HOME -->
+    <div id="page-home" class="page active">
+        <div class="home-hero">
+            <div class="home-left">
+                <div>
+                    <div class="hero-badge">Advanced Aesthetic Medicine · Sweifieh, Amman</div>
+                    <h1>Reveal Your <em>Natural</em> Radiance</h1>
+                    <p>Science-driven aesthetic treatments tailored to you. Our board-certified specialists combine
+                        cutting-edge technology with a gentle, personalised approach.</p>
+                    <div class="hero-btns">
+                        <button class="btn-teal" onclick="showPage('book',null)">Book Free Consultation</button>
+                        <button class="btn-outline-t" onclick="showPage('treatments',null)">View Treatments</button>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <h3>10k+</h3>
-                    <p>Happy Patients</p>
+            </div>
+            <div class="home-right">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=85" alt="Clinic">
+                <div class="why-card">
+                    <h3>Why Choose Lumière?</h3>
+                    <div class="wstat">
+                        <div class="wstat-icon">✦</div>
+                        <div><strong>15+ Years Experience</strong><span>Board-certified specialists</span></div>
+                    </div>
+                    <div class="wstat">
+                        <div class="wstat-icon">◎</div>
+                        <div><strong>5,000+ Patients</strong><span>Treated with care & precision</span></div>
+                    </div>
+                    <div class="wstat">
+                        <div class="wstat-icon">◈</div>
+                        <div><strong>Latest Technology</strong><span>European-certified equipment</span></div>
+                    </div>
+                    <div class="wstat">
+                        <div class="wstat-icon">◇</div>
+                        <div><strong>Personalised Plans</strong><span>Tailored to your unique goals</span></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="hero-img">
-            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Clinic">
-        </div>
+        <footer>
+            <div class="ft-logo">Lumière Clinic</div>
+            <p>Sweifieh, Amman, Jordan &nbsp;|&nbsp; <a href="tel:+96265009999">+962 6 500 9999</a></p>
+            <p>© 2025 Lumière Clinic. All rights reserved.</p>
+        </footer>
     </div>
 
-    <section class="services">
-        <div class="container">
-            <h2 class="section-title">Our Treatments</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Botox & Fillers</h3>
-                    <p>Non-surgical wrinkle reduction and volume restoration.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-sun"></i>
-                    <h3>Laser Skin Resurfacing</h3>
-                    <p>Improve texture, tone, and reduce scars.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-leaf"></i>
-                    <h3>PRP Therapy</h3>
-                    <p>Natural rejuvenation using your own platelets.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-water"></i>
-                    <h3>HydraFacial</h3>
-                    <p>Deep cleansing and hydration for glowing skin.</p>
+    <!-- TREATMENTS -->
+    <div id="page-treatments" class="page">
+        <div class="treatments-page">
+            <div class="tr-hero">
+                <div class="tr-hero-bg"></div>
+                <div class="tr-hero-content">
+                    <h2>Our <em>Treatments</em></h2>
+                    <p>Science meets beauty — every treatment backed by clinical evidence</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <div class="container about">
-        <div class="about-img">
-            <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Doctor">
-        </div>
-        <div>
-            <h2 class="section-title" style="text-align: left;">Meet Dr. Layla Mansour</h2>
-            <p>With over 15 years of experience in aesthetic medicine, Dr. Mansour leads a team of dedicated
-                professionals committed to natural-looking results and patient comfort. Every treatment is personalized
-                to enhance your unique beauty.</p>
-            <p style="margin-top: 20px;">Member of the American Academy of Aesthetic Medicine.</p>
-        </div>
-    </div>
-
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">Patient Stories</h2>
-            <div class="testimonial-slider">
-                <div class="testimonial">
-                    <p>"I was nervous about my first treatment, but the team at Lumière made me feel completely at ease.
-                        The results are amazing — so natural!"</p>
-                    <div class="client">
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
-                            alt="Client">
-                        <div>
-                            <h4>Rana T.</h4>
-                            <p>Botox Patient</p>
+            <div class="treatments-grid-section">
+                <div class="treats-grid">
+                    <div class="treat-card">
+                        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500&q=80" alt="Facial">
+                        <div class="treat-body">
+                            <div class="treat-num">01</div>
+                            <h3>Facial Rejuvenation</h3>
+                            <p>Advanced filler and Botox treatments performed by certified doctors for natural,
+                                refreshed results with zero downtime.</p><span class="treat-link">Learn more →</span>
+                        </div>
+                    </div>
+                    <div class="treat-card">
+                        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=500&q=80" alt="Laser">
+                        <div class="treat-body">
+                            <div class="treat-num">02</div>
+                            <h3>Laser Skin Therapy</h3>
+                            <p>FDA-cleared laser technology targeting pigmentation, acne scars, and texture with
+                                unmatched precision and safety.</p><span class="treat-link">Learn more →</span>
+                        </div>
+                    </div>
+                    <div class="treat-card">
+                        <img src="https://images.unsplash.com/photo-1498843053639-170ff2122f35?w=500&q=80" alt="Body">
+                        <div class="treat-body">
+                            <div class="treat-num">03</div>
+                            <h3>Body Contouring</h3>
+                            <p>Non-surgical fat reduction and skin tightening with clinically proven technology. No
+                                surgery. No recovery time.</p><span class="treat-link">Learn more →</span>
+                        </div>
+                    </div>
+                    <div class="treat-card">
+                        <img src="https://images.unsplash.com/photo-1559762717-99c81ac85459?w=500&q=80" alt="PRP">
+                        <div class="treat-body">
+                            <div class="treat-num">04</div>
+                            <h3>PRP Hair Therapy</h3>
+                            <p>Platelet-rich plasma treatments to stimulate natural hair growth, strengthen follicles,
+                                and restore confidence.</p><span class="treat-link">Learn more →</span>
+                        </div>
+                    </div>
+                    <div class="treat-card">
+                        <img src="https://images.unsplash.com/photo-1556228578-567ba127e37f?w=500&q=80" alt="Peel">
+                        <div class="treat-body">
+                            <div class="treat-num">05</div>
+                            <h3>Chemical Peels</h3>
+                            <p>Medical-grade resurfacing peels for brighter, smoother skin with minimal downtime and
+                                maximum results.</p><span class="treat-link">Learn more →</span>
+                        </div>
+                    </div>
+                    <div class="treat-card">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80" alt="IV">
+                        <div class="treat-body">
+                            <div class="treat-num">06</div>
+                            <h3>IV Drip Therapy</h3>
+                            <p>Customised vitamin infusions for radiant skin, sustained energy, and immune system
+                                optimisation.</p><span class="treat-link">Learn more →</span>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial">
-                    <p>"The HydraFacial left my skin glowing for weeks. I've never felt more confident without makeup."
+            </div>
+            <footer>
+                <div class="ft-logo">Lumière Clinic</div>
+                <p>Sweifieh, Amman · <a href="tel:+96265009999">+962 6 500 9999</a></p>
+                <p>© 2025 Lumière Clinic. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- TEAM -->
+    <div id="page-team" class="page">
+        <div class="team-page">
+            <div class="team-hero">
+                <div class="team-hero-bg"></div>
+                <div class="team-hero-content">
+                    <h2>Meet Our <em>Specialists</em></h2>
+                </div>
+            </div>
+            <div class="team-grid-section">
+                <div class="t-grid">
+                    <div class="t-card">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&q=85"
+                            alt="Dr Nour">
+                        <div class="t-info">
+                            <h4>Dr. Nour Al-Rashid</h4><span class="t-role">Medical Director · Dermatology</span>
+                            <p>Board-certified dermatologist with 18 years in aesthetic medicine. Fellow of the European
+                                Academy of Dermatology.</p>
+                        </div>
+                    </div>
+                    <div class="t-card">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&q=85"
+                            alt="Dr Khalid">
+                        <div class="t-info">
+                            <h4>Dr. Khalid Mansour</h4><span class="t-role">Aesthetic Physician</span>
+                            <p>Specialist in non-surgical facial rejuvenation, with advanced training in Paris and
+                                London. 3,000+ procedures performed.</p>
+                        </div>
+                    </div>
+                    <div class="t-card">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&q=85" alt="Dr Rana">
+                        <div class="t-info">
+                            <h4>Dr. Rana Haddad</h4><span class="t-role">Laser & Skin Specialist</span>
+                            <p>Pioneer in laser skin therapy in Jordan. Expert in the most advanced FDA-cleared laser
+                                platforms available today.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <div class="ft-logo">Lumière Clinic</div>
+                <p>Sweifieh, Amman · <a href="tel:+96265009999">+962 6 500 9999</a></p>
+                <p>© 2025 Lumière Clinic. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- BOOK -->
+    <div id="page-book" class="page">
+        <div class="book-page">
+            <div class="book-split">
+                <div class="book-left">
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&q=90"
+                        alt="Clinic interior">
+                </div>
+                <div class="book-right">
+                    <div class="sec-tag-w">Free Consultation</div>
+                    <h2>Book Your <em>Consultation</em></h2>
+                    <p>The first step is a conversation. Our specialists will design a personalised plan just for you.
                     </p>
-                    <div class="client">
-                        <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
-                            alt="Client">
-                        <div>
-                            <h4>Nadia K.</h4>
-                            <p>HydraFacial Patient</p>
+                    <div class="book-form">
+                        <div class="book-row">
+                            <input type="text" class="book-input" placeholder="Your Name">
+                            <input type="tel" class="book-input" placeholder="Phone Number">
                         </div>
+                        <input type="email" class="book-input" placeholder="Email Address">
+                        <select class="book-input" style="cursor:pointer">
+                            <option disabled selected>Select Treatment Area</option>
+                            <option>Facial Rejuvenation</option>
+                            <option>Laser Skin Therapy</option>
+                            <option>Body Contouring</option>
+                            <option>PRP Hair Therapy</option>
+                            <option>Chemical Peels</option>
+                            <option>IV Drip Therapy</option>
+                            <option>General Consultation</option>
+                        </select>
+                        <input type="date" class="book-input">
+                        <textarea class="book-input" placeholder="Any additional notes or questions..."
+                            style="min-height:80px;resize:none"></textarea>
+                        <button class="book-submit" onclick="event.preventDefault()">Confirm Booking</button>
+                    </div>
+                    <div class="book-info">
+                        <div class="binfo"><span>📞</span><span>+962 6 500 9999</span></div>
+                        <div class="binfo"><span>📍</span><span>Sweifieh, Amman, Jordan</span></div>
+                        <div class="binfo"><span>🕐</span><span>Sun – Thu: 9AM – 7PM · Sat: 10AM – 4PM</span></div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <div class="container contact">
-        <div class="contact-info">
-            <h2 class="section-title" style="text-align: left;">Visit Us</h2>
-            <p><i class="fas fa-map-marker-alt"></i> 13 Ibrahim Al Khalil St, Amman</p>
-            <p><i class="fas fa-phone"></i> +962 6 577 8899</p>
-            <p><i class="fas fa-envelope"></i> care@lumiereclinic.jo</p>
-            <p><i class="fas fa-clock"></i> Sat-Thu: 9am – 8pm</p>
-        </div>
-        <div class="contact-form">
-            <h3>Request a Callback</h3>
-            <form>
-                <input type="text" placeholder="Your Name">
-                <input type="tel" placeholder="Phone Number">
-                <textarea rows="4" placeholder="Tell us about your goals"></textarea>
-                <button type="submit">Send</button>
-            </form>
-        </div>
     </div>
 
-    <footer>
-        <div class="container">
-            <div class="social">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>
-            <p>&copy; 2025 Lumière Clinic. All rights reserved.</p>
-        </div>
-    </footer>
+    <script>
+        function showPage(id, linkEl) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + id).classList.add('active');
+            document.getElementById('page-' + id).scrollTop = 0;
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            if (linkEl) linkEl.classList.add('active');
+        }
+    </script>
 </body>
 
 </html>
