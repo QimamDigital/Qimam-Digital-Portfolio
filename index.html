@@ -4,424 +4,555 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qimam Digital | Premium Web Development</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    <title>Qimam Digital — Premium Web Development Amman</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Syne+Mono&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <style>
-        :root {
-            --navy: #0d1b3e;
-            --white: #f5f5f5;
-            --blue: #1e6ef5;
-            --blue-hover: #1557c0;
-            --text-dark: #1a202c;
-            --text-muted: #718096;
-            --card-bg: #ffffff;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
+        /* ─── RESET ─────────────────────────────────────── */
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box
         }
 
-        html {
-            scroll-behavior: smooth;
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden
+        }
+
+        :root {
+            --navy: #0b1220;
+            --blue: #1e6ef5;
+            --blue2: #4d91ff;
+            --white: #f4f2ee;
+            --muted: #8a8680;
+            --card: #131c2e;
+            --border: rgba(255, 255, 255, 0.07);
+            --gold: #c9a84c;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-            background-color: var(--white);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            overflow-x: hidden
         }
 
         a {
             text-decoration: none;
-            color: inherit;
+            color: inherit
         }
 
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 5%;
-        }
-
-        section {
-            padding: 120px 0;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4 {
-            color: var(--navy);
-            line-height: 1.2;
-            font-weight: 700;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .section-subtitle {
-            color: var(--blue);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 32px;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
+        button {
             font-family: inherit;
-            font-size: 1rem;
+            cursor: pointer;
+            border: none
         }
 
-        .btn-blue {
-            background-color: var(--blue);
-            color: #fff;
+        /* grain */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.6
         }
 
-        .btn-blue:hover {
-            background-color: var(--blue-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(30, 110, 245, 0.3);
-        }
-
+        /* ─── NAV ───────────────────────────────────────── */
         nav {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            background: rgba(245, 245, 245, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 20px 0;
-            transition: var(--transition);
-        }
-
-        nav.scrolled {
-            padding: 15px 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .nav-container {
+            right: 0;
+            z-index: 500;
+            height: 70px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 40px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(11, 18, 32, 0.92);
+            backdrop-filter: blur(20px)
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--navy);
             display: flex;
             align-items: center;
             gap: 10px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--white)
         }
 
         .logo-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--blue);
-            border-radius: 50%;
+            width: 7px;
+            height: 7px;
+            background: var(--blue);
+            border-radius: 50%
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
-            align-items: center;
+            gap: 6px;
+            list-style: none
         }
 
         .nav-links a {
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s;
+            font-size: 0.78rem;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: all 0.25s;
+            font-weight: 500
         }
 
-        .nav-links a:hover {
-            color: var(--blue);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.07)
         }
 
-        .lang-toggle {
-            background: var(--navy);
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition);
-        }
-
-        .lang-toggle:hover {
+        .nav-cta {
             background: var(--blue);
+            color: #fff;
+            padding: 9px 22px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            transition: all 0.3s
         }
 
-        .hero {
-            height: 100vh;
-            display: flex;
+        .nav-cta:hover {
+            background: #1557c0;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(30, 110, 245, 0.35)
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px
+        }
+
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--navy);
+            z-index: 400;
+            flex-direction: column;
             align-items: center;
-            background-color: var(--navy);
-            position: relative;
-            overflow: hidden;
+            justify-content: center;
+            gap: 30px;
+            padding-top: 70px
         }
 
-        .hero::before {
-            content: '';
+        .mobile-menu.open {
+            display: flex
+        }
+
+        .mobile-menu a {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            transition: color 0.3s
+        }
+
+        .mobile-menu a:hover {
+            color: var(--blue)
+        }
+
+        .mobile-cta {
+            background: var(--blue);
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 10px
+        }
+
+        /* ─── PAGES ─────────────────────────────────────── */
+        .page {
+            position: fixed;
+            inset: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.45s ease;
+            padding-top: 70px
+        }
+
+        .page.active {
+            opacity: 1;
+            pointer-events: all
+        }
+
+        /* ─── HOME PAGE ─────────────────────────────────── */
+        .hero {
+            min-height: calc(100vh - 70px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 40px 40px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hero-bg-glow {
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(30, 110, 245, 0.15) 0%, rgba(13, 27, 62, 0) 70%);
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(30, 110, 245, 0.12) 0%, transparent 70%);
             border-radius: 50%;
+            pointer-events: none
         }
 
-        .hero-content {
-            max-width: 800px;
-            position: relative;
-            z-index: 1;
+        .hero-bg-glow2 {
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(30, 110, 245, 0.07) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(30, 110, 245, 0.12);
+            border: 1px solid rgba(30, 110, 245, 0.25);
+            color: var(--blue2);
+            padding: 7px 16px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            width: fit-content
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--blue2);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.7)
+            }
         }
 
         .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 7vw, 6.5rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 28px;
+            max-width: 900px
+        }
+
+        .hero h1 .accent {
+            color: var(--blue)
+        }
+
+        .hero h1 .outline {
+            -webkit-text-stroke: 1px var(--white);
+            color: transparent
+        }
+
+        .hero-sub {
+            color: var(--muted);
+            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+            line-height: 1.75;
+            max-width: 520px;
+            margin-bottom: 48px;
+            font-weight: 400
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items: center
+        }
+
+        .btn-primary {
+            background: var(--blue);
             color: #fff;
-            font-size: 4.5rem;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.25rem;
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            padding: 15px 36px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
             align-items: center;
+            gap: 8px
         }
 
-        .mission-box {
-            background: var(--navy);
-            color: #fff;
-            padding: 50px;
-            border-radius: 20px;
+        .btn-primary:hover {
+            background: #1557c0;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(30, 110, 245, 0.35)
         }
 
-        .mission-box h3 {
-            color: #fff;
-            font-size: 2rem;
-            margin-bottom: 20px;
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--white);
+            padding: 15px 36px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid var(--border)
         }
 
-        .team-grid {
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px)
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 70px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap
+        }
+
+        .hstat-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--white);
+            display: block;
+            line-height: 1
+        }
+
+        .hstat-label {
+            font-size: 0.72rem;
+            color: var(--muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            display: block
+        }
+
+        /* marq */
+        .marquee-section {
+            background: var(--blue);
+            padding: 14px 0;
+            overflow: hidden;
+            white-space: nowrap
+        }
+
+        .marq-inner {
+            display: inline-flex;
+            animation: marq 25s linear infinite
+        }
+
+        .marq-item {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.85);
+            padding: 0 30px
+        }
+
+        .marq-dot {
+            color: rgba(255, 255, 255, 0.4);
+            margin-right: 30px
+        }
+
+        @keyframes marq {
+            0% {
+                transform: translateX(0)
+            }
+
+            100% {
+                transform: translateX(-50%)
+            }
+        }
+
+        /* ─── WORK PAGE ─────────────────────────────────── */
+        .work-page {
+            padding: 60px 40px 80px
+        }
+
+        .page-header {
+            margin-bottom: 60px
+        }
+
+        .page-eyebrow {
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--blue);
+            display: block;
+            margin-bottom: 16px
+        }
+
+        .page-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.05
+        }
+
+        .page-title .accent {
+            color: var(--blue)
+        }
+
+        .work-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 20px
         }
 
-        .team-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-            transition: var(--transition);
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .team-name {
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 5px;
-        }
-
-        .team-role {
-            font-size: 0.85rem;
-            color: var(--blue);
-            font-weight: 600;
-        }
-
-        .bg-gray {
-            background-color: #f0f2f5;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            padding: 50px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--blue);
-        }
-
-        .service-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(30, 110, 245, 0.1);
-            color: var(--blue);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .service-price {
-            font-size: 1.25rem;
-            color: var(--blue);
-            font-weight: 700;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .portfolio-card-link {
-            display: block;
+        .work-card {
             position: relative;
             border-radius: 16px;
             overflow: hidden;
-            aspect-ratio: 4/3;
+            aspect-ratio: 16/10;
             cursor: pointer;
-            text-decoration: none;
+            background: var(--card);
+            group: true
         }
 
-        .portfolio-img {
+        .work-card-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            display: block;
+            transition: transform 0.7s ease
         }
 
-        .portfolio-card-link:hover .portfolio-img {
-            transform: scale(1.05);
+        .work-card:hover .work-card-img {
+            transform: scale(1.06)
         }
 
-        .portfolio-overlay {
+        .work-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(13, 27, 62, 0.9) 0%, rgba(13, 27, 62, 0.2) 100%);
+            background: linear-gradient(to top, rgba(11, 18, 32, 0.95) 0%, rgba(11, 18, 32, 0.2) 60%, transparent 100%);
             opacity: 0;
-            transition: var(--transition);
+            transition: opacity 0.4s;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 30px;
+            padding: 28px
         }
 
-        .portfolio-card-link:hover .portfolio-overlay {
-            opacity: 1;
+        .work-card:hover .work-overlay {
+            opacity: 1
         }
 
-        .portfolio-title {
-            color: #fff;
-            font-size: 1.25rem;
-            margin-bottom: 5px;
-            transform: translateY(20px);
-            transition: var(--transition);
-        }
-
-        .portfolio-tag {
-            color: var(--blue);
-            font-size: 0.85rem;
-            font-weight: 600;
+        .work-tag {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transform: translateY(20px);
-            transition: var(--transition);
-            transition-delay: 0.1s;
+            color: var(--blue2);
+            margin-bottom: 8px;
+            font-weight: 600
         }
 
-        .portfolio-card-link:hover .portfolio-title,
-        .portfolio-card-link:hover .portfolio-tag {
-            transform: translateY(0);
-        }
-
-        .live-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(30, 110, 245, 0.92);
-            color: #fff;
-            font-size: 0.65rem;
+        .work-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            color: #fff;
+            margin-bottom: 12px
+        }
+
+        .work-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--blue);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            width: fit-content
+        }
+
+        .work-btn:hover {
+            background: #1557c0
+        }
+
+        /* live badge always visible */
+        .live-pill {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(30, 110, 245, 0.9);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             padding: 5px 12px;
             border-radius: 20px;
             display: flex;
             align-items: center;
-            gap: 6px;
-            opacity: 0;
-            transition: opacity 0.3s;
+            gap: 5px
         }
 
-        .live-badge::before {
+        .live-pill::before {
             content: '';
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             background: #4ade80;
             border-radius: 50%;
-            animation: blink 1.5s infinite;
+            animation: blink 1.5s infinite
         }
 
         @keyframes blink {
@@ -432,231 +563,577 @@
             }
 
             50% {
-                opacity: 0.3
+                opacity: 0.2
             }
         }
 
-        .portfolio-card-link:hover .live-badge {
-            opacity: 1;
+        /* ─── SERVICES PAGE ─────────────────────────────── */
+        .services-page {
+            padding: 60px 40px 80px
         }
 
-        .portfolio-github-cta {
-            text-align: center;
-            margin-top: 50px;
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 60px
         }
 
-        .portfolio-github-cta p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 16px;
+        .svc-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px 32px;
+            transition: all 0.35s;
+            position: relative;
+            overflow: hidden
         }
 
-        .github-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--navy);
-            color: #fff;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        .github-link:hover {
+        .svc-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
             background: var(--blue);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(30, 110, 245, 0.3);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+            transform-origin: left
         }
 
-        .process-grid {
+        .svc-card:hover::before {
+            transform: scaleX(1)
+        }
+
+        .svc-card:hover {
+            border-color: rgba(30, 110, 245, 0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3)
+        }
+
+        .svc-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(30, 110, 245, 0.12);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin-bottom: 22px
+        }
+
+        .svc-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px
+        }
+
+        .svc-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            line-height: 1.75;
+            margin-bottom: 24px
+        }
+
+        .svc-price {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--blue);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            display: block
+        }
+
+        .svc-price small {
+            font-size: 0.7rem;
+            color: var(--muted);
+            font-weight: 400;
+            font-family: 'Plus Jakarta Sans', sans-serif
+        }
+
+        .process-section {
+            margin-top: 80px
+        }
+
+        .process-section h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 40px
+        }
+
+        .process-steps {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            text-align: center;
+            gap: 20px
         }
 
-        .process-number {
-            width: 60px;
-            height: 60px;
+        .step {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 30px 24px;
+            text-align: center;
+            position: relative
+        }
+
+        .step-num {
+            width: 52px;
+            height: 52px;
             background: var(--blue);
             color: #fff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin: 0 auto 18px
+        }
+
+        .step h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
             font-weight: 700;
-            margin: 0 auto 20px;
+            margin-bottom: 10px
         }
 
-        .contact-grid {
+        .step p {
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.65
+        }
+
+        /* ─── CONTACT PAGE ─────────────────────────────── */
+        .contact-page {
+            padding: 60px 40px 80px
+        }
+
+        .contact-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            grid-template-columns: 1fr 1.1fr;
+            gap: 40px;
+            margin-top: 60px;
+            align-items: start
         }
 
-        .contact-info {
-            background: var(--navy);
-            color: #fff;
-            padding: 60px;
-        }
-
-        .contact-info h3 {
-            color: #fff;
-            margin-bottom: 20px;
+        .contact-left h3 {
+            font-family: 'Syne', sans-serif;
             font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 14px
         }
 
-        .info-item {
-            margin-bottom: 20px;
+        .contact-left p {
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-size: 0.92rem
+        }
+
+        .contact-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px
+        }
+
+        .citem {
             display: flex;
             align-items: center;
-            gap: 15px;
-            opacity: 0.8;
+            gap: 16px;
+            padding: 18px 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: border-color 0.3s
+        }
+
+        .citem:hover {
+            border-color: rgba(30, 110, 245, 0.3)
+        }
+
+        .citem-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(30, 110, 245, 0.12);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue);
+            font-size: 1rem;
+            flex-shrink: 0
+        }
+
+        .citem-label {
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 3px
+        }
+
+        .citem-val {
+            font-size: 0.9rem;
+            color: var(--white);
+            font-weight: 500
+        }
+
+        .wa-big {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #25D366;
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 24px;
+            transition: all 0.3s;
+            width: fit-content
+        }
+
+        .wa-big:hover {
+            background: #1aad53;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3)
         }
 
         .contact-form {
-            padding: 60px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 20px
         }
 
-        .form-control {
+        .form-group label {
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
-            padding: 15px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            background: #f9fafb;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 13px 16px;
+            border-radius: 10px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
             outline: none;
-            border-color: var(--blue);
-            background: #fff;
-            box-shadow: 0 0 0 3px rgba(30, 110, 245, 0.1);
+            transition: border-color 0.3s
         }
 
-        select.form-control {
-            cursor: pointer;
-            appearance: none;
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: rgba(30, 110, 245, 0.5)
         }
 
-        textarea.form-control {
-            resize: vertical;
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--muted)
+        }
+
+        .form-group select option {
+            background: var(--navy)
+        }
+
+        .form-group textarea {
             min-height: 120px;
+            resize: vertical
         }
 
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: #25D366;
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px
+        }
+
+        .form-submit {
+            width: 100%;
+            background: var(--blue);
             color: #fff;
-            padding: 12px 24px;
-            border-radius: 50px;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-top: 30px;
-            transition: var(--transition);
+            transition: all 0.3s;
+            margin-top: 6px
         }
 
-        .whatsapp-btn:hover {
-            background-color: #128C7E;
-            transform: translateY(-2px);
+        .form-submit:hover {
+            background: #1557c0;
+            transform: translateY(-1px);
+            box-shadow: 0 12px 35px rgba(30, 110, 245, 0.35)
         }
 
+        .testimonials-row {
+            margin-top: 80px
+        }
+
+        .testimonials-row h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 35px
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px
+        }
+
+        .test-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            transition: border-color 0.3s
+        }
+
+        .test-card:hover {
+            border-color: rgba(30, 110, 245, 0.25)
+        }
+
+        .test-card p {
+            font-size: 0.88rem;
+            line-height: 1.75;
+            color: var(--muted);
+            margin-bottom: 20px;
+            font-style: italic
+        }
+
+        .test-author {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--white)
+        }
+
+        .test-role {
+            font-size: 0.72rem;
+            color: var(--blue);
+            margin-top: 2px
+        }
+
+        /* ─── FOOTER ─────────────────────────────────────── */
         footer {
-            background: var(--navy);
-            color: rgba(255, 255, 255, 0.6);
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-content {
+            background: #080e1a;
+            border-top: 1px solid var(--border);
+            padding: 30px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px
         }
 
         .footer-logo {
-            color: #fff;
+            font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: 1.25rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px
         }
 
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+        footer p {
+            font-size: 0.75rem;
+            color: var(--muted)
         }
 
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* ─── ABOUT (HOME SECTION) ───────────────────────── */
+        .about-strip {
+            padding: 80px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center
         }
 
-        [dir="rtl"] .hero h1 {
-            letter-spacing: 0;
+        .about-strip-left h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.15;
+            margin-bottom: 22px
         }
 
-        [dir="rtl"] .logo-dot {
-            margin-right: 5px;
-            margin-left: 0;
+        .about-strip-left h2 em {
+            font-style: italic;
+            color: var(--blue)
         }
 
-        @media (max-width: 992px) {
+        .about-strip-left p {
+            color: var(--muted);
+            line-height: 1.85;
+            font-size: 0.92rem;
+            margin-bottom: 18px
+        }
 
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
+        .about-strip-right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px
+        }
+
+        .about-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px
+        }
+
+        .about-card-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--blue);
+            display: block;
+            line-height: 1;
+            margin-bottom: 6px
+        }
+
+        .about-card-label {
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted)
+        }
+
+        /* ─── RESPONSIVE ─────────────────────────────────── */
+        @media(max-width:900px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr
             }
 
-            .services-grid,
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .process-steps {
+                grid-template-columns: 1fr 1fr
             }
 
-            .hero h1 {
-                font-size: 3.5rem;
+            .work-grid {
+                grid-template-columns: 1fr
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr
+            }
+
+            .test-grid {
+                grid-template-columns: 1fr
+            }
+
+            .about-strip {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media(max-width:640px) {
+            nav {
+                padding: 0 20px
             }
 
             .nav-links {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-
-            .services-grid,
-            .portfolio-grid,
-            .team-grid,
-            .process-grid {
-                grid-template-columns: 1fr;
+                display: none
             }
 
-            .contact-info,
-            .contact-form {
-                padding: 40px 20px;
+            .nav-cta {
+                display: none
+            }
+
+            .hamburger {
+                display: flex
+            }
+
+            .hero {
+                padding: 40px 20px 40px
             }
 
             .hero h1 {
                 font-size: 2.5rem;
+                letter-spacing: -1px
             }
 
-            .footer-content {
+            .hero-stats {
+                gap: 24px
+            }
+
+            .hstat-num {
+                font-size: 1.8rem
+            }
+
+            .work-page,
+            .services-page,
+            .contact-page {
+                padding: 40px 20px 60px
+            }
+
+            .page-title {
+                font-size: 2.2rem
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .about-strip {
+                padding: 50px 20px;
+                grid-template-columns: 1fr
+            }
+
+            .about-strip-right {
+                grid-template-columns: 1fr 1fr
+            }
+
+            footer {
+                padding: 25px 20px;
                 flex-direction: column;
-                gap: 20px;
+                text-align: center
+            }
+
+            .form-row {
+                grid-template-columns: 1fr
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: flex-start
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center
+            }
+
+            .work-card {
+                aspect-ratio: 4/3
             }
         }
     </style>
@@ -664,397 +1141,397 @@
 
 <body>
 
-    <nav id="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">Qimam <span class="logo-dot"></span></a>
-            <div class="nav-links">
-                <a href="#about" data-i18n="nav_about">About</a>
-                <a href="#services" data-i18n="nav_services">Services</a>
-                <a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a>
-                <a href="#contact" data-i18n="nav_contact">Contact</a>
-            </div>
-            <button id="langToggle" class="lang-toggle">العربية</button>
+    <!-- NAV -->
+    <nav>
+        <div class="logo">
+            <div class="logo-dot"></div>Qimam
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active" onclick="showPage('home',this)">Home</a></li>
+            <li><a href="#" onclick="showPage('work',this)">Our Work</a></li>
+            <li><a href="#" onclick="showPage('services',this)">Services</a></li>
+            <li><a href="#" onclick="showPage('contact',this)">Contact</a></li>
+        </ul>
+        <button class="nav-cta" onclick="showPage('contact',null)">Start a Project</button>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="container hero-content fade-up">
-            <h1 data-i18n="hero_title">We Build Premium Digital Experiences</h1>
-            <p data-i18n="hero_sub">Qimam Digital is a team of designers and developers crafting high-performance
-                websites for businesses across Jordan and the region.</p>
-            <a href="#contact" class="btn btn-blue" data-i18n="hero_cta">Start Your Project</a>
-        </div>
-    </header>
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#" onclick="showPage('home',null);toggleMenu()">Home</a>
+        <a href="#" onclick="showPage('work',null);toggleMenu()">Our Work</a>
+        <a href="#" onclick="showPage('services',null);toggleMenu()">Services</a>
+        <a href="#" onclick="showPage('contact',null);toggleMenu()">Contact</a>
+        <a href="https://wa.me/962790441000" target="_blank" class="mobile-cta">WhatsApp Us</a>
+    </div>
 
-    <section id="about">
-        <div class="container about-grid">
-            <div class="mission-box fade-up">
-                <div class="section-subtitle" style="color:rgba(255,255,255,0.7);" data-i18n="about_label">Who We Are
-                </div>
-                <h3 data-i18n="about_mission">To build digital experiences that elevate brands and drive results.</h3>
-                <p style="opacity:0.8;" data-i18n="about_desc">We combine award-winning design with robust engineering
-                    to deliver scalable web solutions. Based in Amman, our bespoke approach ensures every project is
-                    crafted to perfection.</p>
-            </div>
-            <div class="team-grid">
-                <div class="team-card fade-up">
-                    <div class="team-name" data-i18n="team_1_name">Tariq Al-Hassan</div>
-                    <div class="team-role" data-i18n="team_1_role">Project Manager</div>
-                </div>
-                <div class="team-card fade-up">
-                    <div class="team-name" data-i18n="team_2_name">Layla Mansour</div>
-                    <div class="team-role" data-i18n="team_2_role">UI/UX Designer</div>
-                </div>
-                <div class="team-card fade-up">
-                    <div class="team-name" data-i18n="team_3_name">Omar Haddad</div>
-                    <div class="team-role" data-i18n="team_3_role">Web Developer</div>
-                </div>
-                <div class="team-card fade-up">
-                    <div class="team-name" data-i18n="team_4_name">Zainab Ali</div>
-                    <div class="team-role" data-i18n="team_4_role">Web Developer</div>
-                </div>
-                <div class="team-card fade-up">
-                    <div class="team-name" data-i18n="team_5_name">Youssef Kareem</div>
-                    <div class="team-role" data-i18n="team_5_role">Content Strategist</div>
-                </div>
-                <div class="team-card fade-up">
-                    <div class="team-name" data-i18n="team_6_name">Farah Nabil</div>
-                    <div class="team-role" data-i18n="team_6_role">Client Relations Lead</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- ══════ PAGE: HOME ══════ -->
+    <div id="page-home" class="page active">
 
-    <section id="services" class="bg-gray">
-        <div class="container">
-            <div class="section-header fade-up">
-                <div class="section-subtitle" data-i18n="services_label">What We Do</div>
-                <h2 class="section-title" data-i18n="services_title">Our Core Services</h2>
+        <section class="hero">
+            <div class="hero-bg-glow"></div>
+            <div class="hero-bg-glow2"></div>
+            <div class="hero-badge">Amman, Jordan · Premium Web Agency</div>
+            <h1>We Build Websites<br>That <span class="accent">Win</span> Clients<br>For <span class="outline">Your
+                    Business</span></h1>
+            <p class="hero-sub">Qimam Digital crafts high-performance websites for businesses across Jordan and the
+                region. Professional. Fast. Starting at 200 JOD.</p>
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="showPage('work',null)">See Our Work →</button>
+                <button class="btn-secondary" onclick="showPage('contact',null)">Get a Free Quote</button>
             </div>
-            <div class="services-grid">
-                <div class="service-card fade-up">
-                    <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor"
-                            stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                        </svg></div>
-                    <h3 data-i18n="srv_1_title">Premium Website Build</h3>
-                    <p style="color:var(--text-muted);" data-i18n="srv_1_desc">Full-cycle design and development of a
-                        high-performance, responsive corporate website.</p>
-                    <div class="service-price" data-i18n="srv_1_price">200 JOD</div>
-                </div>
-                <div class="service-card fade-up">
-                    <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor"
-                            stroke-width="2" viewBox="0 0 24 24">
-                            <path
-                                d="M23 12a11.05 11.05 0 0 0-22 0c0 5.2 3.6 9.6 8.5 10.8L12 24l2.5-1.2C19.4 21.6 23 17.2 23 12zM12 2v10l4.5 4.5" />
-                        </svg></div>
-                    <h3 data-i18n="srv_2_title">Quarterly Maintenance</h3>
-                    <p style="color:var(--text-muted);" data-i18n="srv_2_desc">Ongoing technical support, security
-                        updates, and performance optimization.</p>
-                    <div class="service-price" data-i18n="srv_2_price">10 JOD / quarter</div>
-                </div>
-                <div class="service-card fade-up">
-                    <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor"
-                            stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                            <polyline points="14 2 14 8 20 8" />
-                        </svg></div>
-                    <h3 data-i18n="srv_3_title">Custom Web Solutions</h3>
-                    <p style="color:var(--text-muted);" data-i18n="srv_3_desc">Complex web applications, portals, and
-                        custom e-commerce integrations.</p>
-                    <div class="service-price" data-i18n="srv_3_price">Priced on request</div>
-                </div>
+            <div class="hero-stats">
+                <div><span class="hstat-num">6+</span><span class="hstat-label">Live Projects</span></div>
+                <div><span class="hstat-num">200</span><span class="hstat-label">JOD Starting Price</span></div>
+                <div><span class="hstat-num">24h</span><span class="hstat-label">Prototype Delivery</span></div>
+                <div><span class="hstat-num">100%</span><span class="hstat-label">Client Satisfaction</span></div>
+            </div>
+        </section>
+
+        <div class="marquee-section">
+            <div class="marq-inner">
+                <span class="marq-item">Web Design</span><span class="marq-dot">·</span>
+                <span class="marq-item">Development</span><span class="marq-dot">·</span>
+                <span class="marq-item">Mobile Responsive</span><span class="marq-dot">·</span>
+                <span class="marq-item">SEO Ready</span><span class="marq-dot">·</span>
+                <span class="marq-item">Fast Delivery</span><span class="marq-dot">·</span>
+                <span class="marq-item">Amman, Jordan</span><span class="marq-dot">·</span>
+                <span class="marq-item">Web Design</span><span class="marq-dot">·</span>
+                <span class="marq-item">Development</span><span class="marq-dot">·</span>
+                <span class="marq-item">Mobile Responsive</span><span class="marq-dot">·</span>
+                <span class="marq-item">SEO Ready</span><span class="marq-dot">·</span>
+                <span class="marq-item">Fast Delivery</span><span class="marq-dot">·</span>
+                <span class="marq-item">Amman, Jordan</span><span class="marq-dot">·</span>
             </div>
         </div>
-    </section>
 
-    <section id="portfolio">
-        <div class="container">
-            <div class="section-header fade-up">
-                <div class="section-subtitle" data-i18n="port_label">Our Work</div>
-                <h2 class="section-title" data-i18n="port_title">Selected Projects</h2>
+        <div class="about-strip">
+            <div class="about-strip-left">
+                <h2>Built for businesses that want to <em>grow online</em></h2>
+                <p>We combine sharp design with solid engineering to deliver websites that don't just look good — they
+                    convert visitors into customers. Every project is built from scratch, tailored to your brand.</p>
+                <p>Based in Amman, we understand the Jordanian market. We build bilingual Arabic/English sites,
+                    fast-loading on all devices, hosted and maintained by us.</p>
+                <button class="btn-primary" style="margin-top:10px" onclick="showPage('services',null)">View Services
+                    →</button>
+            </div>
+            <div class="about-strip-right">
+                <div class="about-card"><span class="about-card-num">200</span><span class="about-card-label">JOD Full
+                        Website</span></div>
+                <div class="about-card"><span class="about-card-num">10</span><span class="about-card-label">JOD /
+                        Quarter Maintenance</span></div>
+                <div class="about-card"><span class="about-card-num">24h</span><span class="about-card-label">Free
+                        Prototype</span></div>
+                <div class="about-card"><span class="about-card-num">∞</span><span class="about-card-label">Pages &
+                        Sections</span></div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-logo">
+                <div class="logo-dot"></div>Qimam Digital
+            </div>
+            <p>Amman, Jordan · hello@qimamdigital.com</p>
+            <p>© 2025 Qimam Digital. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- ══════ PAGE: WORK ══════ -->
+    <div id="page-work" class="page">
+        <div class="work-page">
+            <div class="page-header">
+                <span class="page-eyebrow">// Our Portfolio</span>
+                <h2 class="page-title">Work That <span class="accent">Speaks</span></h2>
+                <p style="color:var(--muted);font-size:0.92rem;margin-top:14px;max-width:500px">Every website below is
+                    live, custom-built, and delivered to a real client. Click any card to open the live site.</p>
             </div>
 
-            <div class="portfolio-grid">
+            <div class="work-grid">
 
                 <!-- Pinnacle Properties -->
                 <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/pinnacle-properties" target="_blank"
-                    rel="noopener noreferrer" class="portfolio-card-link fade-up">
-                    <img src="https://picsum.photos/600/450?random=1" alt="Pinnacle Properties" class="portfolio-img">
-                    <div class="live-badge">Live Site</div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-title" data-i18n="port_1_title">Pinnacle Properties</div>
-                        <div class="portfolio-tag" data-i18n="port_1_tag">Real Estate</div>
+                    rel="noopener" class="work-card">
+                    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=85"
+                        alt="Pinnacle Properties" class="work-card-img">
+                    <div class="live-pill">Live Site</div>
+                    <div class="work-overlay">
+                        <div class="work-tag">Real Estate · Luxury</div>
+                        <div class="work-name">Pinnacle Properties</div>
+                        <div class="work-btn">View Live Site →</div>
                     </div>
                 </a>
 
                 <!-- Lumière Clinic -->
                 <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/lumiere-clinic" target="_blank"
-                    rel="noopener noreferrer" class="portfolio-card-link fade-up">
-                    <img src="https://picsum.photos/600/450?random=2" alt="Lumière Clinic" class="portfolio-img">
-                    <div class="live-badge">Live Site</div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-title" data-i18n="port_2_title">Lumière Clinic</div>
-                        <div class="portfolio-tag" data-i18n="port_2_tag">Medical</div>
-                    </div>
-                </a>
-
-                <!-- Form & Ground Studio -->
-                <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/form-ground-studio" target="_blank"
-                    rel="noopener noreferrer" class="portfolio-card-link fade-up">
-                    <img src="https://picsum.photos/600/450?random=3" alt="Form & Ground Studio" class="portfolio-img">
-                    <div class="live-badge">Live Site</div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-title" data-i18n="port_3_title">Form & Ground Studio</div>
-                        <div class="portfolio-tag" data-i18n="port_3_tag">Architecture</div>
+                    rel="noopener" class="work-card">
+                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=900&q=85"
+                        alt="Lumière Clinic" class="work-card-img">
+                    <div class="live-pill">Live Site</div>
+                    <div class="work-overlay">
+                        <div class="work-tag">Medical · Aesthetic</div>
+                        <div class="work-name">Lumière Clinic</div>
+                        <div class="work-btn">View Live Site →</div>
                     </div>
                 </a>
 
                 <!-- Oud & Oak Restaurant -->
                 <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/oud-oak-restaurant" target="_blank"
-                    rel="noopener noreferrer" class="portfolio-card-link fade-up">
-                    <img src="https://picsum.photos/600/450?random=4" alt="Oud & Oak Restaurant" class="portfolio-img">
-                    <div class="live-badge">Live Site</div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-title" data-i18n="port_4_title">Oud & Oak Restaurant</div>
-                        <div class="portfolio-tag" data-i18n="port_4_tag">F&B</div>
+                    rel="noopener" class="work-card">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85"
+                        alt="Oud & Oak Restaurant" class="work-card-img">
+                    <div class="live-pill">Live Site</div>
+                    <div class="work-overlay">
+                        <div class="work-tag">Restaurant · Fine Dining</div>
+                        <div class="work-name">Oud & Oak Restaurant</div>
+                        <div class="work-btn">View Live Site →</div>
                     </div>
                 </a>
 
-                <!-- Al Haddad & Partners -->
-                <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/al-haddad-partners" target="_blank"
-                    rel="noopener noreferrer" class="portfolio-card-link fade-up">
-                    <img src="https://picsum.photos/600/450?random=5" alt="Al Haddad & Partners" class="portfolio-img">
-                    <div class="live-badge">Live Site</div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-title" data-i18n="port_5_title">Al Haddad & Partners</div>
-                        <div class="portfolio-tag" data-i18n="port_5_tag">Legal</div>
+                <!-- Form & Ground Studio -->
+                <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/form-ground-studio" target="_blank"
+                    rel="noopener" class="work-card">
+                    <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=900&q=85"
+                        alt="Form & Ground Studio" class="work-card-img">
+                    <div class="live-pill">Live Site</div>
+                    <div class="work-overlay">
+                        <div class="work-tag">Architecture · Studio</div>
+                        <div class="work-name">Form & Ground Studio</div>
+                        <div class="work-btn">View Live Site →</div>
                     </div>
                 </a>
 
-                <!-- Nexus Tech -->
-                <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/nexus-tech" target="_blank"
-                    rel="noopener noreferrer" class="portfolio-card-link fade-up">
-                    <img src="https://picsum.photos/600/450?random=6" alt="Nexus Tech" class="portfolio-img">
-                    <div class="live-badge">Live Site</div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-title" data-i18n="port_6_title">Nexus Tech</div>
-                        <div class="portfolio-tag" data-i18n="port_6_tag">Technology</div>
+                <!-- Polyclicks -->
+                <a href="https://polyclicks.xyz" target="_blank" rel="noopener" class="work-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=85" alt="Polyclicks"
+                        class="work-card-img">
+                    <div class="live-pill">Live Site</div>
+                    <div class="work-overlay">
+                        <div class="work-tag">Digital Marketing · Tech</div>
+                        <div class="work-name">Polyclicks</div>
+                        <div class="work-btn">View Live Site →</div>
                     </div>
                 </a>
 
-            </div>
-
-            <div class="portfolio-github-cta fade-up">
-                <p data-i18n="port_github_desc">To see more of our previous work, view our full portfolio on GitHub.</p>
-                <a href="https://github.com/QimamDigital/Qimam-Digital-Portfolio" target="_blank"
-                    rel="noopener noreferrer" class="github-link">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-                    </svg>
-                    <span data-i18n="port_github_btn">View Portfolio on GitHub</span>
-                </a>
             </div>
         </div>
-    </section>
 
-    <section id="process" class="bg-gray">
-        <div class="container">
-            <div class="section-header fade-up">
-                <div class="section-subtitle" data-i18n="proc_label">Methodology</div>
-                <h2 class="section-title" data-i18n="proc_title">How We Work</h2>
+        <footer>
+            <div class="footer-logo">
+                <div class="logo-dot"></div>Qimam Digital
             </div>
-            <div class="process-grid fade-up">
-                <div class="process-step">
-                    <div class="process-number">1</div>
-                    <h3 data-i18n="proc_1">Discover</h3>
-                </div>
-                <div class="process-step">
-                    <div class="process-number">2</div>
-                    <h3 data-i18n="proc_2">Design</h3>
-                </div>
-                <div class="process-step">
-                    <div class="process-number">3</div>
-                    <h3 data-i18n="proc_3">Develop</h3>
-                </div>
-                <div class="process-step">
-                    <div class="process-number">4</div>
-                    <h3 data-i18n="proc_4">Launch</h3>
-                </div>
-            </div>
-        </div>
-    </section>
+            <p>Amman, Jordan · hello@qimamdigital.com</p>
+            <p>© 2025 Qimam Digital. All rights reserved.</p>
+        </footer>
+    </div>
 
-    <section id="testimonials">
-        <div class="container">
-            <div class="section-header fade-up">
-                <div class="section-subtitle" data-i18n="test_label">Testimonials</div>
-                <h2 class="section-title" data-i18n="test_title">Client Success Stories</h2>
+    <!-- ══════ PAGE: SERVICES ══════ -->
+    <div id="page-services" class="page">
+        <div class="services-page">
+            <div class="page-header">
+                <span class="page-eyebrow">// What We Offer</span>
+                <h2 class="page-title">Simple Pricing.<br><span class="accent">Serious Quality.</span></h2>
             </div>
+
             <div class="services-grid">
-                <div class="service-card fade-up">
-                    <p style="font-size:1.1rem;font-style:italic;margin-bottom:20px;" data-i18n="test_1_quote">"Qimam
-                        completely transformed our online presence. The new site is fast, beautiful, and converts
-                        brilliantly."</p>
-                    <h4 data-i18n="test_1_author">- CEO, Pinnacle Properties</h4>
+                <div class="svc-card">
+                    <div class="svc-icon">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                            <path d="M3 9h18M9 21V9" />
+                        </svg>
+                    </div>
+                    <h3>Premium Website Build</h3>
+                    <p>Full custom design and development — homepage, about, services, contact, gallery. Built from
+                        scratch for your brand. No templates.</p>
+                    <span class="svc-price">200 JOD <small>one-time</small></span>
                 </div>
-                <div class="service-card fade-up">
-                    <p style="font-size:1.1rem;font-style:italic;margin-bottom:20px;" data-i18n="test_2_quote">
-                        "Professional, fast, and highly skilled team. They understood our medical brand perfectly."</p>
-                    <h4 data-i18n="test_2_author">- Director, Lumière Clinic</h4>
+                <div class="svc-card">
+                    <div class="svc-icon">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </div>
+                    <h3>Quarterly Maintenance</h3>
+                    <p>Keep your website live, updated, and secure. We handle hosting, performance, and any content
+                        changes every 3 months.</p>
+                    <span class="svc-price">10 JOD <small>/ quarter</small></span>
                 </div>
-                <div class="service-card fade-up">
-                    <p style="font-size:1.1rem;font-style:italic;margin-bottom:20px;" data-i18n="test_3_quote">"The best
-                        web development agency in Amman. Their attention to detail is truly Awwwards-level."</p>
-                    <h4 data-i18n="test_3_author">- Founder, Form & Ground</h4>
+                <div class="svc-card">
+                    <div class="svc-icon">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                    </div>
+                    <h3>Custom Web Solutions</h3>
+                    <p>E-commerce stores, booking systems, multi-page corporate sites, and custom web apps. Scoped per
+                        project.</p>
+                    <span class="svc-price">Custom <small>priced on request</small></span>
+                </div>
+            </div>
+
+            <div class="process-section">
+                <h3>How We Work</h3>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <h4>Discover</h4>
+                        <p>We learn your business, your goals, and what your customers need from your site.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <h4>Design</h4>
+                        <p>We build a free prototype within 24 hours so you can see your site before paying anything.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <h4>Build</h4>
+                        <p>Once approved, we code and polish everything from scratch. Fast, clean, responsive.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">4</div>
+                        <h4>Launch</h4>
+                        <p>We go live and hand you full control. Ongoing maintenance is available for just 10
+                            JOD/quarter.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section id="contact" class="bg-gray">
-        <div class="container">
-            <div class="contact-grid fade-up">
-                <div class="contact-info">
-                    <h3 data-i18n="contact_title">Let's Build Something Great</h3>
-                    <p style="margin-bottom:40px;opacity:0.8;" data-i18n="contact_desc">Ready to elevate your digital
-                        presence? Get in touch with our team today.</p>
-                    <div class="info-item"><svg width="20" height="20" fill="none" stroke="currentColor"
-                            stroke-width="2" viewBox="0 0 24 24">
-                            <path
-                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                        </svg><span data-i18n="contact_phone">+962 79 044 1000</span></div>
-                    <div class="info-item"><svg width="20" height="20" fill="none" stroke="currentColor"
-                            stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                            <polyline points="22,6 12,13 2,6" />
-                        </svg><span>hello@qimamdigital.com</span></div>
-                    <div class="info-item"><svg width="20" height="20" fill="none" stroke="currentColor"
-                            stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                            <circle cx="12" cy="10" r="3" />
-                        </svg><span data-i18n="contact_location">Amman, Jordan</span></div>
-                    <a href="https://wa.me/962790441000" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+        <footer>
+            <div class="footer-logo">
+                <div class="logo-dot"></div>Qimam Digital
+            </div>
+            <p>Amman, Jordan · hello@qimamdigital.com</p>
+            <p>© 2025 Qimam Digital. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- ══════ PAGE: CONTACT ══════ -->
+    <div id="page-contact" class="page">
+        <div class="contact-page">
+            <div class="page-header">
+                <span class="page-eyebrow">// Get in Touch</span>
+                <h2 class="page-title">Let's Build<br><span class="accent">Something Great</span></h2>
+            </div>
+
+            <div class="contact-layout">
+                <div class="contact-left">
+                    <h3>Ready to get started?</h3>
+                    <p>We respond within a few hours. Tell us about your business and we'll prepare a free prototype so
+                        you can see your website before paying a single dinar.</p>
+                    <div class="contact-items">
+                        <div class="citem">
+                            <div class="citem-icon">📞</div>
+                            <div><span class="citem-label">Phone & WhatsApp</span><span class="citem-val">+962 79 044
+                                    1000</span></div>
+                        </div>
+                        <div class="citem">
+                            <div class="citem-icon">✉</div>
+                            <div><span class="citem-label">Email</span><span
+                                    class="citem-val">hello@qimamdigital.com</span></div>
+                        </div>
+                        <div class="citem">
+                            <div class="citem-icon">📍</div>
+                            <div><span class="citem-label">Location</span><span class="citem-val">Amman, Jordan</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/962790441000" target="_blank" rel="noopener noreferrer" class="wa-big">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
                         </svg>
-                        <span data-i18n="contact_wa">Chat on WhatsApp</span>
+                        Chat on WhatsApp
                     </a>
+
+                    <div class="testimonials-row" style="margin-top:50px">
+                        <h3>What Clients Say</h3>
+                        <div class="test-grid" style="grid-template-columns:1fr">
+                            <div class="test-card">
+                                <p>"Qimam completely transformed our online presence. The new site is fast, beautiful,
+                                    and already bringing in new customers."</p>
+                                <div class="test-author">CEO, Pinnacle Properties</div>
+                                <div class="test-role">Real Estate · Amman</div>
+                            </div>
+                            <div class="test-card">
+                                <p>"Professional, delivered fast, and they understood our brand perfectly. The best web
+                                    agency we've worked with."</p>
+                                <div class="test-author">Director, Lumière Clinic</div>
+                                <div class="test-role">Medical · Sweifieh</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="contact-form">
-                    <form onsubmit="event.preventDefault();">
-                        <div class="form-group"><input type="text" class="form-control" placeholder="Name" required
-                                data-i18n-placeholder="form_name"></div>
-                        <div class="form-group"><input type="text" class="form-control" placeholder="Company"
-                                data-i18n-placeholder="form_company"></div>
-                        <div class="form-group"><input type="tel" class="form-control" placeholder="Phone" required
-                                data-i18n-placeholder="form_phone"></div>
-                        <div class="form-group"><select class="form-control" required>
-                                <option value="" disabled selected data-i18n="form_type">Project Type</option>
-                                <option value="build" data-i18n="srv_1_title">Premium Website Build</option>
-                                <option value="custom" data-i18n="srv_3_title">Custom Web Solutions</option>
-                            </select></div>
-                        <div class="form-group"><textarea class="form-control" placeholder="Message" required
-                                data-i18n-placeholder="form_msg"></textarea></div>
-                        <button type="submit" class="btn btn-blue" style="width:100%;" data-i18n="form_submit">Send
-                            Message</button>
+                    <form onsubmit="event.preventDefault()">
+                        <div class="form-row">
+                            <div class="form-group"><label>Your Name</label><input type="text" placeholder="Full name">
+                            </div>
+                            <div class="form-group"><label>Phone / WhatsApp</label><input type="tel"
+                                    placeholder="+962..."></div>
+                        </div>
+                        <div class="form-group"><label>Business Name</label><input type="text"
+                                placeholder="Your company or shop name"></div>
+                        <div class="form-group">
+                            <label>Project Type</label>
+                            <select>
+                                <option disabled selected>What do you need?</option>
+                                <option>Full Website — 200 JOD</option>
+                                <option>Website Update / Redesign</option>
+                                <option>E-Commerce Store</option>
+                                <option>Custom Web App</option>
+                                <option>Maintenance Only — 10 JOD/quarter</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label>Your Industry</label><input type="text"
+                                placeholder="e.g. Restaurant, Clinic, Shop..."></div>
+                        <div class="form-group"><label>Tell Us More</label><textarea
+                                placeholder="What pages do you need? Any specific features? Any websites you like?"></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Message — We'll Respond in Hours</button>
                     </form>
                 </div>
             </div>
         </div>
-    </section>
 
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-logo">Qimam Digital</div>
-            <div data-i18n="footer_tagline">Building the Future of Web.</div>
-            <div>&copy; <span data-i18n="footer_copy">2025 Qimam Digital. All rights reserved.</span></div>
-        </div>
-    </footer>
+        <footer>
+            <div class="footer-logo">
+                <div class="logo-dot"></div>Qimam Digital
+            </div>
+            <p>Amman, Jordan · hello@qimamdigital.com</p>
+            <p>© 2025 Qimam Digital. All rights reserved.</p>
+        </footer>
+    </div>
 
     <script>
-        const translations = {
-            en: {
-                nav_about: "About", nav_services: "Services", nav_portfolio: "Portfolio", nav_contact: "Contact",
-                hero_title: "We Build Premium Digital Experiences",
-                hero_sub: "Qimam Digital is a team of designers and developers crafting high-performance websites for businesses across Jordan and the region.",
-                hero_cta: "Start Your Project",
-                about_label: "Who We Are", about_mission: "To build digital experiences that elevate brands and drive results.",
-                about_desc: "We combine award-winning design with robust engineering to deliver scalable web solutions. Based in Amman, our bespoke approach ensures every project is crafted to perfection.",
-                team_1_name: "Tariq Al-Hassan", team_1_role: "Project Manager", team_2_name: "Layla Mansour", team_2_role: "UI/UX Designer",
-                team_3_name: "Omar Haddad", team_3_role: "Web Developer", team_4_name: "Zainab Ali", team_4_role: "Web Developer",
-                team_5_name: "Youssef Kareem", team_5_role: "Content Strategist", team_6_name: "Farah Nabil", team_6_role: "Client Relations Lead",
-                services_label: "What We Do", services_title: "Our Core Services",
-                srv_1_title: "Premium Website Build", srv_1_desc: "Full-cycle design and development of a high-performance, responsive corporate website.", srv_1_price: "200 JOD",
-                srv_2_title: "Quarterly Maintenance", srv_2_desc: "Ongoing technical support, security updates, and performance optimization.", srv_2_price: "10 JOD / quarter",
-                srv_3_title: "Custom Web Solutions", srv_3_desc: "Complex web applications, portals, and custom e-commerce integrations.", srv_3_price: "Priced on request",
-                port_label: "Our Work", port_title: "Selected Projects",
-                port_1_title: "Pinnacle Properties", port_1_tag: "Real Estate", port_2_title: "Lumière Clinic", port_2_tag: "Medical",
-                port_3_title: "Form & Ground Studio", port_3_tag: "Architecture", port_4_title: "Oud & Oak Restaurant", port_4_tag: "F&B",
-                port_5_title: "Al Haddad & Partners", port_5_tag: "Legal", port_6_title: "Nexus Tech", port_6_tag: "Technology",
-                port_github_desc: "To see more of our previous work, view our full portfolio on GitHub.", port_github_btn: "View Portfolio on GitHub",
-                proc_label: "Methodology", proc_title: "How We Work", proc_1: "Discover", proc_2: "Design", proc_3: "Develop", proc_4: "Launch",
-                test_label: "Testimonials", test_title: "Client Success Stories",
-                test_1_quote: '"Qimam completely transformed our online presence. The new site is fast, beautiful, and converts brilliantly."', test_1_author: "- CEO, Pinnacle Properties",
-                test_2_quote: '"Professional, fast, and highly skilled team. They understood our medical brand perfectly."', test_2_author: "- Director, Lumière Clinic",
-                test_3_quote: '"The best web development agency in Amman. Their attention to detail is truly Awwwards-level."', test_3_author: "- Founder, Form & Ground",
-                contact_title: "Let's Build Something Great", contact_desc: "Ready to elevate your digital presence? Get in touch with our team today.",
-                contact_phone: "+962 79 044 1000", contact_location: "Amman, Jordan", contact_wa: "Chat on WhatsApp",
-                form_name: "Name", form_company: "Company", form_phone: "Phone", form_type: "Project Type", form_msg: "Message", form_submit: "Send Message",
-                footer_tagline: "Building the Future of Web.", footer_copy: "2025 Qimam Digital. All rights reserved."
-            },
-            ar: {
-                nav_about: "من نحن", nav_services: "خدماتنا", nav_portfolio: "أعمالنا", nav_contact: "اتصل بنا",
-                hero_title: "نبني تجارب رقمية استثنائية",
-                hero_sub: "قمم ديجيتال فريق من المصممين والمطورين المتخصصين في بناء مواقع إلكترونية احترافية للأعمال في الأردن والمنطقة.",
-                hero_cta: "ابدأ مشروعك",
-                about_label: "من نحن", about_mission: "بناء تجارب رقمية ترتقي بالعلامات التجارية وتحقق نتائج ملموسة.",
-                about_desc: "نجمع بين التصميم الإبداعي والبرمجة القوية لتقديم حلول ويب قابلة للتطوير. من مقرنا في عمّان، نضمن إتقان كل مشروع بأعلى المعايير المخصصة.",
-                team_1_name: "طارق الحسن", team_1_role: "مدير مشاريع", team_2_name: "ليلى منصور", team_2_role: "مصممة واجهات ومستخدم",
-                team_3_name: "عمر حداد", team_3_role: "مطور ويب", team_4_name: "زينب علي", team_4_role: "مطور ويب",
-                team_5_name: "يوسف كريم", team_5_role: "خبير محتوى", team_6_name: "فرح نبيل", team_6_role: "مسؤولة علاقات العملاء",
-                services_label: "ماذا نقدم", services_title: "خدماتنا الأساسية",
-                srv_1_title: "بناء موقع متميز", srv_1_desc: "تصميم وتطوير شامل لموقع شركة احترافي وسريع الاستجابة.", srv_1_price: "200 دينار أردني",
-                srv_2_title: "صيانة ربع سنوية", srv_2_desc: "دعم فني مستمر، تحديثات أمنية، وتحسين الأداء.", srv_2_price: "10 دنانير / ربع سنة",
-                srv_3_title: "حلول ويب مخصصة", srv_3_desc: "تطبيقات ويب معقدة، بوابات إلكترونية، وربط متاجر إلكترونية.", srv_3_price: "حسب متطلبات المشروع",
-                port_label: "أعمالنا", port_title: "مشاريع مختارة",
-                port_1_title: "عقارات القمة", port_1_tag: "عقارات", port_2_title: "عيادة لوميير", port_2_tag: "طبي",
-                port_3_title: "استوديو فورم آند جراوند", port_3_tag: "هندسة معمارية", port_4_title: "مطعم عود وبلوط", port_4_tag: "مطاعم",
-                port_5_title: "حداد وشركاه", port_5_tag: "محاماة", port_6_title: "نيكسس تك", port_6_tag: "تكنولوجيا",
-                port_github_desc: "لمشاهدة المزيد من أعمالنا السابقة، تفضل بزيارة ملفنا الكامل على GitHub.", port_github_btn: "عرض الأعمال على GitHub",
-                proc_label: "منهجيتنا", proc_title: "كيف نعمل", proc_1: "اكتشاف", proc_2: "تصميم", proc_3: "تطوير", proc_4: "إطلاق",
-                test_label: "آراء العملاء", test_title: "قصص نجاح عملائنا",
-                test_1_quote: '"قامت قمم بتحويل حضورنا الرقمي بالكامل. الموقع الجديد سريع وجميل ويحقق مبيعات رائعة."', test_1_author: "- المدير التنفيذي، عقارات القمة",
-                test_2_quote: '"فريق محترف وسريع وعالي الكفاءة. فهموا هويتنا الطبية بشكل مثالي."', test_2_author: "- مديرة عيادة لوميير",
-                test_3_quote: '"أفضل وكالة لتطوير الويب في عمّان. اهتمامهم بالتفاصيل يفوق التوقعات."', test_3_author: "- مؤسس، فورم آند جراوند",
-                contact_title: "دعنا نبني شيئاً عظيماً", contact_desc: "هل أنت مستعد للارتقاء بحضورك الرقمي؟ تواصل مع فريقنا اليوم.",
-                contact_phone: "+962 79 044 1000", contact_location: "عمّان، الأردن", contact_wa: "تحدث معنا عبر واتساب",
-                form_name: "الاسم", form_company: "الشركة", form_phone: "رقم الهاتف", form_type: "نوع المشروع", form_msg: "الرسالة", form_submit: "إرسال الرسالة",
-                footer_tagline: "نبني مستقبل الويب.", footer_copy: "2025 قمم ديجيتال. جميع الحقوق محفوظة."
-            }
-        };
-
-        let currentLang = 'en';
-        function setLanguage(lang) {
-            currentLang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            document.documentElement.lang = lang;
-            document.getElementById('langToggle').textContent = lang === 'ar' ? 'English' : 'العربية';
-            document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.getAttribute('data-i18n'); if (translations[lang][k]) el.textContent = translations[lang][k]; });
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { const k = el.getAttribute('data-i18n-placeholder'); if (translations[lang][k]) el.setAttribute('placeholder', translations[lang][k]); });
+        function showPage(id, linkEl) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + id).classList.add('active');
+            document.getElementById('page-' + id).scrollTop = 0;
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            if (linkEl) linkEl.classList.add('active');
         }
-        document.getElementById('langToggle').addEventListener('click', () => setLanguage(currentLang === 'en' ? 'ar' : 'en'));
-        setLanguage('en');
 
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const hb = document.getElementById('hamburger');
+            menu.classList.toggle('open');
+            const spans = hb.querySelectorAll('span');
+            if (menu.classList.contains('open')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+            }
+        }
     </script>
 </body>
 

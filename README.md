@@ -8,7 +8,6 @@
 | 🏥 Lumière Clinic | [View Site](https://QimamDigital.github.io/Qimam-Digital-Portfolio/lumiere-clinic) |
 | 🏠 Pinnacle Properties | [View Site](https://QimamDigital.github.io/Qimam-Digital-Portfolio/pinnacle-properties) |
 | 🏛️ Form & Ground Studio | [View Site](https://QimamDigital.github.io/Qimam-Digital-Portfolio/form-ground-studio) |
-| ⚖️ Al Haddad & Partners | [View Site](https://QimamDigital.github.io/Qimam-Digital-Portfolio/al-haddad-partners) |
 | 💻 Nexus Tech | [View Site](https://QimamDigital.github.io/Qimam-Digital-Portfolio/nexus-tech) |
 
 Built by [Qimam Digital](https://QimamDigital.github.io/Qimam-Digital-Portfolio) — Premium Web Development Agency, Amman, Jordan.

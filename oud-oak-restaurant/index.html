@@ -31,26 +31,27 @@
             --muted: rgba(245, 239, 230, 0.5)
         }
 
-        a {
-            text-decoration: none;
-            color: inherit
-        }
-
         body {
             font-family: 'Jost', sans-serif;
             font-weight: 300;
             background: var(--black);
-            color: var(--cream)
+            color: var(--cream);
+            overflow-x: hidden
         }
 
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
             pointer-events: none;
-            z-index: 9000;
-            opacity: 0.5
+            z-index: 9999;
+            opacity: 0.4
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
         }
 
         nav {
@@ -63,7 +64,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(8, 6, 4, 0.9), transparent)
+            background: linear-gradient(to bottom, rgba(8, 6, 4, 0.92), transparent);
+            z-index: 200
         }
 
         .logo {
@@ -149,7 +151,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(8, 6, 4, 0.72)
+            background: rgba(8, 6, 4, 0.7)
         }
 
         .hero-ring {
@@ -258,7 +260,7 @@
             margin-right: auto
         }
 
-        .btn-cta {
+        .btn-gold-cta {
             display: inline-block;
             background: var(--gold);
             color: var(--black);
@@ -273,7 +275,7 @@
             font-family: 'Jost', sans-serif
         }
 
-        .btn-cta:hover {
+        .btn-gold-cta:hover {
             background: var(--gold2);
             transform: translateY(-2px);
             box-shadow: 0 20px 40px rgba(201, 168, 76, 0.3)
@@ -355,11 +357,11 @@
             }
         }
 
-        /* ABOUT SECTION */
+        /* ABOUT */
         .about-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            min-height: 100vh
+            min-height: 90vh
         }
 
         .about-img {
@@ -371,7 +373,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block
+            display: block;
+            min-height: 600px
         }
 
         .about-text {
@@ -463,7 +466,8 @@
             position: relative;
             display: flex;
             align-items: flex-end;
-            padding: 0 60px 60px
+            padding: 0 60px 60px;
+            overflow: hidden
         }
 
         .menu-hero-bg {
@@ -478,7 +482,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(8, 6, 4, 0.95) 0%, rgba(8, 6, 4, 0.3) 100%)
+            background: linear-gradient(to top, rgba(8, 6, 4, 0.97) 0%, rgba(8, 6, 4, 0.3) 100%)
         }
 
         .menu-hero-content {
@@ -497,12 +501,6 @@
         .menu-hero h2 em {
             font-style: italic;
             color: var(--gold2)
-        }
-
-        .menu-hero p {
-            color: var(--muted);
-            margin-top: 10px;
-            letter-spacing: 1px
         }
 
         .menu-section {
@@ -530,7 +528,7 @@
         .menu-card {
             background: rgba(201, 168, 76, 0.03);
             border: 1px solid rgba(201, 168, 76, 0.08);
-            padding: 40px 30px;
+            padding: 0;
             transition: all 0.4s;
             cursor: pointer;
             position: relative;
@@ -559,12 +557,20 @@
             border-color: rgba(201, 168, 76, 0.25)
         }
 
-        .menu-card img {
+        .menu-card-img {
             width: 100%;
-            height: 160px;
+            height: 180px;
             object-fit: cover;
-            margin-bottom: 20px;
-            display: block
+            display: block;
+            transition: transform 0.5s
+        }
+
+        .menu-card:hover .menu-card-img {
+            transform: scale(1.05)
+        }
+
+        .menu-card-body {
+            padding: 28px 30px
         }
 
         .menu-card-tag {
@@ -596,74 +602,208 @@
             color: var(--gold)
         }
 
-        /* RESERVE PAGE */
+        /* RESERVE PAGE - WhatsApp & Phone */
         .reserve-page {
             min-height: 100vh;
             background: var(--dark)
         }
 
-        .reserve-split {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 100vh
-        }
-
-        .reserve-left {
+        .reserve-hero {
+            height: 45vh;
             position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 60px 60px;
             overflow: hidden
         }
 
-        .reserve-left img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block
+        .reserve-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=1600&q=90');
+            background-size: cover;
+            background-position: center
         }
 
-        .reserve-left::after {
+        .reserve-hero-bg::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(8, 6, 4, 0.4), transparent)
+            background: linear-gradient(to top, rgba(8, 6, 4, 0.97) 0%, rgba(8, 6, 4, 0.3) 100%)
         }
 
-        .reserve-right {
-            padding: 90px 70px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center
+        .reserve-hero-content {
+            position: relative;
+            z-index: 1
         }
 
-        .reserve-right h2 {
+        .reserve-hero h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
+            font-size: 4rem;
             font-weight: 300;
-            margin-bottom: 12px;
-            line-height: 1.1
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 10px
         }
 
-        .reserve-right h2 em {
+        .reserve-hero h2 em {
             font-style: italic;
             color: var(--gold2)
         }
 
-        .reserve-right>p {
+        .reserve-hero p {
             color: var(--muted);
-            margin-bottom: 50px;
+            font-size: 0.9rem;
             letter-spacing: 0.5px
+        }
+
+        .reserve-body {
+            padding: 70px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start
+        }
+
+        .reserve-left h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 20px
+        }
+
+        .reserve-left p {
+            color: var(--muted);
+            line-height: 1.85;
+            font-size: 0.9rem;
+            margin-bottom: 40px
+        }
+
+        /* Big reservation buttons */
+        .res-options {
+            display: flex;
+            flex-direction: column;
+            gap: 16px
+        }
+
+        .res-option {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 22px 28px;
+            border-radius: 4px;
+            font-family: 'Jost', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            border: none
+        }
+
+        .res-wa {
+            background: #25D366;
+            color: #fff
+        }
+
+        .res-wa:hover {
+            background: #1aad53;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.35)
+        }
+
+        .res-call {
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid rgba(201, 168, 76, 0.3)
+        }
+
+        .res-call:hover {
+            border-color: var(--gold);
+            background: rgba(201, 168, 76, 0.06);
+            transform: translateY(-2px)
+        }
+
+        .res-option-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0
+        }
+
+        .res-option-text {
+            display: flex;
+            flex-direction: column
+        }
+
+        .res-option-label {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            margin-bottom: 3px
+        }
+
+        .res-option-value {
+            font-size: 1rem;
+            font-weight: 600
+        }
+
+        .res-info {
+            background: rgba(201, 168, 76, 0.04);
+            border: 1px solid rgba(201, 168, 76, 0.12);
+            border-radius: 4px;
+            padding: 30px;
+            margin-top: 30px
+        }
+
+        .res-info h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 20px
+        }
+
+        .res-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 0.85rem;
+            color: var(--muted)
+        }
+
+        .res-info-item span:first-child {
+            color: var(--gold);
+            flex-shrink: 0;
+            margin-top: 1px
+        }
+
+        /* small form for special requests */
+        .res-right h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 20px
+        }
+
+        .res-right p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin-bottom: 30px;
+            line-height: 1.7
         }
 
         .res-form {
             display: flex;
             flex-direction: column;
-            gap: 20px
+            gap: 16px
         }
 
         .res-input {
             background: transparent;
             border: 1px solid rgba(201, 168, 76, 0.15);
             color: var(--cream);
-            padding: 16px 20px;
+            padding: 14px 18px;
             font-family: 'Jost', sans-serif;
             font-size: 0.88rem;
             outline: none;
@@ -682,46 +822,32 @@
         .res-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px
+            gap: 16px
         }
 
-        .res-btn {
-            background: var(--gold);
-            color: var(--black);
-            border: none;
-            padding: 18px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s
-        }
-
-        .res-btn:hover {
-            background: var(--gold2)
-        }
-
-        .res-contact {
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(201, 168, 76, 0.12);
+        .res-submit-wa {
             display: flex;
-            flex-direction: column;
-            gap: 12px
-        }
-
-        .res-contact-item {
-            display: flex;
-            gap: 12px;
             align-items: center;
-            font-size: 0.82rem;
-            color: var(--muted)
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            background: #25D366;
+            color: #fff;
+            border: none;
+            padding: 16px;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none
         }
 
-        .res-contact-item span:first-child {
-            color: var(--gold)
+        .res-submit-wa:hover {
+            background: #1aad53;
+            transform: translateY(-1px)
         }
 
         footer {
@@ -760,6 +886,17 @@
             color: var(--gold)
         }
 
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
         @media(max-width:768px) {
             nav {
                 padding: 20px
@@ -774,26 +911,26 @@
             }
 
             .hero-ring {
-                width: 300px;
-                height: 300px
+                width: 280px;
+                height: 280px
             }
 
-            .about-section,
-            .reserve-split {
+            .about-section {
                 grid-template-columns: 1fr
             }
 
             .about-img {
-                height: 350px
+                height: 300px
             }
 
-            .about-text,
-            .reserve-right {
+            .about-text {
                 padding: 50px 20px
             }
 
             .menu-section,
-            .menu-hero {
+            .menu-hero,
+            .reserve-hero,
+            .reserve-body {
                 padding: 50px 20px
             }
 
@@ -801,13 +938,22 @@
                 grid-template-columns: 1fr
             }
 
+            .reserve-body {
+                grid-template-columns: 1fr
+            }
+
             footer {
                 grid-template-columns: 1fr;
-                text-align: center
+                text-align: center;
+                padding: 40px 20px
             }
 
             .footer-right {
                 text-align: center
+            }
+
+            .res-row {
+                grid-template-columns: 1fr
             }
         }
     </style>
@@ -837,32 +983,34 @@
                 <div class="hero-divider"><span></span><i>✦</i><span></span></div>
                 <p>An intimate culinary journey through the finest ingredients of the Levant, reimagined for the modern
                     table.</p>
-                <button class="btn-cta" onclick="showPage('menu',null)">Explore the Menu</button>
+                <button class="btn-gold-cta" onclick="showPage('reserve',null)">Reserve Your Table</button>
             </div>
             <div class="scroll-cue">
                 <div class="scroll-line-anim"></div><span>Scroll</span>
             </div>
         </section>
+
         <div class="marquee-bar">
             <div class="marquee-track">
                 <span class="marq-item">Fine Dining</span><span class="marq-item">·</span><span
                     class="marq-item">Levantine Cuisine</span><span class="marq-item">·</span><span
                     class="marq-item">Private Dining</span><span class="marq-item">·</span><span
-                    class="marq-item">Chef's Table</span><span class="marq-item">·</span><span class="marq-item">Curated
-                    Wines</span><span class="marq-item">·</span><span class="marq-item">Fine Dining</span><span
-                    class="marq-item">·</span><span class="marq-item">Levantine Cuisine</span><span
+                    class="marq-item">Chef's Table</span><span class="marq-item">·</span><span
+                    class="marq-item">Seasonal Menu</span><span class="marq-item">·</span><span class="marq-item">Fine
+                    Dining</span><span class="marq-item">·</span><span class="marq-item">Levantine Cuisine</span><span
                     class="marq-item">·</span><span class="marq-item">Private Dining</span><span
                     class="marq-item">·</span><span class="marq-item">Chef's Table</span><span
-                    class="marq-item">·</span><span class="marq-item">Curated Wines</span><span
+                    class="marq-item">·</span><span class="marq-item">Seasonal Menu</span><span
                     class="marq-item">·</span>
             </div>
         </div>
+
         <div class="about-section">
-            <div class="about-img">
+            <div class="about-img reveal">
                 <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=900&q=85"
                     alt="Restaurant interior">
             </div>
-            <div class="about-text">
+            <div class="about-text reveal">
                 <div class="sec-tag">Our Philosophy</div>
                 <h2>Born from <em>Passion</em>,<br>Refined by Craft</h2>
                 <p>Oud & Oak was born from a simple belief — that dining should be a ceremony. Each dish is a
@@ -881,6 +1029,7 @@
                 </div>
             </div>
         </div>
+
         <footer>
             <div class="footer-logo">Oud &amp; Oak</div>
             <div class="footer-mid">
@@ -901,94 +1050,121 @@
                 <div class="menu-hero-bg"></div>
                 <div class="menu-hero-content">
                     <h2>The <em>Menu</em></h2>
-                    <p>Seasonal ingredients, timeless technique</p>
+                    <p style="color:var(--muted);margin-top:10px;letter-spacing:1px">Seasonal ingredients · Timeless
+                        technique</p>
                 </div>
             </div>
             <div class="menu-section">
                 <div class="menu-category-title">Starters & Mezze</div>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <img src="https://images.unsplash.com/photo-1541014741259-de529411b96a?w=400&q=80"
-                            alt="Truffle Hummus">
-                        <span class="menu-card-tag">Signature</span>
-                        <h3>Truffle Hummus</h3>
-                        <p>Silky chickpea cream, black truffle oil, toasted pine nuts, dukkah crumb, warm markook bread.
-                        </p>
-                        <div class="menu-price">8 JOD</div>
+                    <div class="menu-card reveal">
+                        <img src="https://images.unsplash.com/photo-1541014741259-de529411b96a?w=500&q=80"
+                            alt="Truffle Hummus" class="menu-card-img">
+                        <div class="menu-card-body"><span class="menu-card-tag">Signature</span>
+                            <h3>Truffle Hummus</h3>
+                            <p>Silky chickpea cream, black truffle oil, toasted pine nuts, dukkah crumb, warm markook
+                                bread.</p>
+                            <div class="menu-price">8 JOD</div>
+                        </div>
                     </div>
-                    <div class="menu-card">
-                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80" alt="Fattoush">
-                        <span class="menu-card-tag">Fresh</span>
-                        <h3>Heritage Fattoush</h3>
-                        <p>Heirloom tomatoes, wild herbs, pomegranate molasses, sumac dressing, house-baked bread chips.
-                        </p>
-                        <div class="menu-price">7 JOD</div>
+                    <div class="menu-card reveal">
+                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=80" alt="Fattoush"
+                            class="menu-card-img">
+                        <div class="menu-card-body"><span class="menu-card-tag">Fresh</span>
+                            <h3>Heritage Fattoush</h3>
+                            <p>Heirloom tomatoes, wild herbs, pomegranate molasses, sumac dressing, house-baked bread
+                                chips.</p>
+                            <div class="menu-price">7 JOD</div>
+                        </div>
                     </div>
-                    <div class="menu-card">
-                        <img src="https://images.unsplash.com/photo-1559622214-f8a9850965bb?w=400&q=80" alt="Kibbeh">
-                        <span class="menu-card-tag">Traditional</span>
-                        <h3>Baked Kibbeh</h3>
-                        <p>Spiced lamb in bulgur shell, caramelised onion, toasted pine nuts, cooling labneh.</p>
-                        <div class="menu-price">9 JOD</div>
+                    <div class="menu-card reveal">
+                        <img src="https://images.unsplash.com/photo-1604908177522-c0f4b4afe0ca?w=500&q=80" alt="Kibbeh"
+                            class="menu-card-img">
+                        <div class="menu-card-body"><span class="menu-card-tag">Traditional</span>
+                            <h3>Baked Kibbeh</h3>
+                            <p>Spiced lamb in bulgur shell, caramelised onion, toasted pine nuts, cooling labneh.</p>
+                            <div class="menu-price">9 JOD</div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="menu-category-title">Main Courses</div>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80"
-                            alt="Lamb Ouzi">
-                        <span class="menu-card-tag">Chef's Signature</span>
-                        <h3>Lamb Ouzi</h3>
-                        <p>Slow-roasted whole lamb shoulder, saffron rice, caramelised onion, pomegranate reduction.</p>
-                        <div class="menu-price">28 JOD</div>
+                    <div class="menu-card reveal">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=80"
+                            alt="Lamb Ouzi" class="menu-card-img">
+                        <div class="menu-card-body"><span class="menu-card-tag">Chef's Signature</span>
+                            <h3>Lamb Ouzi</h3>
+                            <p>Slow-roasted whole lamb shoulder, saffron rice, caramelised onion, pomegranate reduction.
+                            </p>
+                            <div class="menu-price">28 JOD</div>
+                        </div>
                     </div>
-                    <div class="menu-card">
-                        <img src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=400&q=80" alt="Salmon">
-                        <span class="menu-card-tag">From the Sea</span>
-                        <h3>Oak-Smoked Salmon</h3>
-                        <p>Wild Atlantic salmon, smoked over oak chips, labneh quenelle, sumac cucumber, micro herbs.
-                        </p>
-                        <div class="menu-price">22 JOD</div>
+                    <div class="menu-card reveal">
+                        <img src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=500&q=80"
+                            alt="Oak Salmon" class="menu-card-img">
+                        <div class="menu-card-body"><span class="menu-card-tag">From the Sea</span>
+                            <h3>Oak-Smoked Salmon</h3>
+                            <p>Wild Atlantic salmon, smoked over oak chips, labneh quenelle, sumac cucumber, micro
+                                herbs.</p>
+                            <div class="menu-price">22 JOD</div>
+                        </div>
                     </div>
-                    <div class="menu-card">
-                        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80"
-                            alt="Risotto">
-                        <span class="menu-card-tag">Vegetarian</span>
-                        <h3>Freekeh Risotto</h3>
-                        <p>Roasted green wheat, wild mushrooms, aged Baladi cheese, truffle cream, fresh thyme.</p>
-                        <div class="menu-price">16 JOD</div>
+                    <div class="menu-card reveal">
+                        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=500&q=80" alt="Freekeh"
+                            class="menu-card-img">
+                        <div class="menu-card-body"><span class="menu-card-tag">Vegetarian</span>
+                            <h3>Freekeh Risotto</h3>
+                            <p>Roasted green wheat, wild mushrooms, aged Baladi cheese, truffle cream, fresh thyme.</p>
+                            <div class="menu-price">16 JOD</div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="menu-category-title">Desserts</div>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&q=80" alt="Knafeh">
-                        <span class="menu-card-tag">House Speciality</span>
-                        <h3>Rose Knafeh</h3>
-                        <p>Warm shredded pastry, fresh Nabulsi cheese, rose water syrup, crushed pistachios.</p>
-                        <div class="menu-price">6 JOD</div>
+                    <div class="menu-card reveal">
+                        <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=500&q=80" alt="Knafeh"
+                            class="menu-card-img">
+                        <div class="menu-card-body"><span class="menu-card-tag">House Speciality</span>
+                            <h3>Rose Knafeh</h3>
+                            <p>Warm shredded pastry, fresh Nabulsi cheese, rose water syrup, crushed pistachios.</p>
+                            <div class="menu-price">6 JOD</div>
+                        </div>
                     </div>
-                    <div class="menu-card">
-                        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&q=80" alt="Mousse">
-                        <span class="menu-card-tag">Seasonal</span>
-                        <h3>Dark Chocolate Mousse</h3>
-                        <p>70% Valrhona chocolate, cardamom cream, salted caramel, gold leaf.</p>
-                        <div class="menu-price">7 JOD</div>
+                    <div class="menu-card reveal">
+                        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500&q=80"
+                            alt="Chocolate Mousse" class="menu-card-img">
+                        <div class="menu-card-body"><span class="menu-card-tag">Seasonal</span>
+                            <h3>Dark Chocolate Mousse</h3>
+                            <p>70% Valrhona chocolate, cardamom cream, salted caramel, gold leaf.</p>
+                            <div class="menu-price">7 JOD</div>
+                        </div>
                     </div>
-                    <div class="menu-card">
-                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&q=80" alt="Baklava">
-                        <span class="menu-card-tag">Classic</span>
-                        <h3>Pistachio Baklava</h3>
-                        <p>Layered filo, premium Aleppo pistachios, orange blossom syrup, clotted cream.</p>
-                        <div class="menu-price">5 JOD</div>
+                    <div class="menu-card reveal">
+                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=500&q=80" alt="Baklava"
+                            class="menu-card-img">
+                        <div class="menu-card-body"><span class="menu-card-tag">Classic</span>
+                            <h3>Pistachio Baklava</h3>
+                            <p>Layered filo, premium Aleppo pistachios, orange blossom syrup, clotted cream.</p>
+                            <div class="menu-price">5 JOD</div>
+                        </div>
                     </div>
                 </div>
+
+                <div
+                    style="text-align:center;margin-top:50px;padding-top:50px;border-top:1px solid rgba(201,168,76,0.1)">
+                    <p style="color:var(--muted);margin-bottom:24px;font-size:0.9rem;letter-spacing:1px">Ready to
+                        experience the menu in person?</p>
+                    <button class="btn-gold-cta" onclick="showPage('reserve',null)">Reserve Your Table</button>
+                </div>
             </div>
+
             <footer>
                 <div class="footer-logo">Oud &amp; Oak</div>
                 <div class="footer-mid">
                     <p>Abdoun, Amman, Jordan · Open Daily 12:00 — 23:30</p>
-                    <p style="margin-top:8px;font-size:0.65rem;opacity:0.4">© 2025 Oud & Oak. All rights reserved.</p>
+                    <p style="margin-top:8px;font-size:0.65rem;opacity:0.4">© 2025 Oud & Oak.</p>
                 </div>
                 <div class="footer-right"><a href="tel:+96265001234">+962 6 500 1234</a></div>
             </footer>
@@ -1003,13 +1179,14 @@
                     style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=1600&q=90');background-size:cover;background-position:center">
                 </div>
                 <div
-                    style="position:absolute;inset:0;background:linear-gradient(to top,rgba(8,6,4,0.95) 0%,rgba(8,6,4,0.2) 100%)">
+                    style="position:absolute;inset:0;background:linear-gradient(to top,rgba(8,6,4,0.97) 0%,rgba(8,6,4,0.2) 100%)">
                 </div>
                 <div style="position:relative;z-index:1">
                     <h2
                         style="font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:300;color:#fff;line-height:1">
                         Our <em style="font-style:italic;color:var(--gold2)">Story</em></h2>
-                    <p style="color:var(--muted);margin-top:12px">Where every dish has a memory</p>
+                    <p style="color:var(--muted);margin-top:12px;letter-spacing:1px">Where every dish carries a memory
+                    </p>
                 </div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr">
@@ -1022,16 +1199,120 @@
                         founded in 2013 by Chef Nasser Al-Amin, a Jordanian chef who trained in Paris before returning
                         to Amman with a singular mission — to elevate the cuisine he grew up eating into something
                         extraordinary.</p>
-                    <p style="color:var(--muted);line-height:1.9;font-size:0.9rem">Every recipe draws from generations
-                        of Levantine knowledge, reinterpreted through the lens of modern technique. We use only what the
-                        Jordanian landscape provides — olive oil from Ajloun, lamb from Wadi Rum, herbs from the Jordan
-                        Valley.</p>
+                    <p style="color:var(--muted);line-height:1.9;font-size:0.9rem;margin-bottom:35px">Every recipe draws
+                        from generations of Levantine knowledge, reinterpreted through the lens of modern technique.</p>
+                    <button class="btn-gold-cta" style="font-size:0.7rem;padding:13px 35px"
+                        onclick="showPage('reserve',null)">Book a Table</button>
                 </div>
                 <div style="overflow:hidden">
                     <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=85" alt="Chef at work"
-                        style="width:100%;height:100%;object-fit:cover;display:block">
+                        style="width:100%;height:100%;object-fit:cover;display:block;min-height:500px">
                 </div>
             </div>
+            <footer>
+                <div class="footer-logo">Oud &amp; Oak</div>
+                <div class="footer-mid">
+                    <p>Abdoun, Amman, Jordan · Open Daily 12:00 — 23:30</p>
+                    <p style="margin-top:8px;font-size:0.65rem;opacity:0.4">© 2025 Oud & Oak.</p>
+                </div>
+                <div class="footer-right"><a href="tel:+96265001234">+962 6 500 1234</a></div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- RESERVE -->
+    <div id="page-reserve" class="page">
+        <div class="reserve-page" style="padding-top:80px">
+            <div class="reserve-hero">
+                <div class="reserve-hero-bg"></div>
+                <div class="reserve-hero-content">
+                    <h2>Reserve Your <em>Table</em></h2>
+                    <p>An experience worth anticipating — book your evening at Oud & Oak</p>
+                </div>
+            </div>
+
+            <div class="reserve-body">
+                <!-- Left: Direct contact options -->
+                <div class="reserve-left">
+                    <div class="sec-tag" style="margin-bottom:20px">Fastest Way to Book</div>
+                    <h3>Contact Us Directly</h3>
+                    <p>The quickest way to reserve your table is to reach us on WhatsApp or by phone. We confirm
+                        instantly and can arrange special requests, private dining, and set menus.</p>
+
+                    <div class="res-options">
+                        <a href="https://wa.me/96265001234?text=Hello%20Oud%20%26%20Oak%2C%20I%20would%20like%20to%20reserve%20a%20table."
+                            target="_blank" rel="noopener" class="res-option res-wa">
+                            <div class="res-option-icon">
+                                <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                                </svg>
+                            </div>
+                            <div class="res-option-text">
+                                <span class="res-option-label">WhatsApp — Instant Reply</span>
+                                <span class="res-option-value">+962 6 500 1234</span>
+                            </div>
+                        </a>
+
+                        <a href="tel:+96265001234" class="res-option res-call">
+                            <div class="res-option-icon">📞</div>
+                            <div class="res-option-text">
+                                <span class="res-option-label">Call Us Directly</span>
+                                <span class="res-option-value">+962 6 500 1234</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="res-info">
+                        <h4>Good to Know</h4>
+                        <div class="res-info-item"><span>🕐</span><span>Open Daily · 12:00 PM — 11:30 PM</span></div>
+                        <div class="res-info-item"><span>📍</span><span>Abdoun, 5th Circle, Amman, Jordan</span></div>
+                        <div class="res-info-item"><span>👥</span><span>Groups of 6+ please call ahead</span></div>
+                        <div class="res-info-item"><span>🎂</span><span>Special occasions — mention when booking</span>
+                        </div>
+                        <div class="res-info-item"><span>🌿</span><span>Vegetarian & dietary requirements
+                                accommodated</span></div>
+                    </div>
+                </div>
+
+                <!-- Right: Message form that opens WhatsApp -->
+                <div class="reserve-right">
+                    <div class="sec-tag" style="margin-bottom:20px">Send a Reservation Request</div>
+                    <h3>Fill in Your Details</h3>
+                    <p>Fill in the form below and we'll open WhatsApp with all your details pre-filled, ready to send to
+                        our team.</p>
+                    <div class="res-form">
+                        <div class="res-row">
+                            <input type="text" class="res-input" placeholder="Full Name" id="resName">
+                            <input type="tel" class="res-input" placeholder="Phone Number" id="resPhone">
+                        </div>
+                        <div class="res-row">
+                            <input type="date" class="res-input" id="resDate">
+                            <input type="time" class="res-input" value="19:00" id="resTime">
+                        </div>
+                        <input type="number" class="res-input" placeholder="Number of Guests" min="1" max="20"
+                            id="resGuests">
+                        <select class="res-input" style="cursor:pointer" id="resOccasion">
+                            <option disabled selected>Occasion (optional)</option>
+                            <option>Birthday</option>
+                            <option>Anniversary</option>
+                            <option>Business Dinner</option>
+                            <option>Proposal</option>
+                            <option>Family Gathering</option>
+                        </select>
+                        <textarea class="res-input" placeholder="Special requests or dietary requirements..."
+                            style="min-height:90px;resize:none" id="resNotes"></textarea>
+                        <a id="resWaBtn" href="#" target="_blank" class="res-submit-wa" onclick="buildWaLink(event)">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                            </svg>
+                            Send via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <footer>
                 <div class="footer-logo">Oud &amp; Oak</div>
                 <div class="footer-mid">
@@ -1043,50 +1324,6 @@
         </div>
     </div>
 
-    <!-- RESERVE -->
-    <div id="page-reserve" class="page">
-        <div class="reserve-page" style="padding-top:80px">
-            <div class="reserve-split">
-                <div class="reserve-left">
-                    <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=900&q=85"
-                        alt="Dining room">
-                </div>
-                <div class="reserve-right">
-                    <div class="sec-tag">Join Us</div>
-                    <h2>Reserve Your <em>Table</em></h2>
-                    <p style="color:var(--muted);margin-bottom:40px;font-size:0.9rem">An experience worth anticipating —
-                        book your evening at Oud & Oak</p>
-                    <div class="res-form">
-                        <div class="res-row">
-                            <input type="text" class="res-input" placeholder="Full Name">
-                            <input type="tel" class="res-input" placeholder="Phone Number">
-                        </div>
-                        <div class="res-row">
-                            <input type="date" class="res-input">
-                            <input type="time" class="res-input" value="19:00">
-                        </div>
-                        <input type="number" class="res-input" placeholder="Number of Guests" min="1" max="20">
-                        <select class="res-input" style="cursor:pointer">
-                            <option disabled selected>Occasion (optional)</option>
-                            <option>Birthday</option>
-                            <option>Anniversary</option>
-                            <option>Business Dinner</option>
-                            <option>Proposal</option>
-                        </select>
-                        <textarea class="res-input" placeholder="Special requests or dietary requirements..."
-                            style="min-height:90px;resize:none"></textarea>
-                        <button class="res-btn">Confirm Reservation</button>
-                    </div>
-                    <div class="res-contact">
-                        <div class="res-contact-item"><span>📞</span><span>+962 6 500 1234</span></div>
-                        <div class="res-contact-item"><span>✉</span><span>reservations@oudandoak.jo</span></div>
-                        <div class="res-contact-item"><span>📍</span><span>Abdoun, Amman, Jordan</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
         function showPage(id, linkEl) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1095,6 +1332,32 @@
             document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
             if (linkEl) linkEl.classList.add('active');
         }
+
+        function buildWaLink(e) {
+            const name = document.getElementById('resName').value || 'Guest';
+            const phone = document.getElementById('resPhone').value || 'Not provided';
+            const date = document.getElementById('resDate').value || 'Date TBD';
+            const time = document.getElementById('resTime').value || '19:00';
+            const guests = document.getElementById('resGuests').value || '2';
+            const occasion = document.getElementById('resOccasion').value === 'Occasion (optional)' ? '' : document.getElementById('resOccasion').value;
+            const notes = document.getElementById('resNotes').value || '';
+
+            let msg = `Hello Oud & Oak,\n\nI would like to reserve a table.\n\n`;
+            msg += `Name: ${name}\nPhone: ${phone}\nDate: ${date}\nTime: ${time}\nGuests: ${guests}`;
+            if (occasion) msg += `\nOccasion: ${occasion}`;
+            if (notes) msg += `\nSpecial Requests: ${notes}`;
+            msg += `\n\nThank you!`;
+
+            document.getElementById('resWaBtn').href = 'https://wa.me/96265001234?text=' + encodeURIComponent(msg);
+        }
+
+        // Scroll reveal
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 80); obs.unobserve(entry.target); }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     </script>
 </body>
 
