@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qimam Digital — Premium Web Development Amman</title>
+    <title>Qimam Digital — Premium Web Development</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Syne+Mono&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        /* ─── RESET ─────────────────────────────────────── */
         * {
             margin: 0;
             padding: 0;
@@ -24,19 +26,20 @@
         }
 
         :root {
-            --navy: #0b1220;
+            --bg: #04080f;
             --blue: #1e6ef5;
-            --blue2: #4d91ff;
-            --white: #f4f2ee;
-            --muted: #8a8680;
-            --card: #131c2e;
-            --border: rgba(255, 255, 255, 0.07);
-            --gold: #c9a84c;
+            --blue-glow: rgba(30, 110, 245, 0.35);
+            --blue2: #5b9bff;
+            --white: #f0eee9;
+            --muted: rgba(240, 238, 233, 0.5);
+            --glass: rgba(255, 255, 255, 0.05);
+            --gb: rgba(255, 255, 255, 0.09);
+            --gold: #c9a84c
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--navy);
+            background: var(--bg);
             color: var(--white);
             overflow-x: hidden
         }
@@ -52,65 +55,62 @@
             border: none
         }
 
-        /* grain */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 9999;
-            opacity: 0.6
+            opacity: 0.55
         }
 
-        /* ─── NAV ───────────────────────────────────────── */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 500;
-            height: 70px;
+            height: 68px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 40px;
-            border-bottom: 1px solid var(--border);
-            background: rgba(11, 18, 32, 0.92);
-            backdrop-filter: blur(20px)
+            padding: 0 36px;
+            border-bottom: 1px solid var(--gb);
+            background: rgba(4, 8, 15, 0.9);
+            backdrop-filter: blur(24px)
         }
 
-        .logo {
+        .nav-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 9px;
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: 1.1rem;
-            color: var(--white)
+            font-size: 1.05rem
         }
 
         .logo-dot {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             background: var(--blue);
-            border-radius: 50%
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--blue)
         }
 
         .nav-links {
             display: flex;
-            gap: 6px;
+            gap: 2px;
             list-style: none
         }
 
         .nav-links a {
-            font-size: 0.78rem;
-            letter-spacing: 0.5px;
+            font-size: 0.76rem;
+            font-weight: 500;
             color: var(--muted);
-            padding: 8px 14px;
-            border-radius: 6px;
-            transition: all 0.25s;
-            font-weight: 500
+            padding: 7px 13px;
+            border-radius: 7px;
+            transition: all 0.22s
         }
 
         .nav-links a:hover,
@@ -119,79 +119,99 @@
             background: rgba(255, 255, 255, 0.07)
         }
 
-        .nav-cta {
-            background: var(--blue);
-            color: #fff;
-            padding: 9px 22px;
-            border-radius: 8px;
-            font-size: 0.8rem;
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .lang-btn {
+            background: var(--glass);
+            border: 1px solid var(--gb);
+            color: var(--white);
+            padding: 7px 14px;
+            border-radius: 7px;
+            font-size: 0.74rem;
             font-weight: 600;
-            letter-spacing: 0.3px;
+            transition: all 0.25s
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.1)
+        }
+
+        .nav-wa {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: #25D366;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 0.76rem;
+            font-weight: 700;
             transition: all 0.3s
         }
 
-        .nav-cta:hover {
-            background: #1557c0;
-            transform: translateY(-1px);
-            box-shadow: 0 8px 25px rgba(30, 110, 245, 0.35)
+        .nav-wa:hover {
+            background: #1aad53;
+            transform: translateY(-1px)
         }
 
-        .hamburger {
+        .hb {
             display: none;
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
-            padding: 5px
+            padding: 4px
         }
 
-        .hamburger span {
-            width: 22px;
+        .hb span {
+            width: 21px;
             height: 2px;
             background: var(--white);
             border-radius: 2px;
             transition: all 0.3s
         }
 
-        .mobile-menu {
+        .mob {
             display: none;
             position: fixed;
             inset: 0;
-            background: var(--navy);
             z-index: 400;
+            background: var(--bg);
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 30px;
-            padding-top: 70px
+            gap: 26px;
+            padding-top: 68px
         }
 
-        .mobile-menu.open {
+        .mob.open {
             display: flex
         }
 
-        .mobile-menu a {
+        .mob a {
             font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--white);
-            transition: color 0.3s
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--white)
         }
 
-        .mobile-menu a:hover {
+        .mob a:hover {
             color: var(--blue)
         }
 
-        .mobile-cta {
-            background: var(--blue);
+        .mob-wa {
+            background: #25D366;
             color: #fff;
-            padding: 14px 40px;
+            padding: 13px 40px;
             border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-top: 10px
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-top: 8px
         }
 
-        /* ─── PAGES ─────────────────────────────────────── */
         .page {
             position: fixed;
             inset: 0;
@@ -199,8 +219,8 @@
             overflow-x: hidden;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.45s ease;
-            padding-top: 70px
+            transition: opacity 0.42s ease;
+            padding-top: 68px
         }
 
         .page.active {
@@ -208,66 +228,90 @@
             pointer-events: all
         }
 
-        /* ─── HOME PAGE ─────────────────────────────────── */
+        /* HERO */
         .hero {
-            min-height: calc(100vh - 70px);
+            min-height: calc(100vh - 68px);
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 60px 40px 40px;
+            padding: 56px 36px 40px;
             position: relative;
             overflow: hidden
         }
 
-        .hero-bg-glow {
+        .orb {
             position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(30, 110, 245, 0.12) 0%, transparent 70%);
             border-radius: 50%;
-            pointer-events: none
+            pointer-events: none;
+            filter: blur(80px)
         }
 
-        .hero-bg-glow2 {
-            position: absolute;
-            bottom: -20%;
-            left: -10%;
+        .o1 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(30, 110, 245, 0.14) 0%, transparent 70%);
+            top: -15%;
+            right: -8%
+        }
+
+        .o2 {
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(30, 110, 245, 0.07) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none
+            background: radial-gradient(circle, rgba(91, 155, 255, 0.08) 0%, transparent 70%);
+            bottom: -20%;
+            left: -5%
         }
 
-        .hero-badge {
+        .o3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.07) 0%, transparent 70%);
+            top: 30%;
+            right: 20%
+        }
+
+        .hgrid {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(30, 110, 245, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(30, 110, 245, 0.04) 1px, transparent 1px);
+            background-size: 70px 70px
+        }
+
+        .hc {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px
+        }
+
+        .hbadge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(30, 110, 245, 0.12);
-            border: 1px solid rgba(30, 110, 245, 0.25);
+            background: rgba(30, 110, 245, 0.1);
+            border: 1px solid rgba(30, 110, 245, 0.22);
             color: var(--blue2);
-            padding: 7px 16px;
+            padding: 6px 15px;
             border-radius: 50px;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 32px;
-            width: fit-content
+            margin-bottom: 28px;
+            width: fit-content;
+            opacity: 0
         }
 
-        .hero-badge::before {
+        .hbadge::before {
             content: '';
             width: 5px;
             height: 5px;
             background: var(--blue2);
             border-radius: 50%;
-            animation: pulse-dot 2s infinite
+            animation: bp 2s infinite
         }
 
-        @keyframes pulse-dot {
+        @keyframes bp {
 
             0%,
             100% {
@@ -276,134 +320,142 @@
             }
 
             50% {
-                opacity: 0.4;
-                transform: scale(0.7)
+                opacity: 0.3;
+                transform: scale(0.6)
             }
         }
 
-        .hero h1 {
+        h1.ht {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 7vw, 6.5rem);
+            font-size: clamp(3rem, 7vw, 6.8rem);
             font-weight: 800;
-            line-height: 1;
-            letter-spacing: -2px;
-            margin-bottom: 28px;
-            max-width: 900px
+            line-height: 0.97;
+            letter-spacing: -2.5px;
+            margin-bottom: 26px;
+            opacity: 0
         }
 
-        .hero h1 .accent {
-            color: var(--blue)
+        [dir="rtl"] h1.ht {
+            font-size: clamp(2.4rem, 5.5vw, 5.2rem);
+            letter-spacing: 0;
+            line-height: 1.05
         }
 
-        .hero h1 .outline {
-            -webkit-text-stroke: 1px var(--white);
+        .ht .blue {
+            color: var(--blue);
+            text-shadow: 0 0 40px rgba(30, 110, 245, 0.4)
+        }
+
+        .ht .outline {
+            -webkit-text-stroke: 1.5px rgba(240, 238, 233, 0.4);
             color: transparent
         }
 
-        .hero-sub {
+        .hsub {
             color: var(--muted);
-            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-            line-height: 1.75;
+            font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+            line-height: 1.78;
             max-width: 520px;
-            margin-bottom: 48px;
-            font-weight: 400
+            margin-bottom: 42px;
+            opacity: 0
         }
 
-        .hero-actions {
+        .hbtns {
             display: flex;
-            gap: 14px;
+            gap: 12px;
             flex-wrap: wrap;
-            align-items: center
+            align-items: center;
+            opacity: 0
         }
 
-        .btn-primary {
+        .bb {
             background: var(--blue);
             color: #fff;
-            padding: 15px 36px;
+            padding: 14px 32px;
             border-radius: 10px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            transition: all 0.3s;
+            font-size: 0.86rem;
+            font-weight: 700;
             display: inline-flex;
             align-items: center;
-            gap: 8px
+            gap: 8px;
+            transition: all 0.3s
         }
 
-        .btn-primary:hover {
+        .bb:hover {
             background: #1557c0;
             transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(30, 110, 245, 0.35)
+            box-shadow: 0 14px 40px var(--blue-glow)
         }
 
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.06);
+        .bg {
+            background: var(--glass);
+            border: 1px solid var(--gb);
             color: var(--white);
-            padding: 15px 36px;
+            padding: 14px 32px;
             border-radius: 10px;
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             font-weight: 500;
-            transition: all 0.3s;
-            border: 1px solid var(--border)
+            transition: all 0.3s
         }
 
-        .btn-secondary:hover {
+        .bg:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: translateY(-2px)
         }
 
-        .hero-stats {
+        .hstats {
             display: flex;
-            gap: 40px;
-            margin-top: 70px;
-            padding-top: 40px;
-            border-top: 1px solid var(--border);
-            flex-wrap: wrap
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+            padding-top: 34px;
+            border-top: 1px solid var(--gb);
+            opacity: 0
         }
 
-        .hstat-num {
+        .sn {
             font-family: 'Syne', sans-serif;
-            font-size: 2.2rem;
+            font-size: 1.95rem;
             font-weight: 800;
-            color: var(--white);
             display: block;
             line-height: 1
         }
 
-        .hstat-label {
-            font-size: 0.72rem;
+        .sl {
+            font-size: 0.66rem;
             color: var(--muted);
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
             margin-top: 5px;
             display: block
         }
 
-        /* marq */
-        .marquee-section {
+        /* MARQUEE */
+        .marq {
             background: var(--blue);
-            padding: 14px 0;
+            padding: 13px 0;
             overflow: hidden;
             white-space: nowrap
         }
 
-        .marq-inner {
+        .mt {
             display: inline-flex;
-            animation: marq 25s linear infinite
+            animation: marq 28s linear infinite
         }
 
-        .marq-item {
+        .mi {
             font-family: 'Syne', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 3px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 3.5px;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.85);
-            padding: 0 30px
+            color: rgba(255, 255, 255, 0.82);
+            padding: 0 26px
         }
 
-        .marq-dot {
-            color: rgba(255, 255, 255, 0.4);
-            margin-right: 30px
+        .md {
+            color: rgba(255, 255, 255, 0.3);
+            margin-right: 26px
         }
 
         @keyframes marq {
@@ -416,146 +468,229 @@
             }
         }
 
-        /* ─── WORK PAGE ─────────────────────────────────── */
-        .work-page {
-            padding: 60px 40px 80px
+        [dir="rtl"] .mt {
+            animation-direction: reverse
         }
 
-        .page-header {
-            margin-bottom: 60px
+        /* ABOUT */
+        .ah {
+            padding: 80px 36px;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 70px;
+            align-items: center
         }
 
-        .page-eyebrow {
-            font-family: 'Syne Mono', monospace;
+        .ahl h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.9rem);
+            font-weight: 800;
+            line-height: 1.12;
+            margin-bottom: 22px
+        }
+
+        [dir="ltr"] .ahl h2 {
+            letter-spacing: -0.5px
+        }
+
+        .ahl h2 em {
+            font-style: italic;
+            color: var(--blue)
+        }
+
+        .ahl p {
+            color: var(--muted);
+            line-height: 1.85;
+            font-size: 0.9rem;
+            margin-bottom: 16px
+        }
+
+        .agrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px
+        }
+
+        .gc {
+            background: var(--glass);
+            border: 1px solid var(--gb);
+            border-radius: 16px;
+            padding: 26px 22px;
+            backdrop-filter: blur(12px);
+            transition: all 0.35s
+        }
+
+        .gc:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(30, 110, 245, 0.3);
+            transform: translateY(-3px)
+        }
+
+        .gcn {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: var(--blue);
+            display: block;
+            line-height: 1;
+            margin-bottom: 6px
+        }
+
+        .gcl {
             font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted)
+        }
+
+        /* WORK */
+        .wp {
+            padding: 55px 36px 80px
+        }
+
+        .pey {
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.6rem;
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--blue);
             display: block;
-            margin-bottom: 16px
+            margin-bottom: 12px
         }
 
-        .page-title {
+        .pt {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-size: clamp(2rem, 4.5vw, 3.6rem);
             font-weight: 800;
-            letter-spacing: -1.5px;
-            line-height: 1.05
+            line-height: 1.04;
+            margin-bottom: 8px
         }
 
-        .page-title .accent {
+        [dir="ltr"] .pt {
+            letter-spacing: -1px
+        }
+
+        .pt .blue {
             color: var(--blue)
         }
 
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px
+        .ps {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin-top: 12px;
+            margin-bottom: 46px;
+            max-width: 480px;
+            line-height: 1.72
         }
 
-        .work-card {
+        .wgrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 65px
+        }
+
+        .wc {
             position: relative;
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
             aspect-ratio: 16/10;
             cursor: pointer;
-            background: var(--card);
-            group: true
+            display: block;
+            background: var(--glass)
         }
 
-        .work-card-img {
+        .wci {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.7s ease
+            transition: transform 0.65s ease
         }
 
-        .work-card:hover .work-card-img {
+        .wc:hover .wci {
             transform: scale(1.06)
         }
 
-        .work-overlay {
+        .wco {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(11, 18, 32, 0.95) 0%, rgba(11, 18, 32, 0.2) 60%, transparent 100%);
+            background: linear-gradient(to top, rgba(4, 8, 15, 0.97) 0%, rgba(4, 8, 15, 0.12) 55%, transparent 100%);
             opacity: 0;
-            transition: opacity 0.4s;
+            transition: opacity 0.38s;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 28px
+            padding: 24px
         }
 
-        .work-card:hover .work-overlay {
+        .wc:hover .wco {
             opacity: 1
         }
 
-        .work-tag {
-            font-size: 0.6rem;
+        .wct {
+            font-size: 0.57rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--blue2);
-            margin-bottom: 8px;
-            font-weight: 600
+            margin-bottom: 6px;
+            font-weight: 700
         }
 
-        .work-name {
+        .wcn {
             font-family: 'Syne', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #fff;
             margin-bottom: 12px
         }
 
-        .work-btn {
+        .wcb {
             display: inline-flex;
             align-items: center;
             gap: 6px;
             background: var(--blue);
             color: #fff;
-            padding: 8px 18px;
+            padding: 7px 16px;
             border-radius: 6px;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: all 0.3s;
-            width: fit-content
+            font-size: 0.68rem;
+            font-weight: 700;
+            width: fit-content;
+            transition: background 0.2s
         }
 
-        .work-btn:hover {
+        .wcb:hover {
             background: #1557c0
         }
 
-        /* live badge always visible */
-        .live-pill {
+        .lbadge {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            background: rgba(30, 110, 245, 0.9);
+            top: 14px;
+            right: 14px;
+            background: rgba(30, 110, 245, 0.85);
             backdrop-filter: blur(10px);
             color: #fff;
-            font-size: 0.58rem;
-            font-weight: 700;
+            font-size: 0.55rem;
+            font-weight: 800;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
             display: flex;
             align-items: center;
-            gap: 5px
+            gap: 4px
         }
 
-        .live-pill::before {
+        .lbadge::before {
             content: '';
             width: 5px;
             height: 5px;
             background: #4ade80;
             border-radius: 50%;
-            animation: blink 1.5s infinite
+            animation: lb 1.5s infinite
         }
 
-        @keyframes blink {
+        @keyframes lb {
 
             0%,
             100% {
@@ -567,971 +702,1113 @@
             }
         }
 
-        /* ─── SERVICES PAGE ─────────────────────────────── */
-        .services-page {
-            padding: 60px 40px 80px
+        /* TESTIMONIALS */
+        .tb h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 22px
         }
 
-        .services-grid {
+        .tgrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px
+        }
+
+        .tc {
+            background: var(--glass);
+            border: 1px solid var(--gb);
+            border-radius: 14px;
+            padding: 26px;
+            backdrop-filter: blur(8px);
+            transition: border-color 0.3s
+        }
+
+        .tc:hover {
+            border-color: rgba(30, 110, 245, 0.28)
+        }
+
+        .tc p {
+            font-size: 0.86rem;
+            line-height: 1.75;
+            color: var(--muted);
+            margin-bottom: 18px;
+            font-style: italic
+        }
+
+        .tcn {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.84rem;
+            font-weight: 700
+        }
+
+        .tcr {
+            font-size: 0.7rem;
+            color: var(--blue);
+            margin-top: 2px
+        }
+
+        /* PRICING */
+        .pp {
+            padding: 55px 36px 80px
+        }
+
+        .pgrid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
-            margin-top: 60px
+            margin-bottom: 50px
         }
 
-        .svc-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 40px 32px;
-            transition: all 0.35s;
+        .pcard {
+            background: var(--glass);
+            border: 1px solid var(--gb);
+            border-radius: 20px;
+            padding: 38px 30px;
+            backdrop-filter: blur(14px);
+            transition: all 0.4s;
             position: relative;
             overflow: hidden
         }
 
-        .svc-card::before {
+        .pcard-pop {
+            border-color: rgba(30, 110, 245, 0.45);
+            background: rgba(30, 110, 245, 0.07)
+        }
+
+        .pcard::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 3px;
-            background: var(--blue);
-            transform: scaleX(0);
-            transition: transform 0.4s;
-            transform-origin: left
+            background: var(--gb);
+            transition: background 0.4s
         }
 
-        .svc-card:hover::before {
-            transform: scaleX(1)
+        .pcard-pop::before {
+            background: linear-gradient(90deg, var(--blue), var(--blue2))
         }
 
-        .svc-card:hover {
-            border-color: rgba(30, 110, 245, 0.25);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3)
+        .pcard:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35)
         }
 
-        .svc-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(30, 110, 245, 0.12);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--blue);
-            font-size: 1.3rem;
-            margin-bottom: 22px
+        .pcard-pop:hover {
+            box-shadow: 0 24px 60px var(--blue-glow)
         }
 
-        .svc-card h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 12px
-        }
-
-        .svc-card p {
-            color: var(--muted);
-            font-size: 0.88rem;
-            line-height: 1.75;
-            margin-bottom: 24px
-        }
-
-        .svc-price {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--blue);
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
-            display: block
-        }
-
-        .svc-price small {
-            font-size: 0.7rem;
-            color: var(--muted);
-            font-weight: 400;
-            font-family: 'Plus Jakarta Sans', sans-serif
-        }
-
-        .process-section {
-            margin-top: 80px
-        }
-
-        .process-section h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 40px
-        }
-
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px
-        }
-
-        .step {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 30px 24px;
-            text-align: center;
-            position: relative
-        }
-
-        .step-num {
-            width: 52px;
-            height: 52px;
+        .ppill {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             background: var(--blue);
             color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Syne', sans-serif;
-            font-size: 1.1rem;
+            font-size: 0.58rem;
             font-weight: 800;
-            margin: 0 auto 18px
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px
         }
 
-        .step h4 {
+        .ptier {
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 16px
+        }
+
+        .pprice {
             font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            margin-bottom: 6px
+        }
+
+        .pprice span {
             font-size: 1rem;
+            font-weight: 500;
+            color: var(--muted);
+            margin-bottom: 4px
+        }
+
+        .pname {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
             font-weight: 700;
             margin-bottom: 10px
         }
 
-        .step p {
+        .pdesc {
             color: var(--muted);
             font-size: 0.82rem;
-            line-height: 1.65
+            line-height: 1.65;
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--gb)
         }
 
-        /* ─── CONTACT PAGE ─────────────────────────────── */
-        .contact-page {
-            padding: 60px 40px 80px
+        .pfeats {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            margin-bottom: 32px
         }
 
-        .contact-layout {
+        .pf {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.82rem;
+            line-height: 1.45
+        }
+
+        .pf::before {
+            content: '✓';
+            color: #4ade80;
+            font-weight: 700;
+            font-size: 0.78rem;
+            flex-shrink: 0;
+            margin-top: 1px
+        }
+
+        .pbtn {
+            width: 100%;
+            background: var(--glass);
+            border: 1px solid var(--gb);
+            color: var(--white);
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            font-family: 'Plus Jakarta Sans', sans-serif
+        }
+
+        .pcard-pop .pbtn {
+            background: var(--blue);
+            border-color: var(--blue);
+            color: #fff
+        }
+
+        .pbtn:hover {
+            transform: translateY(-1px)
+        }
+
+        .pcard-pop .pbtn:hover {
+            background: #1557c0;
+            box-shadow: 0 10px 30px var(--blue-glow)
+        }
+
+        .pbtn:not(.pcard-pop .pbtn):hover {
+            background: rgba(255, 255, 255, 0.09)
+        }
+
+        .addon {
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), rgba(201, 168, 76, 0.04));
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 16px;
+            padding: 32px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap
+        }
+
+        .addon h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px
+        }
+
+        .addon h4 span {
+            color: var(--gold)
+        }
+
+        .addon p {
+            color: var(--muted);
+            font-size: 0.84rem;
+            line-height: 1.65;
+            max-width: 500px
+        }
+
+        .addonp {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gold);
+            white-space: nowrap
+        }
+
+        .addonp small {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--muted);
+            display: block;
+            font-family: 'Plus Jakarta Sans', sans-serif
+        }
+
+        .maint {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.82rem;
+            margin-top: 28px;
+            padding: 20px;
+            border: 1px solid var(--gb);
+            border-radius: 12px;
+            background: var(--glass)
+        }
+
+        /* CONTACT */
+        .cp {
+            padding: 55px 36px 80px
+        }
+
+        .cl {
             display: grid;
-            grid-template-columns: 1fr 1.1fr;
+            grid-template-columns: 1fr 1.15fr;
             gap: 40px;
-            margin-top: 60px;
+            margin-top: 0;
             align-items: start
         }
 
-        .contact-left h3 {
+        .cll h3 {
             font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 14px
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            letter-spacing: -0.3px
         }
 
-        .contact-left p {
+        .cll p {
             color: var(--muted);
-            line-height: 1.8;
-            margin-bottom: 40px;
-            font-size: 0.92rem
+            line-height: 1.82;
+            margin-bottom: 36px;
+            font-size: 0.9rem
         }
 
-        .contact-items {
+        .cinfos {
             display: flex;
             flex-direction: column;
-            gap: 20px
+            gap: 14px;
+            margin-bottom: 30px
         }
 
-        .citem {
+        .ci {
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 18px 20px;
-            background: var(--card);
-            border: 1px solid var(--border);
+            gap: 14px;
+            padding: 16px 18px;
+            background: var(--glass);
+            border: 1px solid var(--gb);
             border-radius: 12px;
-            transition: border-color 0.3s
+            transition: border-color 0.3s;
+            backdrop-filter: blur(8px)
         }
 
-        .citem:hover {
-            border-color: rgba(30, 110, 245, 0.3)
+        .ci:hover {
+            border-color: rgba(30, 110, 245, 0.28)
         }
 
-        .citem-icon {
-            width: 40px;
-            height: 40px;
+        .cic {
+            width: 38px;
+            height: 38px;
             background: rgba(30, 110, 245, 0.12);
-            border-radius: 10px;
+            border-radius: 9px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--blue);
-            font-size: 1rem;
+            font-size: 0.95rem;
             flex-shrink: 0
         }
 
-        .citem-label {
-            font-size: 0.65rem;
+        .cil {
+            font-size: 0.62rem;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: var(--muted);
             display: block;
-            margin-bottom: 3px
+            margin-bottom: 2px
         }
 
-        .citem-val {
-            font-size: 0.9rem;
-            color: var(--white);
+        .civ {
+            font-size: 0.88rem;
             font-weight: 500
         }
 
-        .wa-big {
+        .wabig {
             display: flex;
             align-items: center;
             gap: 12px;
             background: #25D366;
             color: #fff;
-            padding: 16px 24px;
+            padding: 15px 24px;
             border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-top: 24px;
+            font-size: 0.88rem;
+            font-weight: 700;
             transition: all 0.3s;
-            width: fit-content
+            width: 100%;
+            font-family: 'Plus Jakarta Sans', sans-serif
         }
 
-        .wa-big:hover {
+        .wabig:hover {
             background: #1aad53;
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3)
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.28)
         }
 
-        .contact-form {
-            background: var(--card);
-            border: 1px solid var(--border);
+        .cfw {
+            background: var(--glass);
+            border: 1px solid var(--gb);
             border-radius: 20px;
-            padding: 40px
+            padding: 36px;
+            backdrop-filter: blur(14px)
         }
 
-        .form-group {
-            margin-bottom: 20px
+        .cfw h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 26px
         }
 
-        .form-group label {
-            font-size: 0.7rem;
-            letter-spacing: 1.5px;
+        .fg {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-bottom: 16px
+        }
+
+        .fg label {
+            font-size: 0.62rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--muted);
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500
+            font-weight: 600
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
+        .fg input,
+        .fg select,
+        .fg textarea {
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border);
+            border: 1px solid var(--gb);
             color: var(--white);
-            padding: 13px 16px;
-            border-radius: 10px;
+            padding: 12px 15px;
+            border-radius: 9px;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.86rem;
             outline: none;
-            transition: border-color 0.3s
+            transition: border-color 0.28s;
+            width: 100%
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
+        .fg input:focus,
+        .fg select:focus,
+        .fg textarea:focus {
             border-color: rgba(30, 110, 245, 0.5)
         }
 
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
+        .fg input::placeholder,
+        .fg textarea::placeholder {
             color: var(--muted)
         }
 
-        .form-group select option {
-            background: var(--navy)
+        .fg select option {
+            background: var(--bg)
         }
 
-        .form-group textarea {
-            min-height: 120px;
+        .fg textarea {
+            min-height: 110px;
             resize: vertical
         }
 
-        .form-row {
+        .fgr {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px
+            gap: 14px
         }
 
-        .form-submit {
+        .fsub {
             width: 100%;
             background: var(--blue);
             color: #fff;
-            padding: 16px;
+            padding: 15px;
             border-radius: 10px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.86rem;
+            font-weight: 700;
             transition: all 0.3s;
-            margin-top: 6px
+            margin-top: 4px;
+            font-family: 'Plus Jakarta Sans', sans-serif
         }
 
-        .form-submit:hover {
+        .fsub:hover {
             background: #1557c0;
             transform: translateY(-1px);
-            box-shadow: 0 12px 35px rgba(30, 110, 245, 0.35)
+            box-shadow: 0 12px 35px var(--blue-glow)
         }
 
-        .testimonials-row {
-            margin-top: 80px
+        .fsub:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none
         }
 
-        .testimonials-row h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 35px
+        .fmsg {
+            display: none;
+            padding: 14px 18px;
+            border-radius: 9px;
+            font-size: 0.84rem;
+            font-weight: 500;
+            margin-top: 12px;
+            text-align: center
         }
 
-        .test-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px
+        .fmsg.ok {
+            background: rgba(74, 222, 128, 0.12);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            color: #4ade80;
+            display: block
         }
 
-        .test-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 28px;
-            transition: border-color 0.3s
+        .fmsg.err {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #f87171;
+            display: block
         }
 
-        .test-card:hover {
-            border-color: rgba(30, 110, 245, 0.25)
+        /* FLOAT WA */
+        .fwa {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 300;
+            background: #25D366;
+            color: #fff;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 28px rgba(37, 211, 102, 0.42);
+            transition: all 0.3s;
+            animation: wap 0.7s 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) both
         }
 
-        .test-card p {
-            font-size: 0.88rem;
-            line-height: 1.75;
-            color: var(--muted);
-            margin-bottom: 20px;
-            font-style: italic
+        .fwa:hover {
+            transform: scale(1.12)
         }
 
-        .test-author {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--white)
+        @keyframes wap {
+            from {
+                transform: scale(0);
+                opacity: 0
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1
+            }
         }
 
-        .test-role {
-            font-size: 0.72rem;
-            color: var(--blue);
-            margin-top: 2px
-        }
-
-        /* ─── FOOTER ─────────────────────────────────────── */
         footer {
-            background: #080e1a;
-            border-top: 1px solid var(--border);
-            padding: 30px 40px;
+            background: #020509;
+            border-top: 1px solid var(--gb);
+            padding: 26px 36px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px
+            gap: 12px
         }
 
-        .footer-logo {
+        .fl {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: 1rem;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
             gap: 8px
         }
 
         footer p {
-            font-size: 0.75rem;
-            color: var(--muted)
-        }
-
-        /* ─── ABOUT (HOME SECTION) ───────────────────────── */
-        .about-strip {
-            padding: 80px 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center
-        }
-
-        .about-strip-left h2 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            letter-spacing: -1px;
-            line-height: 1.15;
-            margin-bottom: 22px
-        }
-
-        .about-strip-left h2 em {
-            font-style: italic;
-            color: var(--blue)
-        }
-
-        .about-strip-left p {
-            color: var(--muted);
-            line-height: 1.85;
-            font-size: 0.92rem;
-            margin-bottom: 18px
-        }
-
-        .about-strip-right {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px
-        }
-
-        .about-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 28px
-        }
-
-        .about-card-num {
-            font-family: 'Syne', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--blue);
-            display: block;
-            line-height: 1;
-            margin-bottom: 6px
-        }
-
-        .about-card-label {
             font-size: 0.7rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
             color: var(--muted)
         }
 
-        /* ─── RESPONSIVE ─────────────────────────────────── */
-        @media(max-width:900px) {
-            .services-grid {
-                grid-template-columns: 1fr 1fr
-            }
+        [dir="rtl"] .hstats {
+            flex-direction: row-reverse
+        }
 
-            .process-steps {
-                grid-template-columns: 1fr 1fr
-            }
+        [dir="rtl"] .hbtns {
+            flex-direction: row-reverse
+        }
 
-            .work-grid {
+        @media(max-width:960px) {
+            .pgrid {
                 grid-template-columns: 1fr
             }
 
-            .contact-layout {
+            .cl {
                 grid-template-columns: 1fr
             }
 
-            .test-grid {
+            .ah {
                 grid-template-columns: 1fr
             }
 
-            .about-strip {
+            .wgrid {
+                grid-template-columns: 1fr
+            }
+
+            .tgrid {
                 grid-template-columns: 1fr
             }
         }
 
         @media(max-width:640px) {
             nav {
-                padding: 0 20px
+                padding: 0 16px
             }
 
             .nav-links {
                 display: none
             }
 
-            .nav-cta {
+            .nav-wa span {
                 display: none
             }
 
-            .hamburger {
+            .hb {
                 display: flex
             }
 
             .hero {
-                padding: 40px 20px 40px
+                padding: 36px 16px
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            h1.ht {
+                font-size: clamp(2.4rem, 10vw, 3.4rem);
                 letter-spacing: -1px
             }
 
-            .hero-stats {
-                gap: 24px
+            .hstats {
+                gap: 20px
             }
 
-            .hstat-num {
-                font-size: 1.8rem
+            .sn {
+                font-size: 1.65rem
             }
 
-            .work-page,
-            .services-page,
-            .contact-page {
-                padding: 40px 20px 60px
+            .wp,
+            .pp,
+            .cp {
+                padding: 36px 16px 60px
             }
 
-            .page-title {
-                font-size: 2.2rem
+            .ah {
+                padding: 55px 16px
             }
 
-            .services-grid {
-                grid-template-columns: 1fr
-            }
-
-            .process-steps {
-                grid-template-columns: 1fr 1fr
-            }
-
-            .about-strip {
-                padding: 50px 20px;
-                grid-template-columns: 1fr
-            }
-
-            .about-strip-right {
+            .agrid {
                 grid-template-columns: 1fr 1fr
             }
 
             footer {
-                padding: 25px 20px;
+                padding: 20px 16px;
                 flex-direction: column;
                 text-align: center
             }
 
-            .form-row {
-                grid-template-columns: 1fr
-            }
-
-            .hero-actions {
+            .hbtns {
                 flex-direction: column;
-                align-items: flex-start
+                align-items: flex-start;
+                width: 100%
             }
 
-            .btn-primary,
-            .btn-secondary {
+            .bb,
+            .bg {
                 width: 100%;
                 justify-content: center
             }
 
-            .work-card {
-                aspect-ratio: 4/3
+            .fgr {
+                grid-template-columns: 1fr
+            }
+
+            .fwa {
+                bottom: 18px;
+                right: 18px
+            }
+
+            .pcard {
+                padding: 28px 22px
+            }
+
+            .pprice {
+                font-size: 2.4rem
+            }
+
+            .addon {
+                flex-direction: column
+            }
+
+            .cfw {
+                padding: 24px 16px
             }
         }
     </style>
 </head>
 
 <body>
-
-    <!-- NAV -->
     <nav>
-        <div class="logo">
-            <div class="logo-dot"></div>Qimam
+        <div class="nav-logo">
+            <div class="logo-dot"></div><span data-i="logo">Qimam</span>
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="active" onclick="showPage('home',this)">Home</a></li>
-            <li><a href="#" onclick="showPage('work',this)">Our Work</a></li>
-            <li><a href="#" onclick="showPage('services',this)">Services</a></li>
-            <li><a href="#" onclick="showPage('contact',this)">Contact</a></li>
+            <li><a href="#" class="active" onclick="sp('home',this)" data-i="n1">Home</a></li>
+            <li><a href="#" onclick="sp('work',this)" data-i="n2">Our Work</a></li>
+            <li><a href="#" onclick="sp('pricing',this)" data-i="n3">Pricing</a></li>
+            <li><a href="#" onclick="sp('contact',this)" data-i="n4">Contact</a></li>
         </ul>
-        <button class="nav-cta" onclick="showPage('contact',null)">Start a Project</button>
-        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
+        <div class="nav-right">
+            <button class="lang-btn" id="lb" onclick="tl()">العربية</button>
+            <a href="https://wa.me/962790441000" target="_blank" class="nav-wa">
+                <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                </svg>
+                <span data-i="nwa">WhatsApp</span>
+            </a>
+            <div class="hb" id="hbtn" onclick="tm()"><span></span><span></span><span></span></div>
         </div>
     </nav>
-
-    <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#" onclick="showPage('home',null);toggleMenu()">Home</a>
-        <a href="#" onclick="showPage('work',null);toggleMenu()">Our Work</a>
-        <a href="#" onclick="showPage('services',null);toggleMenu()">Services</a>
-        <a href="#" onclick="showPage('contact',null);toggleMenu()">Contact</a>
-        <a href="https://wa.me/962790441000" target="_blank" class="mobile-cta">WhatsApp Us</a>
+    <div class="mob" id="mobm">
+        <a href="#" onclick="sp('home',null);tm()" data-i="n1">Home</a>
+        <a href="#" onclick="sp('work',null);tm()" data-i="n2">Our Work</a>
+        <a href="#" onclick="sp('pricing',null);tm()" data-i="n3">Pricing</a>
+        <a href="#" onclick="sp('contact',null);tm()" data-i="n4">Contact</a>
+        <a href="https://wa.me/962790441000" target="_blank" class="mob-wa">0790441000</a>
     </div>
+    <a href="https://wa.me/962790441000" target="_blank" class="fwa" title="WhatsApp"><svg width="26" height="26"
+            fill="currentColor" viewBox="0 0 24 24">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+        </svg></a>
 
-    <!-- ══════ PAGE: HOME ══════ -->
+    <!-- HOME -->
     <div id="page-home" class="page active">
-
         <section class="hero">
-            <div class="hero-bg-glow"></div>
-            <div class="hero-bg-glow2"></div>
-            <div class="hero-badge">Amman, Jordan · Premium Web Agency</div>
-            <h1>We Build Websites<br>That <span class="accent">Win</span> Clients<br>For <span class="outline">Your
-                    Business</span></h1>
-            <p class="hero-sub">Qimam Digital crafts high-performance websites for businesses across Jordan and the
-                region. Professional. Fast. Starting at 200 JOD.</p>
-            <div class="hero-actions">
-                <button class="btn-primary" onclick="showPage('work',null)">See Our Work →</button>
-                <button class="btn-secondary" onclick="showPage('contact',null)">Get a Free Quote</button>
-            </div>
-            <div class="hero-stats">
-                <div><span class="hstat-num">6+</span><span class="hstat-label">Live Projects</span></div>
-                <div><span class="hstat-num">200</span><span class="hstat-label">JOD Starting Price</span></div>
-                <div><span class="hstat-num">24h</span><span class="hstat-label">Prototype Delivery</span></div>
-                <div><span class="hstat-num">100%</span><span class="hstat-label">Client Satisfaction</span></div>
+            <div class="hgrid"></div>
+            <div class="orb o1"></div>
+            <div class="orb o2"></div>
+            <div class="orb o3"></div>
+            <div class="hc">
+                <div class="hbadge" id="hbg"><span data-i="hb">Amman, Jordan · Premium Web Agency</span></div>
+                <h1 class="ht" id="htt"><span data-i="h1">We Build</span> <span class="blue"
+                        data-i="h2">Websites</span><br><span data-i="h3">That</span> <span class="outline"
+                        data-i="h4">Win Clients</span><br><span data-i="h5">For Your Business</span></h1>
+                <p class="hsub" id="hss" data-i="hs">Qimam Digital crafts high-performance websites for businesses
+                    across Jordan. Professional. Fast. Starting at 200 JOD.</p>
+                <div class="hbtns" id="hbs">
+                    <button class="bb" onclick="sp('work',null)" data-i="hc1">See Our Work →</button>
+                    <button class="bg" onclick="sp('pricing',null)" data-i="hc2">View Pricing</button>
+                </div>
+                <div class="hstats" id="hst">
+                    <div><span class="sn">200</span><span class="sl" data-i="s1">JOD Starting Price</span></div>
+                    <div><span class="sn">6+</span><span class="sl" data-i="s2">Live Projects</span></div>
+                    <div><span class="sn">24h</span><span class="sl" data-i="s3">Free Prototype</span></div>
+                    <div><span class="sn">100%</span><span class="sl" data-i="s4">Satisfaction</span></div>
+                </div>
             </div>
         </section>
-
-        <div class="marquee-section">
-            <div class="marq-inner">
-                <span class="marq-item">Web Design</span><span class="marq-dot">·</span>
-                <span class="marq-item">Development</span><span class="marq-dot">·</span>
-                <span class="marq-item">Mobile Responsive</span><span class="marq-dot">·</span>
-                <span class="marq-item">SEO Ready</span><span class="marq-dot">·</span>
-                <span class="marq-item">Fast Delivery</span><span class="marq-dot">·</span>
-                <span class="marq-item">Amman, Jordan</span><span class="marq-dot">·</span>
-                <span class="marq-item">Web Design</span><span class="marq-dot">·</span>
-                <span class="marq-item">Development</span><span class="marq-dot">·</span>
-                <span class="marq-item">Mobile Responsive</span><span class="marq-dot">·</span>
-                <span class="marq-item">SEO Ready</span><span class="marq-dot">·</span>
-                <span class="marq-item">Fast Delivery</span><span class="marq-dot">·</span>
-                <span class="marq-item">Amman, Jordan</span><span class="marq-dot">·</span>
-            </div>
+        <div class="marq">
+            <div class="mt"><span class="mi" data-i="m1">Web Design</span><span class="md">·</span><span class="mi"
+                    data-i="m2">Development</span><span class="md">·</span><span class="mi" data-i="m3">Arabic
+                    First</span><span class="md">·</span><span class="mi" data-i="m4">Mobile Friendly</span><span
+                    class="md">·</span><span class="mi" data-i="m5">SEO Ready</span><span class="md">·</span><span
+                    class="mi">Amman</span><span class="md">·</span><span class="mi" data-i="m1">Web Design</span><span
+                    class="md">·</span><span class="mi" data-i="m2">Development</span><span class="md">·</span><span
+                    class="mi" data-i="m3">Arabic First</span><span class="md">·</span><span class="mi"
+                    data-i="m4">Mobile Friendly</span><span class="md">·</span><span class="mi" data-i="m5">SEO
+                    Ready</span><span class="md">·</span><span class="mi">Amman</span><span class="md">·</span></div>
         </div>
-
-        <div class="about-strip">
-            <div class="about-strip-left">
-                <h2>Built for businesses that want to <em>grow online</em></h2>
-                <p>We combine sharp design with solid engineering to deliver websites that don't just look good — they
-                    convert visitors into customers. Every project is built from scratch, tailored to your brand.</p>
-                <p>Based in Amman, we understand the Jordanian market. We build bilingual Arabic/English sites,
-                    fast-loading on all devices, hosted and maintained by us.</p>
-                <button class="btn-primary" style="margin-top:10px" onclick="showPage('services',null)">View Services
+        <div class="ah gs-r">
+            <div class="ahl">
+                <h2 data-i="ah2">Built for businesses that want to <em>grow online</em></h2>
+                <p data-i="ap1">We combine sharp design with solid engineering to deliver websites that convert visitors
+                    into customers. Every project built from scratch for your brand.</p>
+                <p data-i="ap2">Based in Amman — bilingual Arabic/English, fast on all devices, maintained for just 10
+                    JOD per quarter.</p>
+                <button class="bb" style="margin-top:20px" onclick="sp('pricing',null)" data-i="ac">View Pricing
                     →</button>
             </div>
-            <div class="about-strip-right">
-                <div class="about-card"><span class="about-card-num">200</span><span class="about-card-label">JOD Full
-                        Website</span></div>
-                <div class="about-card"><span class="about-card-num">10</span><span class="about-card-label">JOD /
-                        Quarter Maintenance</span></div>
-                <div class="about-card"><span class="about-card-num">24h</span><span class="about-card-label">Free
-                        Prototype</span></div>
-                <div class="about-card"><span class="about-card-num">∞</span><span class="about-card-label">Pages &
-                        Sections</span></div>
+            <div class="agrid">
+                <div class="gc gs-r"><span class="gcn">200</span><span class="gcl" data-i="g1">JOD Full Website</span>
+                </div>
+                <div class="gc gs-r"><span class="gcn">10</span><span class="gcl" data-i="g2">JOD / Quarter</span></div>
+                <div class="gc gs-r"><span class="gcn">24h</span><span class="gcl" data-i="g3">Free Prototype</span>
+                </div>
+                <div class="gc gs-r"><span class="gcn">∞</span><span class="gcl" data-i="g4">Pages & Revisions</span>
+                </div>
             </div>
         </div>
-
         <footer>
-            <div class="footer-logo">
+            <div class="fl">
                 <div class="logo-dot"></div>Qimam Digital
             </div>
-            <p>Amman, Jordan · hello@qimamdigital.com</p>
-            <p>© 2025 Qimam Digital. All rights reserved.</p>
+            <p data-i="ft">Amman, Jordan</p>
+            <p>© 2025 Qimam Digital</p>
         </footer>
     </div>
 
-    <!-- ══════ PAGE: WORK ══════ -->
+    <!-- WORK -->
     <div id="page-work" class="page">
-        <div class="work-page">
-            <div class="page-header">
-                <span class="page-eyebrow">// Our Portfolio</span>
-                <h2 class="page-title">Work That <span class="accent">Speaks</span></h2>
-                <p style="color:var(--muted);font-size:0.92rem;margin-top:14px;max-width:500px">Every website below is
-                    live, custom-built, and delivered to a real client. Click any card to open the live site.</p>
-            </div>
-
-            <div class="work-grid">
-
-                <!-- Pinnacle Properties -->
+        <div class="wp">
+            <span class="pey" data-i="we">// Our Portfolio</span>
+            <h2 class="pt"><span data-i="wh1">Work That </span><span class="blue" data-i="wh2">Speaks</span></h2>
+            <p class="ps" data-i="ws">Every site is live, custom-built, and delivered to a real client. Click to open.
+            </p>
+            <div class="wgrid">
                 <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/pinnacle-properties" target="_blank"
-                    rel="noopener" class="work-card">
-                    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=85"
-                        alt="Pinnacle Properties" class="work-card-img">
-                    <div class="live-pill">Live Site</div>
-                    <div class="work-overlay">
-                        <div class="work-tag">Real Estate · Luxury</div>
-                        <div class="work-name">Pinnacle Properties</div>
-                        <div class="work-btn">View Live Site →</div>
+                    class="wc gs-r"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=85"
+                        class="wci" alt="Pinnacle">
+                    <div class="lbadge">Live</div>
+                    <div class="wco">
+                        <div class="wct" data-i="wt1">Real Estate · Luxury</div>
+                        <div class="wcn">Pinnacle Properties</div>
+                        <div class="wcb" data-i="wsl">View Live →</div>
                     </div>
                 </a>
-
-                <!-- Lumière Clinic -->
                 <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/lumiere-clinic" target="_blank"
-                    rel="noopener" class="work-card">
-                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=900&q=85"
-                        alt="Lumière Clinic" class="work-card-img">
-                    <div class="live-pill">Live Site</div>
-                    <div class="work-overlay">
-                        <div class="work-tag">Medical · Aesthetic</div>
-                        <div class="work-name">Lumière Clinic</div>
-                        <div class="work-btn">View Live Site →</div>
+                    class="wc gs-r"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=900&q=85"
+                        class="wci" alt="Lumiere">
+                    <div class="lbadge">Live</div>
+                    <div class="wco">
+                        <div class="wct" data-i="wt2">Medical · Aesthetic</div>
+                        <div class="wcn">Lumière Clinic</div>
+                        <div class="wcb" data-i="wsl">View Live →</div>
                     </div>
                 </a>
-
-                <!-- Oud & Oak Restaurant -->
                 <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/oud-oak-restaurant" target="_blank"
-                    rel="noopener" class="work-card">
-                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85"
-                        alt="Oud & Oak Restaurant" class="work-card-img">
-                    <div class="live-pill">Live Site</div>
-                    <div class="work-overlay">
-                        <div class="work-tag">Restaurant · Fine Dining</div>
-                        <div class="work-name">Oud & Oak Restaurant</div>
-                        <div class="work-btn">View Live Site →</div>
+                    class="wc gs-r"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85"
+                        class="wci" alt="Oud Oak">
+                    <div class="lbadge">Live</div>
+                    <div class="wco">
+                        <div class="wct" data-i="wt3">Restaurant · Fine Dining</div>
+                        <div class="wcn">Oud & Oak Restaurant</div>
+                        <div class="wcb" data-i="wsl">View Live →</div>
                     </div>
                 </a>
-
-                <!-- Form & Ground Studio -->
                 <a href="https://QimamDigital.github.io/Qimam-Digital-Portfolio/form-ground-studio" target="_blank"
-                    rel="noopener" class="work-card">
-                    <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=900&q=85"
-                        alt="Form & Ground Studio" class="work-card-img">
-                    <div class="live-pill">Live Site</div>
-                    <div class="work-overlay">
-                        <div class="work-tag">Architecture · Studio</div>
-                        <div class="work-name">Form & Ground Studio</div>
-                        <div class="work-btn">View Live Site →</div>
+                    class="wc gs-r"><img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=900&q=85"
+                        class="wci" alt="Form Ground">
+                    <div class="lbadge">Live</div>
+                    <div class="wco">
+                        <div class="wct" data-i="wt4">Architecture · Studio</div>
+                        <div class="wcn">Form & Ground Studio</div>
+                        <div class="wcb" data-i="wsl">View Live →</div>
                     </div>
                 </a>
-
-                <!-- Polyclicks -->
-                <a href="https://polyclicks.xyz" target="_blank" rel="noopener" class="work-card">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=85" alt="Polyclicks"
-                        class="work-card-img">
-                    <div class="live-pill">Live Site</div>
-                    <div class="work-overlay">
-                        <div class="work-tag">Digital Marketing · Tech</div>
-                        <div class="work-name">Polyclicks</div>
-                        <div class="work-btn">View Live Site →</div>
+                <a href="https://polyclicks.xyz" target="_blank" class="wc gs-r"><img
+                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=85" class="wci"
+                        alt="Polyclicks">
+                    <div class="lbadge">Live</div>
+                    <div class="wco">
+                        <div class="wct" data-i="wt5">Digital Marketing</div>
+                        <div class="wcn">Polyclicks</div>
+                        <div class="wcb" data-i="wsl">View Live →</div>
                     </div>
                 </a>
-
             </div>
-        </div>
-
-        <footer>
-            <div class="footer-logo">
-                <div class="logo-dot"></div>Qimam Digital
-            </div>
-            <p>Amman, Jordan · hello@qimamdigital.com</p>
-            <p>© 2025 Qimam Digital. All rights reserved.</p>
-        </footer>
-    </div>
-
-    <!-- ══════ PAGE: SERVICES ══════ -->
-    <div id="page-services" class="page">
-        <div class="services-page">
-            <div class="page-header">
-                <span class="page-eyebrow">// What We Offer</span>
-                <h2 class="page-title">Simple Pricing.<br><span class="accent">Serious Quality.</span></h2>
-            </div>
-
-            <div class="services-grid">
-                <div class="svc-card">
-                    <div class="svc-icon">
-                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
-                            viewBox="0 0 24 24">
-                            <rect x="3" y="3" width="18" height="18" rx="2" />
-                            <path d="M3 9h18M9 21V9" />
-                        </svg>
+            <div class="tb gs-r">
+                <h3 data-i="th">What Clients Say</h3>
+                <div class="tgrid">
+                    <div class="tc">
+                        <p data-i="tq1">"Qimam transformed our online presence. Fast, beautiful, already bringing in new
+                            customers."</p>
+                        <div class="tcn">CEO, Pinnacle Properties</div>
+                        <div class="tcr" data-i="tr1">Real Estate · Amman</div>
                     </div>
-                    <h3>Premium Website Build</h3>
-                    <p>Full custom design and development — homepage, about, services, contact, gallery. Built from
-                        scratch for your brand. No templates.</p>
-                    <span class="svc-price">200 JOD <small>one-time</small></span>
-                </div>
-                <div class="svc-card">
-                    <div class="svc-icon">
-                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
-                            viewBox="0 0 24 24">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                        </svg>
+                    <div class="tc">
+                        <p data-i="tq2">"Professional, delivered fast, and they understood our brand perfectly."</p>
+                        <div class="tcn">Director, Lumière Clinic</div>
+                        <div class="tcr" data-i="tr2">Medical · Sweifieh</div>
                     </div>
-                    <h3>Quarterly Maintenance</h3>
-                    <p>Keep your website live, updated, and secure. We handle hosting, performance, and any content
-                        changes every 3 months.</p>
-                    <span class="svc-price">10 JOD <small>/ quarter</small></span>
-                </div>
-                <div class="svc-card">
-                    <div class="svc-icon">
-                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
-                            viewBox="0 0 24 24">
-                            <path d="M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5" />
-                        </svg>
+                    <div class="tc">
+                        <p data-i="tq3">"Free prototype in 24 hours before we paid anything. That's rare."</p>
+                        <div class="tcn">Owner, Form & Ground</div>
+                        <div class="tcr" data-i="tr3">Architecture · Amman</div>
                     </div>
-                    <h3>Custom Web Solutions</h3>
-                    <p>E-commerce stores, booking systems, multi-page corporate sites, and custom web apps. Scoped per
-                        project.</p>
-                    <span class="svc-price">Custom <small>priced on request</small></span>
-                </div>
-            </div>
-
-            <div class="process-section">
-                <h3>How We Work</h3>
-                <div class="process-steps">
-                    <div class="step">
-                        <div class="step-num">1</div>
-                        <h4>Discover</h4>
-                        <p>We learn your business, your goals, and what your customers need from your site.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-num">2</div>
-                        <h4>Design</h4>
-                        <p>We build a free prototype within 24 hours so you can see your site before paying anything.
-                        </p>
-                    </div>
-                    <div class="step">
-                        <div class="step-num">3</div>
-                        <h4>Build</h4>
-                        <p>Once approved, we code and polish everything from scratch. Fast, clean, responsive.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-num">4</div>
-                        <h4>Launch</h4>
-                        <p>We go live and hand you full control. Ongoing maintenance is available for just 10
-                            JOD/quarter.</p>
+                    <div class="tc">
+                        <p data-i="tq4">"200 JOD for this quality? Our old agency charged 800 for half the result."</p>
+                        <div class="tcn">Manager, Oud & Oak</div>
+                        <div class="tcr" data-i="tr4">Restaurant · Abdoun</div>
                     </div>
                 </div>
             </div>
         </div>
-
         <footer>
-            <div class="footer-logo">
+            <div class="fl">
                 <div class="logo-dot"></div>Qimam Digital
             </div>
-            <p>Amman, Jordan · hello@qimamdigital.com</p>
-            <p>© 2025 Qimam Digital. All rights reserved.</p>
+            <p data-i="ft">Amman, Jordan</p>
+            <p>© 2025 Qimam Digital</p>
         </footer>
     </div>
 
-    <!-- ══════ PAGE: CONTACT ══════ -->
+    <!-- PRICING -->
+    <div id="page-pricing" class="page">
+        <div class="pp">
+            <span class="pey" data-i="pe">// Pricing Plans</span>
+            <h2 class="pt"><span data-i="ph1">Simple Pricing.</span><br><span class="blue" data-i="ph2">Serious
+                    Quality.</span></h2>
+            <p class="ps" data-i="pss">No hidden fees. No contracts. Free prototype before you pay.</p>
+            <div class="pgrid">
+                <div class="pcard gs-r"><span class="ptier" data-i="pt1">Starter</span>
+                    <div class="pprice">200 <span>JOD</span></div>
+                    <div class="pname" data-i="pn1">Essential Website</div>
+                    <p class="pdesc" data-i="pd1">Perfect for small businesses, clinics, and shops needing a
+                        professional online presence.</p>
+                    <div class="pfeats">
+                        <div class="pf" data-i="f11">Arabic-first design</div>
+                        <div class="pf" data-i="f12">Mobile responsive design</div>
+                        <div class="pf" data-i="f13">Contact form</div>
+                        <div class="pf" data-i="f14">WhatsApp button</div>
+                        <div class="pf" data-i="f15">Up to 5 pages</div>
+                        <div class="pf" data-i="f16">Free 24h prototype</div>
+                    </div><button class="pbtn" onclick="sp('contact',null)" data-i="pb">Get Started</button>
+                </div>
+                <div class="pcard pcard-pop gs-r">
+                    <div class="ppill" data-i="pop">Most Popular</div><span class="ptier" data-i="pt2">Growth</span>
+                    <div class="pprice">400 <span>JOD</span></div>
+                    <div class="pname" data-i="pn2">SEO Power Website</div>
+                    <p class="pdesc" data-i="pd2">Everything in Starter, plus full SEO and AI SEO so customers find you
+                        on Google.</p>
+                    <div class="pfeats">
+                        <div class="pf" data-i="f21">Everything in Starter</div>
+                        <div class="pf" data-i="f22">Full SEO optimization</div>
+                        <div class="pf" data-i="f23">AI SEO optimization</div>
+                        <div class="pf" data-i="f24">Google Business setup</div>
+                        <div class="pf" data-i="f25">Speed optimization</div>
+                        <div class="pf" data-i="f26">Up to 8 pages</div>
+                    </div><button class="pbtn" onclick="sp('contact',null)" data-i="pb">Get Started</button>
+                </div>
+                <div class="pcard gs-r"><span class="ptier" data-i="pt3">Premium</span>
+                    <div class="pprice">600 <span>JOD</span></div>
+                    <div class="pname" data-i="pn3">Full Business Website</div>
+                    <p class="pdesc" data-i="pd3">The complete package — SEO, online booking, advanced animations,
+                        everything a serious business needs.</p>
+                    <div class="pfeats">
+                        <div class="pf" data-i="f31">Everything in Growth</div>
+                        <div class="pf" data-i="f32">Online booking system</div>
+                        <div class="pf" data-i="f33">Advanced animations</div>
+                        <div class="pf" data-i="f34">Multi-language support</div>
+                        <div class="pf" data-i="f35">Unlimited pages</div>
+                        <div class="pf" data-i="f36">Priority support</div>
+                    </div><button class="pbtn" onclick="sp('contact',null)" data-i="pb">Get Started</button>
+                </div>
+            </div>
+            <div class="addon gs-r">
+                <div>
+                    <h4><span>✦</span> <span data-i="adh">AI Chatbot Add-on</span></h4>
+                    <p data-i="adp">A custom AI chatbot answering customer questions 24/7, capturing leads
+                        automatically, in Arabic and English. Works on any plan.</p>
+                </div>
+                <div>
+                    <div class="addonp">+150 <small data-i="ads">JOD one-time setup</small></div>
+                </div>
+            </div>
+            <p class="maint" data-i="mn">All plans include quarterly maintenance for just <strong
+                    style="color:var(--white)">10 JOD / quarter</strong> — hosting, updates, and content changes.</p>
+        </div>
+        <footer>
+            <div class="fl">
+                <div class="logo-dot"></div>Qimam Digital
+            </div>
+            <p data-i="ft">Amman, Jordan</p>
+            <p>© 2025 Qimam Digital</p>
+        </footer>
+    </div>
+
+    <!-- CONTACT -->
     <div id="page-contact" class="page">
-        <div class="contact-page">
-            <div class="page-header">
-                <span class="page-eyebrow">// Get in Touch</span>
-                <h2 class="page-title">Let's Build<br><span class="accent">Something Great</span></h2>
-            </div>
-
-            <div class="contact-layout">
-                <div class="contact-left">
-                    <h3>Ready to get started?</h3>
-                    <p>We respond within a few hours. Tell us about your business and we'll prepare a free prototype so
-                        you can see your website before paying a single dinar.</p>
-                    <div class="contact-items">
-                        <div class="citem">
-                            <div class="citem-icon">📞</div>
-                            <div><span class="citem-label">Phone & WhatsApp</span><span class="citem-val">+962 79 044
+        <div class="cp">
+            <span class="pey" data-i="ce">// Start a Project</span>
+            <h2 class="pt"><span data-i="ch1">Let's Build</span><br><span class="blue" data-i="ch2">Something
+                    Great</span></h2>
+            <p class="ps" data-i="css">Fill the form and we'll respond within a few hours. Free prototype before you
+                pay.</p>
+            <div class="cl">
+                <div class="cll gs-r">
+                    <h3 data-i="clh">Ready to start?</h3>
+                    <p data-i="clp">Tell us about your business and we'll prepare a free prototype so you see exactly
+                        what your website looks like before paying anything.</p>
+                    <div class="cinfos">
+                        <div class="ci">
+                            <div class="cic">📞</div>
+                            <div><span class="cil" data-i="ci1">Phone & WhatsApp</span><span class="civ">+962 79 044
                                     1000</span></div>
                         </div>
-                        <div class="citem">
-                            <div class="citem-icon">✉</div>
-                            <div><span class="citem-label">Email</span><span
-                                    class="citem-val">hello@qimamdigital.com</span></div>
-                        </div>
-                        <div class="citem">
-                            <div class="citem-icon">📍</div>
-                            <div><span class="citem-label">Location</span><span class="citem-val">Amman, Jordan</span>
-                            </div>
+                        <div class="ci">
+                            <div class="cic">📍</div>
+                            <div><span class="cil" data-i="ci2">Location</span><span class="civ" data-i="civ">Amman,
+                                    Jordan</span></div>
                         </div>
                     </div>
-                    <a href="https://wa.me/962790441000" target="_blank" rel="noopener noreferrer" class="wa-big">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <a href="https://wa.me/962790441000" target="_blank" class="wabig"><svg width="19" height="19"
+                            fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
-                        </svg>
-                        Chat on WhatsApp
-                    </a>
-
-                    <div class="testimonials-row" style="margin-top:50px">
-                        <h3>What Clients Say</h3>
-                        <div class="test-grid" style="grid-template-columns:1fr">
-                            <div class="test-card">
-                                <p>"Qimam completely transformed our online presence. The new site is fast, beautiful,
-                                    and already bringing in new customers."</p>
-                                <div class="test-author">CEO, Pinnacle Properties</div>
-                                <div class="test-role">Real Estate · Amman</div>
-                            </div>
-                            <div class="test-card">
-                                <p>"Professional, delivered fast, and they understood our brand perfectly. The best web
-                                    agency we've worked with."</p>
-                                <div class="test-author">Director, Lumière Clinic</div>
-                                <div class="test-role">Medical · Sweifieh</div>
-                            </div>
-                        </div>
-                    </div>
+                        </svg><span data-i="wab">Chat on WhatsApp</span></a>
                 </div>
-
-                <div class="contact-form">
-                    <form onsubmit="event.preventDefault()">
-                        <div class="form-row">
-                            <div class="form-group"><label>Your Name</label><input type="text" placeholder="Full name">
-                            </div>
-                            <div class="form-group"><label>Phone / WhatsApp</label><input type="tel"
-                                    placeholder="+962..."></div>
+                <div class="cfw gs-r">
+                    <h3 data-i="cfh">Send Us a Message</h3>
+                    <form id="lf">
+                        <div class="fgr">
+                            <div class="fg"><label data-i="fl1">Name</label><input type="text" id="fn"
+                                    placeholder="Your name" required></div>
+                            <div class="fg"><label data-i="fl2">Phone / WhatsApp</label><input type="tel" id="fp"
+                                    placeholder="+962..." required></div>
                         </div>
-                        <div class="form-group"><label>Business Name</label><input type="text"
-                                placeholder="Your company or shop name"></div>
-                        <div class="form-group">
-                            <label>Project Type</label>
-                            <select>
-                                <option disabled selected>What do you need?</option>
-                                <option>Full Website — 200 JOD</option>
-                                <option>Website Update / Redesign</option>
-                                <option>E-Commerce Store</option>
-                                <option>Custom Web App</option>
-                                <option>Maintenance Only — 10 JOD/quarter</option>
-                            </select>
-                        </div>
-                        <div class="form-group"><label>Your Industry</label><input type="text"
-                                placeholder="e.g. Restaurant, Clinic, Shop..."></div>
-                        <div class="form-group"><label>Tell Us More</label><textarea
-                                placeholder="What pages do you need? Any specific features? Any websites you like?"></textarea>
-                        </div>
-                        <button type="submit" class="form-submit">Send Message — We'll Respond in Hours</button>
+                        <div class="fg"><label data-i="fl3">Business Name</label><input type="text" id="fb"
+                                placeholder="Your company or shop"></div>
+                        <div class="fg"><label data-i="fl4">Plan</label><select id="fpl">
+                                <option value="" disabled selected data-i="fp0">Select a plan...</option>
+                                <option value="200" data-i="fpo1">200 JOD — Essential</option>
+                                <option value="400" data-i="fpo2">400 JOD — SEO Power</option>
+                                <option value="600" data-i="fpo3">600 JOD — Full Business</option>
+                                <option value="chatbot" data-i="fpo4">AI Chatbot (+150 JOD)</option>
+                            </select></div>
+                        <div class="fg"><label data-i="fl5">Industry</label><input type="text" id="fi"
+                                placeholder="e.g. Restaurant, Clinic..."></div>
+                        <div class="fg"><label data-i="fl6">Message</label><textarea id="fm"
+                                placeholder="Tell us about your business..."></textarea></div>
+                        <button type="submit" class="fsub" id="fsb" data-i="fbt">Send Message</button>
+                        <div class="fmsg" id="fmsg"></div>
                     </form>
                 </div>
             </div>
         </div>
-
         <footer>
-            <div class="footer-logo">
+            <div class="fl">
                 <div class="logo-dot"></div>Qimam Digital
             </div>
-            <p>Amman, Jordan · hello@qimamdigital.com</p>
-            <p>© 2025 Qimam Digital. All rights reserved.</p>
+            <p data-i="ft">Amman, Jordan</p>
+            <p>© 2025 Qimam Digital</p>
         </footer>
     </div>
 
     <script>
-        function showPage(id, linkEl) {
+        // ── SUPABASE ── Replace with your project values
+        const SB_URL = 'https://YOUR_PROJECT_REF.supabase.co';
+        const SB_KEY = 'YOUR_ANON_KEY';
+        const sb = window.supabase.createClient(SB_URL, SB_KEY);
+
+        // ── FORM ──
+        document.getElementById('lf').addEventListener('submit', async e => {
+            e.preventDefault();
+            const btn = document.getElementById('fsb');
+            const msg = document.getElementById('fmsg');
+            btn.disabled = true;
+            btn.textContent = lang === 'ar' ? 'جاري الإرسال...' : 'Sending...';
+            msg.className = 'fmsg';
+            const data = {
+                name: document.getElementById('fn').value,
+                phone: document.getElementById('fp').value,
+                business: document.getElementById('fb').value,
+                plan: document.getElementById('fpl').value,
+                industry: document.getElementById('fi').value,
+                message: document.getElementById('fm').value,
+                lang,
+                created_at: new Date().toISOString()
+            };
+            try {
+                const { error } = await sb.from('leads').insert([data]);
+                if (error) throw error;
+                msg.textContent = lang === 'ar' ? '✓ تم الإرسال! سنتواصل معك قريباً.' : '✓ Sent! We will reply soon.';
+                msg.className = 'fmsg ok';
+                document.getElementById('lf').reset();
+            } catch {
+                msg.textContent = lang === 'ar' ? 'خطأ — تواصل معنا عبر واتساب.' : 'Error — please contact us on WhatsApp.';
+                msg.className = 'fmsg err';
+            }
+            btn.disabled = false;
+            btn.textContent = lang === 'ar' ? 'إرسال الرسالة' : 'Send Message';
+        });
+
+        // ── TRANSLATIONS ──
+        const T = {
+            en: { logo: 'Qimam', n1: 'Home', n2: 'Our Work', n3: 'Pricing', n4: 'Contact', nwa: 'WhatsApp', hb: 'Amman, Jordan · Premium Web Agency', h1: 'We Build', h2: 'Websites', h3: 'That', h4: 'Win Clients', h5: 'For Your Business', hs: 'Qimam Digital crafts high-performance websites for businesses across Jordan. Professional. Fast. Starting at 200 JOD.', hc1: 'See Our Work →', hc2: 'View Pricing', s1: 'JOD Starting Price', s2: 'Live Projects', s3: 'Free Prototype', s4: 'Satisfaction', m1: 'Web Design', m2: 'Development', m3: 'Arabic First', m4: 'Mobile Friendly', m5: 'SEO Ready', ah2: 'Built for businesses that want to grow online', ap1: "We combine sharp design with solid engineering to deliver websites that convert visitors into customers. Every project built from scratch.", ap2: 'Based in Amman — bilingual, fast on all devices, maintained for 10 JOD per quarter.', ac: 'View Pricing →', g1: 'JOD Full Website', g2: 'JOD / Quarter', g3: 'Free Prototype', g4: 'Pages & Revisions', ft: 'Amman, Jordan', we: '// Our Portfolio', wh1: 'Work That ', wh2: 'Speaks', ws: 'Every site is live, custom-built, and delivered to a real client.', wt1: 'Real Estate · Luxury', wt2: 'Medical · Aesthetic', wt3: 'Restaurant · Fine Dining', wt4: 'Architecture · Studio', wt5: 'Digital Marketing', wsl: 'View Live →', th: 'What Clients Say', tq1: '"Qimam transformed our online presence. Fast, beautiful, already bringing in new customers."', tr1: 'Real Estate · Amman', tq2: '"Professional, delivered fast, and they understood our brand perfectly."', tr2: 'Medical · Sweifieh', tq3: '"Free prototype in 24 hours before we paid anything. That\'s rare."', tr3: 'Architecture · Amman', tq4: '"200 JOD for this quality? Our old agency charged 800 for half the result."', tr4: 'Restaurant · Abdoun', pe: '// Pricing Plans', ph1: 'Simple Pricing.', ph2: 'Serious Quality.', pss: 'No hidden fees. No contracts. Free prototype before you pay.', pt1: 'Starter', pn1: 'Essential Website', pd1: 'Perfect for small businesses, clinics, and shops needing a professional online presence.', f11: 'Arabic-first design', f12: 'Mobile responsive design', f13: 'Contact form', f14: 'WhatsApp button', f15: 'Up to 5 pages', f16: 'Free 24h prototype', pt2: 'Growth', pn2: 'SEO Power Website', pd2: 'Everything in Starter, plus full SEO and AI SEO so customers find you on Google.', f21: 'Everything in Starter', f22: 'Full SEO optimization', f23: 'AI SEO optimization', f24: 'Google Business setup', f25: 'Speed optimization', f26: 'Up to 8 pages', pop: 'Most Popular', pt3: 'Premium', pn3: 'Full Business Website', pd3: 'The complete package — SEO, online booking, advanced animations, everything a serious business needs.', f31: 'Everything in Growth', f32: 'Online booking system', f33: 'Advanced animations', f34: 'Multi-language support', f35: 'Unlimited pages', f36: 'Priority support', pb: 'Get Started', adh: 'AI Chatbot Add-on', adp: 'A custom AI chatbot answering customer questions 24/7, capturing leads, in Arabic and English.', ads: 'JOD one-time setup', mn: 'All plans include quarterly maintenance for just 10 JOD / quarter — hosting, updates, and content changes.', ce: '// Start a Project', ch1: "Let's Build", ch2: 'Something Great', css: "Fill the form and we'll respond within a few hours. Free prototype before you pay.", clh: 'Ready to start?', clp: "Tell us about your business and we'll prepare a free prototype so you see exactly what your website looks like before paying anything.", ci1: 'Phone & WhatsApp', ci2: 'Location', civ: 'Amman, Jordan', wab: 'Chat on WhatsApp', cfh: 'Send Us a Message', fl1: 'Name', fl2: 'Phone / WhatsApp', fl3: 'Business Name', fl4: 'Plan', fl5: 'Industry', fl6: 'Message', fp0: 'Select a plan...', fpo1: '200 JOD — Essential', fpo2: '400 JOD — SEO Power', fpo3: '600 JOD — Full Business', fpo4: 'AI Chatbot (+150 JOD)', fbt: 'Send Message' },
+            ar: { logo: 'قمم', n1: 'الرئيسية', n2: 'أعمالنا', n3: 'الأسعار', n4: 'تواصل', nwa: 'واتساب', hb: 'عمّان، الأردن · وكالة ويب احترافية', h1: 'نبني', h2: 'مواقع', h3: 'تجذب', h4: 'العملاء', h5: 'لعملك', hs: 'قمم ديجيتال تصمم مواقع عالية الأداء للأعمال في الأردن. احترافية. سريعة. تبدأ من 200 دينار.', hc1: 'شوف أعمالنا →', hc2: 'الأسعار', s1: 'دينار السعر الابتدائي', s2: 'مشاريع منجزة', s3: 'نموذج مجاني', s4: 'رضا العملاء', m1: 'تصميم ويب', m2: 'تطوير', m3: 'عربي أولاً', m4: 'متوافق مع الجوال', m5: 'سيو جاهز', ah2: 'مبنية لأعمال تريد النمو أونلاين', ap1: 'نجمع التصميم الحاد مع الهندسة القوية لنقدم مواقع تحول الزوار لعملاء.', ap2: 'مقرنا عمّان — ثنائي اللغة، سريع، صيانة بـ 10 دنانير كل ربع سنة.', ac: 'الأسعار →', g1: 'دينار موقع كامل', g2: 'دينار / ربع سنوي', g3: 'نموذج مجاني', g4: 'صفحات وتعديلات', ft: 'عمّان، الأردن', we: '// أعمالنا', wh1: 'شغل ', wh2: 'يتكلم', ws: 'كل موقع حقيقي، مبني من الصفر، مسلّم لعميل فعلي.', wt1: 'عقارات · فاخرة', wt2: 'طبي · تجميل', wt3: 'مطعم · ضيافة', wt4: 'معمارية · استوديو', wt5: 'تسويق رقمي', wsl: 'افتح الموقع →', th: 'ماذا يقول العملاء', tq1: '"قمم حولت حضورنا الرقمي. سريع وجميل وجلب عملاء جدد."', tr1: 'عقارات · عمّان', tq2: '"محترفون وسريعون، فهموا علامتنا بشكل مثالي."', tr2: 'طبي · الصويفية', tq3: '"نموذج مجاني في 24 ساعة قبل ما دفعنا شيء. نادر."', tr3: 'معمارية · عمّان', tq4: '"200 دينار لهاد الجودة؟ وكالتنا القديمة طلبت 800 لنصف النتيجة."', tr4: 'مطعم · عبدون', pe: '// خطط الأسعار', ph1: 'أسعار بسيطة.', ph2: 'جودة حقيقية.', pss: 'بدون رسوم خفية. بدون عقود. نموذج مجاني قبل ما تدفع.', pt1: 'ابتدائي', pn1: 'موقع أساسي', pd1: 'مثالي للمشاريع الصغيرة والعيادات والمحلات.', f11: 'تصميم عربي أولاً', f12: 'متجاوب مع الجوال', f13: 'نموذج تواصل', f14: 'زر واتساب', f15: 'حتى 5 صفحات', f16: 'نموذج مجاني 24 ساعة', pt2: 'نمو', pn2: 'موقع سيو متقدم', pd2: 'كل شيء في الابتدائي + سيو كامل وسيو ذكاء اصطناعي.', f21: 'كل شيء في الابتدائي', f22: 'تحسين سيو كامل', f23: 'سيو بالذكاء الاصطناعي', f24: 'إعداد Google Business', f25: 'تحسين السرعة', f26: 'حتى 8 صفحات', pop: 'الأكثر طلباً', pt3: 'بريميوم', pn3: 'موقع أعمال كامل', pd3: 'الحزمة الكاملة — سيو، حجز أونلاين، انيميشن، كل شيء.', f31: 'كل شيء في النمو', f32: 'نظام حجز أونلاين', f33: 'انيميشن متقدم', f34: 'دعم متعدد اللغات', f35: 'صفحات غير محدودة', f36: 'دعم أولوية', pb: 'ابدأ الآن', adh: 'إضافة شات بوت ذكاء اصطناعي', adp: 'شات بوت مخصص يجيب 24/7، يلتقط الطلبات تلقائياً، بالعربي والإنجليزي.', ads: 'دينار إعداد لمرة واحدة', mn: 'جميع الخطط تشمل صيانة ربع سنوية بـ 10 دنانير — استضافة وتحديثات وتعديلات.', ce: '// ابدأ مشروعك', ch1: 'نبنيها', ch2: 'سوا', css: 'امليء النموذج وسنرد خلال ساعات. نموذج مجاني قبل ما تدفع.', clh: 'جاهز تبدأ؟', clp: 'قولنا عن عملك وسنجهز نموذجاً مجانياً تشوفه قبل ما تدفع فلساً.', ci1: 'هاتف وواتساب', ci2: 'الموقع', civ: 'عمّان، الأردن', wab: 'تواصل عبر واتساب', cfh: 'أرسل رسالة', fl1: 'الاسم', fl2: 'هاتف / واتساب', fl3: 'اسم العمل', fl4: 'الخطة', fl5: 'القطاع', fl6: 'رسالة', fp0: 'اختر خطة...', fpo1: '200 دينار — أساسي', fpo2: '400 دينار — سيو', fpo3: '600 دينار — كامل', fpo4: 'شات بوت (+150 دينار)', fbt: 'إرسال الرسالة' }
+        };
+        let lang = 'en';
+        function al(l) {
+            lang = l;
+            document.documentElement.lang = l;
+            document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('lb').textContent = l === 'ar' ? 'English' : 'العربية';
+            document.querySelectorAll('[data-i]').forEach(el => { const k = el.getAttribute('data-i'); if (T[l][k] !== undefined) el.textContent = T[l][k]; });
+        }
+        function tl() { al(lang === 'en' ? 'ar' : 'en'); }
+
+        // ── PAGE SWITCH ──
+        function sp(id, lnk) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page-' + id).classList.add('active');
             document.getElementById('page-' + id).scrollTop = 0;
             document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-            if (linkEl) linkEl.classList.add('active');
+            if (lnk) lnk.classList.add('active');
         }
 
-        function toggleMenu() {
-            const menu = document.getElementById('mobileMenu');
-            const hb = document.getElementById('hamburger');
-            menu.classList.toggle('open');
-            const spans = hb.querySelectorAll('span');
-            if (menu.classList.contains('open')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-            } else {
-                spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
-            }
+        // ── MOBILE MENU ──
+        function tm() {
+            const m = document.getElementById('mobm'), h = document.getElementById('hbtn');
+            m.classList.toggle('open');
+            const s = h.querySelectorAll('span');
+            if (m.classList.contains('open')) { s[0].style.transform = 'rotate(45deg) translate(5px,5px)'; s[1].style.opacity = '0'; s[2].style.transform = 'rotate(-45deg) translate(5px,-5px)'; }
+            else { s.forEach(x => { x.style.transform = ''; x.style.opacity = '' }); }
         }
+
+        // ── GSAP (from viktoroddy: cinematic hero + scroll reveals) ──
+        gsap.registerPlugin(ScrollTrigger);
+        window.addEventListener('load', () => {
+            gsap.set(['#hbg', '#htt', '#hss', '#hbs', '#hst'], { y: 38, opacity: 0 });
+            // Cinematic staggered entrance
+            gsap.timeline({ defaults: { ease: 'power3.out' } })
+                .to('#hbg', { opacity: 1, y: 0, duration: 0.7, delay: 0.15 })
+                .to('#htt', { opacity: 1, y: 0, duration: 0.9 }, '-=0.45')
+                .to('#hss', { opacity: 1, y: 0, duration: 0.7 }, '-=0.5')
+                .to('#hbs', { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
+                .to('#hst', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3');
+            // Floating orbs
+            gsap.to('.o1', { y: -30, x: 20, duration: 8, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+            gsap.to('.o2', { y: 25, x: -15, duration: 10, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+            gsap.to('.o3', { y: 20, duration: 7, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+            // ScrollTrigger scroll reveals
+            document.querySelectorAll('.gs-r').forEach((el, i) => {
+                const pg = el.closest('.page');
+                gsap.fromTo(el, { opacity: 0, y: 42 }, {
+                    opacity: 1, y: 0, duration: 0.85, ease: 'power2.out', delay: (i % 3) * 0.1,
+                    scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none', scroller: pg || document.body }
+                });
+            });
+        });
+        al('en');
     </script>
 </body>
 
