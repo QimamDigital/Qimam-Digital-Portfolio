@@ -9,5 +9,6 @@
 | 🏠 Pinnacle Properties | [View Site](https://QimamDigital.github.io/Qimam-Digital-Portfolio/pinnacle-properties) |
 | 🏛️ Form & Ground Studio | [View Site](https://QimamDigital.github.io/Qimam-Digital-Portfolio/form-ground-studio) |
 | 💻 Nexus Tech | [View Site](https://QimamDigital.github.io/Qimam-Digital-Portfolio/nexus-tech) |
+| 🌐 Arab Traders Inc | [View Site](https://QimamDigital.github.io/Qimam-Digital-Portfolio/arab-traders-inc) |
 
 Built by [Qimam Digital](https://QimamDigital.github.io/Qimam-Digital-Portfolio) — Premium Web Development Agency, Amman, Jordan.
