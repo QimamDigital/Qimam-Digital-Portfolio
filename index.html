@@ -178,6 +178,7 @@
             transition: all .3s
         }
 
+        /* MOBILE MENU — fixed centering for long links */
         .mob {
             display: none;
             position: fixed;
@@ -187,7 +188,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 26px;
+            gap: 22px;
             padding-top: 68px
         }
 
@@ -197,9 +198,13 @@
 
         .mob a {
             font-family: 'Syne', sans-serif;
-            font-size: 1.75rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            color: var(--white)
+            color: var(--white);
+            text-align: center;
+            width: 100%;
+            padding: 0 20px;
+            line-height: 1.2
         }
 
         .mob a:hover {
@@ -213,7 +218,9 @@
             border-radius: 8px;
             font-size: .9rem;
             font-weight: 700;
-            margin-top: 8px
+            margin-top: 8px;
+            width: auto !important;
+            font-size: .9rem !important
         }
 
         /* PAGES */
@@ -772,26 +779,26 @@
             margin-top: 2px
         }
 
-        /* PRICING PAGE */
+        /* PRICING */
         .pp {
             padding: 55px 36px 80px
         }
 
-        /* Section headers */
-        .sec-header {
-            margin-bottom: 32px;
-            margin-top: 56px
-        }
-
-        .sec-header:first-of-type {
-            margin-top: 0
+        .sec-label {
+            font-family: 'Syne Mono', monospace;
+            font-size: .6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--blue);
+            display: block;
+            margin-bottom: 10px
         }
 
         .sec-title {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-size: clamp(1.3rem, 2.5vw, 1.9rem);
             font-weight: 800;
-            letter-spacing: -.5px;
+            letter-spacing: -.4px;
             margin-bottom: 6px
         }
 
@@ -806,9 +813,17 @@
         .sec-sub {
             color: var(--muted);
             font-size: .84rem;
-            line-height: 1.65
+            line-height: 1.65;
+            margin-bottom: 32px
         }
 
+        .sec-divider {
+            border: none;
+            border-top: 1px solid var(--gb);
+            margin: 52px 0
+        }
+
+        /* PRICING CARDS */
         .pgrid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1006,6 +1021,16 @@
             border: 1px solid rgba(244, 114, 182, .18)
         }
 
+        .addon-voice {
+            background: linear-gradient(135deg, rgba(139, 92, 246, .07), rgba(139, 92, 246, .03));
+            border: 1px solid rgba(139, 92, 246, .22)
+        }
+
+        .addon-photo {
+            background: linear-gradient(135deg, rgba(251, 146, 60, .07), rgba(251, 146, 60, .03));
+            border: 1px solid rgba(251, 146, 60, .22)
+        }
+
         .addon-card h4 {
             font-family: 'Syne', sans-serif;
             font-size: 1rem;
@@ -1038,6 +1063,14 @@
             color: #f472b6
         }
 
+        .violet-c {
+            color: #a78bfa
+        }
+
+        .orange-c {
+            color: #fb923c
+        }
+
         .addon-note {
             font-size: .72rem;
             color: var(--muted);
@@ -1046,11 +1079,91 @@
             font-style: italic
         }
 
-        /* SECTION DIVIDER */
-        .sec-divider {
-            border: none;
-            border-top: 1px solid var(--gb);
-            margin: 52px 0
+        /* PORTFOLIO BANNER */
+        .portfolio-banner {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(30, 110, 245, .07);
+            border: 1px solid rgba(30, 110, 245, .2);
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-top: 8px;
+            margin-bottom: 24px
+        }
+
+        .pb-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(30, 110, 245, .14);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0
+        }
+
+        .pb-text {
+            flex: 1
+        }
+
+        .pb-title {
+            font-family: 'Syne', sans-serif;
+            font-size: .9rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 3px
+        }
+
+        .pb-sub {
+            font-size: .78rem;
+            color: var(--muted);
+            line-height: 1.55
+        }
+
+        .pb-btn {
+            background: var(--blue);
+            color: #fff;
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-size: .75rem;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: all .25s;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            flex-shrink: 0
+        }
+
+        .pb-btn:hover {
+            background: #1557c0;
+            transform: translateY(-1px)
+        }
+
+        /* SERVICE TERMS BOX */
+        .terms-box {
+            background: var(--glass);
+            border: 1px solid var(--gb);
+            border-radius: 16px;
+            padding: 22px 26px;
+            margin-bottom: 24px;
+            font-size: .83rem;
+            color: var(--muted);
+            line-height: 1.72
+        }
+
+        .terms-box strong {
+            color: var(--white)
+        }
+
+        .maint {
+            text-align: center;
+            color: var(--muted);
+            font-size: .82rem;
+            padding: 20px;
+            border: 1px solid var(--gb);
+            border-radius: 12px;
+            background: var(--glass)
         }
 
         /* BRAND IDENTITY SECTION */
@@ -1175,8 +1288,8 @@
 
         .brand-items-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
             margin-bottom: 28px;
             border-top: 1px solid rgba(124, 58, 237, .2);
             padding-top: 24px
@@ -1184,34 +1297,20 @@
 
         .brand-item {
             background: rgba(124, 58, 237, .07);
-            border: 1px solid rgba(124, 58, 237, .18);
-            border-radius: 12px;
-            padding: 18px 16px;
+            border: 1px solid rgba(124, 58, 237, .15);
+            border-radius: 10px;
+            padding: 14px 12px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px
+            flex-direction: column;
+            gap: 4px;
+            align-items: flex-start
         }
 
         .brand-item-name {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: .84rem;
+            font-size: .82rem;
             font-weight: 500;
             color: var(--white)
-        }
-
-        .brand-item-price {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: #a78bfa;
-            white-space: nowrap
-        }
-
-        .brand-item-price span {
-            font-size: .7rem;
-            font-weight: 400;
-            color: var(--muted)
         }
 
         .brand-pkg-btn {
@@ -1236,10 +1335,10 @@
             box-shadow: 0 12px 35px var(--purple-glow)
         }
 
-        /* a-la-carte brand cards */
+        /* À-la-carte brand cards */
         .brand-alacarte-row {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 12px;
             margin-top: 12px
         }
@@ -1262,7 +1361,7 @@
 
         .bac-name {
             font-family: 'Syne', sans-serif;
-            font-size: .9rem;
+            font-size: .85rem;
             font-weight: 700;
             color: var(--white)
         }
@@ -1284,32 +1383,6 @@
             font-size: .72rem;
             color: var(--muted);
             line-height: 1.5
-        }
-
-        /* SERVICE TERMS BOX */
-        .terms-box {
-            background: var(--glass);
-            border: 1px solid var(--gb);
-            border-radius: 16px;
-            padding: 22px 26px;
-            margin-bottom: 24px;
-            font-size: .83rem;
-            color: var(--muted);
-            line-height: 1.72
-        }
-
-        .terms-box strong {
-            color: var(--white)
-        }
-
-        .maint {
-            text-align: center;
-            color: var(--muted);
-            font-size: .82rem;
-            padding: 20px;
-            border: 1px solid var(--gb);
-            border-radius: 12px;
-            background: var(--glass)
         }
 
         /* CONTACT */
@@ -1473,6 +1546,7 @@
             }
         }
 
+        /* FOOTER */
         footer {
             background: #020509;
             border-top: 1px solid var(--gb);
@@ -1490,7 +1564,7 @@
             font-size: .95rem;
             display: flex;
             align-items: center;
-            gap: 8px
+            gap: 4px
         }
 
         footer p {
@@ -1506,6 +1580,7 @@
             flex-direction: row-reverse
         }
 
+        /* ── RESPONSIVE ── */
         @media(max-width:960px) {
             .pgrid {
                 grid-template-columns: 1fr
@@ -1532,11 +1607,11 @@
             }
 
             .brand-alacarte-row {
-                grid-template-columns: 1fr 1fr
+                grid-template-columns: repeat(3, 1fr)
             }
 
             .brand-items-grid {
-                grid-template-columns: 1fr
+                grid-template-columns: repeat(2, 1fr)
             }
 
             .brand-pkg-top {
@@ -1549,6 +1624,10 @@
 
             .brand-pkg-save {
                 text-align: left
+            }
+
+            .portfolio-banner {
+                flex-wrap: wrap
             }
         }
 
@@ -1638,6 +1717,27 @@
             .brand-alacarte-row {
                 grid-template-columns: 1fr 1fr
             }
+
+            .brand-items-grid {
+                grid-template-columns: 1fr
+            }
+
+            .portfolio-banner {
+                flex-direction: column;
+                text-align: center
+            }
+
+            .pb-btn {
+                width: 100%;
+                justify-content: center;
+                text-align: center
+            }
+        }
+
+        @media(max-width:480px) {
+            .brand-alacarte-row {
+                grid-template-columns: 1fr
+            }
         }
     </style>
 </head>
@@ -1646,15 +1746,14 @@
 
     <nav>
         <div class="nav-logo">
-            <!-- ① REAL LOGO -->
             <img src="https://www.image2url.com/r2/default/images/1778271658902-2bf1de2b-4a97-40d7-9dfe-cfb17da851ee.png"
                 alt="Qimam Digital Logo" class="logo-img" id="logo-img" onerror="this.style.display='none'">
-            <span data-i="logo">Qimam</span>
+            <span data-i="logo">Qimam Digital</span>
         </div>
         <ul class="nav-links">
             <li><a href="#" class="active" onclick="sp('home',this)" data-i="n1">Home</a></li>
             <li><a href="#" onclick="sp('work',this)" data-i="n2">Our Work</a></li>
-            <li><a href="#" onclick="sp('pricing',this)" data-i="n3">Services & Pricing</a></li>
+            <li><a href="#" onclick="sp('pricing',this)" data-i="n3">Services &amp; Pricing</a></li>
             <li><a href="#" onclick="sp('contact',this)" data-i="n4">Contact</a></li>
         </ul>
         <div class="nav-right">
@@ -1670,14 +1769,16 @@
         </div>
     </nav>
 
+    <!-- MOBILE MENU -->
     <div class="mob" id="mobm">
         <a href="#" onclick="sp('home',null);tm()" data-i="n1">Home</a>
         <a href="#" onclick="sp('work',null);tm()" data-i="n2">Our Work</a>
-        <a href="#" onclick="sp('pricing',null);tm()" data-i="n3">Services & Pricing</a>
+        <a href="#" onclick="sp('pricing',null);tm()" data-i="n3">Services &amp; Pricing</a>
         <a href="#" onclick="sp('contact',null);tm()" data-i="n4">Contact</a>
         <a href="https://wa.me/962790441000" target="_blank" class="mob-wa">0790441000</a>
     </div>
 
+    <!-- FLOATING WA -->
     <a href="https://wa.me/962790441000" target="_blank" class="fwa" title="WhatsApp">
         <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24">
             <path
@@ -1685,7 +1786,7 @@
         </svg>
     </a>
 
-    <!-- ═══════════════ HOME ═══════════════ -->
+    <!-- ═══ HOME ═══ -->
     <div id="page-home" class="page active">
         <section class="hero">
             <div class="hgrid"></div>
@@ -1693,34 +1794,23 @@
             <div class="orb o2"></div>
             <div class="orb o3"></div>
             <div class="hc">
-                <!-- ② UPDATED BADGE -->
-                <div class="hbadge" id="hbg"><span data-i="hb">Amman, Jordan · Premium Web & Brand Design</span></div>
-                <!-- ③ UPDATED H1 -->
+                <div class="hbadge" id="hbg"><span data-i="hb">Amman, Jordan · Premium Web &amp; Brand Design</span>
+                </div>
                 <h1 class="ht" id="htt">
                     <span data-i="h1">We build</span><br>
-                    <span class="blue" data-i="h2">Websites & Brand Identities</span><br>
+                    <span class="blue" data-i="h2">Websites &amp; Brand Identities</span><br>
                     <span data-i="h3">That win clients.</span>
                 </h1>
                 <p class="hsub" id="hss" data-i="hs">Qimam Digital crafts high-performance websites and brand identities
                     for businesses across Jordan. Professional. Fast. Starting at 200 JOD.</p>
                 <div class="hbtns" id="hbs">
                     <button class="bb" onclick="sp('work',null)" data-i="hc1">See Our Work →</button>
-                    <button class="bg" onclick="sp('pricing',null)" data-i="hc2">Services & Pricing</button>
+                    <button class="bg" onclick="sp('pricing',null)" data-i="hc2">Services &amp; Pricing</button>
                 </div>
-                <!-- ④ UPDATED STATS -->
                 <div class="hstats" id="hst">
-                    <div>
-                        <span class="sn">200</span>
-                        <span class="sl" data-i="s1">JOD Starting Price</span>
-                    </div>
-                    <div>
-                        <span class="sn">6+</span>
-                        <span class="sl" data-i="s2">Live Projects</span>
-                    </div>
-                    <div>
-                        <span class="sn">24h</span>
-                        <span class="sl" data-i="s3">Free Prototype</span>
-                    </div>
+                    <div><span class="sn">200</span><span class="sl" data-i="s1">JOD Starting Price</span></div>
+                    <div><span class="sn">6+</span><span class="sl" data-i="s2">Live Projects</span></div>
+                    <div><span class="sn">24h</span><span class="sl" data-i="s3">Free Prototype</span></div>
                     <div>
                         <span class="sn">10</span>
                         <span class="sl" data-i="s4">JOD / Maint. Request</span>
@@ -1758,9 +1848,9 @@
                 <p data-i="ap1">We combine sharp design with solid engineering to deliver websites and brand identities
                     that convert visitors into customers. Every project built from scratch for your brand.</p>
                 <p data-i="ap2">Based in Amman — bilingual Arabic/English, fast on all devices. On-demand maintenance at
-                    just 10 JOD per request (capped at 10 edits max).</p>
-                <button class="bb" style="margin-top:20px" onclick="sp('pricing',null)" data-i="ac">Services & Pricing
-                    →</button>
+                    just 10 JOD per maintenance request (capped at 10 edits max).</p>
+                <button class="bb" style="margin-top:20px" onclick="sp('pricing',null)" data-i="ac">Services &amp;
+                    Pricing →</button>
             </div>
             <div class="agrid">
                 <div class="gc gs-r"><span class="gcn">200</span><span class="gcl" data-i="g1">JOD Full Website</span>
@@ -1781,16 +1871,18 @@
         </div>
         <footer>
             <div class="fl">
-                <div
-                    style="width:8px;height:8px;background:var(--blue);border-radius:50%;box-shadow:0 0 10px var(--blue)">
-                </div>Qimam Digital
+                <img src="https://www.image2url.com/r2/default/images/1778271658902-2bf1de2b-4a97-40d7-9dfe-cfb17da851ee.png"
+                    alt="Qimam"
+                    style="width:20px;height:20px;object-fit:contain;vertical-align:middle;margin-right:8px;"
+                    onerror="this.style.display='none'">
+                Qimam Digital
             </div>
             <p data-i="ft">Amman, Jordan</p>
             <p>© 2026 Qimam Digital</p>
         </footer>
     </div>
 
-    <!-- ═══════════════ WORK ═══════════════ -->
+    <!-- ═══ WORK ═══ -->
     <div id="page-work" class="page">
         <div class="wp">
             <span class="pey" data-i="we">// Our Portfolio</span>
@@ -1825,7 +1917,7 @@
                         alt="Arab Traders">
                     <div class="lbadge">Live</div>
                     <div class="wco">
-                        <div class="wct" data-i="wt_at">Corporate Trading & Global Logistics</div>
+                        <div class="wct" data-i="wt_at">Corporate Trading &amp; Global Logistics</div>
                         <div class="wcn">Arab Traders Inc.</div>
                         <div class="wcb" data-i="wsl">View Live →</div>
                     </div>
@@ -1837,7 +1929,7 @@
                     <div class="lbadge">Live</div>
                     <div class="wco">
                         <div class="wct" data-i="wt4">Architecture · Studio</div>
-                        <div class="wcn">Form & Ground Studio</div>
+                        <div class="wcn">Form &amp; Ground Studio</div>
                         <div class="wcb" data-i="wsl">View Live →</div>
                     </div>
                 </a>
@@ -1868,41 +1960,45 @@
                     </div>
                     <div class="tc">
                         <p data-i="tq3">"Free prototype in 24 hours before we paid anything. That's rare."</p>
-                        <div class="tcn">Owner, Form & Ground</div>
+                        <div class="tcn">Owner, Form &amp; Ground</div>
                         <div class="tcr" data-i="tr3">Architecture · Amman</div>
                     </div>
                     <div class="tc">
                         <p data-i="tq_at">"Their team understood corporate logistics branding immediately. Clean, fast,
                             and bilingual."</p>
                         <div class="tcn">Director, Arab Traders Inc.</div>
-                        <div class="tcr" data-i="tr_at">Trading & Logistics · International</div>
+                        <div class="tcr" data-i="tr_at">Trading &amp; Logistics · International</div>
                     </div>
                 </div>
             </div>
         </div>
         <footer>
             <div class="fl">
-                <div
-                    style="width:8px;height:8px;background:var(--blue);border-radius:50%;box-shadow:0 0 10px var(--blue)">
-                </div>Qimam Digital
+                <img src="https://www.image2url.com/r2/default/images/1778271658902-2bf1de2b-4a97-40d7-9dfe-cfb17da851ee.png"
+                    alt="Qimam"
+                    style="width:20px;height:20px;object-fit:contain;vertical-align:middle;margin-right:8px;"
+                    onerror="this.style.display='none'">
+                Qimam Digital
             </div>
             <p data-i="ft">Amman, Jordan</p>
             <p>© 2026 Qimam Digital</p>
         </footer>
     </div>
 
-    <!-- ═══════════════ PRICING ═══════════════ -->
+    <!-- ═══ SERVICES & PRICING ═══ -->
     <div id="page-pricing" class="page">
         <div class="pp">
-            <span class="pey" data-i="pe">// Services & Pricing</span>
+            <span class="pey" data-i="pe">// Services &amp; Pricing</span>
             <h2 class="pt"><span data-i="ph1">Simple Pricing.</span><br><span class="blue" data-i="ph2">Serious
                     Quality.</span></h2>
             <p class="ps" data-i="pss">No hidden fees. No contracts. Free prototype before you pay.</p>
 
-            <!-- ════ SECTION A: WEB DEV & TECH ════ -->
-            <div class="sec-header gs-r">
-                <div class="sec-title">Section A — <span class="blue">Web Development & Tech</span></div>
-                <div class="sec-sub">Websites, SEO, AI chatbots, domains, emails, and digital ads.</div>
+            <!-- ══ SECTION A ══ -->
+            <div class="gs-r" style="margin-bottom:28px">
+                <span class="sec-label">Section A</span>
+                <div class="sec-title">Web &amp; Digital <span class="blue">Solutions</span></div>
+                <div class="sec-sub">Websites, SEO, AI chatbots, domains, emails, ads, voiceovers, and product visuals.
+                </div>
             </div>
 
             <div class="pgrid">
@@ -1960,7 +2056,7 @@
                 </div>
             </div>
 
-            <!-- Add-on cards row -->
+            <!-- Add-on cards — row 1: 3 cards -->
             <div class="addons-row gs-r">
                 <div class="addon-card addon-chatbot">
                     <h4><span style="color:var(--gold)">✦</span> <span data-i="adh">AI Chatbot Add-on</span></h4>
@@ -1977,7 +2073,8 @@
                     <div class="addon-price" style="color:var(--blue2)">10–30 JOD <span
                             style="font-size:.75rem;font-weight:400;color:var(--muted)" data-i="dom-yr">/ year</span>
                     </div>
-                    <div class="addon-note" data-i="dom-note">External provider fees apply; we handle full setup.</div>
+                    <div class="addon-note" data-i="dom-note">External provider fees apply; we handle the full setup.
+                    </div>
                 </div>
                 <div class="addon-card addon-email">
                     <h4 style="color:#4ade80" data-i="email-h">✉️ Professional Business Emails</h4>
@@ -1989,119 +2086,141 @@
                 </div>
             </div>
 
-            <!-- Ads full-width -->
-            <div class="addon-card addon-ads gs-r" style="margin-bottom:24px">
-                <h4 style="color:#f472b6;font-size:1.1rem" data-i="ads-h">🎬 High-Conversion Digital Ads</h4>
-                <p data-i="ads-p">We design and generate cinematic AI-driven video and static ads for social media.
-                    Scroll-stopping creatives for Instagram, TikTok, Facebook, and beyond.</p>
-                <div class="addon-price pink-c" data-i="ads-price">Custom Pricing</div>
-                <div class="addon-note" data-i="ads-note">Monthly packages available. Contact us to discuss your
-                    campaign goals.</div>
+            <!-- Add-on cards — row 2: Ads + Voice + Photo -->
+            <div class="addons-row gs-r">
+                <div class="addon-card addon-ads">
+                    <h4 style="color:#f472b6" data-i="ads-h">🎬 High-Conversion Digital Ads</h4>
+                    <p data-i="ads-p">Cinematic AI-driven video and static ads for Instagram, TikTok, Facebook, and
+                        beyond.</p>
+                    <div class="addon-price pink-c" data-i="ads-price">Custom Pricing</div>
+                    <div class="addon-note" data-i="ads-note">Monthly packages available. Contact us to discuss.</div>
+                </div>
+                <div class="addon-card addon-voice">
+                    <h4 style="color:#a78bfa" data-i="voice-h">🎙️ Custom Voiceovers</h4>
+                    <p data-i="voice-p">Professional, high-fidelity narrations for your reels, ads, and presentations.
+                        Available in multiple accents and languages to match your brand's personality.</p>
+                    <div class="addon-price violet-c" data-i="voice-price">Custom Pricing</div>
+                    <div class="addon-note" data-i="voice-note">Arabic, English, and more. Contact us for samples.</div>
+                </div>
+                <div class="addon-card addon-photo">
+                    <h4 style="color:#fb923c" data-i="photo-h">📸 Product Photo Enhancement</h4>
+                    <p data-i="photo-p">Send us a photo of any product and our specialized designers will deliver a
+                        studio-quality, enhanced version within hours. Perfect for catalogs and social media.</p>
+                    <div class="addon-price orange-c" data-i="photo-price">Custom Pricing</div>
+                    <div class="addon-note" data-i="photo-note">Fast turnaround — results within hours.</div>
+                </div>
             </div>
 
-            <!-- Service Terms -->
+            <!-- Terms -->
             <div class="terms-box gs-r">
-                <strong data-i="terms-h">📋 Service Terms & Maintenance Policy</strong><br><br>
+                <strong data-i="terms-h">📋 Service Terms &amp; Maintenance Policy</strong><br><br>
                 <span data-i="terms-body"><strong>On-Demand Maintenance: 10 JOD per maintenance request (capped at 10
-                        edits max).</strong> No retainer, no commitment — pay only when you need something updated. All
-                    plans include 10 free post-launch edits; standard maintenance fee applies after.</span>
+                        edits max).</strong> All plans include 10 free post-launch edits; standard maintenance fee
+                    applies after. No retainer, no commitment — pay only when you need something updated.</span>
             </div>
 
-            <!-- ════ SECTION B: BRAND IDENTITY ════ -->
+            <!-- Portfolio Banner -->
+            <div class="portfolio-banner gs-r">
+                <div class="pb-icon">💬</div>
+                <div class="pb-text">
+                    <div class="pb-title" data-i="pb-title">Browse Our Latest Digital Creations</div>
+                    <div class="pb-sub" data-i="pb-sub">Message us on WhatsApp to see our full portfolio — websites,
+                        ads, brand designs, and more.</div>
+                </div>
+                <a href="https://wa.me/962790441000" target="_blank" class="pb-btn" data-i="pb-btn">Message Us →</a>
+            </div>
+
+            <!-- ══ SECTION B ══ -->
             <hr class="sec-divider">
 
-            <div class="sec-header gs-r">
-                <div class="sec-title">Section B — <span class="purple">Brand Identity & Design</span></div>
-                <div class="sec-sub">Professional design assets to make your brand stand out — built to the same premium
-                    standard as our websites.</div>
+            <div class="gs-r" style="margin-bottom:28px">
+                <span class="sec-label" style="color:#a78bfa">Section B</span>
+                <div class="sec-title">Brand Identity &amp; <span class="purple">Stationery</span></div>
+                <div class="sec-sub">Professional design assets that make your brand look world-class — delivered as
+                    high-resolution digital files.</div>
             </div>
 
-            <!-- Digital-only badge -->
             <div class="no-print-badge gs-r" data-i="no-print">Digital Design Only — We do not print.</div>
 
-            <!-- Complete Branding Package card -->
+            <!-- Bundle card — 90 JOD, no individual prices shown inside -->
             <div class="brand-pkg-card gs-r">
                 <div class="brand-pkg-top">
-                    <div class="brand-pkg-left">
-                        <span class="brand-pkg-tag">Complete Package</span>
+                    <div>
+                        <span class="brand-pkg-tag">Complete Bundle · Best Value</span>
                         <div class="brand-pkg-name" data-i="bp-name">Complete Branding Package</div>
                         <p class="brand-pkg-desc" data-i="bp-desc">Everything your business needs to look professional
-                            and consistent — from your company profile to every printed touchpoint. Delivered as
-                            high-resolution digital files ready for any platform.</p>
+                            and consistent — company profile, logo, business card, letterhead, and envelope. One
+                            package, one price, delivered fast.</p>
                     </div>
                     <div class="brand-pkg-price-wrap">
-                        <span class="brand-pkg-total-label" data-i="bp-total-label">Package Total</span>
-                        <div class="brand-pkg-total">80 <span>JOD</span></div>
-                        <span class="brand-pkg-save" data-i="bp-save">✦ Save 20 JOD vs. individual</span>
+                        <span class="brand-pkg-total-label" data-i="bp-total-label">Bundle Total</span>
+                        <div class="brand-pkg-total">90 <span>JOD</span></div>
+                        <span class="brand-pkg-save" data-i="bp-save">✦ Save 10 JOD vs. individual items</span>
                     </div>
                 </div>
-                <!-- 4 items breakdown -->
+                <!-- What's included — names only, no prices -->
                 <div class="brand-items-grid">
-                    <div class="brand-item">
-                        <span class="brand-item-name">📄 Custom Company Profile <span
-                                style="font-size:.72rem;color:var(--muted)">(PDF)</span></span>
-                        <div class="brand-item-price">40 <span>JOD</span></div>
-                    </div>
-                    <div class="brand-item">
-                        <span class="brand-item-name">🪪 Business Card Design</span>
-                        <div class="brand-item-price">20 <span>JOD</span></div>
-                    </div>
-                    <div class="brand-item">
-                        <span class="brand-item-name">📃 Letterhead Design</span>
-                        <div class="brand-item-price">10 <span>JOD</span></div>
-                    </div>
-                    <div class="brand-item">
-                        <span class="brand-item-name">✉️ Envelope Design</span>
-                        <div class="brand-item-price">10 <span>JOD</span></div>
-                    </div>
+                    <div class="brand-item"><span class="brand-item-name">📄 Custom Company Profile (PDF)</span></div>
+                    <div class="brand-item"><span class="brand-item-name">🎨 Logo Design</span></div>
+                    <div class="brand-item"><span class="brand-item-name">🪪 Business Card Design</span></div>
+                    <div class="brand-item"><span class="brand-item-name">📃 Letterhead Design</span></div>
+                    <div class="brand-item"><span class="brand-item-name">✉️ Envelope Design</span></div>
                 </div>
-                <button class="brand-pkg-btn" onclick="sp('contact',null)">Get the Full Package →</button>
+                <button class="brand-pkg-btn" onclick="sp('contact',null)" data-i="bp-btn">Get the Full Package
+                    →</button>
             </div>
 
-            <!-- À-la-carte individual items -->
-            <div style="margin-top:8px;margin-bottom:8px">
-                <div style="font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-family:'Syne Mono',monospace"
+            <!-- À-la-carte: 5 items with individual prices -->
+            <div style="margin-top:24px;margin-bottom:8px">
+                <div style="font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-family:'Syne Mono',monospace"
                     data-i="alacarte-label">// Or order individual items</div>
                 <div class="brand-alacarte-row gs-r">
                     <div class="brand-alacarte-card">
-                        <div class="bac-name">📄 Company Profile</div>
+                        <div class="bac-name" data-i="bac1-name">📄 Company Profile</div>
                         <div class="bac-price">40 <span>JOD</span></div>
-                        <div class="bac-note">Custom PDF, branded to your identity</div>
+                        <div class="bac-note" data-i="bac1-note">Custom PDF, branded to your identity</div>
                     </div>
                     <div class="brand-alacarte-card">
-                        <div class="bac-name">🪪 Business Card</div>
+                        <div class="bac-name" data-i="bac2-name">🎨 Logo Design</div>
                         <div class="bac-price">20 <span>JOD</span></div>
-                        <div class="bac-note">Front & back design, print-ready</div>
+                        <div class="bac-note" data-i="bac2-note">Primary + alternate versions, all formats</div>
                     </div>
                     <div class="brand-alacarte-card">
-                        <div class="bac-name">📃 Letterhead</div>
-                        <div class="bac-price">10 <span>JOD</span></div>
-                        <div class="bac-note">A4 format, Word & PDF versions</div>
+                        <div class="bac-name" data-i="bac3-name">🪪 Business Card</div>
+                        <div class="bac-price">20 <span>JOD</span></div>
+                        <div class="bac-note" data-i="bac3-note">Front &amp; back, print-ready digital file</div>
                     </div>
                     <div class="brand-alacarte-card">
-                        <div class="bac-name">✉️ Envelope</div>
+                        <div class="bac-name" data-i="bac4-name">📃 Letterhead</div>
                         <div class="bac-price">10 <span>JOD</span></div>
-                        <div class="bac-note">Standard DL & C5 format</div>
+                        <div class="bac-note" data-i="bac4-note">A4 format, Word &amp; PDF versions</div>
+                    </div>
+                    <div class="brand-alacarte-card">
+                        <div class="bac-name" data-i="bac5-name">✉️ Envelope</div>
+                        <div class="bac-price">10 <span>JOD</span></div>
+                        <div class="bac-note" data-i="bac5-note">Standard DL &amp; C5 format</div>
                     </div>
                 </div>
             </div>
 
             <p class="maint gs-r" style="margin-top:32px" data-i="mn">Maintenance: <strong style="color:var(--white)">10
-                    JOD per request</strong>, capped at 10 edits — updates, content changes, and tweaks delivered fast.
-            </p>
+                    JOD per maintenance request</strong>, capped at 10 edits — updates, content changes, and tweaks
+                delivered fast.</p>
         </div>
         <footer>
             <div class="fl">
-                <div
-                    style="width:8px;height:8px;background:var(--blue);border-radius:50%;box-shadow:0 0 10px var(--blue)">
-                </div>Qimam Digital
+                <img src="https://www.image2url.com/r2/default/images/1778271658902-2bf1de2b-4a97-40d7-9dfe-cfb17da851ee.png"
+                    alt="Qimam"
+                    style="width:20px;height:20px;object-fit:contain;vertical-align:middle;margin-right:8px;"
+                    onerror="this.style.display='none'">
+                Qimam Digital
             </div>
             <p data-i="ft">Amman, Jordan</p>
             <p>© 2026 Qimam Digital</p>
         </footer>
     </div>
 
-    <!-- ═══════════════ CONTACT ═══════════════ -->
+    <!-- ═══ CONTACT ═══ -->
     <div id="page-contact" class="page">
         <div class="cp">
             <span class="pey" data-i="ce">// Start a Project</span>
@@ -2117,7 +2236,7 @@
                     <div class="cinfos">
                         <div class="ci">
                             <div class="cic">📞</div>
-                            <div><span class="cil" data-i="ci1">Phone & WhatsApp</span><span class="civ">+962 79 044
+                            <div><span class="cil" data-i="ci1">Phone &amp; WhatsApp</span><span class="civ">+962 79 044
                                     1000</span></div>
                         </div>
                         <div class="ci">
@@ -2181,7 +2300,7 @@
                                     03</div>
                                 <div>
                                     <div style="font-weight:600;font-size:.9rem;margin-bottom:3px" data-i="step3-h">
-                                        Approve & launch</div>
+                                        Approve &amp; launch</div>
                                     <div style="color:var(--muted);font-size:.82rem;line-height:1.6" data-i="step3-b">
                                         Happy with the prototype? We build and launch in days.</div>
                                 </div>
@@ -2202,9 +2321,11 @@
         </div>
         <footer>
             <div class="fl">
-                <div
-                    style="width:8px;height:8px;background:var(--blue);border-radius:50%;box-shadow:0 0 10px var(--blue)">
-                </div>Qimam Digital
+                <img src="https://www.image2url.com/r2/default/images/1778271658902-2bf1de2b-4a97-40d7-9dfe-cfb17da851ee.png"
+                    alt="Qimam"
+                    style="width:20px;height:20px;object-fit:contain;vertical-align:middle;margin-right:8px;"
+                    onerror="this.style.display='none'">
+                Qimam Digital
             </div>
             <p data-i="ft">Amman, Jordan</p>
             <p>© 2026 Qimam Digital</p>
@@ -2214,7 +2335,7 @@
     <script>
         const T = {
             en: {
-                logo: 'Qimam', n1: 'Home', n2: 'Our Work', n3: 'Services & Pricing', n4: 'Contact', nwa: 'WhatsApp',
+                logo: 'Qimam Digital', n1: 'Home', n2: 'Our Work', n3: 'Services & Pricing', n4: 'Contact', nwa: 'WhatsApp',
                 hb: 'Amman, Jordan · Premium Web & Brand Design',
                 h1: 'We build', h2: 'Websites & Brand Identities', h3: 'That win clients.',
                 hs: 'Qimam Digital crafts high-performance websites and brand identities for businesses across Jordan. Professional. Fast. Starting at 200 JOD.',
@@ -2225,7 +2346,7 @@
                 m1: 'Web Design', m2: 'Development', m3: 'Arabic First', m4: 'Mobile Friendly', m5: 'SEO Ready',
                 ah2: 'Built for businesses that want to grow online',
                 ap1: 'We combine sharp design with solid engineering to deliver websites and brand identities that convert visitors into customers.',
-                ap2: 'Based in Amman — bilingual, fast on all devices. On-demand maintenance at just 10 JOD per request (capped at 10 edits max).',
+                ap2: 'Based in Amman — bilingual, fast on all devices. On-demand maintenance at just 10 JOD per maintenance request (capped at 10 edits max).',
                 ac: 'Services & Pricing →',
                 g1: 'JOD Full Website', g2: 'JOD / Maint. Request', g2sub: 'Max 10 edits per request', g3: 'Free Prototype', g4: 'Free Post-Launch Edits', g4sub: 'Maint. fee applies after',
                 ft: 'Amman, Jordan',
@@ -2249,12 +2370,21 @@
                 'chatbot-price': 'From 1,000 JOD', 'chatbot-note': 'Final pricing depends on complexity and integration requirements.',
                 'dom-h': '🌐 Domain Registration', 'dom-p': 'Secure your brand\'s web address. Full technical setup and DNS config.', 'dom-yr': '/ year', 'dom-note': 'External provider fees apply; we handle full setup.',
                 'email-h': '✉️ Professional Business Emails', 'email-p': 'Branded emails like info@yourcompany.com. No limit on mailboxes.', 'email-price': 'Custom Pricing', 'email-note': 'Single account to full enterprise — we set everything up.',
-                'ads-h': '🎬 High-Conversion Digital Ads', 'ads-p': 'Cinematic AI-driven video and static ads for Instagram, TikTok, Facebook, and beyond.', 'ads-price': 'Custom Pricing', 'ads-note': 'Monthly packages available.',
+                'ads-h': '🎬 High-Conversion Digital Ads', 'ads-p': 'Cinematic AI-driven video and static ads for Instagram, TikTok, Facebook, and beyond.', 'ads-price': 'Custom Pricing', 'ads-note': 'Monthly packages available. Contact us to discuss.',
+                'voice-h': '🎙️ Custom Voiceovers', 'voice-p': 'Professional, high-fidelity narrations for your reels, ads, and presentations. Multiple accents and languages.', 'voice-price': 'Custom Pricing', 'voice-note': 'Arabic, English, and more. Contact us for samples.',
+                'photo-h': '📸 Product Photo Enhancement', 'photo-p': 'Send us a photo of any product and our specialized designers will deliver a studio-quality, enhanced version within hours.', 'photo-price': 'Custom Pricing', 'photo-note': 'Fast turnaround — results within hours.',
                 'terms-h': '📋 Service Terms & Maintenance Policy', 'terms-body': 'On-Demand Maintenance: 10 JOD per maintenance request (capped at 10 edits max). All plans include 10 free post-launch edits; standard maintenance fee applies after.',
-                mn: 'Maintenance: 10 JOD per request, capped at 10 edits.',
+                mn: 'Maintenance: 10 JOD per maintenance request, capped at 10 edits.',
+                'pb-title': 'Browse Our Latest Digital Creations', 'pb-sub': 'Message us on WhatsApp to see our full portfolio — websites, ads, brand designs, and more.', 'pb-btn': 'Message Us →',
                 'no-print': 'Digital Design Only — We do not print.',
-                'bp-name': 'Complete Branding Package', 'bp-desc': 'Everything your business needs to look professional — company profile to every printed touchpoint. Delivered as high-resolution digital files.', 'bp-total-label': 'Package Total', 'bp-save': '✦ Save 20 JOD vs. individual',
+                'bp-name': 'Complete Branding Package', 'bp-desc': 'Everything your business needs — company profile, logo, business card, letterhead, and envelope. One package, one price, delivered fast.', 'bp-total-label': 'Bundle Total', 'bp-save': '✦ Save 10 JOD vs. individual items',
+                'bp-btn': 'Get the Full Package →',
                 'alacarte-label': '// Or order individual items',
+                'bac1-name': '📄 Company Profile', 'bac1-note': 'Custom PDF, branded to your identity',
+                'bac2-name': '🎨 Logo Design', 'bac2-note': 'Primary + alternate versions, all formats',
+                'bac3-name': '🪪 Business Card', 'bac3-note': 'Front & back, print-ready digital file',
+                'bac4-name': '📃 Letterhead', 'bac4-note': 'A4 format, Word & PDF versions',
+                'bac5-name': '✉️ Envelope', 'bac5-note': 'Standard DL & C5 format',
                 ce: '// Start a Project', ch1: "Let's Build", ch2: 'Something Great',
                 css: 'Reach out directly — we respond within a few hours. Free prototype before you pay.',
                 clh: 'Ready to start?', clp: "Tell us about your business and we'll prepare a free prototype before you pay anything.",
@@ -2267,10 +2397,10 @@
                 'resp-label': 'Response Time', 'resp-time': 'Within a few hours', 'resp-sub': 'We\'re based in Amman — fast replies, real people.'
             },
             ar: {
-                logo: 'قمم', n1: 'الرئيسية', n2: 'أعمالنا', n3: 'الخدمات والأسعار', n4: 'تواصل', nwa: 'واتساب',
+                logo: 'قمم ديجيتال', n1: 'الرئيسية', n2: 'أعمالنا', n3: 'الخدمات والأسعار', n4: 'تواصل', nwa: 'واتساب',
                 hb: 'عمّان، الأردن · ويب وتصميم هوية احترافي',
                 h1: 'نبني', h2: 'مواقع وهويات بصرية', h3: 'تجذب العملاء.',
-                hs: 'قمم ديجيتال تصمم مواقع عالية الأداء وهويات بصرية احترافية للأعمال في الأردن.',
+                hs: 'قمم ديجيتال تصمم مواقع عالية الأداء وهويات بصرية للأعمال في الأردن. تبدأ من 200 دينار.',
                 hc1: 'شوف أعمالنا →', hc2: 'الخدمات والأسعار',
                 s1: 'دينار السعر الابتدائي', s2: 'مشاريع منجزة', s3: 'نموذج مجاني',
                 s4: 'دينار / طلب صيانة', s4sub: 'حد أقصى 10 تعديلات للطلب',
@@ -2303,18 +2433,27 @@
                 'dom-h': '🌐 تسجيل النطاق', 'dom-p': 'احجز اسم موقعك مع الإعداد التقني الكامل.', 'dom-yr': '/ سنة', 'dom-note': 'رسوم المزود الخارجي مطبقة.',
                 'email-h': '✉️ إيميلات بريميوم', 'email-p': 'إيميلات مثل info@شركتك.com بدون حد للعدد.', 'email-price': 'تسعير مخصص', 'email-note': 'من حساب واحد لفريق كامل.',
                 'ads-h': '🎬 إعلانات رقمية عالية التحويل', 'ads-p': 'فيديوهات وصور إعلانية سينمائية بالذكاء الاصطناعي.', 'ads-price': 'تسعير مخصص', 'ads-note': 'حزم شهرية متاحة.',
-                'terms-h': '📋 شروط الخدمة', 'terms-body': 'صيانة عند الطلب: 10 دينار للطلب (حد أقصى 10 تعديلات). جميع الخطط تشمل 10 تعديلات مجانية بعد الإطلاق.',
+                'voice-h': '🎙️ تعليق صوتي احترافي', 'voice-p': 'تسجيلات صوتية عالية الجودة للريلز والإعلانات والعروض. متوفرة بلهجات ولغات متعددة تناسب هوية علامتك.', 'voice-price': 'تسعير مخصص', 'voice-note': 'عربي وإنجليزي والمزيد. تواصل معنا لعينات.',
+                'photo-h': '📸 تحسين صور المنتجات', 'photo-p': 'أرسل لنا صورة أي منتج وسيسلمك مصمموك المتخصصون نسخة باحترافية استوديو خلال ساعات. مثالية للكتالوجات ووسائل التواصل.', 'photo-price': 'تسعير مخصص', 'photo-note': 'تسليم سريع — نتائج خلال ساعات.',
+                'terms-h': '📋 شروط الخدمة', 'terms-body': 'صيانة عند الطلب: 10 دينار للطلب (حد أقصى 10 تعديلات). الخطط تشمل 10 تعديلات مجانية بعد الإطلاق.',
                 mn: 'الصيانة: 10 دينار للطلب، حد أقصى 10 تعديلات.',
+                'pb-title': 'تصفح أحدث أعمالنا الرقمية', 'pb-sub': 'راسلنا على واتساب لترى محفظة أعمالنا — مواقع وإعلانات وهويات بصرية وأكثر.', 'pb-btn': 'راسلنا →',
                 'no-print': 'تصميم رقمي فقط — لا نقدم خدمات طباعة.',
-                'bp-name': 'حزمة الهوية البصرية الكاملة', 'bp-desc': 'كل ما تحتاجه لتبدو احترافياً — من البروفايل لكل مستلزمات الأعمال. ملفات رقمية عالية الدقة.', 'bp-total-label': 'إجمالي الحزمة', 'bp-save': '✦ وفّر 20 دينار مقارنة بالأفراد',
+                'bp-name': 'حزمة الهوية البصرية الكاملة', 'bp-desc': 'كل ما تحتاجه — بروفايل شركة، شعار، بطاقة عمل، ورق رسمي، وظرف. حزمة واحدة، سعر واحد.', 'bp-total-label': 'إجمالي الحزمة', 'bp-save': '✦ وفّر 10 دنانير مقارنة بالأفراد',
+                'bp-btn': 'احصل على الحزمة الكاملة →',
                 'alacarte-label': '// أو اطلب كل قطعة على حدة',
+                'bac1-name': '📄 بروفايل الشركة', 'bac1-note': 'PDF مخصص ومصمم بهوية علامتك',
+                'bac2-name': '🎨 تصميم الشعار', 'bac2-note': 'نسخة رئيسية وبديلة بجميع الصيغ',
+                'bac3-name': '🪪 بطاقة العمل', 'bac3-note': 'وجهان، ملف رقمي جاهز للطباعة',
+                'bac4-name': '📃 الورق الرسمي', 'bac4-note': 'حجم A4، Word وPDF',
+                'bac5-name': '✉️ الظرف', 'bac5-note': 'مقاس DL وC5 القياسيين',
                 ce: '// ابدأ مشروعك', ch1: 'نبنيها', ch2: 'سوا',
                 css: 'تواصل معنا مباشرة — نرد خلال ساعات.',
                 clh: 'جاهز تبدأ?', clp: 'قولنا عن عملك وسنجهز نموذجاً مجانياً قبل ما تدفع.',
                 ci1: 'هاتف وواتساب', ci2: 'الموقع', ci3: 'الإيميل', civ: 'عمّان، الأردن',
                 wab: 'تواصل عبر واتساب', 'email-btn': 'راسلنا على الإيميل',
                 'reach-h': 'كيف نعمل',
-                'step1-h': 'تتواصل معنا', 'step1-b': 'أرسل فكرتك ونوع العمل عبر واتساب أو الإيميل.',
+                'step1-h': 'تتواصل معنا', 'step1-b': 'أرسل فكرتك عبر واتساب أو الإيميل.',
                 'step2-h': 'نموذج مجاني خلال 24 ساعة', 'step2-b': 'نبني نموذجاً بصرياً قبل ما تدفع.',
                 'step3-h': 'موافقة وإطلاق', 'step3-b': 'عجبك النموذج؟ نبني الموقع في أيام.',
                 'resp-label': 'وقت الرد', 'resp-time': 'خلال ساعات', 'resp-sub': 'مقرنا عمّان — ردود سريعة.'
