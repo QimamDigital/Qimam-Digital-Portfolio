@@ -128,6 +128,70 @@
             color: var(--black)
         }
 
+        .nav-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border: 1px solid #343434;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--white);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer
+        }
+
+        .nav-toggle span {
+            width: 18px;
+            height: 2px;
+            background: currentColor;
+            border-radius: 2px
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 89px;
+            left: 0;
+            right: 0;
+            z-index: 190;
+            background: rgba(12, 12, 12, 0.98);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 20px 18px
+        }
+
+        .mobile-menu.open {
+            display: block
+        }
+
+        .mobile-menu a,
+        .mobile-menu button {
+            width: 100%;
+            display: block;
+            text-align: left;
+            padding: 12px 2px;
+            color: var(--white);
+            background: transparent;
+            border: none;
+            font-family: 'Syne Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer
+        }
+
+        .mobile-menu button {
+            margin-top: 8px;
+            border: 1px solid var(--rust);
+            color: var(--rust);
+            border-radius: 8px;
+            text-align: center;
+            padding: 13px 10px
+        }
+
         .page {
             position: fixed;
             inset: 0;
@@ -798,6 +862,14 @@
                 display: none
             }
 
+            .nav-contact {
+                display: none
+            }
+
+            .nav-toggle {
+                display: inline-flex
+            }
+
             body {
                 cursor: auto
             }
@@ -887,7 +959,18 @@
             <li><a href="#" onclick="showPage('contact',this)">Contact</a></li>
         </ul>
         <button class="nav-contact" onclick="showPage('contact',null)">Get in Touch</button>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="#" onclick="showPage('home',null);closeMobileMenu();return false;">Home</a>
+        <a href="#" onclick="showPage('projects',null);closeMobileMenu();return false;">Projects</a>
+        <a href="#" onclick="showPage('studio',null);closeMobileMenu();return false;">Studio</a>
+        <a href="#" onclick="showPage('contact',null);closeMobileMenu();return false;">Contact</a>
+        <button onclick="showPage('contact',null);closeMobileMenu();">Get in Touch</button>
+    </div>
 
     <!-- HOME -->
     <div id="page-home" class="page active">
@@ -1089,12 +1172,21 @@
             cur.style.left = e.clientX + 'px'; cur.style.top = e.clientY + 'px';
             setTimeout(() => { curR.style.left = e.clientX + 'px'; curR.style.top = e.clientY + 'px'; }, 80);
         });
+        function toggleMobileMenu() {
+            const m = document.getElementById('mobileMenu');
+            m.classList.toggle('open');
+        }
+        function closeMobileMenu() {
+            const m = document.getElementById('mobileMenu');
+            if (m) m.classList.remove('open');
+        }
         function showPage(id, linkEl) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page-' + id).classList.add('active');
             document.getElementById('page-' + id).scrollTop = 0;
             document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
             if (linkEl) linkEl.classList.add('active');
+            closeMobileMenu();
         }
     </script>
 </body>

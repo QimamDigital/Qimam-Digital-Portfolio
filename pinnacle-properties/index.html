@@ -138,6 +138,79 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2)
         }
 
+        .nav-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 8px;
+            background: transparent;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer
+        }
+
+        .nav-toggle span {
+            width: 18px;
+            height: 2px;
+            background: currentColor;
+            display: block;
+            border-radius: 2px
+        }
+
+        nav.dark .nav-toggle {
+            color: var(--cream)
+        }
+
+        nav.light .nav-toggle {
+            color: var(--navy);
+            border-color: rgba(10, 22, 40, 0.25)
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            z-index: 190;
+            background: rgba(10, 22, 40, 0.98);
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 12px 20px 18px
+        }
+
+        .mobile-menu.open {
+            display: block
+        }
+
+        .mobile-menu a,
+        .mobile-menu button {
+            width: 100%;
+            text-align: left;
+            display: block;
+            color: var(--cream);
+            background: transparent;
+            border: none;
+            padding: 12px 4px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif
+        }
+
+        .mobile-menu button {
+            margin-top: 8px;
+            background: var(--gold);
+            color: var(--navy);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            padding: 13px 12px
+        }
+
         /* PAGES */
         .page {
             position: fixed;
@@ -922,6 +995,14 @@
                 display: none
             }
 
+            .nav-btn {
+                display: none
+            }
+
+            .nav-toggle {
+                display: inline-flex
+            }
+
             .hero-home {
                 padding: 0 20px 80px
             }
@@ -985,7 +1066,18 @@
             <li><a href="#" onclick="showPage('contact',this)">Contact</a></li>
         </ul>
         <button class="nav-btn" onclick="showPage('contact',null)">Book a Viewing</button>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="#" onclick="showPage('home',null);closeMobileMenu();return false;">Home</a>
+        <a href="#" onclick="showPage('listings',null);closeMobileMenu();return false;">Listings</a>
+        <a href="#" onclick="showPage('about',null);closeMobileMenu();return false;">About</a>
+        <a href="#" onclick="showPage('contact',null);closeMobileMenu();return false;">Contact</a>
+        <button onclick="showPage('contact',null);closeMobileMenu();">Book a Viewing</button>
+    </div>
 
     <!-- PAGE: HOME -->
     <div id="page-home" class="page active">
@@ -1270,6 +1362,14 @@
     </div>
 
     <script>
+        function toggleMobileMenu() {
+            const m = document.getElementById('mobileMenu');
+            m.classList.toggle('open');
+        }
+        function closeMobileMenu() {
+            const m = document.getElementById('mobileMenu');
+            if (m) m.classList.remove('open');
+        }
         function showPage(id, linkEl) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page-' + id).classList.add('active');
@@ -1279,6 +1379,7 @@
             const nav = document.getElementById('navbar');
             const lightPages = ['listings', 'about', 'contact'];
             nav.className = lightPages.includes(id) ? 'light' : 'dark';
+            closeMobileMenu();
         }
     </script>
 </body>
