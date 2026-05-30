@@ -603,6 +603,48 @@ body[dir="rtl"] .mockup span {
     linear-gradient(135deg, var(--navy), #243243);
 }
 
+.mockup-vanta {
+  background:
+    linear-gradient(145deg, rgba(53, 213, 255, 0.24), transparent 38%),
+    linear-gradient(135deg, #070a10, #151d27 72%);
+}
+
+.work-overlay {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 3;
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid rgba(247, 246, 242, 0.24);
+  background: linear-gradient(135deg, rgba(8, 16, 28, 0.92), rgba(5, 8, 13, 0.72));
+  color: var(--ivory);
+  backdrop-filter: blur(6px);
+}
+
+.work-overlay-meta {
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(53, 213, 255, 0.92);
+}
+
+.work-overlay h3 {
+  margin: 0;
+  font-size: 1.04rem;
+  color: var(--ivory);
+}
+
+.work-overlay p {
+  margin: 0;
+  color: rgba(247, 246, 242, 0.84);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
 .card-body {
   position: absolute;
   right: 22px;
@@ -1317,7 +1359,18 @@ a:focus-visible {
   }
 
   .mockup {
-    min-height: 320px;
+    aspect-ratio: 3 / 2;
+  }
+
+  .work-overlay {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    padding: 12px;
+  }
+
+  .work-overlay p {
+    font-size: 0.74rem;
   }
 
   .card-body {

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vanta Motors — Premium Electric Vehicle Showroom in Amman</title>
+    <meta name="description" content="Vanta Motors is a fictional premium electric vehicle showroom website prototype by Qimam Digital, showcasing cinematic web design for automotive brands in Amman, Jordan." />
+    <meta property="og:title" content="Vanta Motors — Premium Electric Vehicle Showroom in Amman" />
+    <meta property="og:description" content="A cinematic EV showroom prototype by Qimam Digital with interactive model cards, motion-driven storytelling, and premium positioning." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1600&q=80" />
+    <meta name="theme-color" content="#050505" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="#home" aria-label="Vanta Motors home">
+        <svg viewBox="0 0 126 28" role="img" aria-label="Vanta Motors logo">
+          <defs>
+            <linearGradient id="pulse" x1="0" x2="1">
+              <stop offset="0%" stop-color="#35D5FF" />
+              <stop offset="100%" stop-color="#C8CDD4" />
+            </linearGradient>
+          </defs>
+          <path d="M3 22 14 6l11 16" fill="none" stroke="url(#pulse)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M27 14h12" stroke="#35D5FF" stroke-width="2.4" stroke-linecap="round" />
+          <circle cx="44" cy="14" r="2" fill="#35D5FF" />
+          <text x="52" y="19" fill="#F4F4F1" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600" letter-spacing="1">VANTA MOTORS</text>
+        </svg>
+      </a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="mobile-nav" data-menu-btn>
+        <span></span><span></span>
+      </button>
+      <nav class="main-nav" data-nav>
+        <a href="#home">Home</a>
+        <a href="#models">Models</a>
+        <a href="#experience">Experience</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="header-cta" href="#contact">Book a Viewing</a>
+    </header>
+
+    <nav id="mobile-nav" class="mobile-nav" data-mobile-nav>
+      <a href="#home">Home</a>
+      <a href="#models">Models</a>
+      <a href="#experience">Experience</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-copy" data-reveal>
+          <p class="eyebrow">Amman, Jordan · Premium EV Showroom</p>
+          <h1>Electric performance, refined for Amman.</h1>
+          <p>Vanta Motors brings premium electric vehicles, intelligent showroom experiences, and future-ready mobility guidance to Jordan.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#models">Explore Models</a>
+            <a class="btn btn-secondary" href="#contact">Book a Viewing</a>
+          </div>
+        </div>
+        <div class="hero-visual" data-reveal>
+          <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1800&q=80" alt="Premium electric vehicle in a cinematic showroom" fetchpriority="high" />
+          <div class="energy-line" aria-hidden="true"></div>
+          <aside class="spec-card">
+            <span>Flagship EV</span>
+            <strong>520 km</strong>
+            <p>Long-range confidence with premium interior technology.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="reveal-showcase" id="experience">
+        <div class="sticky-media">
+          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1800&q=80" alt="Electric showroom reveal with dramatic lighting" loading="lazy" />
+          <div class="scan-line" aria-hidden="true"></div>
+        </div>
+        <div class="layers" data-stack>
+          <article class="layer-card is-active" data-layer>
+            <h3>Performance</h3>
+            <p>Precision acceleration and responsive handling engineered for confident city and highway driving.</p>
+          </article>
+          <article class="layer-card" data-layer>
+            <h3>Range</h3>
+            <p>Practical long-distance planning with clear route guidance and charging-aware recommendations.</p>
+          </article>
+          <article class="layer-card" data-layer>
+            <h3>Charging</h3>
+            <p>Home and public charging strategy support, designed around your daily movement across Amman.</p>
+          </article>
+          <article class="layer-card" data-layer>
+            <h3>Service</h3>
+            <p>Post-delivery care coordination with transparent support touchpoints and proactive follow-up.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="stats" data-reveal>
+        <article><strong data-count="12">0</strong><span>Premium EV models</span></article>
+        <article><strong data-count="24">0</strong><span>Hours to private viewing requests</span></article>
+        <article><strong data-count="500">0</strong><span>km range guidance</span></article>
+        <article><strong>Amman</strong><span>Showroom support team</span></article>
+      </section>
+
+      <section class="features" data-reveal>
+        <div class="section-head">
+          <p class="eyebrow">Advisory Services</p>
+          <h2>Premium guidance for every stage of EV ownership.</h2>
+        </div>
+        <div class="feature-grid">
+          <article>EV model guidance</article>
+          <article>Charging consultation</article>
+          <article>Private showroom viewing</article>
+          <article>Finance-ready support</article>
+          <article>Fleet EV planning</article>
+          <article>After-sales coordination</article>
+        </div>
+      </section>
+
+      <section id="models" class="models" data-reveal>
+        <div class="section-head">
+          <p class="eyebrow">Model Comparison</p>
+          <h2>Choose the profile that matches your drive.</h2>
+        </div>
+        <div class="models-wrap">
+          <div class="model-cards" role="tablist" aria-label="Vehicle models">
+            <button class="model-card is-active" role="tab" aria-selected="true" data-model="eon">
+              <h3>Vanta Eon</h3><p>Elegant urban electric sedan</p><span>480 km range</span>
+            </button>
+            <button class="model-card" role="tab" aria-selected="false" data-model="arc">
+              <h3>Vanta Arc</h3><p>Premium electric SUV</p><span>520 km range</span>
+            </button>
+            <button class="model-card" role="tab" aria-selected="false" data-model="pulse">
+              <h3>Vanta Pulse</h3><p>Performance-focused EV coupe</p><span>430 km range</span>
+            </button>
+          </div>
+          <aside class="model-panel" data-model-panel>
+            <h3>Vanta Eon</h3>
+            <p>Best for: daily executive driving</p>
+            <ul>
+              <li>Range: 480 km</li>
+              <li>Quiet premium cabin</li>
+              <li>Adaptive city-drive systems</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="showroom" data-reveal>
+        <div>
+          <p class="eyebrow">Showroom Experience</p>
+          <h2>Appointment-based, private, and focused.</h2>
+          <p>Our Amman showroom workflow is designed for serious buyers: focused model walkthroughs, guided comparisons, and clear purchase readiness support with no pressure.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1600&q=80" alt="Premium electric vehicle interior in showroom lighting" loading="lazy" />
+      </section>
+
+      <section id="process" class="journey" data-reveal>
+        <p class="eyebrow">Buying Journey</p>
+        <h2>Clear steps from interest to ownership support.</h2>
+        <ol>
+          <li><span>01</span><strong>Discover</strong></li>
+          <li><span>02</span><strong>Compare</strong></li>
+          <li><span>03</span><strong>Book</strong></li>
+          <li><span>04</span><strong>Drive</strong></li>
+          <li><span>05</span><strong>Support</strong></li>
+        </ol>
+      </section>
+
+      <section id="contact" class="contact" data-reveal>
+        <p class="eyebrow">Contact</p>
+        <h2>Ready for your private EV consultation?</h2>
+        <div class="contact-grid">
+          <a href="tel:+962790000000">Phone: +962 79 000 0000</a>
+          <a href="mailto:hello@vantamotors-demo.com">Email: hello@vantamotors-demo.com</a>
+          <a href="https://wa.me/962790000000" target="_blank" rel="noreferrer">WhatsApp: +962 79 000 0000</a>
+          <span>Location: Amman, Jordan</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Vanta Motors · Amman, Jordan</p>
+      <p>Portfolio prototype by Qimam Digital</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
