@@ -2,1023 +2,1075 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumière Clinic — Advanced Aesthetic Medicine</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
-        rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box
-        }
-
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden
-        }
-
-        :root {
-            --white: #fafcfb;
-            --mint: #c8e6dc;
-            --teal: #2a7d6a;
-            --teal-dark: #1d5a4c;
-            --teal-pale: #e8f4f0;
-            --charcoal: #1a2420;
-            --muted: #7a9490;
-            --light: #f0f5f3
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit
-        }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 300;
-            background: var(--white);
-            color: var(--charcoal)
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 200;
-            height: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 60px;
-            background: rgba(250, 252, 251, 0.96);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(42, 125, 106, 0.1)
-        }
-
-        .logo {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.4rem;
-            color: var(--teal-dark)
-        }
-
-        .logo em {
-            font-style: italic;
-            color: var(--teal)
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none
-        }
-
-        .nav-links a {
-            font-size: 0.8rem;
-            color: var(--muted);
-            transition: color 0.3s;
-            letter-spacing: 0.5px
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--teal)
-        }
-
-        .nav-book {
-            background: var(--teal);
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-size: 0.82rem;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s;
-            font-family: 'DM Sans', sans-serif
-        }
-
-        .nav-book:hover {
-            background: var(--teal-dark);
-            transform: translateY(-1px)
-        }
-
-        .page {
-            position: fixed;
-            inset: 0;
-            overflow-y: auto;
-            overflow-x: hidden;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease
-        }
-
-        .page.active {
-            opacity: 1;
-            pointer-events: all
-        }
-
-        /* HOME */
-        .home-hero {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding-top: 80px
-        }
-
-        .home-left {
-            background: var(--light);
-            display: flex;
-            align-items: center;
-            padding: 80px;
-            position: relative;
-            overflow: hidden
-        }
-
-        .home-left::before {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            left: -80px;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(42, 125, 106, 0.1) 0%, transparent 70%);
-            border-radius: 50%
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(42, 125, 106, 0.1);
-            color: var(--teal);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 0.72rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            margin-bottom: 28px
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--teal);
-            border-radius: 50%;
-            animation: blink 1.5s infinite
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1
-            }
-
-            50% {
-                opacity: 0.3
-            }
-        }
-
-        .home-left h1 {
-            font-family: 'DM Serif Display', serif;
-            font-size: 3.8rem;
-            line-height: 1.12;
-            color: var(--charcoal);
-            margin-bottom: 22px;
-            font-weight: 400
-        }
-
-        .home-left h1 em {
-            font-style: italic;
-            color: var(--teal)
-        }
-
-        .home-left>div>p {
-            color: var(--muted);
-            line-height: 1.85;
-            font-size: 0.95rem;
-            margin-bottom: 38px;
-            max-width: 400px
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap
-        }
-
-        .btn-teal {
-            background: var(--teal);
-            color: #fff;
-            padding: 15px 36px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s;
-            font-family: 'DM Sans', sans-serif
-        }
-
-        .btn-teal:hover {
-            background: var(--teal-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(42, 125, 106, 0.25)
-        }
-
-        .btn-outline-t {
-            border: 1.5px solid var(--teal);
-            color: var(--teal);
-            padding: 15px 36px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            background: none;
-            transition: all 0.3s;
-            font-family: 'DM Sans', sans-serif
-        }
-
-        .btn-outline-t:hover {
-            background: var(--teal);
-            color: #fff
-        }
-
-        .home-right {
-            background: var(--mint);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 60px;
-            position: relative;
-            overflow: hidden
-        }
-
-        .home-right img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            inset: 0;
-            opacity: 0.5
-        }
-
-        .why-card {
-            background: #fff;
-            border-radius: 24px;
-            padding: 45px 38px;
-            box-shadow: 0 25px 70px rgba(42, 125, 106, 0.14);
-            width: 100%;
-            max-width: 370px;
-            position: relative;
-            z-index: 1
-        }
-
-        .why-card h3 {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.4rem;
-            margin-bottom: 25px;
-            color: var(--charcoal)
-        }
-
-        .wstat {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            padding: 18px 0;
-            border-bottom: 1px solid var(--light)
-        }
-
-        .wstat:last-child {
-            border-bottom: none
-        }
-
-        .wstat-icon {
-            width: 42px;
-            height: 42px;
-            background: var(--light);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            color: var(--teal);
-            font-size: 1rem
-        }
-
-        .wstat strong {
-            display: block;
-            font-size: 0.95rem;
-            color: var(--charcoal);
-            font-weight: 500;
-            margin-bottom: 2px
-        }
-
-        .wstat span {
-            font-size: 0.77rem;
-            color: var(--muted)
-        }
-
-        /* TREATMENTS */
-        .treatments-page {
-            padding-top: 80px;
-            min-height: 100vh;
-            background: var(--white)
-        }
-
-        .tr-hero {
-            height: 50vh;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            padding: 0 60px 60px
-        }
-
-        .tr-hero-bg {
-            position: absolute;
-            inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1600&q=90');
-            background-size: cover;
-            background-position: center
-        }
-
-        .tr-hero-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(29, 90, 76, 0.88) 0%, rgba(29, 90, 76, 0.3) 100%)
-        }
-
-        .tr-hero-content {
-            position: relative;
-            z-index: 1
-        }
-
-        .tr-hero h2 {
-            font-family: 'DM Serif Display', serif;
-            font-size: 3.8rem;
-            color: #fff;
-            font-weight: 400;
-            line-height: 1.1
-        }
-
-        .tr-hero h2 em {
-            font-style: italic;
-            color: var(--mint)
-        }
-
-        .tr-hero p {
-            color: rgba(255, 255, 255, 0.65);
-            margin-top: 10px;
-            font-size: 0.9rem
-        }
-
-        .treatments-grid-section {
-            padding: 70px 60px;
-            background: var(--white)
-        }
-
-        .treats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px
-        }
-
-        .treat-card {
-            background: var(--light);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s;
-            border: 1px solid transparent;
-            cursor: pointer
-        }
-
-        .treat-card:hover {
-            background: #fff;
-            border-color: rgba(42, 125, 106, 0.15);
-            box-shadow: 0 20px 50px rgba(42, 125, 106, 0.1);
-            transform: translateY(-5px)
-        }
-
-        .treat-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s
-        }
-
-        .treat-card:hover img {
-            transform: scale(1.04)
-        }
-
-        .treat-body {
-            padding: 30px
-        }
-
-        .treat-num {
-            font-family: 'DM Serif Display', serif;
-            font-size: 2.5rem;
-            color: rgba(42, 125, 106, 0.15);
-            line-height: 1;
-            margin-bottom: 12px
-        }
-
-        .treat-body h3 {
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 10px;
-            color: var(--charcoal)
-        }
-
-        .treat-body p {
-            color: var(--muted);
-            font-size: 0.85rem;
-            line-height: 1.7;
-            margin-bottom: 18px
-        }
-
-        .treat-link {
-            font-size: 0.8rem;
-            color: var(--teal);
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: gap 0.3s
-        }
-
-        .treat-card:hover .treat-link {
-            gap: 10px
-        }
-
-        /* TEAM PAGE */
-        .team-page {
-            padding-top: 80px;
-            min-height: 100vh;
-            background: var(--light)
-        }
-
-        .team-hero {
-            height: 45vh;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            padding: 0 60px 50px
-        }
-
-        .team-hero-bg {
-            position: absolute;
-            inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1600&q=90');
-            background-size: cover;
-            background-position: top
-        }
-
-        .team-hero-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(29, 90, 76, 0.9) 0%, rgba(29, 90, 76, 0.4) 100%)
-        }
-
-        .team-hero-content {
-            position: relative;
-            z-index: 1
-        }
-
-        .team-hero h2 {
-            font-family: 'DM Serif Display', serif;
-            font-size: 3.5rem;
-            color: #fff;
-            font-weight: 400
-        }
-
-        .team-hero h2 em {
-            font-style: italic;
-            color: var(--mint)
-        }
-
-        .team-grid-section {
-            padding: 70px 60px
-        }
-
-        .t-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px
-        }
-
-        .t-card {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.06);
-            transition: all 0.4s
-        }
-
-        .t-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 60px rgba(42, 125, 106, 0.14)
-        }
-
-        .t-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            object-position: top;
-            display: block;
-            transition: transform 0.5s
-        }
-
-        .t-card:hover img {
-            transform: scale(1.03)
-        }
-
-        .t-info {
-            padding: 25px
-        }
-
-        .t-info h4 {
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 4px
-        }
-
-        .t-role {
-            font-size: 0.75rem;
-            color: var(--teal);
-            letter-spacing: 0.5px;
-            display: block;
-            margin-bottom: 10px
-        }
-
-        .t-info p {
-            color: var(--muted);
-            font-size: 0.82rem;
-            line-height: 1.7
-        }
-
-        /* BOOK PAGE */
-        .book-page {
-            padding-top: 80px;
-            min-height: 100vh
-        }
-
-        .book-split {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: calc(100vh - 80px)
-        }
-
-        .book-left {
-            position: relative;
-            overflow: hidden
-        }
-
-        .book-left img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block
-        }
-
-        .book-right {
-            background: var(--teal-dark);
-            padding: 80px 65px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center
-        }
-
-        .book-right .sec-tag-w {
-            font-size: 0.65rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--mint);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 25px
-        }
-
-        .book-right .sec-tag-w::before {
-            content: '';
-            width: 25px;
-            height: 1px;
-            background: var(--mint)
-        }
-
-        .book-right h2 {
-            font-family: 'DM Serif Display', serif;
-            font-size: 2.8rem;
-            color: #fff;
-            font-weight: 400;
-            margin-bottom: 12px;
-            line-height: 1.2
-        }
-
-        .book-right h2 em {
-            font-style: italic;
-            color: var(--mint)
-        }
-
-        .book-right>p {
-            color: rgba(255, 255, 255, 0.55);
-            margin-bottom: 45px;
-            font-size: 0.9rem
-        }
-
-        .book-form {
-            display: flex;
-            flex-direction: column;
-            gap: 18px
-        }
-
-        .book-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px
-        }
-
-        .book-input {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff;
-            padding: 15px 18px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.88rem;
-            outline: none;
-            transition: border-color 0.3s;
-            border-radius: 6px;
-            width: 100%
-        }
-
-        .book-input::placeholder {
-            color: rgba(255, 255, 255, 0.35)
-        }
-
-        .book-input:focus {
-            border-color: rgba(200, 230, 220, 0.5)
-        }
-
-        .book-submit {
-            background: var(--mint);
-            color: var(--teal-dark);
-            border: none;
-            padding: 17px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-radius: 6px;
-            margin-top: 5px
-        }
-
-        .book-submit:hover {
-            background: #fff;
-            transform: translateY(-1px)
-        }
-
-        .book-info {
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            gap: 12px
-        }
-
-        .binfo {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            font-size: 0.82rem;
-            color: rgba(255, 255, 255, 0.5)
-        }
-
-        .binfo span:first-child {
-            color: var(--mint)
-        }
-
-        footer {
-            background: var(--charcoal);
-            padding: 45px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px
-        }
-
-        .ft-logo {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.3rem;
-            color: #fff
-        }
-
-        footer p {
-            font-size: 0.78rem;
-            color: rgba(255, 255, 255, 0.4)
-        }
-
-        footer a {
-            color: var(--mint)
-        }
-
-        @media(max-width:768px) {
-            nav {
-                padding: 0 20px
-            }
-
-            .nav-links {
-                display: none
-            }
-
-            .home-hero,
-            .book-split {
-                grid-template-columns: 1fr
-            }
-
-            .home-right {
-                height: 350px
-            }
-
-            .home-left,
-            .book-right {
-                padding: 50px 20px
-            }
-
-            .home-left h1 {
-                font-size: 2.8rem
-            }
-
-            .tr-hero,
-            .team-hero {
-                padding: 0 20px 40px
-            }
-
-            .treatments-grid-section,
-            .team-grid-section {
-                padding: 50px 20px
-            }
-
-            .treats-grid,
-            .t-grid {
-                grid-template-columns: 1fr
-            }
-
-            footer {
-                flex-direction: column;
-                text-align: center;
-                padding: 40px 20px
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noura Skin Clinic — Premium Dermatology &amp; Aesthetic Care in Amman</title>
+  <meta name="description"
+    content="Noura Skin Clinic is a fictional premium dermatology and aesthetic care website prototype by Qimam Digital, showcasing refined web design for clinics in Amman, Jordan." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Noura Skin Clinic — Premium Dermatology &amp; Aesthetic Care in Amman" />
+  <meta property="og:description"
+    content="Advanced dermatology, aesthetic treatments, and personalized skin plans in a calm premium clinic experience in Amman, Jordan." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80" />
+  <meta property="og:locale" content="en_JO" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Noura Skin Clinic — Premium Dermatology &amp; Aesthetic Care in Amman" />
+  <meta name="twitter:description"
+    content="Advanced dermatology, aesthetic treatments, and personalized skin plans. Premium clinic in Amman, Jordan." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://nouraskin-demo.com/" />
+
+  <!-- Preconnect fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- SVG Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='%237D9A8A'/><text x='16' y='22' text-anchor='middle' font-size='18' font-family='Georgia,serif' fill='white'>N</text></svg>" />
 </head>
 
 <body>
 
-    <nav>
-        <div class="logo"><em>Lumière</em> Clinic</div>
-        <ul class="nav-links">
-            <li><a href="#" class="active" onclick="showPage('home',this)">Home</a></li>
-            <li><a href="#" onclick="showPage('treatments',this)">Treatments</a></li>
-            <li><a href="#" onclick="showPage('team',this)">Our Team</a></li>
-            <li><a href="#" onclick="showPage('book',this)">Book</a></li>
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- ============================================================
+     HEADER
+     ============================================================ -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="container">
+      <nav class="nav-inner" role="navigation" aria-label="Main navigation">
+
+        <!-- Logo -->
+        <a href="#home" class="site-logo" aria-label="Noura Skin Clinic — Home">
+          <svg class="logo-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Outer circle ring -->
+            <circle cx="20" cy="20" r="19" stroke="#7D9A8A" stroke-width="0.75" fill="none" opacity="0.4" />
+            <!-- Inner thin ring -->
+            <circle cx="20" cy="20" r="15" stroke="#C8A96A" stroke-width="0.5" fill="none" opacity="0.25" />
+            <!-- N monogram -->
+            <path d="M12 28V12L20 25V12" stroke="#7D9A8A" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" fill="none" />
+            <path d="M20 25V12L28 25V12" stroke="#C8A96A" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" fill="none" opacity="0.9" />
+            <!-- Botanical dot -->
+            <circle cx="28" cy="10" r="2" fill="#7D9A8A" opacity="0.5" />
+            <circle cx="28" cy="10" r="3.5" stroke="#7D9A8A" stroke-width="0.5" fill="none" opacity="0.25" />
+          </svg>
+          <div class="logo-text">
+            <span class="logo-name">Noura Skin</span>
+            <span class="logo-sub">Clinic · Amman</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <ul class="nav-links" role="list">
+          <li><a href="#home" aria-current="page">Home</a></li>
+          <li><a href="#treatments">Treatments</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#specialist">Specialist</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="nav-book" onclick="showPage('book',null)">Book Consultation</button>
-    </nav>
 
-    <!-- HOME -->
-    <div id="page-home" class="page active">
-        <div class="home-hero">
-            <div class="home-left">
+        <!-- Nav CTA -->
+        <div class="nav-cta">
+          <a href="https://wa.me/962790000000" class="btn btn-primary btn-nav"
+            aria-label="Book a consultation via WhatsApp">
+            <span>Book Consultation</span>
+          </a>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle mobile menu" aria-expanded="false"
+          aria-controls="mobileMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation" aria-hidden="true">
+      <ul class="mobile-nav-links" role="list">
+        <li><a href="#home" class="mobile-link">Home</a></li>
+        <li><a href="#treatments" class="mobile-link">Treatments</a></li>
+        <li><a href="#process" class="mobile-link">Process</a></li>
+        <li><a href="#specialist" class="mobile-link">Specialist</a></li>
+        <li><a href="#contact" class="mobile-link">Contact</a></li>
+      </ul>
+      <div class="mobile-cta">
+        <a href="https://wa.me/962790000000" class="btn btn-primary" aria-label="Book via WhatsApp"><span>Book a
+            Consultation</span></a>
+        <a href="#contact" class="btn btn-outline mobile-link"><span>Find Us in Amman</span></a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+     HERO  ── 3D Floating Sphere Edition
+     ============================================================ -->
+  <main id="main-content">
+    <section class="hero" id="home" aria-labelledby="hero-headline">
+
+      <!-- Radial background glow -->
+      <div class="hero-glow" aria-hidden="true"></div>
+
+      <!-- Floating particles -->
+      <div class="hero-particle p-1" aria-hidden="true"></div>
+      <div class="hero-particle p-2" aria-hidden="true"></div>
+      <div class="hero-particle p-3" aria-hidden="true"></div>
+      <div class="hero-particle p-4" aria-hidden="true"></div>
+
+      <!-- 3D Orb Scene -->
+      <div class="hero-orb-scene" aria-hidden="true" id="heroOrb">
+        <div class="hero-orb-wrap" id="heroOrbWrap">
+          <!-- Orbiting rings -->
+          <div class="orb-ring-3"></div>
+          <div class="orb-ring-2"></div>
+          <div class="orb-ring-1"></div>
+          <!-- Main sphere -->
+          <div class="hero-sphere"></div>
+          <!-- Orbiting dots -->
+          <div class="orb-dot orb-dot-1"></div>
+          <div class="orb-dot orb-dot-2"></div>
+        </div>
+      </div>
+
+      <!-- Hero Content -->
+      <div class="hero-content">
+        <div class="hero-text">
+
+          <div class="hero-eyebrow" id="heroEyebrow">
+            <span class="label">Dermatology &amp; Aesthetic Care · Amman</span>
+          </div>
+
+          <h1 class="display-xl hero-headline" id="hero-headline"
+            aria-label="Skin care with medical precision and quiet luxury">
+            <span class="line">Skin care with</span>
+            <span class="line"><em>medical precision</em></span>
+            <span class="line">and quiet luxury.</span>
+          </h1>
+
+          <div class="hero-divider" id="heroDivider"></div>
+
+          <p class="hero-sub" id="heroSub">
+            Noura Skin Clinic brings advanced dermatology, aesthetic treatments, and personalized skin plans to a calm
+            premium clinic experience in Amman.
+          </p>
+
+          <div class="hero-actions" id="heroActions">
+            <a href="https://wa.me/962790000000" class="btn btn-primary" aria-label="Book a consultation">
+              <span>Book a Consultation</span>
+            </a>
+            <a href="#treatments" class="btn btn-outline">
+              <span>Explore Treatments</span>
+            </a>
+          </div>
+
+        </div>
+        <!-- Orb is positioned absolutely on desktop, but in grid flow on mobile -->
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero-scroll" aria-hidden="true">
+        <span class="hero-scroll-label">Scroll</span>
+        <div class="hero-scroll-line"></div>
+      </div>
+
+    </section>
+
+
+    <!-- ============================================================
+     TRUST STRIP
+     ============================================================ -->
+    <section class="trust-strip" aria-label="Key clinic highlights">
+      <div class="container">
+        <div class="trust-inner">
+
+          <div class="trust-item reveal">
+            <div class="trust-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <div class="trust-text">
+              <span class="trust-title">5+ Years of Clinical Care</span>
+              <span class="trust-desc">Trusted dermatology in Amman</span>
+            </div>
+          </div>
+
+          <div class="trust-item reveal reveal-delay-1">
+            <div class="trust-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </div>
+            <div class="trust-text">
+              <span class="trust-title">Personalized Treatment Plans</span>
+              <span class="trust-desc">Built for your skin, not a template</span>
+            </div>
+          </div>
+
+          <div class="trust-item reveal reveal-delay-2">
+            <div class="trust-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+            </div>
+            <div class="trust-text">
+              <span class="trust-title">Medical-Grade Technology</span>
+              <span class="trust-desc">Advanced clinical skin equipment</span>
+            </div>
+          </div>
+
+          <div class="trust-item reveal reveal-delay-3">
+            <div class="trust-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            <div class="trust-text">
+              <span class="trust-title">Private Consultations</span>
+              <span class="trust-desc">Discreet, calm, and focused care</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+     ABOUT
+     ============================================================ -->
+    <section class="about" id="about" aria-labelledby="about-headline">
+      <div class="container">
+        <div class="about-grid">
+
+          <!-- Image + floating elements -->
+          <div class="about-image-col">
+            <div class="about-img-outer">
+              <div class="about-img-frame" aria-hidden="true"></div>
+              <div class="about-orb" aria-hidden="true"></div>
+              <div class="about-img-wrap reveal-scale">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80&auto=format&fit=crop"
+                  alt="Calm and pristine dermatology clinic treatment room with natural light and clean modern design"
+                  width="640" height="800" loading="lazy" />
+              </div>
+              <div class="about-stat-card reveal reveal-delay-3">
+                <span class="stat-num">98%</span>
+                <span class="stat-label">Patient satisfaction</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="about-content">
+            <div class="section-eyebrow reveal">
+              <span class="label">About the Clinic</span>
+            </div>
+
+            <h2 class="display-lg about-headline reveal reveal-delay-1" id="about-headline">
+              Where <em>medical expertise</em> meets calm beauty.
+            </h2>
+
+            <p class="body-lg about-body reveal reveal-delay-2">
+              Noura Skin Clinic was founded on a belief that real skin confidence comes from medical understanding — not
+              temporary fixes. We combine evidence-based dermatology with a refined, unhurried clinic environment
+              designed around your long-term skin health.
+            </p>
+
+            <p class="body-md about-body reveal reveal-delay-3">
+              Every consultation begins with listening. Every plan is built with intention. And every treatment is
+              carried out with clinical precision in a space that feels as calm as it is capable.
+            </p>
+
+            <div class="about-values reveal reveal-delay-4">
+
+              <div class="about-value">
+                <div class="about-value-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <div class="about-value-text">
+                  <span class="about-value-title">Evidence-based protocols</span>
+                  <span class="about-value-desc">Every treatment is grounded in dermatological research and clinical
+                    practice.</span>
+                </div>
+              </div>
+
+              <div class="about-value">
+                <div class="about-value-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <div class="about-value-text">
+                  <span class="about-value-title">Long-term skin health</span>
+                  <span class="about-value-desc">We plan for sustainable results, not just a single session.</span>
+                </div>
+              </div>
+
+              <div class="about-value">
+                <div class="about-value-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <div class="about-value-text">
+                  <span class="about-value-title">Calm, private atmosphere</span>
+                  <span class="about-value-desc">A clinic designed to feel like a refuge, not a waiting room.</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+     TREATMENTS
+     ============================================================ -->
+    <section class="treatments" id="treatments" aria-labelledby="treatments-headline">
+      <div class="container">
+
+        <div class="treatments-header">
+          <div class="section-eyebrow reveal">
+            <span class="label">Signature Treatments</span>
+          </div>
+          <h2 class="display-lg reveal reveal-delay-1" id="treatments-headline" style="margin-bottom:16px;">
+            Skin care that goes <em>deeper.</em>
+          </h2>
+          <p class="body-md reveal reveal-delay-2">
+            Each treatment at Noura is designed around your skin's individual needs — not a one-size-fits-all approach.
+          </p>
+        </div>
+
+        <div class="treatments-grid" id="treatmentsGrid">
+
+          <article class="treatment-card reveal" data-tilt aria-label="Advanced Skin Consultation">
+            <div class="card-orb" style="background:radial-gradient(circle,rgba(200,169,106,0.18)0%,transparent70%);"
+              aria-hidden="true"></div>
+            <div class="treatment-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </div>
+            <h3 class="treatment-name">Advanced Skin Consultation</h3>
+            <p class="treatment-desc">A thorough, unhurried skin analysis combining visual assessment and your personal
+              skin history to build a plan that works for you.</p>
+            <a href="#contact" class="treatment-link" aria-label="Learn more about Advanced Skin Consultation">
+              Learn more <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <article class="treatment-card reveal reveal-delay-1" data-tilt aria-label="Acne and Scar Care">
+            <div class="card-orb" style="background:radial-gradient(circle,rgba(125,154,138,0.2)0%,transparent70%);"
+              aria-hidden="true"></div>
+            <div class="treatment-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3 class="treatment-name">Acne &amp; Scar Care</h3>
+            <p class="treatment-desc">Clinical-grade acne management and scar revision programs designed to calm, heal,
+              and restore skin texture over time.</p>
+            <a href="#contact" class="treatment-link" aria-label="Learn more about Acne and Scar Care">
+              Learn more <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <article class="treatment-card reveal reveal-delay-2" data-tilt aria-label="Laser Hair Removal">
+            <div class="card-orb" style="background:radial-gradient(circle,rgba(200,169,106,0.18)0%,transparent70%);"
+              aria-hidden="true"></div>
+            <div class="treatment-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="2" x2="12" y2="22" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            </div>
+            <h3 class="treatment-name">Laser Hair Removal</h3>
+            <p class="treatment-desc">Gentle, precise laser hair removal using advanced technology suited to a range of
+              skin tones and body areas.</p>
+            <a href="#contact" class="treatment-link" aria-label="Learn more about Laser Hair Removal">
+              Learn more <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <article class="treatment-card reveal reveal-delay-3" data-tilt aria-label="HydraFacial and Glow Treatments">
+            <div class="card-orb" style="background:radial-gradient(circle,rgba(125,154,138,0.2)0%,transparent70%);"
+              aria-hidden="true"></div>
+            <div class="treatment-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+              </svg>
+            </div>
+            <h3 class="treatment-name">HydraFacial &amp; Glow</h3>
+            <p class="treatment-desc">Deep hydration, gentle exfoliation, and a luminous finish in a single relaxing
+              treatment — a signature experience at Noura.</p>
+            <a href="#contact" class="treatment-link" aria-label="Learn more about HydraFacial and Glow Treatments">
+              Learn more <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <article class="treatment-card reveal reveal-delay-4" data-tilt aria-label="Pigmentation Correction">
+            <div class="card-orb" style="background:radial-gradient(circle,rgba(200,169,106,0.18)0%,transparent70%);"
+              aria-hidden="true"></div>
+            <div class="treatment-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              </svg>
+            </div>
+            <h3 class="treatment-name">Pigmentation Correction</h3>
+            <p class="treatment-desc">Targeted, gradual correction of melasma, sun spots, and uneven skin tone using
+              medical-grade brightening protocols.</p>
+            <a href="#contact" class="treatment-link" aria-label="Learn more about Pigmentation Correction">
+              Learn more <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <article class="treatment-card reveal reveal-delay-5" data-tilt aria-label="Anti-Aging Skin Plans">
+            <div class="card-orb" style="background:radial-gradient(circle,rgba(125,154,138,0.2)0%,transparent70%);"
+              aria-hidden="true"></div>
+            <div class="treatment-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+            </div>
+            <h3 class="treatment-name">Anti-Aging Skin Plans</h3>
+            <p class="treatment-desc">Customized long-term programs combining injectables, resurfacing, and topical
+              science for graceful, natural-looking skin aging.</p>
+            <a href="#contact" class="treatment-link" aria-label="Learn more about Anti-Aging Skin Plans">
+              Learn more <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+     PROCESS
+     ============================================================ -->
+    <section class="process" id="process" aria-labelledby="process-headline">
+      <div class="container">
+
+        <div class="process-header">
+          <div class="section-eyebrow reveal" style="justify-content:center;">
+            <span class="label">How It Works</span>
+          </div>
+          <h2 class="display-lg reveal reveal-delay-1" id="process-headline" style="margin-bottom:16px;">
+            Your skin journey, <em>clearly guided.</em>
+          </h2>
+          <p class="body-md reveal reveal-delay-2">
+            From your first visit to your last maintenance session, you'll always know exactly where you are and what
+            comes next.
+          </p>
+        </div>
+
+        <div class="process-steps" role="list">
+          <div class="process-line" aria-hidden="true"></div>
+
+          <div class="process-step reveal" role="listitem">
+            <div class="step-bubble" aria-hidden="true">
+              <span class="step-num-inner">01</span>
+            </div>
+            <div>
+              <h3 class="step-title">Consult</h3>
+              <p class="step-desc">An unhurried one-to-one consultation with Dr. Noura to understand your skin concerns,
+                history, and goals.</p>
+            </div>
+          </div>
+
+          <div class="process-step reveal reveal-delay-1" role="listitem">
+            <div class="step-bubble" aria-hidden="true">
+              <span class="step-num-inner">02</span>
+            </div>
+            <div>
+              <h3 class="step-title">Analyze</h3>
+              <p class="step-desc">Advanced clinical skin assessment to identify the root causes — not just surface
+                symptoms.</p>
+            </div>
+          </div>
+
+          <div class="process-step reveal reveal-delay-2" role="listitem">
+            <div class="step-bubble" aria-hidden="true">
+              <span class="step-num-inner">03</span>
+            </div>
+            <div>
+              <h3 class="step-title">Treat</h3>
+              <p class="step-desc">A personalized treatment plan carried out with precision, care, and the highest
+                clinical standards.</p>
+            </div>
+          </div>
+
+          <div class="process-step reveal reveal-delay-3" role="listitem">
+            <div class="step-bubble" aria-hidden="true">
+              <span class="step-num-inner">04</span>
+            </div>
+            <div>
+              <h3 class="step-title">Maintain</h3>
+              <p class="step-desc">An ongoing skin maintenance program to protect, preserve, and improve your results
+                over time.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+     SPECIALIST
+     ============================================================ -->
+    <section class="specialist" id="specialist" aria-labelledby="specialist-headline">
+      <div class="container">
+        <div class="specialist-grid">
+
+          <!-- Image side -->
+          <div class="specialist-img-col">
+            <div class="specialist-img-frame" aria-hidden="true"></div>
+            <div class="specialist-orb" aria-hidden="true"></div>
+            <div class="specialist-img-wrap reveal-scale">
+              <img
+                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80&auto=format&fit=crop&crop=top"
+                alt="Dr. Noura Haddad, Dermatology and Aesthetic Skin Care Specialist" width="500" height="667"
+                loading="lazy" />
+            </div>
+            <div class="specialist-cred-card reveal reveal-delay-4">
+              <div class="cred-item">
+                <div class="cred-dot" aria-hidden="true"></div>
+                <span class="cred-text">Board-Certified Dermatologist</span>
+              </div>
+              <div class="cred-item">
+                <div class="cred-dot" aria-hidden="true"></div>
+                <span class="cred-text">Aesthetic &amp; Laser Medicine</span>
+              </div>
+              <div class="cred-item">
+                <div class="cred-dot" aria-hidden="true"></div>
+                <span class="cred-text">10+ Years Clinical Experience</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content side -->
+          <div class="specialist-content">
+            <div class="section-eyebrow reveal">
+              <span class="label">Meet the Specialist</span>
+            </div>
+
+            <h2 class="display-lg specialist-name reveal reveal-delay-1" id="specialist-headline">
+              Dr. Noura <em>Haddad</em>
+            </h2>
+
+            <span class="specialist-title-label reveal reveal-delay-2">
+              Dermatology &amp; Aesthetic Skin Care
+            </span>
+
+            <p class="body-lg reveal reveal-delay-2" style="margin-bottom:20px;">
+              Dr. Noura Haddad focuses on evidence-based skin care, subtle aesthetic results, and personalized treatment
+              planning for long-term skin health. She trained in dermatology and aesthetic medicine across Jordan and
+              Europe, bringing an international perspective to her Amman-based practice.
+            </p>
+
+            <p class="body-md reveal reveal-delay-3">
+              Her philosophy is simple: beautiful skin begins with understanding. She takes the time to truly listen to
+              each patient, connecting underlying skin biology with the right clinical approach — and translating that
+              into a plan that fits your lifestyle, your skin, and your expectations.
+            </p>
+
+            <div class="specialist-quote reveal reveal-delay-4">
+              <p>"Skin confidence isn't about perfection. It's about understanding your skin and giving it what it truly
+                needs."</p>
+              <cite>— Dr. Noura Haddad</cite>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+     RESULTS
+     ============================================================ -->
+    <section class="results" id="results" aria-labelledby="results-headline">
+      <div class="container">
+
+        <div class="results-header">
+          <div class="section-eyebrow reveal">
+            <span class="label">What Patients Experience</span>
+          </div>
+          <h2 class="display-lg reveal reveal-delay-1" id="results-headline" style="margin-bottom:16px;">
+            Skin that looks and<br /><em>feels different.</em>
+          </h2>
+          <p class="body-lg reveal reveal-delay-2" style="max-width:500px;">
+            Our treatments are designed to deliver visible, lasting improvements. Here is what patients most frequently
+            notice after completing their Noura skin program.
+          </p>
+        </div>
+
+        <div class="results-grid">
+
+          <div class="result-card reveal" data-tilt>
+            <div class="result-icon-wrap" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="result-headline">Brighter, More Even Tone</h3>
+              <p class="result-desc">Patients notice a clearer, more luminous complexion — with visible reduction in
+                dullness, uneven patches, and surface discoloration.</p>
+              <span class="result-tag">Pigmentation · Radiance</span>
+            </div>
+          </div>
+
+          <div class="result-card reveal reveal-delay-1" data-tilt>
+            <div class="result-icon-wrap" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="result-headline">Smoother Skin Texture</h3>
+              <p class="result-desc">Refined pores, softer surface texture, and a noticeably more uniform feel —
+                achieved without aggressive or harsh procedures.</p>
+              <span class="result-tag">Texture · Pore refinement</span>
+            </div>
+          </div>
+
+          <div class="result-card reveal reveal-delay-2" data-tilt>
+            <div class="result-icon-wrap" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="result-headline">Reduced Congestion &amp; Acne</h3>
+              <p class="result-desc">Fewer breakouts, reduced inflammation, and a calmer skin baseline — with a focus on
+                long-term balance rather than temporary suppression.</p>
+              <span class="result-tag">Acne · Skin balance</span>
+            </div>
+          </div>
+
+          <div class="result-card reveal reveal-delay-3" data-tilt>
+            <div class="result-icon-wrap" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C8A96A" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="result-headline">Healthier, Lasting Glow</h3>
+              <p class="result-desc">That natural, healthy radiance that comes from the inside out — not a cosmetic
+                sheen, but genuine skin vitality and hydration.</p>
+              <span class="result-tag">Hydration · Vitality</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+     TESTIMONIALS
+     ============================================================ -->
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonials-headline">
+      <div class="container">
+
+        <div class="testimonials-header">
+          <div class="section-eyebrow reveal" style="justify-content:center;">
+            <span class="label">Patient Stories</span>
+          </div>
+          <h2 class="display-lg reveal reveal-delay-1" id="testimonials-headline" style="margin-bottom:16px;">
+            Words from our <em>patients.</em>
+          </h2>
+          <p class="body-md reveal reveal-delay-2">
+            Real experiences from patients who have completed their Noura skin program.
+          </p>
+        </div>
+
+        <div class="testimonials-grid" role="list">
+
+          <article class="testimonial-card reveal" role="listitem" aria-label="Testimonial from Rima A.">
+            <div class="testimonial-stars" aria-label="Five star rating" role="img">
+              <span class="star" aria-hidden="true">★</span>
+              <span class="star" aria-hidden="true">★</span>
+              <span class="star" aria-hidden="true">★</span>
+              <span class="star" aria-hidden="true">★</span>
+              <span class="star" aria-hidden="true">★</span>
+            </div>
+            <blockquote class="testimonial-quote">
+              "I had been struggling with melasma for years before coming to Noura. Dr. Haddad was the first doctor who
+              truly explained what was happening in my skin — and the results after three months were unlike anything
+              I'd experienced before."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">RA</div>
+              <div class="author-info">
+                <span class="author-name">Rima A.</span>
+                <span class="author-detail">Pigmentation · Amman</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card reveal reveal-delay-1" role="listitem" aria-label="Testimonial from Sara M.">
+            <div class="testimonial-stars" aria-label="Five star rating" role="img">
+              <span class="star" aria-hidden="true">★</span>
+              <span class="star" aria-hidden="true">★</span>
+              <span class="star" aria-hidden="true">★</span>
+              <span class="star" aria-hidden="true">★</span>
+              <span class="star" aria-hidden="true">★</span>
+            </div>
+            <blockquote class="testimonial-quote">
+              "The HydraFacial was deeply relaxing, but what I appreciated most was the consultation beforehand. It felt
+              like a proper medical appointment — thorough, caring, and completely without pressure."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true" style="background:linear-gradient(135deg,#C8A96A,#DDB870);">
+                SM</div>
+              <div class="author-info">
+                <span class="author-name">Sara M.</span>
+                <span class="author-detail">HydraFacial · Amman</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card reveal reveal-delay-2" role="listitem" aria-label="Testimonial from Lana K.">
+            <div class="testimonial-stars" aria-label="Five star rating" role="img">
+              <span class="star" aria-hidden="true">★</span>
+              <span class="star" aria-hidden="true">★</span>
+              <span class="star" aria-hidden="true">★</span>
+              <span class="star" aria-hidden="true">★</span>
+              <span class="star" aria-hidden="true">★</span>
+            </div>
+            <blockquote class="testimonial-quote">
+              "The clinic itself is beautiful — calm and clean in a way that immediately puts you at ease. The results
+              from my acne plan have been gradual but genuinely life-changing. I feel confident in my skin for the first
+              time in years."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true" style="background:linear-gradient(135deg,#506B5D,#7D9A8A);">
+                LK</div>
+              <div class="author-info">
+                <span class="author-name">Lana K.</span>
+                <span class="author-detail">Acne Program · Amman</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+     BOOKING CTA
+     ============================================================ -->
+    <section class="booking-cta" id="booking" aria-labelledby="booking-headline">
+      <div class="container">
+        <div class="booking-inner">
+
+          <div class="booking-content">
+            <div class="section-eyebrow reveal">
+              <span class="label">Ready to Begin?</span>
+            </div>
+
+            <h2 class="display-lg reveal reveal-delay-1" id="booking-headline" style="margin-bottom:16px;">
+              Begin with a <em>private skin</em> consultation.
+            </h2>
+
+            <p class="body-lg reveal reveal-delay-2" style="max-width:460px;">
+              Tell us your skin concern and our team will guide you toward the right treatment plan. No pressure, no
+              rush — just a calm, honest conversation about your skin.
+            </p>
+
+            <div class="booking-actions reveal reveal-delay-3">
+              <a href="https://wa.me/962790000000" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer"
+                aria-label="Book a skin consultation on WhatsApp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+                  style="position:relative;z-index:1;">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                </svg>
+                <span>Book on WhatsApp</span>
+              </a>
+              <a href="tel:+96279000000" class="btn btn-outline" aria-label="Call the clinic">
+                <span>Call Us</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="booking-image-col reveal reveal-delay-2">
+            <div class="booking-img-frame" aria-hidden="true"></div>
+            <div class="booking-orb" aria-hidden="true"></div>
+            <div class="booking-img-wrap">
+              <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=900&q=80&auto=format&fit=crop"
+                alt="Luxurious skincare consultation room with clean, premium aesthetic" width="800" height="640"
+                loading="lazy" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+     CONTACT
+     ============================================================ -->
+    <section class="contact" id="contact" aria-labelledby="contact-headline">
+      <div class="container">
+        <div class="contact-grid">
+
+          <div class="contact-left">
+            <div class="section-eyebrow reveal">
+              <span class="label">Find Us</span>
+            </div>
+
+            <h2 class="display-md contact-headline reveal reveal-delay-1" id="contact-headline">
+              Visit us in<br /><em>Abdoun, Amman.</em>
+            </h2>
+
+            <p class="body-md contact-sub reveal reveal-delay-2">
+              We would love to welcome you to Noura Skin Clinic. Reach out, and our team will be happy to schedule your
+              first consultation.
+            </p>
+
+            <div class="contact-details">
+
+              <div class="contact-item reveal reveal-delay-2">
+                <div class="contact-item-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6 6z" />
+                  </svg>
+                </div>
                 <div>
-                    <div class="hero-badge">Advanced Aesthetic Medicine · Sweifieh, Amman</div>
-                    <h1>Reveal Your <em>Natural</em> Radiance</h1>
-                    <p>Science-driven aesthetic treatments tailored to you. Our board-certified specialists combine
-                        cutting-edge technology with a gentle, personalised approach.</p>
-                    <div class="hero-btns">
-                        <button class="btn-teal" onclick="showPage('book',null)">Book Free Consultation</button>
-                        <button class="btn-outline-t" onclick="showPage('treatments',null)">View Treatments</button>
-                    </div>
+                  <span class="contact-item-label">Phone</span>
+                  <span class="contact-item-value"><a href="tel:+96279000000" aria-label="Call Noura Skin Clinic">+962
+                      79 000 0000</a></span>
                 </div>
-            </div>
-            <div class="home-right">
-                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=85" alt="Clinic">
-                <div class="why-card">
-                    <h3>Why Choose Lumière?</h3>
-                    <div class="wstat">
-                        <div class="wstat-icon">✦</div>
-                        <div><strong>15+ Years Experience</strong><span>Board-certified specialists</span></div>
-                    </div>
-                    <div class="wstat">
-                        <div class="wstat-icon">◎</div>
-                        <div><strong>5,000+ Patients</strong><span>Treated with care & precision</span></div>
-                    </div>
-                    <div class="wstat">
-                        <div class="wstat-icon">◈</div>
-                        <div><strong>Latest Technology</strong><span>European-certified equipment</span></div>
-                    </div>
-                    <div class="wstat">
-                        <div class="wstat-icon">◇</div>
-                        <div><strong>Personalised Plans</strong><span>Tailored to your unique goals</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <footer>
-            <div class="ft-logo">Lumière Clinic</div>
-            <p>Sweifieh, Amman, Jordan &nbsp;|&nbsp; <a href="tel:+96265009999">+962 6 500 9999</a></p>
-            <p>© 2025 Lumière Clinic. All rights reserved.</p>
-        </footer>
-    </div>
+              </div>
 
-    <!-- TREATMENTS -->
-    <div id="page-treatments" class="page">
-        <div class="treatments-page">
-            <div class="tr-hero">
-                <div class="tr-hero-bg"></div>
-                <div class="tr-hero-content">
-                    <h2>Our <em>Treatments</em></h2>
-                    <p>Science meets beauty — every treatment backed by clinical evidence</p>
+              <div class="contact-item reveal reveal-delay-3">
+                <div class="contact-item-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
                 </div>
-            </div>
-            <div class="treatments-grid-section">
-                <div class="treats-grid">
-                    <div class="treat-card">
-                        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500&q=80" alt="Facial">
-                        <div class="treat-body">
-                            <div class="treat-num">01</div>
-                            <h3>Facial Rejuvenation</h3>
-                            <p>Advanced filler and Botox treatments performed by certified doctors for natural,
-                                refreshed results with zero downtime.</p><span class="treat-link">Learn more →</span>
-                        </div>
-                    </div>
-                    <div class="treat-card">
-                        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=500&q=80" alt="Laser">
-                        <div class="treat-body">
-                            <div class="treat-num">02</div>
-                            <h3>Laser Skin Therapy</h3>
-                            <p>FDA-cleared laser technology targeting pigmentation, acne scars, and texture with
-                                unmatched precision and safety.</p><span class="treat-link">Learn more →</span>
-                        </div>
-                    </div>
-                    <div class="treat-card">
-                        <img src="https://images.unsplash.com/photo-1498843053639-170ff2122f35?w=500&q=80" alt="Body">
-                        <div class="treat-body">
-                            <div class="treat-num">03</div>
-                            <h3>Body Contouring</h3>
-                            <p>Non-surgical fat reduction and skin tightening with clinically proven technology. No
-                                surgery. No recovery time.</p><span class="treat-link">Learn more →</span>
-                        </div>
-                    </div>
-                    <div class="treat-card">
-                        <img src="https://images.unsplash.com/photo-1559762717-99c81ac85459?w=500&q=80" alt="PRP">
-                        <div class="treat-body">
-                            <div class="treat-num">04</div>
-                            <h3>PRP Hair Therapy</h3>
-                            <p>Platelet-rich plasma treatments to stimulate natural hair growth, strengthen follicles,
-                                and restore confidence.</p><span class="treat-link">Learn more →</span>
-                        </div>
-                    </div>
-                    <div class="treat-card">
-                        <img src="https://images.unsplash.com/photo-1556228578-567ba127e37f?w=500&q=80" alt="Peel">
-                        <div class="treat-body">
-                            <div class="treat-num">05</div>
-                            <h3>Chemical Peels</h3>
-                            <p>Medical-grade resurfacing peels for brighter, smoother skin with minimal downtime and
-                                maximum results.</p><span class="treat-link">Learn more →</span>
-                        </div>
-                    </div>
-                    <div class="treat-card">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80" alt="IV">
-                        <div class="treat-body">
-                            <div class="treat-num">06</div>
-                            <h3>IV Drip Therapy</h3>
-                            <p>Customised vitamin infusions for radiant skin, sustained energy, and immune system
-                                optimisation.</p><span class="treat-link">Learn more →</span>
-                        </div>
-                    </div>
+                <div>
+                  <span class="contact-item-label">Email</span>
+                  <span class="contact-item-value"><a href="mailto:hello@nouraskin-demo.com"
+                      aria-label="Email Noura Skin Clinic">hello@nouraskin-demo.com</a></span>
                 </div>
-            </div>
-            <footer>
-                <div class="ft-logo">Lumière Clinic</div>
-                <p>Sweifieh, Amman · <a href="tel:+96265009999">+962 6 500 9999</a></p>
-                <p>© 2025 Lumière Clinic. All rights reserved.</p>
-            </footer>
-        </div>
-    </div>
+              </div>
 
-    <!-- TEAM -->
-    <div id="page-team" class="page">
-        <div class="team-page">
-            <div class="team-hero">
-                <div class="team-hero-bg"></div>
-                <div class="team-hero-content">
-                    <h2>Meet Our <em>Specialists</em></h2>
+              <div class="contact-item reveal reveal-delay-4">
+                <div class="contact-item-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
                 </div>
-            </div>
-            <div class="team-grid-section">
-                <div class="t-grid">
-                    <div class="t-card">
-                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&q=85"
-                            alt="Dr Nour">
-                        <div class="t-info">
-                            <h4>Dr. Nour Al-Rashid</h4><span class="t-role">Medical Director · Dermatology</span>
-                            <p>Board-certified dermatologist with 18 years in aesthetic medicine. Fellow of the European
-                                Academy of Dermatology.</p>
-                        </div>
-                    </div>
-                    <div class="t-card">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&q=85"
-                            alt="Dr Khalid">
-                        <div class="t-info">
-                            <h4>Dr. Khalid Mansour</h4><span class="t-role">Aesthetic Physician</span>
-                            <p>Specialist in non-surgical facial rejuvenation, with advanced training in Paris and
-                                London. 3,000+ procedures performed.</p>
-                        </div>
-                    </div>
-                    <div class="t-card">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&q=85" alt="Dr Rana">
-                        <div class="t-info">
-                            <h4>Dr. Rana Haddad</h4><span class="t-role">Laser & Skin Specialist</span>
-                            <p>Pioneer in laser skin therapy in Jordan. Expert in the most advanced FDA-cleared laser
-                                platforms available today.</p>
-                        </div>
-                    </div>
+                <div>
+                  <span class="contact-item-label">Location</span>
+                  <span class="contact-item-value">Abdoun, Amman, Jordan</span>
                 </div>
-            </div>
-            <footer>
-                <div class="ft-logo">Lumière Clinic</div>
-                <p>Sweifieh, Amman · <a href="tel:+96265009999">+962 6 500 9999</a></p>
-                <p>© 2025 Lumière Clinic. All rights reserved.</p>
-            </footer>
-        </div>
-    </div>
+              </div>
 
-    <!-- BOOK -->
-    <div id="page-book" class="page">
-        <div class="book-page">
-            <div class="book-split">
-                <div class="book-left">
-                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&q=90"
-                        alt="Clinic interior">
+              <div class="contact-item reveal reveal-delay-5">
+                <div class="contact-item-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7D9A8A" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path
+                      d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32" />
+                  </svg>
                 </div>
-                <div class="book-right">
-                    <div class="sec-tag-w">Free Consultation</div>
-                    <h2>Book Your <em>Consultation</em></h2>
-                    <p>The first step is a conversation. Our specialists will design a personalised plan just for you.
-                    </p>
-                    <div class="book-form">
-                        <div class="book-row">
-                            <input type="text" class="book-input" placeholder="Your Name">
-                            <input type="tel" class="book-input" placeholder="Phone Number">
-                        </div>
-                        <input type="email" class="book-input" placeholder="Email Address">
-                        <select class="book-input" style="cursor:pointer">
-                            <option disabled selected>Select Treatment Area</option>
-                            <option>Facial Rejuvenation</option>
-                            <option>Laser Skin Therapy</option>
-                            <option>Body Contouring</option>
-                            <option>PRP Hair Therapy</option>
-                            <option>Chemical Peels</option>
-                            <option>IV Drip Therapy</option>
-                            <option>General Consultation</option>
-                        </select>
-                        <input type="date" class="book-input">
-                        <textarea class="book-input" placeholder="Any additional notes or questions..."
-                            style="min-height:80px;resize:none"></textarea>
-                        <button class="book-submit" onclick="event.preventDefault()">Confirm Booking</button>
-                    </div>
-                    <div class="book-info">
-                        <div class="binfo"><span>📞</span><span>+962 6 500 9999</span></div>
-                        <div class="binfo"><span>📍</span><span>Sweifieh, Amman, Jordan</span></div>
-                        <div class="binfo"><span>🕐</span><span>Sun – Thu: 9AM – 7PM · Sat: 10AM – 4PM</span></div>
-                    </div>
+                <div>
+                  <span class="contact-item-label">WhatsApp</span>
+                  <span class="contact-item-value"><a href="https://wa.me/962790000000" target="_blank"
+                      rel="noopener noreferrer" aria-label="Message Noura Skin Clinic on WhatsApp">Message us on
+                      WhatsApp</a></span>
                 </div>
-            </div>
-        </div>
-    </div>
+              </div>
 
-    <script>
-        function showPage(id, linkEl) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page-' + id).classList.add('active');
-            document.getElementById('page-' + id).scrollTop = 0;
-            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-            if (linkEl) linkEl.classList.add('active');
-        }
-    </script>
+            </div>
+          </div>
+
+          <!-- Map card -->
+          <div class="reveal reveal-delay-2">
+            <div class="map-card" role="img" aria-label="Map showing Noura Skin Clinic location in Abdoun, Amman">
+              <div class="map-pin-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div class="map-address-block">
+                <p>Noura Skin Clinic</p>
+                <strong>Abdoun, Amman, Jordan</strong>
+              </div>
+              <a href="https://maps.google.com/?q=Abdoun,+Amman,+Jordan" class="btn btn-outline map-directions"
+                target="_blank" rel="noopener noreferrer" aria-label="Get directions to Noura Skin Clinic">
+                <span>Get Directions</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          <a href="#home" class="footer-logo site-logo" aria-label="Noura Skin Clinic">
+            <svg class="logo-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
+              <circle cx="20" cy="20" r="19" stroke="#7D9A8A" stroke-width="0.75" fill="none" opacity="0.5" />
+              <circle cx="20" cy="20" r="15" stroke="#C8A96A" stroke-width="0.5" fill="none" opacity="0.3" />
+              <path d="M12 28V12L20 25V12" stroke="#7D9A8A" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" fill="none" />
+              <path d="M20 25V12L28 25V12" stroke="#C8A96A" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" fill="none" opacity="0.9" />
+              <circle cx="28" cy="10" r="2" fill="#7D9A8A" opacity="0.6" />
+            </svg>
+            <div class="logo-text">
+              <span class="logo-name" style="color:white;">Noura Skin</span>
+              <span class="logo-sub" style="color:rgba(255,255,255,0.4);">Clinic · Amman</span>
+            </div>
+          </a>
+          <p class="footer-tagline">
+            Advanced dermatology, aesthetic care,<br />and long-term skin confidence — in Amman.
+          </p>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="#" class="social-link" aria-label="Follow on Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+            <a href="https://wa.me/962790000000" class="social-link" aria-label="Message on WhatsApp" target="_blank"
+              rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+              </svg>
+            </a>
+            <a href="mailto:hello@nouraskin-demo.com" class="social-link" aria-label="Send us an email">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Quick Links</p>
+          <ul class="footer-links" role="list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About the Clinic</a></li>
+            <li><a href="#treatments">Treatments</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#specialist">Specialist</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Info</p>
+          <ul class="footer-links" role="list">
+            <li><a href="tel:+96279000000">+962 79 000 0000</a></li>
+            <li><a href="mailto:hello@nouraskin-demo.com">hello@nouraskin-demo.com</a></li>
+            <li><span style="color:rgba(255,255,255,0.4);">Abdoun, Amman, Jordan</span></li>
+            <li><span style="color:rgba(255,255,255,0.4);">Sun–Thu · 9am – 6pm</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Noura Skin Clinic · Amman, Jordan. All rights reserved. This is a fictional
+          demo website.</p>
+        <p class="footer-portfolio">Portfolio prototype by <a href="https://qimam.digital" target="_blank"
+            rel="noopener noreferrer">Qimam Digital</a></p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
 </body>
 
 </html>
