@@ -609,6 +609,12 @@ body[dir="rtl"] .mockup span {
     linear-gradient(135deg, #070a10, #151d27 72%);
 }
 
+.mockup-atlas {
+  background:
+    linear-gradient(145deg, rgba(185, 147, 90, 0.26), transparent 38%),
+    linear-gradient(135deg, #171410, #2a211b 72%);
+}
+
 .work-overlay {
   position: absolute;
   left: 18px;
