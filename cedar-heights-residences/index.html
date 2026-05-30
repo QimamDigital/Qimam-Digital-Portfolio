@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cedar Heights Residences — Premium Apartments in Amman</title>
+  <meta name="description" content="Cedar Heights Residences is a fictional premium real estate website prototype by Qimam Digital, showcasing elegant web design for property developers in Amman, Jordan." />
+  <meta property="og:title" content="Cedar Heights Residences — Premium Apartments in Amman" />
+  <meta property="og:description" content="A premium real estate concept website with elegant layouts, apartment showcases, and conversion-focused viewing CTAs in Amman, Jordan." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1400&q=80" />
+  <meta name="theme-color" content="#F7F2EA" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" id="home">
+    <a href="#home" class="brand" aria-label="Cedar Heights Residences home">
+      <svg class="brand-logo" viewBox="0 0 84 84" aria-hidden="true">
+        <rect x="6" y="6" width="72" height="72" rx="16" />
+        <path d="M24 58c0-12 7-22 18-25" class="line"/>
+        <path d="M42 33c11 3 18 13 18 25" class="line"/>
+        <path d="M42 24v34" class="line"/>
+        <path d="M42 24l-6 10h12z" class="cedar"/>
+      </svg>
+      <span>
+        <strong>Cedar Heights</strong>
+        <small>Residences</small>
+      </span>
+    </a>
+
+    <button class="menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation" data-menu-btn>
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a href="#residences">Residences</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#location">Location</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+    <a href="#home">Home</a>
+    <a href="#residences">Residences</a>
+    <a href="#amenities">Amenities</a>
+    <a href="#location">Location</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main>
+    <section class="hero section">
+      <div class="hero-media" data-parallax>
+        <img src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1600&q=80" alt="Modern luxury apartment architecture exterior" />
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content reveal">
+        <p class="eyebrow">Amman, Jordan · Premium Residences</p>
+        <h1>Elevated residences in the heart of Amman.</h1>
+        <p>Cedar Heights Residences is a fictional premium apartment development concept, designed around quiet luxury, refined living, and long-term property value.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#contact">Book a Private Viewing</a>
+          <a class="btn btn-ghost" href="#residences">Explore Residences</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof section reveal">
+      <article><strong data-count="1">0</strong><span>Prime Amman location</span></article>
+      <article><strong data-count="24">0</strong><span>Private viewing requests</span></article>
+      <article><strong data-count="3">0</strong><span>Flexible apartment layouts</span></article>
+      <article><strong data-count="100">0</strong><span>Investment-focused design</span></article>
+    </section>
+
+    <section id="residences" class="section intro reveal">
+      <div class="section-head">
+        <p class="eyebrow">Residences Overview</p>
+        <h2>Architectural calm, practical access, and premium finishes.</h2>
+      </div>
+      <p>Cedar Heights offers refined apartments crafted for modern Amman living: generous natural light, clean interior detailing, balanced floor plans, and close access to key business and lifestyle districts.</p>
+    </section>
+
+    <section class="section apartments">
+      <div class="section-head reveal">
+        <p class="eyebrow">Featured Apartments</p>
+        <h2>Choose the residence that fits your life and investment goals.</h2>
+      </div>
+      <div class="card-grid">
+        <article class="apt-card reveal">
+          <div class="img-wrap"><img loading="lazy" src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" alt="Elegant one-bedroom apartment interior" /></div>
+          <div class="card-body">
+            <h3>The Cedar One</h3>
+            <p class="meta">1-bedroom residence · ~84 m²</p>
+            <p>Built for young professionals and investors who want premium urban living with low-friction upkeep.</p>
+            <a href="#contact" class="text-link">Book Viewing</a>
+          </div>
+        </article>
+
+        <article class="apt-card reveal">
+          <div class="img-wrap"><img loading="lazy" src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&w=1200&q=80" alt="Modern two-bedroom apartment living space" /></div>
+          <div class="card-body">
+            <h3>The Heights Two</h3>
+            <p class="meta">2-bedroom residence · ~128 m²</p>
+            <p>Designed for small families and long-term residents seeking comfort, location value, and practical elegance.</p>
+            <a href="#contact" class="text-link">Book Viewing</a>
+          </div>
+        </article>
+
+        <article class="apt-card reveal">
+          <div class="img-wrap"><img loading="lazy" src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80" alt="Luxury three-bedroom apartment with city view" /></div>
+          <div class="card-body">
+            <h3>The Skyline Three</h3>
+            <p class="meta">3-bedroom residence · ~176 m²</p>
+            <p>A premium family residence with expansive layout, elevated materials, and broad city-facing living areas.</p>
+            <a href="#contact" class="text-link">Book Viewing</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="amenities" class="section amenities">
+      <div class="section-head reveal">
+        <p class="eyebrow">Lifestyle & Amenities</p>
+        <h2>Everyday convenience with a private residential atmosphere.</h2>
+      </div>
+      <div class="amenity-grid">
+        <article class="amenity reveal"><span>01</span><h3>Private lobby</h3></article>
+        <article class="amenity reveal"><span>02</span><h3>Secure parking</h3></article>
+        <article class="amenity reveal"><span>03</span><h3>Fitness lounge</h3></article>
+        <article class="amenity reveal"><span>04</span><h3>Rooftop terrace</h3></article>
+        <article class="amenity reveal"><span>05</span><h3>Smart access</h3></article>
+        <article class="amenity reveal"><span>06</span><h3>City-view balconies</h3></article>
+      </div>
+    </section>
+
+    <section id="location" class="section location reveal">
+      <div class="split">
+        <div>
+          <p class="eyebrow">Location</p>
+          <h2>Connected to the districts that shape modern Amman living.</h2>
+          <p>Cedar Heights is positioned for fast access to Abdoun, Sweifieh, major business corridors, cafés, schools, and main roads across Amman, making daily movement easier for residents and visitors.</p>
+        </div>
+        <img loading="lazy" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="Amman skyline and modern city architecture" />
+      </div>
+    </section>
+
+    <section class="section investment reveal">
+      <div class="section-head">
+        <p class="eyebrow">Investment Value</p>
+        <h2>Built for long-term confidence.</h2>
+      </div>
+      <p>From strong rental demand to premium finishing standards and central location logic, Cedar Heights is framed as a resilient real estate product for buyers who evaluate both lifestyle and value retention.</p>
+    </section>
+
+    <section class="section process">
+      <div class="section-head reveal">
+        <p class="eyebrow">Buying Journey</p>
+        <h2>A clear path from first inquiry to move-in.</h2>
+      </div>
+      <ol class="process-list">
+        <li class="reveal"><span>01</span>Discover</li>
+        <li class="reveal"><span>02</span>View</li>
+        <li class="reveal"><span>03</span>Select</li>
+        <li class="reveal"><span>04</span>Reserve</li>
+        <li class="reveal"><span>05</span>Move In</li>
+      </ol>
+    </section>
+
+    <section id="contact" class="section contact reveal">
+      <h2>Request your private residence viewing.</h2>
+      <p>Speak with our team to review available residence options, pricing ranges, and next steps.</p>
+      <div class="contact-grid">
+        <a href="tel:+962790000000">+962 79 000 0000</a>
+        <a href="mailto:sales@cedarheights-demo.com">sales@cedarheights-demo.com</a>
+        <span>Amman, Jordan</span>
+        <a href="https://wa.me/962790000000" target="_blank" rel="noreferrer">WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Cedar Heights Residences</p>
+    <p>Portfolio prototype by Qimam Digital</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
