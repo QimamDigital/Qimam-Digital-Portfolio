@@ -615,6 +615,12 @@ body[dir="rtl"] .mockup span {
     linear-gradient(135deg, #171410, #2a211b 72%);
 }
 
+.mockup-aurum {
+  background:
+    linear-gradient(145deg, rgba(169, 120, 69, 0.3), transparent 42%),
+    linear-gradient(135deg, #1b1511, #2d221c 72%);
+}
+
 .work-overlay {
   position: absolute;
   left: 18px;
