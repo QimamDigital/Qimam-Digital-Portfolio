@@ -9,7 +9,7 @@ const translations = {
     "cta.start": "Start a Project",
     "cta.work": "View Our Work",
     "cta.prototype": "Get a Free Prototype",
-    "hero.eyebrow": "Amman, Jordan - Web development, branding, AI systems",
+    "hero.eyebrow": "MENA region — Web development, branding, AI systems",
     "hero.titleLine1": "We build",
     "hero.titleLine2": "Websites & Brand Identities",
     "hero.titleLine3": "That win clients.",
@@ -22,7 +22,7 @@ const translations = {
     "proof.positioning": "Starting price",
     "proof.location": "MENA region support",
     "work.eyebrow": "Selected Work",
-    "work.title": "Curated digital presence systems, not random screenshots.",
+    "work.title": "A curated portfolio of websites built to look premium, perform smoothly, and win trust.",
     "work.lede": "Each project is treated as a business asset: clear positioning, premium visual language, stable performance, and a conversion path that makes sense.",
     "work.card1.meta": "Dermatology · Aesthetic Clinic",
     "work.card1.title": "Noura Skin Clinic",
@@ -110,11 +110,14 @@ const translations = {
     "contact.location": "Amman, Jordan",
     "form.name": "Name",
     "form.phone": "Phone / WhatsApp",
-    "form.service": "Project type",
-    "form.optionWebsite": "Premium website",
-    "form.optionBrand": "Brand / company profile",
-    "form.optionAi": "AI assistant",
-    "form.optionSupport": "Maintenance or support",
+    "form.business": "Business Name",
+    "form.plan": "Selected Plan",
+    "form.optionStarter": "Starter",
+    "form.optionGrowth": "Growth",
+    "form.optionPremium": "Premium",
+    "form.optionBrandBundle": "Brand Bundle",
+    "form.optionCustom": "Custom / Not sure yet",
+    "form.industry": "Industry",
     "form.message": "What do you need?",
     "form.submit": "Send Project Request",
     "footer.line": "Premium web development, branding, and AI solutions across the MENA region.",
@@ -124,7 +127,15 @@ const translations = {
     "currency.select": "Select currency",
     "addons.from": "From",
     "addons.perYear": "/ year",
-    "addons.perRequest": "/ request"
+    "addons.perRequest": "/ request",
+    "contactSend.title": "Your message is ready. How would you like to send it?",
+    "contactSend.subtitle": "Choose one option below to send your inquiry.",
+    "contactSend.whatsapp": "Send by WhatsApp",
+    "contactSend.copy": "Copy message",
+    "contactSend.emailOptions": "Choose email app:",
+    "contactSend.defaultEmail": "Default Email App",
+    "contactSend.copied": "Message copied. You can paste it anywhere.",
+    "contactSend.copyFailed": "Copy failed. Please copy manually."
   },
   ar: {
     "nav.home": "الرئيسية",
@@ -136,7 +147,7 @@ const translations = {
     "cta.start": "ابدأ مشروعك",
     "cta.work": "شاهد أعمالنا",
     "cta.prototype": "احصل على نموذج مجاني",
-    "hero.eyebrow": "عمّان، الأردن - تطوير مواقع، هوية، وأنظمة ذكاء اصطناعي",
+    "hero.eyebrow": "منطقة الشرق الأوسط وشمال إفريقيا — تطوير مواقع، هوية بصرية، وأنظمة ذكاء اصطناعي",
     "hero.titleLine1": "نحن نبني",
     "hero.titleLine2": "مواقع إلكترونية وهويات بصرية",
     "hero.titleLine3": "تجلب لك العملاء.",
@@ -149,7 +160,7 @@ const translations = {
     "proof.positioning": "سعر البداية",
     "proof.location": "دعم عبر منطقة الشرق الأوسط وشمال أفريقيا",
     "work.eyebrow": "أعمال مختارة",
-    "work.title": "أنظمة حضور رقمي منتقاة، وليست لقطات شاشة عشوائية.",
+    "work.title": "مجموعة مختارة من مواقع رقمية مصممة لتبدو راقية، تعمل بسلاسة، وتبني الثقة.",
     "work.lede": "نتعامل مع كل مشروع كأصل تجاري: تموضع واضح، لغة بصرية راقية، أداء ثابت، ومسار تواصل منطقي.",
     "work.card1.meta": "الأمراض الجلدية · عيادة تجميل",
     "work.card1.title": "نورا سكين كلينك",
@@ -237,11 +248,14 @@ const translations = {
     "contact.location": "عمّان، الأردن",
     "form.name": "الاسم",
     "form.phone": "الهاتف / واتساب",
-    "form.service": "نوع المشروع",
-    "form.optionWebsite": "موقع ممتاز",
-    "form.optionBrand": "هوية / بروفايل شركة",
-    "form.optionAi": "مساعد ذكاء اصطناعي",
-    "form.optionSupport": "صيانة أو دعم",
+    "form.business": "اسم النشاط التجاري",
+    "form.plan": "الخطة المختارة",
+    "form.optionStarter": "البداية",
+    "form.optionGrowth": "النمو",
+    "form.optionPremium": "الممتاز",
+    "form.optionBrandBundle": "باقة الهوية",
+    "form.optionCustom": "مخصص / لست متأكدًا بعد",
+    "form.industry": "القطاع",
     "form.message": "ماذا تحتاج؟",
     "form.submit": "إرسال طلب المشروع",
     "footer.line": "تطوير مواقع وهوية وحلول ذكاء اصطناعي عبر منطقة الشرق الأوسط وشمال أفريقيا.",
@@ -251,7 +265,15 @@ const translations = {
     "currency.select": "اختر العملة",
     "addons.from": "ابتداءً من",
     "addons.perYear": "/ سنة",
-    "addons.perRequest": "/ طلب"
+    "addons.perRequest": "/ طلب",
+    "contactSend.title": "رسالتك جاهزة. كيف تفضّل إرسالها؟",
+    "contactSend.subtitle": "اختر إحدى الطرق التالية لإرسال استفسارك.",
+    "contactSend.whatsapp": "إرسال عبر واتساب",
+    "contactSend.copy": "نسخ الرسالة",
+    "contactSend.emailOptions": "اختر تطبيق البريد:",
+    "contactSend.defaultEmail": "تطبيق البريد الافتراضي",
+    "contactSend.copied": "تم نسخ الرسالة. يمكنك لصقها في أي مكان.",
+    "contactSend.copyFailed": "تعذر النسخ. انسخ الرسالة يدويًا."
   }
 };
 
@@ -446,6 +468,119 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
   showSlide(0);
 });
 
+const contactForm = document.querySelector('[data-contact-form]');
+const contactSendModal = document.getElementById('contact-send-modal');
+const contactSendStatus = document.getElementById('contact-send-status');
+const whatsappSendLink = document.querySelector('[data-send-whatsapp]');
+const gmailSendLink = document.querySelector('[data-send-gmail]');
+const outlookSendLink = document.querySelector('[data-send-outlook]');
+const defaultEmailSendLink = document.querySelector('[data-send-default-email]');
+const copyMessageButton = document.querySelector('[data-copy-message]');
+
+let preparedInquiryMessage = '';
+
+function buildInquiryMessage(values) {
+  return [
+    'New website inquiry from Qimam Digital website',
+    '',
+    'Name:',
+    values.name,
+    '',
+    'Phone / WhatsApp:',
+    values.phone,
+    '',
+    'Business:',
+    values.business,
+    '',
+    'Plan:',
+    values.plan,
+    '',
+    'Industry:',
+    values.industry,
+    '',
+    'Message:',
+    values.message
+  ].join('\n');
+}
+
+function openContactSendModal() {
+  if (!contactSendModal) return;
+  contactSendModal.classList.add('is-open');
+  contactSendModal.setAttribute('aria-hidden', 'false');
+}
+
+function closeContactSendModal() {
+  if (!contactSendModal) return;
+  contactSendModal.classList.remove('is-open');
+  contactSendModal.setAttribute('aria-hidden', 'true');
+}
+
+function prepareSendLinks(message) {
+  const subject = 'New Website Inquiry';
+  const encodedMessage = encodeURIComponent(message);
+  const encodedSubject = encodeURIComponent(subject);
+
+  if (whatsappSendLink) {
+    whatsappSendLink.href = `https://wa.me/962790441000?text=${encodedMessage}`;
+  }
+
+  if (gmailSendLink) {
+    gmailSendLink.href = `https://mail.google.com/mail/?view=cm&to=info@qimamdigital.com&su=${encodedSubject}&body=${encodedMessage}`;
+  }
+
+  if (outlookSendLink) {
+    outlookSendLink.href = `https://outlook.office.com/mail/deeplink/compose?to=info@qimamdigital.com&subject=${encodedSubject}&body=${encodedMessage}`;
+  }
+
+  if (defaultEmailSendLink) {
+    defaultEmailSendLink.href = `mailto:info@qimamdigital.com?subject=${encodedSubject}&body=${encodedMessage}`;
+  }
+}
+
+contactForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(contactForm);
+  const values = {
+    name: (formData.get('name') || '').toString().trim(),
+    phone: (formData.get('phone') || '').toString().trim(),
+    business: (formData.get('business') || '').toString().trim(),
+    plan: (formData.get('plan') || '').toString().trim(),
+    industry: (formData.get('industry') || '').toString().trim(),
+    message: (formData.get('message') || '').toString().trim()
+  };
+
+  if (!values.name || !values.phone || !values.business || !values.plan || !values.industry || !values.message) {
+    return;
+  }
+
+  preparedInquiryMessage = buildInquiryMessage(values);
+  prepareSendLinks(preparedInquiryMessage);
+  if (contactSendStatus) contactSendStatus.textContent = '';
+  openContactSendModal();
+});
+
+copyMessageButton?.addEventListener('click', async () => {
+  if (!preparedInquiryMessage) return;
+  try {
+    await navigator.clipboard.writeText(preparedInquiryMessage);
+    if (contactSendStatus) {
+      contactSendStatus.textContent = translations[activeLang]?.['contactSend.copied'] || 'Message copied. You can paste it anywhere.';
+    }
+  } catch {
+    if (contactSendStatus) {
+      contactSendStatus.textContent = translations[activeLang]?.['contactSend.copyFailed'] || 'Copy failed. Please copy manually.';
+    }
+  }
+});
+
+contactSendModal?.querySelectorAll('[data-contact-modal-close]').forEach((node) => {
+  node.addEventListener('click', closeContactSendModal);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeContactSendModal();
+});
 
 const currencyRates = { JOD: 1, USD: 1.41, SAR: 5.29, AED: 5.18 };
 const currencySymbols = { USD: '$' };
