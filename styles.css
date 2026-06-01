@@ -1187,6 +1187,121 @@ textarea.is-invalid {
   cursor: wait;
 }
 
+.form-status:empty {
+  display: none;
+}
+
+.contact-send-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 118;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.contact-send-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.contact-send-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 12, 22, 0.66);
+  backdrop-filter: blur(4px);
+}
+
+.contact-send-modal__panel {
+  position: relative;
+  width: min(560px, 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(11, 19, 36, 0.97);
+  color: #f8fafc;
+  padding: 28px;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.45);
+  transform: scale(0.96) translateY(12px);
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-send-modal.is-open .contact-send-modal__panel {
+  transform: scale(1) translateY(0);
+}
+
+.contact-send-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+body[dir='rtl'] .contact-send-modal__close {
+  right: auto;
+  left: 10px;
+}
+
+.contact-send-modal__panel h3 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: clamp(1.24rem, 2.8vw, 1.6rem);
+}
+
+.contact-send-modal__panel p {
+  margin: 0 0 18px;
+  color: rgba(248, 250, 252, 0.76);
+}
+
+.contact-send-modal__actions {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-send-whatsapp {
+  min-height: 46px;
+  border: 1px solid #2563eb;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 700;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.contact-send-whatsapp:hover {
+  transform: translateY(-1px);
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.contact-send-email-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.contact-send-email {
+  min-height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-weight: 600;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.contact-send-email:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.54);
+  background: rgba(255, 255, 255, 0.12);
+}
+
 input:focus,
 select:focus,
 textarea:focus,
@@ -1607,6 +1722,14 @@ body[dir='rtl'] .currency-modal__close {
 }
 
 @media (max-width: 760px) {
+  .contact-send-modal__panel {
+    padding: 22px 18px;
+  }
+
+  .contact-send-email-grid {
+    grid-template-columns: 1fr;
+  }
+
   .currency-modal__buttons {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

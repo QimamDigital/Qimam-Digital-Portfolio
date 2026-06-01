@@ -131,7 +131,13 @@ const translations = {
     "form.sending": "Sending...",
     "form.success": "Your message has been sent. We’ll get back to you shortly.",
     "form.error": "Something went wrong. Please try again or contact us directly at info@qimamdigital.com.",
-    "form.validation.required": "Please fill out this field."
+    "form.validation.required": "Please fill out this field.",
+    "contactSend.title": "Your message is ready. How would you like to send it?",
+    "contactSend.subtitle": "Choose one option below to send your inquiry.",
+    "contactSend.whatsapp": "Send by WhatsApp →",
+    "contactSend.gmail": "Gmail",
+    "contactSend.outlook": "Outlook",
+    "contactSend.default": "Default Email App"
   },
   ar: {
     "nav.home": "الرئيسية",
@@ -265,7 +271,13 @@ const translations = {
     "form.sending": "جارٍ الإرسال...",
     "form.success": "تم إرسال رسالتك بنجاح. سنعود إليك قريبًا.",
     "form.error": "حدث خطأ. حاول مرة أخرى أو تواصل معنا مباشرة على info@qimamdigital.com.",
-    "form.validation.required": "يرجى تعبئة هذا الحقل."
+    "form.validation.required": "يرجى تعبئة هذا الحقل.",
+    "contactSend.title": "رسالتك جاهزة. كيف تفضل إرسالها؟",
+    "contactSend.subtitle": "اختر إحدى الطرق التالية لإرسال استفسارك.",
+    "contactSend.whatsapp": "إرسال عبر واتساب ←",
+    "contactSend.gmail": "Gmail",
+    "contactSend.outlook": "Outlook",
+    "contactSend.default": "تطبيق البريد الافتراضي"
   }
 };
 
@@ -463,6 +475,8 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
 const contactForm = document.querySelector('[data-contact-form]');
 const contactSubmitButton = document.querySelector('[data-form-submit]');
 const contactFormStatus = document.querySelector('[data-form-status]');
+const contactSendModal = document.getElementById('contact-send-modal');
+let pendingInquiryMessage = '';
 
 function getFieldErrorNode(field) {
   const container = field.closest('label');
@@ -488,6 +502,14 @@ function clearFieldErrors() {
   contactForm?.querySelectorAll('input, select, textarea').forEach((field) => setFieldError(field, ''));
 }
 
+function setContactStatus(message = '', status = '') {
+  if (!contactFormStatus) return;
+  contactFormStatus.textContent = message;
+  contactFormStatus.classList.remove('is-success', 'is-error');
+  if (status === 'success') contactFormStatus.classList.add('is-success');
+  if (status === 'error') contactFormStatus.classList.add('is-error');
+}
+
 function validateContactValues(values) {
   if (!contactForm) return false;
   const requiredMessage = translations[activeLang]?.['form.validation.required'] || 'Please fill out this field.';
@@ -507,36 +529,83 @@ function validateContactValues(values) {
   return valid;
 }
 
-function setContactStatus(message = '', status = '') {
-  if (!contactFormStatus) return;
-  contactFormStatus.textContent = message;
-  contactFormStatus.classList.remove('is-success', 'is-error');
-  if (status === 'success') contactFormStatus.classList.add('is-success');
-  if (status === 'error') contactFormStatus.classList.add('is-error');
+function buildInquiryMessage(values) {
+  return [
+    'New website inquiry from Qimam Digital website',
+    '',
+    'Name:',
+    values.name || '-',
+    '',
+    'Phone / WhatsApp:',
+    values.phone || '-',
+    '',
+    'Business:',
+    values.business || '-',
+    '',
+    'Plan:',
+    values.plan || '-',
+    '',
+    'Industry:',
+    values.industry || '-',
+    '',
+    'Message:',
+    values.message || '-'
+  ].join('\n');
 }
 
-async function submitContactForm(values) {
-  const response = await fetch('/api/contact', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(values)
+function closeContactSendModal() {
+  if (!contactSendModal) return;
+  contactSendModal.classList.remove('is-open');
+  contactSendModal.setAttribute('aria-hidden', 'true');
+}
+
+function openContactSendModal() {
+  if (!contactSendModal) return;
+  contactSendModal.classList.add('is-open');
+  contactSendModal.setAttribute('aria-hidden', 'false');
+}
+
+function openSendOption(type) {
+  const subject = 'New Website Inquiry';
+  const encodedBody = encodeURIComponent(pendingInquiryMessage);
+  const encodedSubject = encodeURIComponent(subject);
+
+  if (type === 'whatsapp') {
+    window.open(`https://wa.me/962790441000?text=${encodedBody}`, '_blank', 'noopener');
+    return;
+  }
+
+  if (type === 'gmail') {
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=info@qimamdigital.com&su=${encodedSubject}&body=${encodedBody}`, '_blank', 'noopener');
+    return;
+  }
+
+  if (type === 'outlook') {
+    window.open(`https://outlook.office.com/mail/deeplink/compose?to=info@qimamdigital.com&subject=${encodedSubject}&body=${encodedBody}`, '_blank', 'noopener');
+    return;
+  }
+
+  if (type === 'default') {
+    window.location.href = `mailto:info@qimamdigital.com?subject=${encodedSubject}&body=${encodedBody}`;
+  }
+}
+
+contactSendModal?.querySelectorAll('[data-contact-send-close]').forEach((node) => {
+  node.addEventListener('click', closeContactSendModal);
+});
+
+contactSendModal?.querySelectorAll('[data-contact-send]').forEach((node) => {
+  node.addEventListener('click', () => {
+    if (!pendingInquiryMessage) return;
+    openSendOption(node.getAttribute('data-contact-send'));
   });
+});
 
-  let result = {};
-  try {
-    result = await response.json();
-  } catch {
-    result = {};
-  }
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeContactSendModal();
+});
 
-  if (!response.ok || result.success !== true) {
-    throw new Error(result.error || 'Request failed');
-  }
-
-  return result;
-}
-
-contactForm?.addEventListener('submit', async (event) => {
+contactForm?.addEventListener('submit', (event) => {
   event.preventDefault();
   clearFieldErrors();
   setContactStatus('');
@@ -553,30 +622,8 @@ contactForm?.addEventListener('submit', async (event) => {
 
   if (!validateContactValues(values)) return;
 
-  if (contactSubmitButton) {
-    contactSubmitButton.disabled = true;
-    contactSubmitButton.classList.add('is-loading');
-    contactSubmitButton.textContent = translations[activeLang]?.['form.sending'] || 'Sending...';
-  }
-
-  try {
-    await submitContactForm(values);
-    setContactStatus(translations[activeLang]?.['form.success'] || 'Your message has been sent. We’ll get back to you shortly.', 'success');
-    contactForm.reset();
-    clearFieldErrors();
-  } catch {
-    setContactStatus(
-      translations[activeLang]?.['form.error'] ||
-        'Something went wrong. Please try again or contact us directly at info@qimamdigital.com.',
-      'error'
-    );
-  } finally {
-    if (contactSubmitButton) {
-      contactSubmitButton.disabled = false;
-      contactSubmitButton.classList.remove('is-loading');
-      contactSubmitButton.textContent = translations[activeLang]?.['form.submit'] || 'Send Project Request';
-    }
-  }
+  pendingInquiryMessage = buildInquiryMessage(values);
+  openContactSendModal();
 });
 
 const currencyRates = { JOD: 1, USD: 1.41, SAR: 5.29, AED: 5.18 };

@@ -422,6 +422,23 @@
       </section>
     </main>
 
+      <div class="contact-send-modal" id="contact-send-modal" aria-hidden="true">
+        <div class="contact-send-modal__backdrop" data-contact-send-close></div>
+        <div class="contact-send-modal__panel" role="dialog" aria-modal="true" aria-labelledby="contact-send-title">
+          <button class="contact-send-modal__close" type="button" aria-label="Close" data-contact-send-close>×</button>
+          <h3 id="contact-send-title" data-i18n="contactSend.title">Your message is ready. How would you like to send it?</h3>
+          <p data-i18n="contactSend.subtitle">Choose one option below to send your inquiry.</p>
+          <div class="contact-send-modal__actions">
+            <button type="button" class="contact-send-whatsapp" data-contact-send="whatsapp" data-i18n="contactSend.whatsapp">Send by WhatsApp →</button>
+            <div class="contact-send-email-grid">
+              <button type="button" class="contact-send-email" data-contact-send="gmail" data-i18n="contactSend.gmail">Gmail</button>
+              <button type="button" class="contact-send-email" data-contact-send="outlook" data-i18n="contactSend.outlook">Outlook</button>
+              <button type="button" class="contact-send-email" data-contact-send="default" data-i18n="contactSend.default">Default Email App</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="currency-modal" id="currency-modal" aria-hidden="true">
         <div class="currency-modal__backdrop" data-currency-close></div>
         <div class="currency-modal__panel" role="dialog" aria-modal="true" aria-labelledby="currency-modal-title">
