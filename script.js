@@ -19,7 +19,7 @@ const translations = {
     "hero.panelText": "A restrained identity system built around clarity, trust, and precise digital execution.",
     "proof.prototype": "prototype window (24-72h by website plan)",
     "proof.languages": "Arabic and English",
-    "proof.positioning": "JOD starting price",
+    "proof.positioning": "Starting price",
     "proof.location": "MENA region support",
     "work.eyebrow": "Selected Work",
     "work.title": "Curated digital presence systems, not random screenshots.",
@@ -146,7 +146,7 @@ const translations = {
     "hero.panelText": "هوية هادئة ومضبوطة مبنية على الوضوح والثقة والتنفيذ الرقمي الدقيق.",
     "proof.prototype": "مدة النموذج الأولي (24-72 ساعة حسب الخطة)",
     "proof.languages": "العربية والإنجليزية",
-    "proof.positioning": "سعر البداية بالدينار",
+    "proof.positioning": "سعر البداية",
     "proof.location": "دعم عبر منطقة الشرق الأوسط وشمال أفريقيا",
     "work.eyebrow": "أعمال مختارة",
     "work.title": "أنظمة حضور رقمي منتقاة، وليست لقطات شاشة عشوائية.",
@@ -452,11 +452,30 @@ const currencySymbols = { USD: '$' };
 let activeCurrency = localStorage.getItem('qimam-currency');
 let currencyPromptSeen = localStorage.getItem('qimam-currency-prompt-seen') === '1';
 
+function roundDisplayValue(rawValue, currency) {
+  if (currency === 'JOD') return rawValue;
+
+  if (currency === 'USD') {
+    const step = 5;
+    const rounded = Math.round(rawValue / step) * step;
+    return Math.max(step, rounded);
+  }
+
+  if (currency === 'SAR' || currency === 'AED') {
+    const step = rawValue >= 1000 ? 25 : 10;
+    const rounded = Math.round(rawValue / step) * step;
+    return Math.max(step, rounded);
+  }
+
+  return Math.round(rawValue);
+}
+
 function formatCurrencyValue(value, currency, isPlus = false) {
   if (currency === 'JOD') return `${value}${isPlus ? '+' : ''} JOD`;
-  const converted = Math.round(value * currencyRates[currency]);
+  const convertedRaw = value * currencyRates[currency];
+  const converted = roundDisplayValue(convertedRaw, currency);
   if (currency === 'USD') return `${currencySymbols.USD}${converted}${isPlus ? '+' : ''}`;
-  return `${converted}${isPlus ? '+' : ''} ${currency}`;
+  return `${converted.toLocaleString('en-US')}${isPlus ? '+' : ''} ${currency}`;
 }
 
 function updateCurrencyPrices() {
@@ -464,17 +483,26 @@ function updateCurrencyPrices() {
   document.querySelectorAll('.currency-price').forEach((node) => {
     const jod = node.getAttribute('data-jod');
     const jodPlus = node.getAttribute('data-jod-plus');
+
     if (!activeCurrency) {
       node.textContent = label;
       return;
     }
-    if (jod) node.textContent = formatCurrencyValue(Number(jod), activeCurrency, false);
-    if (jodPlus) node.textContent = formatCurrencyValue(Number(jodPlus), activeCurrency, true);
+
+    if (jod !== null) {
+      node.textContent = formatCurrencyValue(Number(jod), activeCurrency, false);
+      return;
+    }
+
+    if (jodPlus !== null) {
+      node.textContent = formatCurrencyValue(Number(jodPlus), activeCurrency, true);
+      return;
+    }
   });
 
   const switcher = document.getElementById('currency-switcher');
   if (switcher) {
-    switcher.value = activeCurrency || 'JOD';
+    switcher.value = activeCurrency || 'USD';
     switcher.closest('.currency-switcher-wrap')?.classList.toggle('is-active', Boolean(activeCurrency));
   }
 
@@ -486,8 +514,10 @@ function updateCurrencyPrices() {
 function setCurrency(currency) {
   activeCurrency = currency;
   localStorage.setItem('qimam-currency', currency);
+  localStorage.setItem('qimam-currency-prompt-seen', '1');
+  currencyPromptSeen = true;
   updateCurrencyPrices();
-  closeCurrencyModal();
+  closeCurrencyModal(false);
 }
 
 const currencyModal = document.getElementById('currency-modal');
@@ -501,10 +531,14 @@ function openCurrencyModal() {
   currencyModal.setAttribute('aria-hidden', 'false');
 }
 
-function closeCurrencyModal() {
+function closeCurrencyModal(shouldSetDefault = true) {
   if (!currencyModal) return;
   currencyModal.classList.remove('is-open');
   currencyModal.setAttribute('aria-hidden', 'true');
+
+  if (shouldSetDefault && !activeCurrency) {
+    setCurrency('USD');
+  }
 }
 
 if (currencyModal) {
@@ -512,7 +546,7 @@ if (currencyModal) {
     btn.addEventListener('click', () => setCurrency(btn.dataset.currency));
   });
   currencyModal.querySelectorAll('[data-currency-close]').forEach((btn) => {
-    btn.addEventListener('click', closeCurrencyModal);
+    btn.addEventListener('click', () => closeCurrencyModal(true));
   });
 }
 
