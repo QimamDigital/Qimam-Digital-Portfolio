@@ -6,13 +6,13 @@
     <title>Qimam Digital - Premium Web Development in Amman</title>
     <meta
       name="description"
-      content="Qimam Digital builds premium websites, brand identities, and AI tools for businesses in Amman, Jordan. Request a free prototype before paying."
+      content="Qimam Digital builds premium websites, brand identities, and AI tools for businesses across the MENA region. Request a free prototype before paying."
     />
     <meta name="theme-color" content="#f7f6f2" />
     <meta property="og:title" content="Qimam Digital - Premium Web Development in Amman" />
     <meta
       property="og:description"
-      content="Premium websites, brand identities, and AI tools for serious businesses in Amman, Jordan."
+      content="Premium websites, brand identities, and AI tools for serious businesses across the MENA region."
     />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
@@ -77,7 +77,7 @@
             <span data-i18n="hero.titleLine3">That win clients.</span>
           </h1>
           <p class="hero-lede" data-i18n="hero.lede">
-            Qimam Digital builds refined websites, brand identities, and AI tools for businesses in Jordan that want to look credible, modern, and ready to grow.
+            Qimam Digital builds refined websites, brand identities, and AI tools for businesses across the MENA region that want to look credible, modern, and ready to grow.
           </p>
           <div class="hero-actions">
             <a class="button" href="#work" data-i18n="cta.work">View Our Work</a>
@@ -97,12 +97,12 @@
           <span data-i18n="proof.languages">Arabic and English</span>
         </div>
         <div>
-          <strong>300</strong>
+          <strong class="currency-price" data-jod="300">Select currency</strong>
           <span data-i18n="proof.positioning">JOD premium project focus</span>
         </div>
         <div>
           <strong>Amman</strong>
-          <span data-i18n="proof.location">local Jordan support</span>
+          <span data-i18n="proof.location">MENA region support</span>
         </div>
       </section>
 
@@ -232,10 +232,20 @@
           <p data-i18n="services.subtitle">No hidden fees. No contracts. Free prototype before you pay.</p>
         </div>
 
+        <div class="currency-switcher-wrap" data-reveal>
+          <label class="currency-switcher-label" for="currency-switcher" data-i18n="currency.switcherLabel">Currency</label>
+          <select id="currency-switcher" class="currency-switcher" aria-label="Select currency for pricing">
+            <option value="JOD">JOD</option>
+            <option value="USD">USD</option>
+            <option value="SAR">SAR</option>
+            <option value="AED">AED</option>
+          </select>
+        </div>
+
         <div class="pricing-grid">
           <article class="price-card" data-reveal>
             <p class="meta" data-i18n="pricing.starter.tier">Starter</p>
-            <h3>300 <span data-i18n="pricing.jod">JOD</span></h3>
+            <h3><span class="currency-price" data-jod="300">Select currency</span></h3>
             <h4 data-i18n="pricing.starter.name">Essential Website</h4>
             <p data-i18n="pricing.starter.text">Perfect for small businesses, clinics, and shops needing a professional online presence.</p>
             <ul>
@@ -252,7 +262,7 @@
           <article class="price-card featured" data-reveal>
             <span class="plan-pill" data-i18n="pricing.popular">Most Popular</span>
             <p class="meta" data-i18n="pricing.growth.tier">Growth</p>
-            <h3>500 <span data-i18n="pricing.jod">JOD</span></h3>
+            <h3><span class="currency-price" data-jod="500">Select currency</span></h3>
             <h4 data-i18n="pricing.growth.name">SEO Power Website</h4>
             <p data-i18n="pricing.growth.text">Everything in Starter, plus full SEO and AI SEO so customers find you on Google.</p>
             <ul>
@@ -269,7 +279,7 @@
 
           <article class="price-card" data-reveal>
             <p class="meta" data-i18n="pricing.premium.tier">Premium</p>
-            <h3>700 <span data-i18n="pricing.jod">JOD</span></h3>
+            <h3><span class="currency-price" data-jod="700">Select currency</span></h3>
             <h4 data-i18n="pricing.premium.name">Full Business Website</h4>
             <p data-i18n="pricing.premium.text">The complete package — SEO, online booking, advanced animations, everything a serious business needs.</p>
             <ul>
@@ -290,10 +300,10 @@
             <p data-i18n="addons.text">Add focused capabilities when your website needs more than a standard build.</p>
           </div>
           <ul>
-            <li><span data-i18n="addons.chatbot">AI chatbot add-on</span><strong data-i18n="addons.chatbotPrice">From 1,000 JOD</strong></li>
-            <li><span data-i18n="addons.domain">Domain registration</span><strong>10+ JOD / year</strong></li>
+            <li><span data-i18n="addons.chatbot">AI chatbot add-on</span><strong><span data-i18n="addons.from">From</span> <span class="currency-price" data-jod="1000">Select currency</span></strong></li>
+            <li><span data-i18n="addons.domain">Domain registration</span><strong><span class="currency-price" data-jod-plus="10">Select currency</span> <span data-i18n="addons.perYear">/ year</span></strong></li>
             <li><span data-i18n="addons.email">Professional email setup</span><strong data-i18n="pricing.custom">Custom</strong></li>
-            <li><span data-i18n="addons.maintenance">On-demand maintenance</span><strong data-i18n="addons.maintenancePrice">10 JOD / request</strong></li>
+            <li><span data-i18n="addons.maintenance">On-demand maintenance</span><strong><span class="currency-price" data-jod="10">Select currency</span> <span data-i18n="addons.perRequest">/ request</span></strong></li>
           </ul>
         </div>
 
@@ -305,14 +315,14 @@
           </div>
           <div class="brand-price-block">
             <span data-i18n="brandPricing.bundle">Bundle Total</span>
-            <strong>90 <small data-i18n="pricing.jod">JOD</small></strong>
+            <strong><span class="currency-price" data-jod="90">Select currency</span></strong>
             <em data-i18n="brandPricing.save">Save vs. ordering separately</em>
           </div>
           <ul class="brand-items">
-            <li><span data-i18n="brandPricing.profile">Company Profile</span><strong>50 JOD</strong></li>
-            <li><span data-i18n="brandPricing.card">Business Card</span><strong>30 JOD</strong></li>
-            <li><span data-i18n="brandPricing.letterhead">Letterhead</span><strong>10 JOD</strong></li>
-            <li><span data-i18n="brandPricing.envelope">Envelope</span><strong>10 JOD</strong></li>
+            <li><span data-i18n="brandPricing.profile">Company Profile</span><strong><span class="currency-price" data-jod="50">Select currency</span></strong></li>
+            <li><span data-i18n="brandPricing.card">Business Card</span><strong><span class="currency-price" data-jod="30">Select currency</span></strong></li>
+            <li><span data-i18n="brandPricing.letterhead">Letterhead</span><strong><span class="currency-price" data-jod="10">Select currency</span></strong></li>
+            <li><span data-i18n="brandPricing.envelope">Envelope</span><strong><span class="currency-price" data-jod="10">Select currency</span></strong></li>
           </ul>
         </div>
       </section>
@@ -353,7 +363,7 @@
         </div>
         <div class="about-copy" data-reveal>
           <p data-i18n="about.p1">
-            Qimam Digital is a boutique digital studio based in Amman, Jordan. We focus on premium website design and development, brand presence, and practical AI tools.
+            Qimam Digital is a boutique digital studio based in the MENA region. We focus on premium website design and development, brand presence, and practical AI tools.
           </p>
           <p data-i18n="about.p2">
             Our work is restrained on purpose: clean typography, strong spacing, fast pages, bilingual clarity, and digital systems that help real businesses look credible.
@@ -402,6 +412,21 @@
       </section>
     </main>
 
+      <div class="currency-modal" id="currency-modal" aria-hidden="true">
+        <div class="currency-modal__backdrop" data-currency-close></div>
+        <div class="currency-modal__panel" role="dialog" aria-modal="true" aria-labelledby="currency-modal-title">
+          <button class="currency-modal__close" type="button" aria-label="Close" data-currency-close>×</button>
+          <h3 id="currency-modal-title" data-i18n="currency.title">Choose your preferred currency to view prices</h3>
+          <p data-i18n="currency.subtitle">Prices can be viewed in JOD, USD, SAR, or AED.</p>
+          <div class="currency-modal__buttons">
+            <button type="button" class="currency-btn" data-currency="JOD">JOD</button>
+            <button type="button" class="currency-btn" data-currency="USD">USD</button>
+            <button type="button" class="currency-btn" data-currency="SAR">SAR</button>
+            <button type="button" class="currency-btn" data-currency="AED">AED</button>
+          </div>
+        </div>
+      </div>
+
     <footer class="site-footer">
       <div class="brand footer-brand">
         <span class="brand-mark" aria-hidden="true">
@@ -415,7 +440,7 @@
           <span class="brand-subword">Digital</span>
         </span>
       </div>
-      <p data-i18n="footer.line">Premium web development, branding, and AI solutions in Amman, Jordan.</p>
+      <p data-i18n="footer.line">Premium web development, branding, and AI solutions across the MENA region.</p>
       <a href="mailto:info@qimamdigital.com">info@qimamdigital.com</a>
     </footer>
 

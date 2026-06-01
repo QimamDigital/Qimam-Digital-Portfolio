@@ -13,14 +13,14 @@ const translations = {
     "hero.titleLine1": "We build",
     "hero.titleLine2": "Websites & Brand Identities",
     "hero.titleLine3": "That win clients.",
-    "hero.lede": "Qimam Digital builds refined websites, brand identities, and AI tools for businesses in Jordan that want to look credible, modern, and ready to grow.",
+    "hero.lede": "Qimam Digital builds refined websites, brand identities, and AI tools for businesses across the MENA region that want to look credible, modern, and ready to grow.",
     "hero.panelLabel": "Studio system",
     "hero.panelTitle": "Less, but better.",
     "hero.panelText": "A restrained identity system built around clarity, trust, and precise digital execution.",
     "proof.prototype": "prototype window (24-72h by website plan)",
     "proof.languages": "Arabic and English",
     "proof.positioning": "JOD starting price",
-    "proof.location": "local Jordan support",
+    "proof.location": "MENA region support",
     "work.eyebrow": "Selected Work",
     "work.title": "Curated digital presence systems, not random screenshots.",
     "work.lede": "Each project is treated as a business asset: clear positioning, premium visual language, stable performance, and a conversion path that makes sense.",
@@ -102,7 +102,7 @@ const translations = {
     "process.four.text": "We connect contact channels, review speed and mobile behavior, then support post-launch edits.",
     "about.eyebrow": "Why Qimam",
     "about.title": "Built for businesses that need trust, not decoration.",
-    "about.p1": "Qimam Digital is a boutique digital studio based in Amman, Jordan. We focus on premium website design and development, brand presence, and practical AI tools.",
+    "about.p1": "Qimam Digital is a boutique digital studio based in the MENA region. We focus on premium website design and development, brand presence, and practical AI tools.",
     "about.p2": "Our work is restrained on purpose: clean typography, strong spacing, fast pages, bilingual clarity, and digital systems that help real businesses look credible.",
     "contact.eyebrow": "Start a Project",
     "contact.title": "Request a free prototype before paying.",
@@ -117,7 +117,14 @@ const translations = {
     "form.optionSupport": "Maintenance or support",
     "form.message": "What do you need?",
     "form.submit": "Send Project Request",
-    "footer.line": "Premium web development, branding, and AI solutions in Amman, Jordan."
+    "footer.line": "Premium web development, branding, and AI solutions across the MENA region.",
+    "currency.title": "Choose your preferred currency to view prices",
+    "currency.subtitle": "Prices can be viewed in JOD, USD, SAR, or AED.",
+    "currency.switcherLabel": "Currency",
+    "currency.select": "Select currency",
+    "addons.from": "From",
+    "addons.perYear": "/ year",
+    "addons.perRequest": "/ request"
   },
   ar: {
     "nav.home": "الرئيسية",
@@ -133,14 +140,14 @@ const translations = {
     "hero.titleLine1": "نحن نبني",
     "hero.titleLine2": "مواقع إلكترونية وهويات بصرية",
     "hero.titleLine3": "تجلب لك العملاء.",
-    "hero.lede": "تبني قمم ديجيتال مواقع راقية، وهويات بصرية، وأدوات ذكاء اصطناعي للشركات في الأردن التي تريد حضوراً موثوقاً وحديثاً وقابلاً للنمو.",
+    "hero.lede": "تبني قمم ديجيتال مواقع راقية، وهويات بصرية، وأدوات ذكاء اصطناعي للشركات عبر منطقة الشرق الأوسط وشمال أفريقيا التي تريد حضوراً موثوقاً وحديثاً وقابلاً للنمو.",
     "hero.panelLabel": "نظام الاستوديو",
     "hero.panelTitle": "الأقل، لكن الأفضل.",
     "hero.panelText": "هوية هادئة ومضبوطة مبنية على الوضوح والثقة والتنفيذ الرقمي الدقيق.",
     "proof.prototype": "مدة النموذج الأولي (24-72 ساعة حسب الخطة)",
     "proof.languages": "العربية والإنجليزية",
     "proof.positioning": "سعر البداية بالدينار",
-    "proof.location": "دعم محلي في الأردن",
+    "proof.location": "دعم عبر منطقة الشرق الأوسط وشمال أفريقيا",
     "work.eyebrow": "أعمال مختارة",
     "work.title": "أنظمة حضور رقمي منتقاة، وليست لقطات شاشة عشوائية.",
     "work.lede": "نتعامل مع كل مشروع كأصل تجاري: تموضع واضح، لغة بصرية راقية، أداء ثابت، ومسار تواصل منطقي.",
@@ -222,7 +229,7 @@ const translations = {
     "process.four.text": "نربط قنوات التواصل، ونراجع السرعة والجوال، ثم ندعم التعديلات بعد الإطلاق.",
     "about.eyebrow": "لماذا قمم",
     "about.title": "مصمم للشركات التي تحتاج الثقة، لا الزخرفة.",
-    "about.p1": "قمم ديجيتال استوديو رقمي متخصص في عمّان، الأردن. نركز على تصميم وتطوير المواقع الممتازة، والحضور البصري، وأدوات الذكاء الاصطناعي العملية.",
+    "about.p1": "قمم ديجيتال استوديو رقمي متخصص في منطقة الشرق الأوسط وشمال أفريقيا. نركز على تصميم وتطوير المواقع الممتازة، والحضور البصري، وأدوات الذكاء الاصطناعي العملية.",
     "about.p2": "نستخدم الهدوء البصري عن قصد: خط واضح، مساحات دقيقة، صفحات سريعة، وضوح عربي وإنجليزي، وأنظمة رقمية تجعل الشركات تبدو موثوقة.",
     "contact.eyebrow": "ابدأ مشروعك",
     "contact.title": "اطلب نموذجاً مجانياً قبل الدفع.",
@@ -237,7 +244,14 @@ const translations = {
     "form.optionSupport": "صيانة أو دعم",
     "form.message": "ماذا تحتاج؟",
     "form.submit": "إرسال طلب المشروع",
-    "footer.line": "تطوير مواقع وهوية وحلول ذكاء اصطناعي في عمّان، الأردن."
+    "footer.line": "تطوير مواقع وهوية وحلول ذكاء اصطناعي عبر منطقة الشرق الأوسط وشمال أفريقيا.",
+    "currency.title": "اختر العملة المفضلة لعرض الأسعار",
+    "currency.subtitle": "يمكن عرض الأسعار بالدينار أو الدولار أو الريال أو الدرهم.",
+    "currency.switcherLabel": "العملة",
+    "currency.select": "اختر العملة",
+    "addons.from": "ابتداءً من",
+    "addons.perYear": "/ سنة",
+    "addons.perRequest": "/ طلب"
   }
 };
 
@@ -431,3 +445,102 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
 
   showSlide(0);
 });
+
+
+const currencyRates = { JOD: 1, USD: 1.41, SAR: 5.29, AED: 5.18 };
+const currencySymbols = { USD: '$' };
+let activeCurrency = localStorage.getItem('qimam-currency');
+let currencyPromptSeen = localStorage.getItem('qimam-currency-prompt-seen') === '1';
+
+function formatCurrencyValue(value, currency, isPlus = false) {
+  if (currency === 'JOD') return `${value}${isPlus ? '+' : ''} JOD`;
+  const converted = Math.round(value * currencyRates[currency]);
+  if (currency === 'USD') return `${currencySymbols.USD}${converted}${isPlus ? '+' : ''}`;
+  return `${converted}${isPlus ? '+' : ''} ${currency}`;
+}
+
+function updateCurrencyPrices() {
+  const label = translations[activeLang]?.['currency.select'] || 'Select currency';
+  document.querySelectorAll('.currency-price').forEach((node) => {
+    const jod = node.getAttribute('data-jod');
+    const jodPlus = node.getAttribute('data-jod-plus');
+    if (!activeCurrency) {
+      node.textContent = label;
+      return;
+    }
+    if (jod) node.textContent = formatCurrencyValue(Number(jod), activeCurrency, false);
+    if (jodPlus) node.textContent = formatCurrencyValue(Number(jodPlus), activeCurrency, true);
+  });
+
+  const switcher = document.getElementById('currency-switcher');
+  if (switcher) {
+    switcher.value = activeCurrency || 'JOD';
+    switcher.closest('.currency-switcher-wrap')?.classList.toggle('is-active', Boolean(activeCurrency));
+  }
+
+  document.querySelectorAll('.currency-btn').forEach((btn) => {
+    btn.classList.toggle('is-active', btn.dataset.currency === activeCurrency);
+  });
+}
+
+function setCurrency(currency) {
+  activeCurrency = currency;
+  localStorage.setItem('qimam-currency', currency);
+  updateCurrencyPrices();
+  closeCurrencyModal();
+}
+
+const currencyModal = document.getElementById('currency-modal');
+const servicesSection = document.getElementById('services');
+
+function openCurrencyModal() {
+  if (!currencyModal || activeCurrency) return;
+  currencyPromptSeen = true;
+  localStorage.setItem('qimam-currency-prompt-seen', '1');
+  currencyModal.classList.add('is-open');
+  currencyModal.setAttribute('aria-hidden', 'false');
+}
+
+function closeCurrencyModal() {
+  if (!currencyModal) return;
+  currencyModal.classList.remove('is-open');
+  currencyModal.setAttribute('aria-hidden', 'true');
+}
+
+if (currencyModal) {
+  currencyModal.querySelectorAll('[data-currency]').forEach((btn) => {
+    btn.addEventListener('click', () => setCurrency(btn.dataset.currency));
+  });
+  currencyModal.querySelectorAll('[data-currency-close]').forEach((btn) => {
+    btn.addEventListener('click', closeCurrencyModal);
+  });
+}
+
+const switcher = document.getElementById('currency-switcher');
+switcher?.addEventListener('change', (event) => {
+  setCurrency(event.target.value);
+});
+
+document.querySelector('a[href="#services"]')?.addEventListener('click', () => {
+  if (!activeCurrency) setTimeout(openCurrencyModal, 300);
+});
+
+if ('IntersectionObserver' in window && servicesSection) {
+  const pricingObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !activeCurrency && !currencyPromptSeen) {
+        openCurrencyModal();
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  pricingObserver.observe(servicesSection);
+}
+
+const oldApplyLanguage = applyLanguage;
+applyLanguage = function(lang) {
+  oldApplyLanguage(lang);
+  updateCurrencyPrices();
+};
+applyLanguage(activeLang);
+updateCurrencyPrices();
