@@ -385,7 +385,7 @@
           </div>
         </div>
 
-        <form class="contact-form" data-contact-form data-reveal>
+        <form class="contact-form" data-contact-form data-reveal novalidate>
           <label>
             <span data-i18n="form.name">Name</span>
             <input name="name" type="text" autocomplete="name" required />
@@ -416,33 +416,9 @@
             <span data-i18n="form.message">What do you need?</span>
             <textarea name="message" rows="5" required></textarea>
           </label>
-          <button class="button" type="submit" data-i18n="form.submit">Send Project Request</button>
+          <button class="button" type="submit" data-form-submit data-i18n="form.submit">Send Project Request</button>
+          <p class="form-status" data-form-status aria-live="polite"></p>
         </form>
-
-        <div class="contact-send-modal" id="contact-send-modal" aria-hidden="true">
-          <div class="contact-send-modal__backdrop" data-contact-modal-close></div>
-          <div class="contact-send-modal__panel" role="dialog" aria-modal="true" aria-labelledby="contact-send-title">
-            <button class="contact-send-modal__close" type="button" data-contact-modal-close aria-label="Close">×</button>
-            <h3 id="contact-send-title" data-i18n="contactSend.title">Your message is ready. How would you like to send it?</h3>
-            <p data-i18n="contactSend.subtitle">Choose one option below to send your inquiry.</p>
-
-            <div class="contact-send-actions">
-              <a class="button" href="#" target="_blank" rel="noopener" data-send-whatsapp data-i18n="contactSend.whatsapp">Send by WhatsApp</a>
-              <button class="button button-secondary" type="button" data-copy-message data-i18n="contactSend.copy">Copy message</button>
-            </div>
-
-            <div class="contact-send-email-options">
-              <p data-i18n="contactSend.emailOptions">Choose email app:</p>
-              <div class="contact-send-email-buttons">
-                <a href="#" target="_blank" rel="noopener" data-send-gmail>Gmail</a>
-                <a href="#" target="_blank" rel="noopener" data-send-outlook>Outlook</a>
-                <a href="#" data-send-default-email data-i18n="contactSend.defaultEmail">Default Email App</a>
-              </div>
-            </div>
-
-            <p class="contact-send-status" id="contact-send-status" aria-live="polite"></p>
-          </div>
-        </div>
       </section>
     </main>
 

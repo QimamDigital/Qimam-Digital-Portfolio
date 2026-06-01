@@ -128,14 +128,10 @@ const translations = {
     "addons.from": "From",
     "addons.perYear": "/ year",
     "addons.perRequest": "/ request",
-    "contactSend.title": "Your message is ready. How would you like to send it?",
-    "contactSend.subtitle": "Choose one option below to send your inquiry.",
-    "contactSend.whatsapp": "Send by WhatsApp",
-    "contactSend.copy": "Copy message",
-    "contactSend.emailOptions": "Choose email app:",
-    "contactSend.defaultEmail": "Default Email App",
-    "contactSend.copied": "Message copied. You can paste it anywhere.",
-    "contactSend.copyFailed": "Copy failed. Please copy manually."
+    "form.sending": "Sending...",
+    "form.success": "Your message has been sent. We’ll get back to you shortly.",
+    "form.error": "Something went wrong. Please try again or contact us directly at info@qimamdigital.com.",
+    "form.validation.required": "Please fill out this field."
   },
   ar: {
     "nav.home": "الرئيسية",
@@ -266,14 +262,10 @@ const translations = {
     "addons.from": "ابتداءً من",
     "addons.perYear": "/ سنة",
     "addons.perRequest": "/ طلب",
-    "contactSend.title": "رسالتك جاهزة. كيف تفضّل إرسالها؟",
-    "contactSend.subtitle": "اختر إحدى الطرق التالية لإرسال استفسارك.",
-    "contactSend.whatsapp": "إرسال عبر واتساب",
-    "contactSend.copy": "نسخ الرسالة",
-    "contactSend.emailOptions": "اختر تطبيق البريد:",
-    "contactSend.defaultEmail": "تطبيق البريد الافتراضي",
-    "contactSend.copied": "تم نسخ الرسالة. يمكنك لصقها في أي مكان.",
-    "contactSend.copyFailed": "تعذر النسخ. انسخ الرسالة يدويًا."
+    "form.sending": "جارٍ الإرسال...",
+    "form.success": "تم إرسال رسالتك بنجاح. سنعود إليك قريبًا.",
+    "form.error": "حدث خطأ. حاول مرة أخرى أو تواصل معنا مباشرة على info@qimamdigital.com.",
+    "form.validation.required": "يرجى تعبئة هذا الحقل."
   }
 };
 
@@ -469,76 +461,85 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
 });
 
 const contactForm = document.querySelector('[data-contact-form]');
-const contactSendModal = document.getElementById('contact-send-modal');
-const contactSendStatus = document.getElementById('contact-send-status');
-const whatsappSendLink = document.querySelector('[data-send-whatsapp]');
-const gmailSendLink = document.querySelector('[data-send-gmail]');
-const outlookSendLink = document.querySelector('[data-send-outlook]');
-const defaultEmailSendLink = document.querySelector('[data-send-default-email]');
-const copyMessageButton = document.querySelector('[data-copy-message]');
+const contactSubmitButton = document.querySelector('[data-form-submit]');
+const contactFormStatus = document.querySelector('[data-form-status]');
 
-let preparedInquiryMessage = '';
-
-function buildInquiryMessage(values) {
-  return [
-    'New website inquiry from Qimam Digital website',
-    '',
-    'Name:',
-    values.name,
-    '',
-    'Phone / WhatsApp:',
-    values.phone,
-    '',
-    'Business:',
-    values.business,
-    '',
-    'Plan:',
-    values.plan,
-    '',
-    'Industry:',
-    values.industry,
-    '',
-    'Message:',
-    values.message
-  ].join('\n');
+function getFieldErrorNode(field) {
+  const container = field.closest('label');
+  if (!container) return null;
+  let errorNode = container.querySelector('.field-error');
+  if (!errorNode) {
+    errorNode = document.createElement('p');
+    errorNode.className = 'field-error';
+    errorNode.setAttribute('aria-live', 'polite');
+    container.appendChild(errorNode);
+  }
+  return errorNode;
 }
 
-function openContactSendModal() {
-  if (!contactSendModal) return;
-  contactSendModal.classList.add('is-open');
-  contactSendModal.setAttribute('aria-hidden', 'false');
+function setFieldError(field, message = '') {
+  const errorNode = getFieldErrorNode(field);
+  if (!errorNode) return;
+  errorNode.textContent = message;
+  field.classList.toggle('is-invalid', Boolean(message));
 }
 
-function closeContactSendModal() {
-  if (!contactSendModal) return;
-  contactSendModal.classList.remove('is-open');
-  contactSendModal.setAttribute('aria-hidden', 'true');
+function clearFieldErrors() {
+  contactForm?.querySelectorAll('input, select, textarea').forEach((field) => setFieldError(field, ''));
 }
 
-function prepareSendLinks(message) {
-  const subject = 'New Website Inquiry';
-  const encodedMessage = encodeURIComponent(message);
-  const encodedSubject = encodeURIComponent(subject);
+function validateContactValues(values) {
+  if (!contactForm) return false;
+  const requiredMessage = translations[activeLang]?.['form.validation.required'] || 'Please fill out this field.';
+  let valid = true;
 
-  if (whatsappSendLink) {
-    whatsappSendLink.href = `https://wa.me/962790441000?text=${encodedMessage}`;
-  }
+  ['name', 'phone', 'business', 'message'].forEach((fieldName) => {
+    const field = contactForm.querySelector(`[name="${fieldName}"]`);
+    if (!field) return;
+    if (!values[fieldName]) {
+      setFieldError(field, requiredMessage);
+      valid = false;
+    } else {
+      setFieldError(field, '');
+    }
+  });
 
-  if (gmailSendLink) {
-    gmailSendLink.href = `https://mail.google.com/mail/?view=cm&to=info@qimamdigital.com&su=${encodedSubject}&body=${encodedMessage}`;
-  }
-
-  if (outlookSendLink) {
-    outlookSendLink.href = `https://outlook.office.com/mail/deeplink/compose?to=info@qimamdigital.com&subject=${encodedSubject}&body=${encodedMessage}`;
-  }
-
-  if (defaultEmailSendLink) {
-    defaultEmailSendLink.href = `mailto:info@qimamdigital.com?subject=${encodedSubject}&body=${encodedMessage}`;
-  }
+  return valid;
 }
 
-contactForm?.addEventListener('submit', (event) => {
+function setContactStatus(message = '', status = '') {
+  if (!contactFormStatus) return;
+  contactFormStatus.textContent = message;
+  contactFormStatus.classList.remove('is-success', 'is-error');
+  if (status === 'success') contactFormStatus.classList.add('is-success');
+  if (status === 'error') contactFormStatus.classList.add('is-error');
+}
+
+async function submitContactForm(values) {
+  const response = await fetch('/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(values)
+  });
+
+  let result = {};
+  try {
+    result = await response.json();
+  } catch {
+    result = {};
+  }
+
+  if (!response.ok || result.success !== true) {
+    throw new Error(result.error || 'Request failed');
+  }
+
+  return result;
+}
+
+contactForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
+  clearFieldErrors();
+  setContactStatus('');
 
   const formData = new FormData(contactForm);
   const values = {
@@ -550,36 +551,32 @@ contactForm?.addEventListener('submit', (event) => {
     message: (formData.get('message') || '').toString().trim()
   };
 
-  if (!values.name || !values.phone || !values.business || !values.plan || !values.industry || !values.message) {
-    return;
+  if (!validateContactValues(values)) return;
+
+  if (contactSubmitButton) {
+    contactSubmitButton.disabled = true;
+    contactSubmitButton.classList.add('is-loading');
+    contactSubmitButton.textContent = translations[activeLang]?.['form.sending'] || 'Sending...';
   }
 
-  preparedInquiryMessage = buildInquiryMessage(values);
-  prepareSendLinks(preparedInquiryMessage);
-  if (contactSendStatus) contactSendStatus.textContent = '';
-  openContactSendModal();
-});
-
-copyMessageButton?.addEventListener('click', async () => {
-  if (!preparedInquiryMessage) return;
   try {
-    await navigator.clipboard.writeText(preparedInquiryMessage);
-    if (contactSendStatus) {
-      contactSendStatus.textContent = translations[activeLang]?.['contactSend.copied'] || 'Message copied. You can paste it anywhere.';
-    }
+    await submitContactForm(values);
+    setContactStatus(translations[activeLang]?.['form.success'] || 'Your message has been sent. We’ll get back to you shortly.', 'success');
+    contactForm.reset();
+    clearFieldErrors();
   } catch {
-    if (contactSendStatus) {
-      contactSendStatus.textContent = translations[activeLang]?.['contactSend.copyFailed'] || 'Copy failed. Please copy manually.';
+    setContactStatus(
+      translations[activeLang]?.['form.error'] ||
+        'Something went wrong. Please try again or contact us directly at info@qimamdigital.com.',
+      'error'
+    );
+  } finally {
+    if (contactSubmitButton) {
+      contactSubmitButton.disabled = false;
+      contactSubmitButton.classList.remove('is-loading');
+      contactSubmitButton.textContent = translations[activeLang]?.['form.submit'] || 'Send Project Request';
     }
   }
-});
-
-contactSendModal?.querySelectorAll('[data-contact-modal-close]').forEach((node) => {
-  node.addEventListener('click', closeContactSendModal);
-});
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') closeContactSendModal();
 });
 
 const currencyRates = { JOD: 1, USD: 1.41, SAR: 5.29, AED: 5.18 };
