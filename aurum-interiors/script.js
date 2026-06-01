@@ -2,15 +2,28 @@ const menuBtn = document.querySelector('[data-menu-btn]');
 const menu = document.querySelector('[data-menu]');
 
 if (menuBtn && menu) {
+  const closeMenu = () => {
+    menu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  };
+
   menuBtn.addEventListener('click', () => {
     const open = menu.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('menu-open', open);
   });
+
   menu.querySelectorAll('a').forEach((a) => {
-    a.addEventListener('click', () => {
-      menu.classList.remove('open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    });
+    a.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 760) closeMenu();
   });
 }
 
