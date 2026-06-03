@@ -10,9 +10,9 @@ const translations = {
     "cta.work": "View Our Work",
     "cta.prototype": "Get a Free Prototype",
     "hero.eyebrow": "MENA region — Web development, branding, AI systems",
-    "hero.titleLine1": "We build",
-    "hero.titleLine2": "Websites & Brand Identities",
-    "hero.titleLine3": "That win clients.",
+    "hero.titleLine1": "Premium websites,",
+    "hero.titleLine2": "branding, and AI tools",
+    "hero.titleLine3": "for serious businesses.",
     "hero.lede": "Qimam Digital builds refined websites, brand identities, and AI tools for businesses across the MENA region that want to look credible, modern, and ready to grow.",
     "hero.panelLabel": "Studio system",
     "hero.panelTitle": "Less, but better.",
@@ -22,7 +22,7 @@ const translations = {
     "proof.positioning": "Starting price",
     "proof.location": "MENA region support",
     "work.eyebrow": "Selected Work",
-    "work.title": "A curated portfolio of websites built to look premium, perform smoothly, and win trust.",
+    "work.title": "Selected work built for real business goals",
     "work.lede": "Each project is treated as a business asset: clear positioning, premium visual language, stable performance, and a conversion path that makes sense.",
     "work.card1.meta": "Dermatology · Aesthetic Clinic",
     "work.card1.title": "Noura Skin Clinic",
@@ -36,8 +36,8 @@ const translations = {
     "work.case": "View Case Study",
     "work.live": "View Live",
     "services.eyebrow": "Services and Pricing",
-    "services.title": "Simple pricing. Serious quality.",
-    "services.subtitle": "No hidden fees. No contracts. Free prototype before you pay.",
+    "services.title": "Website design and development services",
+    "services.subtitle": "Premium website design, website development for businesses, SEO optimized websites, branding, AI chatbot for websites, and professional email setup with a free prototype before payment.",
     "pricing.jod": "JOD",
     "pricing.custom": "Custom",
     "pricing.popular": "Most Popular",
@@ -91,7 +91,7 @@ const translations = {
     "brandPricing.letterhead": "Letterhead",
     "brandPricing.envelope": "Envelope",
     "process.eyebrow": "Process",
-    "process.title": "A clear path from first call to launch.",
+    "process.title": "How Qimam Digital builds your website",
     "process.one.title": "Direction",
     "process.one.text": "We define the business goal, pages, audience, and premium visual direction before designing.",
     "process.two.title": "Prototype",
@@ -101,11 +101,11 @@ const translations = {
     "process.four.title": "Launch",
     "process.four.text": "We connect contact channels, review speed and mobile behavior, then support post-launch edits.",
     "about.eyebrow": "Why Qimam",
-    "about.title": "Built for businesses that need trust, not decoration.",
+    "about.title": "Why businesses choose Qimam Digital",
     "about.p1": "Qimam Digital is a boutique digital studio based in the MENA region. We focus on premium website design and development, brand presence, and practical AI tools.",
     "about.p2": "Our work is restrained on purpose: clean typography, strong spacing, fast pages, bilingual clarity, and digital systems that help real businesses look credible.",
     "contact.eyebrow": "Start a Project",
-    "contact.title": "Request a free prototype before paying.",
+    "contact.title": "Start your free prototype",
     "contact.text": "Tell us what your business needs. We will respond with the best next step for your website, brand presence, or AI assistant.",
     "contact.location": "Amman, Jordan",
     "form.name": "Name",
@@ -138,6 +138,60 @@ const translations = {
     "contactSend.gmail": "Gmail",
     "contactSend.outlook": "Outlook",
     "contactSend.default": "Default Email App"
+  ,
+    "about.answer.what.title": "What is Qimam Digital?"
+  ,
+    "about.answer.what.text": "Qimam Digital is a premium web development, branding, and AI solutions studio serving businesses across the MENA region from Amman, Jordan."
+  ,
+    "about.answer.services.title": "What services does Qimam Digital offer?"
+  ,
+    "about.answer.services.text": "The studio builds responsive websites, brand identity systems, company profiles, business cards, AI chatbots, professional email setups, and website maintenance plans."
+  ,
+    "about.answer.audience.title": "Who does Qimam Digital help?"
+  ,
+    "about.answer.audience.text": "Qimam Digital helps business owners, clinics, real estate companies, engineering firms, trading companies, logistics companies, interior studios, construction companies, car rental companies, and premium local businesses."
+  ,
+    "about.answer.different.title": "What makes Qimam Digital different?"
+  ,
+    "about.answer.different.text": "Clients can request a free prototype before payment, then launch a mobile responsive, SEO optimized website with bilingual Arabic and English support when needed."
+  ,
+    "faq.eyebrow": "FAQ"
+  ,
+    "faq.title": "Common questions about Qimam Digital"
+  ,
+    "faq.subtitle": "Clear answers about website design, AI chatbot for websites, branding, professional email setup, and the free prototype process."
+  ,
+    "faq.q1": "What does Qimam Digital do?"
+  ,
+    "faq.a1": "Qimam Digital designs and develops premium business websites, brand identities, company profiles, business cards, AI website assistants, professional email setup, and website maintenance for businesses across the MENA region."
+  ,
+    "faq.q2": "Do you offer a free prototype before payment?"
+  ,
+    "faq.a2": "Yes. Qimam Digital can prepare a focused free website prototype before payment so business owners can review the direction before committing."
+  ,
+    "faq.q3": "What types of businesses do you work with?"
+  ,
+    "faq.a3": "We work with clinics, real estate companies, engineering firms, trading and import-export companies, logistics companies, interior design studios, construction companies, car rental companies, and premium local businesses."
+  ,
+    "faq.q4": "Are the websites mobile responsive?"
+  ,
+    "faq.a4": "Yes. Every website is built to work smoothly on mobile, tablet, and desktop screens."
+  ,
+    "faq.q5": "Can you build Arabic and English websites?"
+  ,
+    "faq.a5": "Yes. Qimam Digital supports bilingual Arabic and English websites with clear RTL and LTR layouts."
+  ,
+    "faq.q6": "Do you provide AI chatbots or automation?"
+  ,
+    "faq.a6": "Yes. Qimam Digital can add AI chatbot for websites and practical automation features that help customers understand services and submit better inquiries."
+  ,
+    "faq.q7": "Do you offer professional email setup?"
+  ,
+    "faq.a7": "Yes. Professional email setup is available as part of Qimam Digital's website and digital presence services."
+  ,
+    "faq.q8": "How can I contact Qimam Digital?"
+  ,
+    "faq.a8": "You can contact Qimam Digital by email at info@qimamdigital.com or WhatsApp/phone at +962790441000 from Amman, Jordan."
   },
   ar: {
     "nav.home": "الرئيسية",
@@ -150,9 +204,9 @@ const translations = {
     "cta.work": "شاهد أعمالنا",
     "cta.prototype": "احصل على نموذج مجاني",
     "hero.eyebrow": "منطقة الشرق الأوسط وشمال إفريقيا — تطوير مواقع، هوية بصرية، وأنظمة ذكاء اصطناعي",
-    "hero.titleLine1": "نحن نبني",
-    "hero.titleLine2": "مواقع إلكترونية وهويات بصرية",
-    "hero.titleLine3": "تجلب لك العملاء.",
+    "hero.titleLine1": "مواقع راقية،",
+    "hero.titleLine2": "هوية بصرية وأدوات ذكاء اصطناعي",
+    "hero.titleLine3": "للشركات الجادة.",
     "hero.lede": "تبني قمم ديجيتال مواقع راقية، وهويات بصرية، وأدوات ذكاء اصطناعي للشركات عبر منطقة الشرق الأوسط وشمال أفريقيا التي تريد حضوراً موثوقاً وحديثاً وقابلاً للنمو.",
     "hero.panelLabel": "نظام الاستوديو",
     "hero.panelTitle": "الأقل، لكن الأفضل.",
@@ -162,7 +216,7 @@ const translations = {
     "proof.positioning": "سعر البداية",
     "proof.location": "دعم عبر منطقة الشرق الأوسط وشمال أفريقيا",
     "work.eyebrow": "أعمال مختارة",
-    "work.title": "مجموعة مختارة من مواقع رقمية مصممة لتبدو راقية، تعمل بسلاسة، وتبني الثقة.",
+    "work.title": "أعمال مختارة مبنية لأهداف تجارية حقيقية",
     "work.lede": "نتعامل مع كل مشروع كأصل تجاري: تموضع واضح، لغة بصرية راقية، أداء ثابت، ومسار تواصل منطقي.",
     "work.card1.meta": "الأمراض الجلدية · عيادة تجميل",
     "work.card1.title": "نورا سكين كلينك",
@@ -176,8 +230,8 @@ const translations = {
     "work.case": "عرض دراسة الحالة",
     "work.live": "عرض مباشر",
     "services.eyebrow": "الخدمات والأسعار",
-    "services.title": "أسعار واضحة. جودة جدية.",
-    "services.subtitle": "بدون رسوم مخفية. بدون عقود. نموذج مجاني قبل الدفع.",
+    "services.title": "خدمات تصميم وتطوير مواقع للشركات",
+    "services.subtitle": "تصميم مواقع راقية، تطوير مواقع للشركات، تحسين SEO، هوية بصرية، مساعد ذكاء اصطناعي للمواقع، وإعداد بريد احترافي مع نموذج مجاني قبل الدفع.",
     "pricing.jod": "دينار",
     "pricing.custom": "حسب الطلب",
     "pricing.popular": "الأكثر طلباً",
@@ -231,7 +285,7 @@ const translations = {
     "brandPricing.letterhead": "ورق رسمي",
     "brandPricing.envelope": "مغلف",
     "process.eyebrow": "العملية",
-    "process.title": "مسار واضح من أول تواصل حتى الإطلاق.",
+    "process.title": "كيف تبني قمم ديجيتال موقعك",
     "process.one.title": "الاتجاه",
     "process.one.text": "نحدد هدف العمل والصفحات والجمهور والاتجاه البصري الممتاز قبل التصميم.",
     "process.two.title": "النموذج",
@@ -241,11 +295,11 @@ const translations = {
     "process.four.title": "الإطلاق",
     "process.four.text": "نربط قنوات التواصل، ونراجع السرعة والجوال، ثم ندعم التعديلات بعد الإطلاق.",
     "about.eyebrow": "لماذا قمم",
-    "about.title": "مصمم للشركات التي تحتاج الثقة، لا الزخرفة.",
+    "about.title": "لماذا تختار الشركات قمم ديجيتال",
     "about.p1": "قمم ديجيتال استوديو رقمي متخصص في منطقة الشرق الأوسط وشمال أفريقيا. نركز على تصميم وتطوير المواقع الممتازة، والحضور البصري، وأدوات الذكاء الاصطناعي العملية.",
     "about.p2": "نستخدم الهدوء البصري عن قصد: خط واضح، مساحات دقيقة، صفحات سريعة، وضوح عربي وإنجليزي، وأنظمة رقمية تجعل الشركات تبدو موثوقة.",
     "contact.eyebrow": "ابدأ مشروعك",
-    "contact.title": "اطلب نموذجاً مجانياً قبل الدفع.",
+    "contact.title": "ابدأ نموذجك المجاني",
     "contact.text": "أخبرنا بما يحتاجه عملك، وسنقترح أفضل خطوة تالية لموقعك أو هويتك أو مساعد الذكاء الاصطناعي.",
     "contact.location": "عمّان، الأردن",
     "form.name": "الاسم",
@@ -278,8 +332,61 @@ const translations = {
     "contactSend.gmail": "Gmail",
     "contactSend.outlook": "Outlook",
     "contactSend.default": "تطبيق البريد الافتراضي"
-  }
-};
+  ,
+    "about.answer.what.title": "ما هي قمم ديجيتال؟"
+  ,
+    "about.answer.what.text": "قمم ديجيتال استوديو متخصص في تطوير مواقع، تصميم هوية بصرية، وحلول ذكاء اصطناعي للشركات عبر منطقة الشرق الأوسط وشمال إفريقيا من عمّان، الأردن."
+  ,
+    "about.answer.services.title": "ما الخدمات التي تقدمها قمم ديجيتال؟"
+  ,
+    "about.answer.services.text": "نبني مواقع متجاوبة، أنظمة هوية بصرية، بروفايلات شركات، بطاقات عمل، مساعدين ذكاء اصطناعي، إعداد بريد احترافي، وخطط صيانة للمواقع."
+  ,
+    "about.answer.audience.title": "من تخدم قمم ديجيتال؟"
+  ,
+    "about.answer.audience.text": "نخدم أصحاب الأعمال، العيادات، شركات العقار، المكاتب الهندسية، شركات التجارة، الخدمات اللوجستية، استوديوهات التصميم الداخلي، شركات المقاولات، شركات تأجير السيارات، والشركات المحلية الراقية."
+  ,
+    "about.answer.different.title": "ما الذي يميز قمم ديجيتال؟"
+  ,
+    "about.answer.different.text": "يمكن للعملاء طلب نموذج مجاني قبل الدفع، ثم إطلاق موقع متجاوب ومحسن لمحركات البحث مع دعم عربي وإنجليزي عند الحاجة."
+  ,
+    "faq.eyebrow": "الأسئلة الشائعة"
+  ,
+    "faq.title": "أسئلة شائعة عن قمم ديجيتال"
+  ,
+    "faq.subtitle": "إجابات واضحة حول تصميم المواقع، مساعدات الذكاء الاصطناعي للمواقع، الهوية البصرية، إعداد البريد الاحترافي، وعملية النموذج المجاني."
+  ,
+    "faq.q1": "ماذا تفعل قمم ديجيتال؟"
+  ,
+    "faq.a1": "تصمم وتطور قمم ديجيتال مواقع أعمال راقية، هويات بصرية، بروفايلات شركات، بطاقات عمل، مساعدين للمواقع بالذكاء الاصطناعي، إعداد بريد احترافي، وصيانة مواقع للشركات عبر منطقة الشرق الأوسط وشمال إفريقيا."
+  ,
+    "faq.q2": "هل تقدمون نموذجاً مجانياً قبل الدفع؟"
+  ,
+    "faq.a2": "نعم. يمكن لقيمم ديجيتال تجهيز نموذج موقع مركز قبل الدفع حتى يراجع صاحب العمل الاتجاه قبل الالتزام."
+  ,
+    "faq.q3": "ما أنواع الشركات التي تعملون معها؟"
+  ,
+    "faq.a3": "نعمل مع العيادات، شركات العقار، المكاتب الهندسية، شركات التجارة والاستيراد والتصدير، شركات اللوجستيات، استوديوهات التصميم الداخلي، شركات المقاولات، شركات تأجير السيارات، والشركات المحلية الراقية."
+  ,
+    "faq.q4": "هل المواقع متجاوبة مع الجوال؟"
+  ,
+    "faq.a4": "نعم. كل موقع يُبنى ليعمل بسلاسة على الجوال والتابلت وسطح المكتب."
+  ,
+    "faq.q5": "هل يمكنكم بناء مواقع عربية وإنجليزية؟"
+  ,
+    "faq.a5": "نعم. تدعم قمم ديجيتال المواقع الثنائية بالعربية والإنجليزية مع تخطيطات RTL وLTR واضحة."
+  ,
+    "faq.q6": "هل تقدمون روبوتات محادثة أو أتمتة بالذكاء الاصطناعي؟"
+  ,
+    "faq.a6": "نعم. يمكن لقيمم ديجيتال إضافة مساعد ذكاء اصطناعي للموقع وميزات أتمتة عملية تساعد العملاء على فهم الخدمات وإرسال استفسارات أفضل."
+  ,
+    "faq.q7": "هل تقدمون إعداد بريد احترافي؟"
+  ,
+    "faq.a7": "نعم. إعداد البريد الاحترافي متاح ضمن خدمات الموقع والحضور الرقمي من قمم ديجيتال."
+  ,
+    "faq.q8": "كيف يمكنني التواصل مع قمم ديجيتال؟"
+  ,
+    "faq.a8": "يمكنك التواصل مع قمم ديجيتال عبر البريد info@qimamdigital.com أو واتساب/هاتف على +962790441000 من عمّان، الأردن."
+  }};
 
 const root = document.documentElement;
 const toggle = document.querySelector("[data-lang-toggle]");
@@ -295,6 +402,15 @@ function applyLanguage(lang) {
     if (translations[lang][key]) node.textContent = translations[lang][key];
   });
   if (toggle) toggle.textContent = lang === "ar" ? "EN" : "AR";
+  document.title = lang === "ar"
+    ? "قمم ديجيتال — تطوير مواقع وحلول ذكاء اصطناعي في منطقة الشرق الأوسط وشمال إفريقيا"
+    : "Qimam Digital — Premium Web Development & AI Solutions in the MENA Region";
+  const metaDescription = document.querySelector('meta[name="description"]');
+  if (metaDescription) {
+    metaDescription.content = lang === "ar"
+      ? "قمم ديجيتال تبني مواقع راقية، هويات بصرية، وأدوات ذكاء اصطناعي للشركات عبر منطقة الشرق الأوسط وشمال إفريقيا. اطلب نموذجاً مجانياً قبل الدفع."
+      : "Qimam Digital builds premium websites, brand identities, and AI tools for businesses across the MENA region. Request a free prototype before paying.";
+  }
   localStorage.setItem("qimam-lang", lang);
 }
 

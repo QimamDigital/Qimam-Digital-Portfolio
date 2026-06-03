@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Qimam Digital — Premium Web Development & AI Solutions</title>
+  <desc id="desc">Qimam Digital brand card for premium web development, branding, and AI solutions across the MENA region.</desc>
+  <rect width="1200" height="630" fill="#0B1324"/>
+  <path d="M110 478 312 138 514 478" fill="none" stroke="#F7F6F2" stroke-width="34" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M212 478 312 310 412 478" fill="none" stroke="#2563EB" stroke-width="28" stroke-linecap="square" stroke-linejoin="miter"/>
+  <text x="610" y="252" fill="#F7F6F2" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="700" letter-spacing="7">QIMAM</text>
+  <text x="614" y="342" fill="#F7F6F2" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" letter-spacing="15">DIGITAL</text>
+  <text x="614" y="418" fill="#AEB7C8" font-family="Arial, Helvetica, sans-serif" font-size="30">Premium websites, branding, and AI tools</text>
+  <text x="614" y="462" fill="#AEB7C8" font-family="Arial, Helvetica, sans-serif" font-size="30">for serious businesses across the MENA region</text>
+</svg>
