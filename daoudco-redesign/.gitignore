@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.log
+playwright-report/
+test-results/
+qa-before/
+old_site_raw/
+old_site_crawl.json
+clean_text.txt
+inspect-before.mjs

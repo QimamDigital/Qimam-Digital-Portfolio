@@ -1,0 +1,10 @@
+import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { company } from '../data/company'
+const links=[['/about','Company','الشركة'],['/products','Products','المنتجات'],['/manufacturing','Manufacturing','التصنيع'],['/applications','Applications','التطبيقات'],['/gallery','Gallery','المعرض']]
+export default function Header({lang,setLang}) {
+ const [open,setOpen]=useState(false); const ar=lang==='ar'; const location=useLocation()
+ useEffect(()=>{setOpen(false)},[location.pathname])
+ useEffect(()=>{if(!open)return; const close=e=>{if(e.key==='Escape')setOpen(false)}; window.addEventListener('keydown',close);return()=>window.removeEventListener('keydown',close)},[open])
+ return <header className="site-header"><div className="topbar"><div className="wrap"><span>{ar?'صناعة أردنية منذ عام 1977':'Manufactured in Jordan since 1977'}</span><div><a href={`mailto:${company.email}`}>{company.email}</a><a dir="ltr" href={`tel:${company.phoneTel}`}>{company.phoneDisplay}</a></div></div></div><nav className="nav wrap" aria-label={ar?'التنقل الرئيسي':'Main navigation'}><Link className="brand" to="/" aria-label={ar?'داودكو — الصفحة الرئيسية':'DAOUDCO — Home'}><img src="/images/daoudco/logo.png" alt=""/><span><b>DAOUDCO</b><small>{ar?'الأغطية الزراعية':'AGRICULTURAL FILMS'}</small></span></Link><div id="main-navigation" className={`nav-links ${open?'open':''}`}>{links.map(([path,en,arabic])=><NavLink key={path} to={path}>{ar?arabic:en}</NavLink>)}<NavLink className="mobile-contact" to="/contact">{ar?'تواصل معنا':'Contact us'}</NavLink></div><div className="nav-tools"><button className="language" lang={ar?'en':'ar'} aria-label={ar?'Switch to English':'التبديل إلى العربية'} onClick={()=>setLang(ar?'en':'ar')}>{ar?'EN':'العربية'}</button><Link className="btn small header-contact" to="/contact">{ar?'تواصل معنا':'Contact us'}</Link><button className="menu-btn" aria-label={open?(ar?'إغلاق القائمة':'Close menu'):(ar?'فتح القائمة':'Open menu')} aria-controls="main-navigation" aria-expanded={open} onClick={()=>setOpen(!open)}>{open?'×':'☰'}</button></div></nav></header>
+}
