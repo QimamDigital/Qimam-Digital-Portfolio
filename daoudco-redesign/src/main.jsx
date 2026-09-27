@@ -14,6 +14,7 @@ import Applications from './pages/Applications'
 import Gallery from './pages/Gallery'
 import Contact from './pages/Contact'
 import './styles/site.css'
+import './styles/brand-refresh.css'
 
 function ScrollToTop(){
  const { pathname, search } = useLocation()
